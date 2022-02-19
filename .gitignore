@@ -295,3 +295,14 @@ TSWLatexianTemp*
 
 # build directory
 build/
+
+# SJTUBeamer distribution
+SJTUBeamer/
+
+# SJTUBeamer files
+*.sty
+contrib/
+vi/
+
+# SJTUThesis distribution
+SJTUThesis/
