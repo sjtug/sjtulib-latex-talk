@@ -6,9 +6,9 @@
 ```
 l3build doc
 ```
-编译文件 `latex-talk-2022.tex`。
+编译文件。
 
-之后可以使用默认编译方法编译主文件。
+之后可以使用默认编译方法如 `latexmk` 编译主文件 `latex-talk-2022.tex`。
 
 可以通过 [GitHub Issues](https://github.com/sjtug/sjtulib-latex-talk/issues) 报告文档中的 BUG 等。
 
