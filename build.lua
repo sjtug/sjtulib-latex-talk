@@ -3,20 +3,26 @@
 module       = "latex-talk"
 
 docfiledir   = "."
-typesetfiles = {"latex-talk-2022.tex"}
+typesetfiles = {"latex-talk.tex"}
 
--- Select the typesetting engine for different platforms. 
+-- Package for Overleaf
+sourcedir    = "."
+sourcefiles = {"*.sty","vi/","contrib/","support/"}
+
+-- Select the typesetting engine for different platforms.
 if os.type == "windows" then
     typesetexe       = "pdflatex"
+    etypesetexe      = "etex"
 else
     typesetexe       = "xelatex"
+    etypesetexe      = "xetex"
 end
 
 supportdir = "support"
 
--- Compile the thesis on latexmk,
+-- Compile on latexmk,
 -- for a custom compiling environment typesetdir.
--- and copy the outpur pdf into outputdir.
+-- and copy the output pdf into outputdir.
 function latexmk_typeset(file, typesetdir, outputdir)
     local latexmkexe = "latexmk"
     local latexmkopt = "-xelatex -interaction=nonstopmode"
@@ -53,7 +59,7 @@ function typeset_demo_tasks()
     end
 
     -- Required files in SJTUBeamer.
-    beamerdepreq = {"*.sty","contrib/","vi/"}
+    beamerdepreq = {"*.sty","contrib/","vi/",".vscode/"}
     -- Move the required dependencies to the current folder
     -- for compatibility with overleaf version.
     -- and to the doc build directory for l3build typesetting.
@@ -88,17 +94,38 @@ function typeset_demo_tasks()
         "cd " .. thesisv2depdir .. "/sjtuthesis"
         .. " && " .. "l3build unpack")
     -- replace the old dependencies in SJTUThesis.
+    rm("*", thesisdepdir .. "/texmf/tex/latex/sjtuthesis")
     cp("*", thesisv2depdir .. "/sjtuthesis/build/unpacked",
         thesisdepdir .. "/texmf/tex/latex/sjtuthesis")
     errorlevel = latexmk_typeset("dev-v2", thesisdepdir, suppthesisdir)
     if errorlevel ~= 0 then
         print("! latexmk dev-v2.tex failed")
-        return errorlevel
+        print("+ Try updating the newtx package to 2022/01/12 (1.7) and later.")
+        errorlevel = os.execute("tlmgr update newtx")   -- Might not be useful for MiKTeX distribution.
+        errorlevel = errorlevel + latexmk_typeset("dev-v2", thesisdepdir, suppthesisdir)
+        if errorlevel ~= 0 then
+            print("  Or stay tuned for TeX Live 2022.")
+            return errorlevel
+        end
     end
 
-    -- TODO: typeset auxiliary pdfs and cache them. Or use tikz. TBD.
+    -- typeset auxiliary pdfs and cache them.
+    local exampledir = supportdir .. "/examples"
+    for _, file in ipairs(filelist(exampledir, "*.tex")) do
+        if fileexists(exampledir .. "/" .. file:gsub("%.tex$", ".pdf")) == false then
+            errorlevel = latexmk_typeset(file, exampledir, exampledir)
+            if errorlevel ~= 0 then
+                print("! latexmk " .. file .. " failed")
+                return errorlevel
+            end
+        end
+    end
 
     -- TODO: accelerate the compilation through etex.
+    -- for _, file in ipairs(typesetfiles) do
+    --     local etypesetcommand = etypesetexe .. "  -ini -interaction=nonstopmode -jobname=" .. file:gsub("%.tex$", ".pdf") .. " \"&" .. typesetexe .. "\" mylatexformat.ltx "
+    --     errorlevel = tex("\"\"\"" .. file .. "\"\"\"", ".", etypesetcommand)
+    -- end
 
     -- Rerun the support file copying,
     -- because the typesetsuppfiles is set to none

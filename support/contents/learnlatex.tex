@@ -1,0 +1,1006 @@
+% !TeX root = ..\..\latex-talk.tex
+
+\part{学习 \LaTeX{}}
+% FIXME: Part Page miniframe overflow
+% FIXME: footnote fault numbering
+
+\begin{frame}[plain]
+  \vfil
+  \begin{center}
+    \href{https://learnlatex.org}{
+      \rmfamily
+      Learn\,\lower1ex\hbox{\Huge\LaTeX{}}.org
+    }
+  \end{center}
+  \vfil
+  \begin{center}
+    \parbox{0.75\linewidth}{
+      Learn\LaTeX{}.org\cite{learnlatex} 提供了解 \LaTeX{} 的 16 篇简短的教程，并包含了一些可以在线运行的示例，可以通过亲自动手查看实验效果。本部分主要参考由 C\TeX{}-org 提供的中文翻译版本 \link{https://github.com/CTeX-org/learnlatex.github.io/tree/zh-Hans/zh-Hans/}。
+    }
+  \end{center}
+  \vfil
+\end{frame}
+
+{ % Start of shaded number logo
+
+\newcommand{\shadedfont}[2][1pt]{
+  % #1 (optional): shadow distance
+  % #2: the text needed to be shaded
+  \hbox{\rlap{\color{gray}\hskip#1#2}#2}
+}
+\newcounter{learnsec}
+\setcounter{learnsec}{-1}
+\newcommand{\updatelogo}{
+  % update the logo corresponding to current counter.
+  \stepcounter{learnsec}
+  \logo{
+    \raise.3ex\hbox{\tiny\insertsection}\shadedfont{\arabic{learnsec}}
+  }
+}
+\let\oldsection=\section
+\renewcommand{\section}[1]{\oldsection{#1}\updatelogo}
+
+\section{是什么}
+\begin{frame}
+  \frametitle{\TeX{}}
+  \begin{columns}[c]
+    \begin{column}{0.7\textwidth}
+      \begin{center}
+        \rmfamily\Huge
+        \hologo{La}\highlight[structure!70]{\TeX{}}
+      \end{center}
+      \begin{center}
+        \parbox{0.75\textwidth}{
+          \TeX{} 是由斯坦福大学教授高德纳
+          （Donald E.~Knuth）于 1977 年开始开发的排版引擎。目前仍在更新，最新版本号为 3.141592653 \link{https://tug.org/TUGboat/tb42-1/tb130knuth-tuneup21.pdf}。
+        }
+      \end{center}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[width=.8\columnwidth]{Knuth.jpg}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\LaTeX{}}
+  \begin{columns}[c]
+    \begin{column}{0.7\textwidth}
+      \begin{center}
+        \rmfamily\Huge
+        \highlight[structure]{\LaTeX{}}
+      \end{center}
+      \begin{center}
+        \parbox{0.75\textwidth}{
+          \LaTeX{} 是最早在 1985 年由现就职于微软的 Leslie Lamport 开发的一种 \TeX{} \textbf{格式}\footnotemark，使用一些列宏和扩展宏包来简化 \TeX{} 的使用。现在由 \LaTeX{} Project 的成员维护。现在广泛使用的版本是 \LaTeXe{}，最新的版本为 \LaTeX3（2020 年 10 月后默认内置）。
+        }
+      \end{center}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[width=.8\columnwidth]{Lamport.jpg}
+    \end{column}
+  \end{columns}
+  \footnotetext{\hologo{ConTeXt} 也是一种 \TeX{} 格式 \link{https://www.contextgarden.net/}。}
+\end{frame}
+
+\begin{frame}
+  \frametitle{程序}
+  \begin{columns}[c]
+    \begin{column}{0.7\textwidth}
+      \begin{center}
+        \rmfamily\Huge
+        \highlight[structure]{\hologo{pdfLaTeX}}
+      \end{center}
+      \begin{center}
+        \parbox{0.7\textwidth}{
+          \hologo{pdfLaTeX} 是为了编译一个 \LaTeX{} 文档而运行的程序。实际上底层在运行一个叫 \hologo{pdfTeX} 的引擎，并预装了对应的 \LaTeX{} \textbf{格式}。为了利用临时文件，可能就需要多次运行程序。
+        }
+      \end{center}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \begin{block}{}
+        \ttfamily\small
+        > \highlight{pdflatex} main.tex\\
+        This is pdfTeX, Version 3.141592653-
+        2.6-1.40.23 (MiKTeX 21.10)\\
+        entering extended mode\\
+        \highlight{LaTeX2e} <2021-11-15>\\
+        \highlight{L3} programming layer <2021-11-22>
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{引擎}
+  \begin{columns}[c]
+    \begin{column}{0.7\textwidth}
+      \begin{center}
+        \rmfamily\Huge
+        \highlight[structure!70]{pdf}\hologo{La}\highlight[structure!70]{\TeX{}}
+      \end{center}
+      \begin{center}
+        \parbox{0.7\textwidth}{
+          pdf\TeX{} 是编译 \TeX{} 文档（以 \texttt{.tex} 结尾）的\textbf{引擎}---可以理解 \TeX{} 指令的\textbf{程序}。
+        }
+      \end{center}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \begin{block}{}
+        \ttfamily\small
+        > pdflatex main.tex\\
+        This is \highlight[structure!70]{pdfTeX}, Version 3.141592653-
+        2.6-1.40.23 (MiKTeX 21.10)
+        entering extended mode\\
+        LaTeX2e <2021-11-15>\\
+        L3 programming layer <2021-11-22>
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Unicode 引擎}
+  \begin{table}
+    \caption{主流 \hologo{(La)TeX} 程序
+    \footnote{(u)p\TeX{} 是日语最常用的引擎，生成 \texttt{.dvi}，支持 Unicode。}\footnote{Ap\TeX{} 具有底层 CJK 支持，内联 Ruby，Color Emoji。}}
+    \footnotesize
+    \begin{stampbox}
+      \begin{tabular}{c>{\raggedright}*{3}{p{3.5cm}}}
+        \alert{引擎}     & \hologo{pdfTeX}   & \hologo{XeTeX}   & \hologo{LuaTeX}   \\
+        \alert{程序}     & \hologo{pdfLaTeX} & \hologo{XeLaTeX} & \hologo{LuaLaTeX} \\
+        \alert{特点}     & 直接生成 PDF，支持 micro-typography  & 支持 Unicode、OpenType 与复杂文字编排 (CTL) & 支持 Unicode，内联 Lua，支持 OpenType \\
+      \end{tabular}
+    \end{stampbox}
+  \end{table}
+
+  \begin{center}
+    \parbox{.9\textwidth}{
+      \hologo{pdfLaTeX} 不支持 Unicode。为了排版中文，大部分情况下 \faApple{}\,\faLinux{} 应当使用 \hologo{XeLaTeX}，而 \hologo{LuaLaTeX} 速度相对较慢。\faWindows{} 可以在一些情况下使用 \hologo{pdfLaTeX}。
+    }
+  \end{center}
+\end{frame}
+
+% \begin{frame}
+%   \paragraph{\hologo{pdfLaTeX}} \TeX{} 和 \LaTeX{} 被广泛使用之前，它们只需内置支持欧洲语言即可。在 Unicode 出现之前，\LaTeX{} 提供了许多种\textbf{文件编码}来允许很多语言的文字以原生的方式输入，\hologo{pdfLaTeX} 也只需要使用 8 位文件编码和 8 位字体。
+% \end{frame}
+
+\section{跑起来}
+\begin{frame}
+  \frametitle{发行版}
+  \begin{table}
+    \caption{\hologo{TeX} 发行版}
+    \footnotesize
+    \begin{stampbox}
+      \begin{tabular}{c>{\raggedright}*{3}{p{3.2cm}}}
+        \alert{发行版}     & \hologo{MiKTeX} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-21.12-x64.exe}   & \TeX{} Live \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/tlnet/install-tl.zip}   & Mac\TeX{} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/mac/mactex/mactex-20210328.pkg}  \\[2pt]
+        \alert{特点}      &  只安装必要文件，依赖用时更新  &  所有平台均可使用，每年发布一次 & Mac 系统专用，对 \TeX{} Live 的进一步打包 \\
+        \alert{推荐平台}  & \faWindows  & \faLinux &  \faApple \\
+      \end{tabular}
+    \end{stampbox}
+  \end{table}
+  \begin{center}
+    \parbox{.9\textwidth}{
+      要让 \LaTeX{} 跑起来，核心就是要有一套 \TeX{} 发行版，来获取让 \LaTeX{} 工作所需的一组程序和文件。参考《一份简短的关于 \LaTeX{} 安装的介绍》\link{https://mirrors.sjtug.sjtu.edu.cn/ctan/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf} 安装想使用的发行版。推荐使用发行版的最新版本\footnote{老版本 Linux 系统的包管理器自带 \TeX{} Live 发行版可能不是最新的 \link{https://repology.org/project/texlive/versions}，尽量使用镜像安装，并手动将相关环境变量添加到路径 \link{https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf}。}，并使用国内镜像。
+    }
+  \end{center}
+\end{frame}
+
+\begin{frame}[plain]
+  \hbox to \textwidth{
+    \hfil
+    \vbox to 3cm{
+      \hbox{
+        \resizebox{3cm}{!}{\includegraphics{\getcontribpath{sjtug}{vi/sjtug.pdf}}}
+      }
+    }
+    \hfil
+    \vbox to 3cm{
+      \vfill
+      \hbox{\Large\bfseries\color{cprimary} 稳定、快速、现代的镜像服务。}
+      \vskip2pt
+      \hbox{托管于华东教育网骨干节点上海交通大学。}
+      \vfill
+    }
+    \hskip20pt
+    \hfil
+  }
+
+  \begin{center}
+    \parbox{0.8\textwidth}{
+      推荐使用 SJTUG 软件镜像服务，离得近，下得快。
+      
+      \begin{description}
+        \footnotesize
+        \item[\TeX{} Live]  {\ttfamily tlmgr option repository https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/texlive/tlnet}
+        \item[\hologo{MiKTeX}] 在 \hologo{MiKTeX} Console 中设置镜像源为 \url{https://mirrors.sjtug.sjtu.edu.cn}
+      \end{description}
+    }
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{编辑器}
+  \begin{table}
+    \caption{开源编辑器推荐}
+    \footnotesize
+    \begin{stampbox}
+      \begin{tabular}{c>{\raggedright}*{3}{p{3.5cm}}}
+        \alert{编辑器}     & \begin{tabular}{c}Visual Studio Code\\ \LaTeX{} Workshop\end{tabular}  & \TeX{}studio & \TeX{}works \\[5pt]
+        \alert{特点}      &  搭配 VS Code 使用非常方便，易扩展  & 可以使用大量的菜单选项输入代码块，用户友好 & 只提供基础的高亮与运行方法，发行版自带\footnote{Mac\TeX{} 打包的是 \TeX{}Shop 编辑器。} \\
+      \end{tabular}
+    \end{stampbox}
+  \end{table}
+  \begin{center}
+    \parbox{.9\textwidth}{
+      使用专为 \LaTeX{} 设计的编辑器将带来更多便利，因为它们往往会提供一键编译、内置 PDF 阅读器以及语法高亮等功能。几乎所有现代的 \LaTeX{} 编辑器都提供 Sync\TeX{} 这一强大的功能，以在 PDF 和 代码间对应跳转。
+    }
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{在线平台}
+  \begin{table}
+    \caption{在线协作平台推荐}
+    \footnotesize
+    \begin{stampbox}
+      \begin{tabular}{c>{\raggedright}*{2}{p{4cm}}}
+        \alert{在线平台}     & Overleaf \link{https://www.overleaf.com/}  & 交大 \LaTeX{} 助手 \link{https://latex.sjtu.edu.cn/} \\[2pt]
+        \alert{特点}      & 最流行的在线平台，提供大量的模板，但国内访问慢 & 校内平台，隐私保护有保障，共享项目限制少 \\
+      \end{tabular}
+    \end{stampbox}
+  \end{table}
+  \begin{center}
+    \parbox{.9\textwidth}{
+      在线平台允许你直接在网页中编辑文档，无需本地安装即可在后台运行 \LaTeX{}，并显示生成的 PDF。可以参照 Overleaf 官方文档学习如何使用在线平台 \link{https://www.overleaf.com/learn}。
+    }
+  \end{center}
+\end{frame}
+
+\section{基本结构}
+\begin{frame}[fragile]%
+  \frametitle{文档部件}
+  \begin{columns}[c]
+    \begin{column}{0.4\textwidth}
+      \only<1>{
+        \cmd{documentclass} 命令加载了\textbf{文档类}。\pkg{article} 是由 \LaTeX{}提供的用于排版短文档的基本文档类。
+        \begin{description}
+          \footnotesize
+          \item[\pkg{article}] 不包含章的短文档
+          \item[\pkg{report}] 含有章的单面印刷文档
+          \item[\pkg{book}] 含有章的双面印刷文档
+          \item[\pkg{beamer}] 制作幻灯片
+        \end{description}
+      }
+      \only<2>{
+        \env{document} 环境用于指示文档主体的范围。\LaTeX{} 还有其他的使用 \cmd{begin} 和 \cmd{end} 的搭配，我们称这些为\textbf{环境}。它们将用来设定局部格式命令\footnotemark。
+      }
+      \only<3>{
+        \includepdflarge{enminimal}
+      }
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{排版英文最简示例}
+|\only<1>{\highlightline}|\documentclass{article}
+|\only<2>{\highlightline}|\begin{document}
+|\only<3>{\highlightline}|  Together for a Shared Future
+|\only<2>{\highlightline}|\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \only<2>{\footnotetext{环境实际上是一个组，只不过通过语义化的形式预装了对应的格式命令。普通的组可以直接使用一对大括号之间的内容 \{$\cdots$\} 表示。}}
+\end{frame}
+
+\section{扩展}
+\begin{frame}[fragile]%
+  \frametitle{中文排版}
+  \begin{columns}[c]
+    \begin{column}{0.4\textwidth}
+      \only<1>{
+        \cmd{usepackage} 用于使用宏包以向 \LaTeX{} 添加或修改功能，需要在\textbf{导言区}调用。
+        这里使用 \pkg{ctex} 宏集以获得中文支持。其调用底层因随不同的引擎而不同。
+        {
+          \footnotesize
+          \begin{stampbox}
+            \begin{tabular}{c*{3}{c}}
+              \alert{引擎}     & \hologo{pdfTeX}   & \hologo{XeTeX}   & \hologo{LuaTeX}   \\
+              \alert{程序}     & \hologo{pdfLaTeX} & \hologo{XeLaTeX} & \hologo{LuaLaTeX} \\
+              \alert{宏包}     & CJK\footnotemark & xeCJK & luatexja \\
+              \alert{封装}     & \multicolumn{3}{c}{ctex} \\
+            \end{tabular}
+          \end{stampbox}
+        }
+        \vspace{-1cm}
+      }
+      \only<2>{
+        C\TeX{} 建议对于之前提到的常规文档类，最佳实践是使用该宏集提供的四种中文文档类，以对特定类型提供额外的中文排版适配。
+        \begin{center}
+          \begin{stampbox}
+            \footnotesize
+            \begin{tabular}{cc}
+              \pkg{ctexart} & \pkg{ctexrep} \\
+              \pkg{ctexbook} & \pkg{ctexbeamer} \\
+            \end{tabular}
+          \end{stampbox}
+        \end{center}
+      }
+      \only<3>{
+        \includepdflarge{cnminimal}
+      }
+      \only<4>{
+        大部分情况下，你都不应当在 \LaTeX{} 中强制断行：你几乎只是想另起一段，或者是想在段落之间添加空行（使用 \pkg{parskip} 宏包就可实现）。
+        只有\alert{很少的}情况下你需要使用 \textbackslash{}\textbackslash{} 来另起一行而不另起一段。
+      }
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{排版中文\only<2->{最佳实践}}
+|\only<2>{\highlightline}|\documentclass{|\only<1>{article}\only<2->{ctexart}|}
+|\only<1>{\highlightline\textbackslash{}usepackage\{ctex\}\hfill\color{cprimary}\% 导言区}|
+\begin{document}
+|\only<3>{\highlightline}|    一起向未来
+|\only<4>{\highlightline}|
+  Together for a Shared Future
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \only<1>{\footnotetext{ctex 在 \faApple\,\faLinux{} 上已经不可以使用 \hologo{pdfLaTeX} 编译，以及在 \faWindows{} 上使用该引擎也会变更自动间距调整等功能的默认行为。}}
+\end{frame}
+
+\section{设定格式}
+\begin{frame}[fragile]%
+  \frametitle{字体样式}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \only<1>{
+        \includepdflarge{fontstyle}
+      }
+      \only<2>{
+        可以使用显示样式设定命令对小段做加粗、斜体、等宽等等的处理。
+        \begin{center}
+          \footnotesize
+          \begin{stampbox}
+            \begin{tabular}{rl}
+              \cmd{textrm} & \textrm{衬线} \\
+              \cmd{textbf} & \textbf{加粗} \\
+              \cmd{textit} & \kaishu 斜体 \\
+              \cmd{texttt} & \texttt{等宽} \\
+              \cmd{textsf} & \textsf{无衬线} \\
+              \cmd{textsc} & \textsc{Small Caps} \\
+              \cmd{textsl} & \textsl{Slanted} \\
+            \end{tabular}
+          \end{stampbox}
+        \end{center}
+      }
+      \only<3>{
+        与 Word 不同的是，\LaTeX{} 一般情况下并不需要使用上面的显式命令，而是采用逻辑标记的方法，
+        比如 \cmd{emph} 可以强调文字，以及下面将要提到的目次命令（第 \ref{sectioning} 页）。
+        这样可以统一管理格式。
+      }
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{样式}
+\documentclass{ctexart}
+\begin{document}
+|\only<2>{\highlightline}|  \textbf{||一起向未来}
+
+|\only<3>{\highlightline}|  \emph{Together for a Shared Future}
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]%
+  \frametitle{\only<1-2>{字体大小}\only<3>{字体样式}}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \only<1>{
+        \includepdflarge{fontsize}
+      }
+      \only<2>{
+        同样地，你也可以显式地设定字体大小，但是这种命令会更改行文设置，所以需要使用一个组来限定作用范围\footnotemark。
+        \begin{center}
+          \footnotesize
+          \begin{stampbox}
+            \begin{tabular}{rl}
+              \cmd{tiny} & \tiny 极小 \\
+              \cmd{scriptsize} & \scriptsize 抄本大小  \\
+              \cmd{footnotesize} & \footnotesize 脚注大小 \\
+              \cmd{small} & \small 小 \\
+              \cmd{normalsize} & \normalsize 正常大小 \\
+              \cmd{large} & \large 大 \\
+              \cmd{huge} & \Huge 巨大 \\
+            \end{tabular}
+          \end{stampbox}
+        \end{center}
+      }
+      \only<3>{
+        也可以使用字体样式对应的更改字体设置的命令，这对于大段文段的设置而言也是很方便的。
+        \begin{center}
+          \footnotesize
+          \begin{stampbox}
+            \begin{tabular}{ll}
+              \cmd{textrm} & \cmd{rmfamily}\\
+              \cmd{texttt} & \cmd{ttfamily}\\
+              \cmd{textsf} & \cmd{sffamily}\\
+              \cmd{textbf} & \cmd{bfseries}\\
+              \cmd{textit} & \cmd{itshape}\\
+              \cmd{textsc} & \cmd{scshape}\\
+              \cmd{textsl} & \cmd{slshape}\\
+            \end{tabular}
+          \end{stampbox}
+        \end{center}
+      }
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{大小}
+\documentclass{ctexart}
+\begin{document}
+|\only<2>{\highlightline}|  {\bfseries\Large 一起向未来\par}
+|\only<3>{\highlightline}|  {\itshape Together for a Shared Future}
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \only<2>{\footnotetext{注意最后显式地使用 \cmd{par} 在改回大小前结束该段，否则会导致下一行的行间距异常！}}
+\end{frame}
+
+\section{逻辑结构}
+\begin{frame}[fragile]
+  \frametitle{列表}
+  \begin{columns}
+    \begin{column}{0.35\textwidth}
+      \begin{codeblock}[]{无序列表}
+\documentclass{ctexart}
+\begin{document}
+|\highlightline|  \begin{itemize}
+    \item 第一项
+    \item 第二项
+    \item 第三项
+|\highlightline|  \end{itemize}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \begin{codeblock}[]{有序列表}
+\documentclass{ctexart}
+\begin{document}
+|\highlightline|  \begin{enumerate}
+    \item 第一项
+    \item 第二项
+    \item 第三项
+|\highlightline|  \end{enumerate}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \begin{codeblock}[]{描述列表}
+\documentclass{ctexart}
+\begin{document}
+|\highlightline|  \begin{description}
+    \item[||第一] 文本
+    \item[||第二] 文本
+    \item[||第三] 文本  
+|\highlightline|  \end{description}
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+%更深的列表技巧，定理环境等
+
+\begin{frame}
+  \frametitle{列表}
+  \begin{columns}
+    \begin{column}{0.35\textwidth}
+      \includepdflarge{unordered}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \includepdflarge{ordered}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \includepdflarge{description}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile,label=sectioning]%
+  \frametitle{目次结构}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \LaTeX{} 可以使用目次命令将文档划分层级\footnotemark，并自动设定对应字体样式和大小。
+      \begin{center}
+        \begin{stampbox}
+          \footnotesize
+          \begin{tabular}{rll}
+           命令 & 中文 & 层次 \\
+           \cmd{chapter} & 章\footnotemark & \sout{0} \\
+           \cmd{section} & 节 & 1 \\
+           \cmd{subsection} & 小节 & 2 \\
+           \cmd{subsubsection} & 小小节 & 3 \\
+          \end{tabular}
+        \end{stampbox}
+      \end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{目次}
+\documentclass{ctexart}
+\begin{document}
+|\highlightline|  \section{||概念}
+|\highlightline|  \subsection{\LaTeX{}}
+  \LaTeX{} 是一个用以排版高质量作品的文档准备系统。
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \footnotetext{章这一级只在 \pkg{report} 和 \pkg{book} 文档类（包括对应的中文文档类）有定义。还有不常用的 \cmd{part} (0@\pkg{article}/-1@\pkg{report}\&\pkg{book}\&\pkg{beamer}) 以及更低层次的 \cmd{paragraph} (4) 与 \cmd{subparagraph} (5)。 }
+\end{frame}
+
+\begin{frame}[fragile]%
+  \frametitle{组织文档}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \only<1>{
+        \cmd{tableofcontents} 用来生成对于目次命令的目录。如果你想设定显示到哪个层级，在这个命令前使用 \cmd{setcounter\{tocdepth\}\{层次\}}
+      }
+      \only<2>{
+        对于大型文档而言，使用多个文件管理源文件通常是更方便的。而 \cmd{include} 和 \cmd{input} 都以相对路径的方式插入其他 \TeX{} 文档。
+        区别在于，\cmd{include} 命令会从新页开始并做一些内部调整，这基本上只对 \pkg{chapter} 这一级有用。而 \cmd{input} 会原样插入源代码。
+      }
+      \only<3>{
+        但是 \cmd{include} 插入的文档可以使用 \cmd{includeonly} 管理当前要排印哪一部分的内容，利用所有章节辅助文件的同时，减少编译时间并专注于该部分的内容。
+      }
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{主文档}
+\documentclass{ctexrep}
+|\only<3>{\highlightline}|\includeonly{learnlatex,sjtuthesis}
+\begin{document}
+|\only<1>{\highlightline}|  \tableofcontents
+|\only<2-3>{\highlightline}|  \include{learnlatex}
+|\only<3>{\highlightline}|  \include{sjtuthesis}
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{组织文档}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{codeblock}[]{learnlatex.tex}
+|\highlightline|\chapter{||学习 \LaTeX{}}
+\section{||概念}
+\subsection{\LaTeX{}}
+\LaTeX{} 是一个用以排版高质量作品的文档准备系统。
+      \end{codeblock}
+      子文件中就不需要添加 \env{document} 环境了\footnotemark。
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{主文档}
+|\highlightline|\documentclass{ctexrep}
+\includeonly{learnlatex,sjtuthesis}
+\begin{document}
+  \tableofcontents
+  \include{learnlatex}
+  \include{sjtuthesis}
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \footnotetext{如果想强制指定子文档的主文档，可以在文件第一行输入魔术命令：\texttt{\% !TeX root = main.tex}}
+\end{frame}
+
+\section{图}
+\begin{frame}[fragile]%
+  \frametitle{\temporal<5>{插图}{浮动体}{插图}}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{插入单图\only<4->{最佳实践}}
+\documentclass{ctexart}
+|\only<2>{\highlightline}|\usepackage{graphicx}
+|\only<2>{\highlightline}|\graphicspath{{figs/}{pics/}}
+\begin{document}
+|\only<5>{\highlightline}|\begin{figure}[ht]
+|\only<6>{\highlightline}|  \centering
+|\only<3>{\highlightline}|  \includegraphics[width=|\only<1-3>{4cm}\only<4->{0.4\textbackslash{}textwidth}|]{sjtug}
+|\only<7>{\highlightline}|  \caption{SJTUG 徽标}\label{fig:sjtug}
+|\only<5>{\highlightline}|\end{figure}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \only<1>{
+        \includepdflarge{insertimage}
+      }
+      \only<2>{
+        为了插入外部图片，需要使用 \pkg{graphicx} 宏包。之后在文档主体便可以使用 \cmd{includegraphics} 插入图片。导言区也可以加入 \cmd{graphicspath} 指定图片文件夹\footnotemark。
+      }
+      \only<3>{
+        \cmd{includegraphics} 命令便以相对路径的方式插入图片，如果无同名图片，那么后缀名可以省略。可以使用可选参数指定插入的图片尺寸，最佳实践是使用 \cmd{textwidth} 或 \cmd{linewidth} 的相对值指定尺寸大小，以在未来可能的布局更改中保留一定的灵活性。
+      }
+      \only<4>{
+        也可以通过键值对的方法设置图片的其他属性。
+        \begin{center}
+          \footnotesize
+          \begin{stampbox}
+            \begin{tabular}{rl}
+              \pkg{width} & 宽度 \\
+              \pkg{height} & 高度 \\
+              \pkg{scale} & 缩放 \\
+              \pkg{angle} & 角度 \\
+            \end{tabular}
+          \end{stampbox}
+        \end{center}
+      }
+      \only<5>{
+        \env{figure} 为一个浮动体环境（\env{table} 也是），可以将其移动到其他位置上以减少行文中的空白。可以添加可选参数以指定如何放置浮动体，最多可以使用四种位置描述符：
+        \begin{center}
+          \footnotesize
+          \begin{stampbox}
+            \begin{tabular}{cll}
+              \pkg{h} & Here & 尽可能在这里 \\
+              \pkg{t} & Top & 页面顶部 \\
+              \pkg{b} & Bottom & 页面底部 \\
+              \pkg{p} & Page & 浮动体专页 \\
+            \end{tabular}
+          \end{stampbox}
+        \end{center}
+        还可以只使用 \pkg{float} 宏包提供的 \pkg{H} 描述符以强制置于此处。
+      }
+      \only<6>{
+        采用 \cmd{centering} 命令而不是 \env{center} 环境来水平居中图片。这将避免多余的纵向间距。
+      }
+      \only<7>{
+        使用 \cmd{caption} 命令输入题注，如果这个命令写在插入图片前面，题注将会在上方（中文中一般对 \env{table} 环境这么做）。后面将会看到如何对留有标记（\cmd{label}）的图片进行引用。
+      }
+    \end{column}
+  \end{columns}
+  \only<2>{\footnotetext{其命令参数每个为一个以 \texttt{/} 结尾的文件夹，每个文件夹需要使用大括号包裹起来。}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{插入双图}
+\documentclass{ctexart}
+\usepackage{graphicx}
+\graphicspath{{figs/}{pics/}}
+\begin{document}
+  \begin{figure}[ht]
+|\only<1>{\highlightline}|    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[height=2cm]{sjtug}
+|\only<2>{\highlightline}|      \caption{SJTUG 徽标}\label{fig:sjtug}
+|\only<1>{\highlightline}|    \end{minipage}\hfill
+|\only<1>{\highlightline}|    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[height=2cm]{sjtugt}
+|\only<2>{\highlightline}|      \caption{SJTUG||文字}\label{fig:sjtugt}
+|\only<1>{\highlightline}|    \end{minipage}
+  \end{figure}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \only<1>{
+        在 \env{figure} 环境里使用 \env{minipage} 小页制作列盒子，以并排两图并分别编号，需要设定强制参数以指定列宽。两个小页之间添加 \cmd{hfill} 使两个小页两端对齐。
+      }
+      \only<2>{
+        在每个小页内部分别使用 \cmd{caption} 添加标签。
+      }
+      \only<3>{
+        \includepdflarge{doubleimages}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]%
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{}
+\documentclass{ctexart}
+\usepackage{graphicx}
+|\highlightline|\usepackage{subcaption}
+\graphicspath{{figs/}{pics/}}
+\begin{document}
+  \begin{figure}[ht]
+|\highlightline|    \begin{subfigure}{0.48\textwidth}
+      \centering
+      \includegraphics[height=2cm]{sjtug}
+      \caption{||徽标}
+|\highlightline|    \end{subfigure}\hfill
+|\highlightline|    \begin{subfigure}{0.48\textwidth}
+      \centering
+      \includegraphics[height=2cm]{sjtugt}
+      \caption{||文字}
+|\highlightline|    \end{subfigure}
+    \caption{SJTUG}\label{fig:sjtug}
+  \end{figure}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \includepdflarge{subfigures}\vspace{15pt}
+      \pkg{subcaption} 宏包提供了 \env{subfigure} 环境（以及 \env{subtable}），可以用于以子图的形式插入，编号会增加一级。也可以为子图添加子集引用编号。
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{表}
+\begin{frame}[fragile]
+  \frametitle{简单表格}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{}
+\documentclass{ctexart}
+|\only<1-2>{\highlightline}|\usepackage{|\temporal<1>{array}{\highlight{array}}{array},\temporal<2>{booktabs}{\highlight{booktabs}}{booktabs}|}
+\begin{document}
+\begin{table}[ht]
+  \centering
+  \caption{||北京冬奥会吉祥物}
+|\only<1>{\highlightline}|  \begin{tabular}{lp{3cm}}
+|\only<2>{\highlightline}|    \toprule
+|\only<3>{\highlightline}|吉祥物 & 描述                          \\
+|\only<2>{\highlightline}|    \midrule
+|\only<3>{\highlightline}|冰墩墩 & 2022 年北京冬季奥运会吉祥物  \\
+|\only<3>{\highlightline}|雪容融 & 2022 年北京冬季残奥会吉祥物  \\
+|\only<2>{\highlightline}|    \bottomrule
+|\only<1>{\highlightline}|  \end{tabular}
+\end{table}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \only<1>{
+        使用 \env{tabular} 环境绘制表格。需要添加参数（称为\textbf{表格导言}）以确定每一列的对齐方式。引入 \pkg{array} 宏包来使用更多的\textbf{引导符}。
+        \begin{center}
+          \footnotesize
+          \begin{stampbox}
+            \begin{tabular}{>{\ttfamily}ll}
+              \alert{l} & 向左对齐 \\
+              \alert{c} & 居中对齐 \\
+              \alert{r} & 向右对齐 \\
+              \alert{p\{3cm\}} & 固定列宽，两端对齐 \\
+              \alert{m\{3cm\}} & \texttt{p} + 垂直居中对齐 \\
+              \alert{>\{\textbackslash{}bfseries\}} & 后一列单元格前加命令 \\
+              \alert{*\{3\}\{l\}} & 三个左对齐列 \\
+            \end{tabular}
+          \end{stampbox}
+        \end{center}
+      }
+      \only<2>{
+        \pkg{booktabs} 宏包提供了标准三线表格所需要的行分割线：\cmd{toprule}，\cmd{midrule}，\cmd{bottomrule}。也可以使用 \cmd{cmidrule\{1-2\}} 来部分地绘制行分割线。一般不推荐在专业表格中使用纵向分割线。
+      }
+      \only<3>{
+        每行内容使用 \textbackslash\textbackslash{} 分隔开，每行中的单元格使用 \& 分隔开。
+      }
+      \only<4>{
+        \includepdflarge{table}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]%
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{表头居中}
+\documentclass{ctexart}
+\usepackage{array,booktabs}
+\begin{document}
+\begin{table}[ht]
+  \centering
+  \caption{||北京冬奥会吉祥物}
+  \begin{tabular}{lp{3cm}}
+    \toprule
+|\highlightline|\multicolumn{1}{c}{||吉祥物} &
+|\highlightline|\multicolumn{1}{c}{||描述} \\
+    \midrule
+||冰墩墩 & 2022 年北京冬季奥运会吉祥物  \\
+||雪容融 & 2022 年北京冬季残奥会吉祥物  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \cmd{multicolumn} 命令不仅可以用于合并同行的单元格，还可以用于临时地屏蔽表格导言对该列的对齐方式定义。这里用于居中表头。
+      \begin{center}
+        \begin{stampbox}
+          \parbox{0.85\linewidth}{
+            \ttfamily\color{blue}\textbackslash{}multicolumn\{格数\}\{对齐方式\}\{内容\}
+          }
+        \end{stampbox}
+      \end{center}
+      跨页表格考虑使用 \pkg{longtable} 宏包。带标注的表格可以考虑使用 \pkg{threeparttable} 宏包。考虑使用在线工具生成表格代码 \link{https://www.tablesgenerator.com/latex_tables}。
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{数学公式}
+\begin{frame}
+  \frametitle{数学模式}
+  \begin{alertblock}{}
+  输入数学公式是 \LaTeX{} 的绝对强项，很多常见的公式服务依赖于一些轻量级渲染引擎比如 MathJax, K\kern-.3ex\raise.4ex\hbox{\footnotesize A}\kern-.3ex\TeX{}。但是它们实际上使用的是 \LaTeX{} 语法变种，也就是说并没有使用 \LaTeX{} 后端。所以不要期望有完全一致的输出。
+  \end{alertblock}
+  
+  为了更好的获得数学公式输入支持，请使用 \hologo{AmS}math 宏包。数学模式分为两种：
+  \begin{description}
+    \item[行内模式] 一般通过一对美元符号（\$$\cdots$\$）标记，可以使用编辑器内建的符号表输入数学符号，也可以使用在线工具手写识别 \link{https://detexify.kirelabs.org/classify.html}。
+    \item[行间模式] 一般通过 \env{equation} 环境\footnote{这是有编号环境，其加星号的变种 \env{equation*} 用于生成无编号环境。}输入。如果需要使用多行公式，请使用 \env{align} 环境，并按照类似表格输入的方式，使用 \& 对齐符号，\textbackslash\textbackslash{} 换行。如果不想手动居中，可以考虑多行自动居中的 \env{gather} 和单个大型公式首尾两端对齐 \env{multline}。
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \frametitle{数学命令展示}
+  \begin{columns}
+    \begin{column}{0.33\textwidth}
+      \begin{exampleblock}{}
+        $PV=nRT$
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        $\sum_{i=1}^ki^2=\frac{n(n+1)(2n+1)}{6}$
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        $T(n) = aT\left(\left\lceil\frac{n}{b}\right\rceil\right) + \mathcal{O}(n^d)$
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        $\frac{x_{1}+x_{2}+x_{3}}{3}\geq \sqrt[3]{x_{1}x_{2}x_{3}}$
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        $n=(\underbrace{1\cdots 1}_{k\text{ of 1's}})_2=2^{k+1}-1$
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        $\nabla f (P)= \left.\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\right|_{P}$
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.67\textwidth}
+      \begin{exampleblock}{}
+        \begin{equation*}
+          \int_{a}^b f(x)\,\mathrm{d}x=\lim_{|P|\rightarrow 0}\sum_{i=1}^n f(\xi_i)\Delta x_i
+        \end{equation*}
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        \begin{equation}
+          T(n) = \begin{cases}
+            \mathcal{O}(n^d),&\textrm{if } d>\log_b a, \\
+            \mathcal{O}(n^d\log n), &\textrm{if } d=\log_b a,\\
+            \mathcal{O}(n^{\log_b a}), &\textrm{if } d<\log_b a.
+          \end{cases}
+        \end{equation}
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        \begin{align}
+          Q^{T}A&=R \\
+          \begin{pmatrix}
+            q_1^T \\ q_2^T \\ q_3^T
+          \end{pmatrix}
+          \begin{pmatrix}
+            a_1 & a_2 & a_3
+          \end{pmatrix}
+          &=R
+        \end{align}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+%更深入地讲解 mathtools, unicode-math, siunix
+
+\section{引用}
+\begin{frame}[fragile]
+  \frametitle{交叉引用}
+  \only<1>{
+    正如之前所提到的，\LaTeX{} 中使用 \cmd{label} 标记，然后可以使用 \cmd{ref} 来引用这个标记。 \cmd{label} 可以放在使用计数器的对象之后。
+  }
+  \only<2>{
+    为了使得对公式编号的引用带有括号，推荐使用 \hologo{AmS}math 宏包中的 \cmd{eqref} 命令。对于多行公式环境，每一个换行符前都可以添加一个 \cmd{label} 用于引用该行公式。
+  }
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{codeblock}[]{图}
+\begin{figure}
+|\only<1>{\highlightline}|  \caption{||示例}\label{fig:example}
+\end{figure}
+      \end{codeblock}
+      \begin{codeblock}[]{表}
+\begin{table}
+|\only<1>{\highlightline}|  \caption{||示例}\label{tab:example}
+\end{table}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{codeblock}[]{目次}
+|\only<1>{\highlightline}|\section{||示例}\label{sec:example}
+\end{codeblock}
+
+\begin{codeblock}[]{公式}
+\begin{equation}
+  a = b + c
+|\only<1>{\highlightline}|\label{eq:example}
+\end{equation}
+|\only<2>{\highlightline}|如公式 \eqref{eq:example} 所示，
+\end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文献引用}
+  \LaTeX{} 管理参考文献可以采用专用数据库文件 \texttt{.bib}，很多的文献管理文件比如 EndNote \link{https://lic.sjtu.edu.cn/Default/softshow/tag/MDAwMDAwMDAwMLGImKE}, Zotero \link{https://www.zotero.org/}, JabRef \link{https://www.jabref.org/} 都可以直接导出这种格式的文件用于 \LaTeX{} 论文中的引用。一般不需要手写数据库文件，你只需要注意每一个文献会在数据库中有一个主键，这个类似于上文的 \cmd{label} 标记，只是要引用数据库中的文献需要使用 \cmd{cite} 命令。
+  
+  \begin{codeblock}[]{ref.bib}
+|\highlightline|@phdthesis{devoftech,|\hfill\alert{\% 类型为博士论文，主键为\texttt{devoftech}}|
+  title={||新时期我国信息技术产业的发展},
+  author={||江泽民},
+  year={2008}
+}
+  \end{codeblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文献引用}
+  而让 \LaTeX{} 处理 \texttt{.bib} 数据库文件与引用有两种工作流。你可能需要查清楚如何在编辑器中设置对应的工作流，或者采用后面所提到的高级编译方式 \texttt{latexmk}。
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\hologo{BibTeX} + \pkg{gbt7714}}
+        一般期刊提交使用这种方法，\pkg{natbib} 宏包将提供命令 \cmd{citet}（文本引用） 和 \cmd{citep}（括号引用）。中文引用可以直接使用 \pkg{gbt7714} 宏包，但是角模式和正文模式不能混用。
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\hologo{biber} + \pkg{biblatex}}
+        这是更容易自定义的方法，与 \hologo{BibTeX} 的运作方式稍有不同。\pkg{biblatex} 提供了更加智能的引用命令。而中文引用可以使用 \pkg{biblatex} 宏包的样式 \pkg{gb7714-2015}，使用该样式需要使用 \hologo{XeLaTeX} 编译。
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文献引用}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{codeblock}[]{\hologo{BibTeX} + \pkg{gbt7714}}
+\documentclass{ctexart}
+\usepackage{gbt7714}
+\bibliographystyle{gbt7714-numerial}
+% \citestyle{numbers}  % 正文模式
+\begin{document}
+  ||他指出了...\cite{devoftech}
+  \bibliography{ref}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{codeblock}[]{\hologo{biber} + \pkg{biblatex}}
+\documentclass{ctexart}
+\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+\addbibresource{ref.bib}
+\begin{document}
+  ||他在文献 \parencite{devoftech}
+  ||指出了...\cite{devoftech}
+  \printbibliography
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文献引用}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \includepdflarge{bibtex}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includepdflarge{biblatex}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+} % End of customized shaded number logo

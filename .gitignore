@@ -309,3 +309,6 @@ SJTUThesis/
 
 # SJTUTeX distribution
 SJTUTeX/
+
+# Release package
+*.zip
