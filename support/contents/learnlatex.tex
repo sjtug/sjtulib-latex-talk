@@ -405,7 +405,7 @@
           \begin{stampbox}
             \begin{tabular}{rl}
               \cmd{tiny} & \tiny 极小 \\
-              \cmd{scriptsize} & \scriptsize 抄本大小  \\
+              \cmd{scriptsize} & \scriptsize 角标大小  \\
               \cmd{footnotesize} & \footnotesize 脚注大小 \\
               \cmd{small} & \small 小 \\
               \cmd{normalsize} & \normalsize 正常大小 \\
@@ -949,7 +949,7 @@
   而让 \LaTeX{} 处理 \texttt{.bib} 数据库文件与引用有两种工作流。你可能需要查清楚如何在编辑器中设置对应的工作流，或者采用后面所提到的高级编译方式 \texttt{latexmk}。
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \begin{block}{\hologo{BibTeX} + \pkg{gbt7714}}
+      \begin{block}{\hologo{BibTeX} + \pkg{natbib}}
         一般期刊提交使用这种方法，\pkg{natbib} 宏包将提供命令 \cmd{citet}（文本引用） 和 \cmd{citep}（括号引用）。中文引用可以直接使用 \pkg{gbt7714} 宏包，但是角模式和正文模式不能混用。
       \end{block}
     \end{column}
@@ -977,7 +977,7 @@
       \end{codeblock}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \begin{codeblock}[]{\hologo{biber} + \pkg{biblatex}}
+      \begin{codeblock}[]{\hologo{biber} + \pkg{biblatex-gb7714-2015}}
 \documentclass{ctexart}
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 \addbibresource{ref.bib}
