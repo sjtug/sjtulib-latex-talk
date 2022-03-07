@@ -28,13 +28,10 @@
   % #2: the text needed to be shaded
   \hbox{\rlap{\color{gray}\hskip#1#2}#2}
 }
-\newcounter{learnsec}
-\setcounter{learnsec}{-1}
+\setcounter{section}{-1}
 \newcommand{\updatelogo}{
-  % update the logo corresponding to current counter.
-  \stepcounter{learnsec}
   \logo{
-    \raise.3ex\hbox{\tiny\insertsection}\shadedfont{\arabic{learnsec}}
+    \raise.3ex\hbox{\tiny\insertsection}\shadedfont{\arabic{section}}
   }
 }
 \let\oldsection=\section
@@ -173,7 +170,7 @@
     \footnotesize
     \begin{stampbox}
       \begin{tabular}{c>{\raggedright}*{3}{p{3.2cm}}}
-        \alert{发行版}     & \hologo{MiKTeX} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-21.12-x64.exe}   & \TeX{} Live \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/tlnet/install-tl.zip}   & Mac\TeX{} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/mac/mactex/mactex-20210328.pkg}  \\[2pt]
+        \alert{发行版}     & \hologo{MiKTeX} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-21.12-x64.exe}   & \TeX{} Live \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/tlnet/install-tl.zip}   & Mac\TeX{} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/mac/mactex/mactex-20210328.pkg}  \\[2pt] % Replace with TeX Live 2022 link
         \alert{特点}      &  只安装必要文件，依赖用时更新  &  所有平台均可使用，每年发布一次 & Mac 系统专用，对 \TeX{} Live 的进一步打包 \\
         \alert{推荐平台}  & \faWindows  & \faLinux &  \faApple \\
       \end{tabular}
@@ -299,29 +296,25 @@
       \only<1>{
         \cmd{usepackage} 用于使用宏包以向 \LaTeX{} 添加或修改功能，需要在\textbf{导言区}调用。
         这里使用 \pkg{ctex} 宏集以获得中文支持。其调用底层因随不同的引擎而不同。
-        {
+        \begin{center}
           \footnotesize
-          \begin{stampbox}
-            \begin{tabular}{c*{3}{c}}
-              \alert{引擎}     & \hologo{pdfTeX}   & \hologo{XeTeX}   & \hologo{LuaTeX}   \\
-              \alert{程序}     & \hologo{pdfLaTeX} & \hologo{XeLaTeX} & \hologo{LuaLaTeX} \\
-              \alert{宏包}     & CJK\footnotemark & xeCJK & luatexja \\
-              \alert{封装}     & \multicolumn{3}{c}{ctex} \\
-            \end{tabular}
-          \end{stampbox}
-        }
+          \begin{tabular}{c*{3}{c}}
+            \alert{引擎}     & \hologo{pdfTeX}   & \hologo{XeTeX}   & \hologo{LuaTeX}   \\
+            \alert{程序}     & \hologo{pdfLaTeX} & \hologo{XeLaTeX} & \hologo{LuaLaTeX} \\
+            \alert{宏包}     & CJK\footnotemark & xeCJK & luatexja \\
+            \alert{封装}     & \multicolumn{3}{c}{ctex} \\
+          \end{tabular}
+        \end{center}
         \vspace{-1cm}
       }
       \only<2>{
         C\TeX{} 建议对于之前提到的常规文档类，最佳实践是使用该宏集提供的四种中文文档类，以对特定类型提供额外的中文排版适配。
         \begin{center}
-          \begin{stampbox}
-            \footnotesize
-            \begin{tabular}{cc}
-              \pkg{ctexart} & \pkg{ctexrep} \\
-              \pkg{ctexbook} & \pkg{ctexbeamer} \\
-            \end{tabular}
-          \end{stampbox}
+          \footnotesize
+          \begin{tabular}{cc}
+            \pkg{ctexart} & \pkg{ctexrep} \\
+            \pkg{ctexbook} & \pkg{ctexbeamer} \\
+          \end{tabular}
         \end{center}
       }
       \only<3>{
@@ -359,17 +352,15 @@
         可以使用显示样式设定命令对小段做加粗、斜体、等宽等等的处理。
         \begin{center}
           \footnotesize
-          \begin{stampbox}
-            \begin{tabular}{rl}
-              \cmd{textrm} & \textrm{衬线} \\
-              \cmd{textbf} & \textbf{加粗} \\
-              \cmd{textit} & \kaishu 斜体 \\
-              \cmd{texttt} & \texttt{等宽} \\
-              \cmd{textsf} & \textsf{无衬线} \\
-              \cmd{textsc} & \textsc{Small Caps} \\
-              \cmd{textsl} & \textsl{Slanted} \\
-            \end{tabular}
-          \end{stampbox}
+          \begin{tabular}{rl}
+            \cmd{textrm} & \textrm{衬线} \\
+            \cmd{textbf} & \textbf{加粗} \\
+            \cmd{textit} & \kaishu 斜体 \\
+            \cmd{texttt} & \texttt{等宽} \\
+            \cmd{textsf} & \textsf{无衬线} \\
+            \cmd{textsc} & \textsc{Small Caps} \\
+            \cmd{textsl} & \textsl{Slanted} \\
+          \end{tabular}
         \end{center}
       }
       \only<3>{
@@ -402,34 +393,30 @@
         同样地，你也可以显式地设定字体大小，但是这种命令会更改行文设置，所以需要使用一个组来限定作用范围\footnotemark。
         \begin{center}
           \footnotesize
-          \begin{stampbox}
-            \begin{tabular}{rl}
-              \cmd{tiny} & \tiny 极小 \\
-              \cmd{scriptsize} & \scriptsize 角标大小  \\
-              \cmd{footnotesize} & \footnotesize 脚注大小 \\
-              \cmd{small} & \small 小 \\
-              \cmd{normalsize} & \normalsize 正常大小 \\
-              \cmd{large} & \large 大 \\
-              \cmd{huge} & \Huge 巨大 \\
-            \end{tabular}
-          \end{stampbox}
+          \begin{tabular}{rl}
+            \cmd{tiny} & \tiny 极小 \\
+            \cmd{scriptsize} & \scriptsize 角标大小  \\
+            \cmd{footnotesize} & \footnotesize 脚注大小 \\
+            \cmd{small} & \small 小 \\
+            \cmd{normalsize} & \normalsize 正常大小 \\
+            \cmd{large} & \large 大 \\
+            \cmd{huge} & \Huge 巨大 \\
+          \end{tabular}
         \end{center}
       }
       \only<3>{
         也可以使用字体样式对应的更改字体设置的命令，这对于大段文段的设置而言也是很方便的。
         \begin{center}
           \footnotesize
-          \begin{stampbox}
-            \begin{tabular}{ll}
-              \cmd{textrm} & \cmd{rmfamily}\\
-              \cmd{texttt} & \cmd{ttfamily}\\
-              \cmd{textsf} & \cmd{sffamily}\\
-              \cmd{textbf} & \cmd{bfseries}\\
-              \cmd{textit} & \cmd{itshape}\\
-              \cmd{textsc} & \cmd{scshape}\\
-              \cmd{textsl} & \cmd{slshape}\\
-            \end{tabular}
-          \end{stampbox}
+          \begin{tabular}{ll}
+            \cmd{textrm} & \cmd{rmfamily}\\
+            \cmd{texttt} & \cmd{ttfamily}\\
+            \cmd{textsf} & \cmd{sffamily}\\
+            \cmd{textbf} & \cmd{bfseries}\\
+            \cmd{textit} & \cmd{itshape}\\
+            \cmd{textsc} & \cmd{scshape}\\
+            \cmd{textsl} & \cmd{slshape}\\
+          \end{tabular}
         \end{center}
       }
     \end{column}
@@ -512,16 +499,14 @@
     \begin{column}{0.4\textwidth}
       \LaTeX{} 可以使用目次命令将文档划分层级\footnotemark，并自动设定对应字体样式和大小。
       \begin{center}
-        \begin{stampbox}
-          \footnotesize
-          \begin{tabular}{rll}
-           命令 & 中文 & 层次 \\
-           \cmd{chapter} & 章\footnotemark & \sout{0} \\
-           \cmd{section} & 节 & 1 \\
-           \cmd{subsection} & 小节 & 2 \\
-           \cmd{subsubsection} & 小小节 & 3 \\
-          \end{tabular}
-        \end{stampbox}
+        \footnotesize
+        \begin{tabular}{rll}
+          命令 & 中文 & 层次 \\
+          \cmd{chapter} & 章\footnotemark & \sout{0} \\
+          \cmd{section} & 节 & 1 \\
+          \cmd{subsection} & 小节 & 2 \\
+          \cmd{subsubsection} & 小小节 & 3 \\
+        \end{tabular}
       \end{center}
     \end{column}
     \begin{column}{0.6\textwidth}
@@ -626,28 +611,24 @@
         也可以通过键值对的方法设置图片的其他属性。
         \begin{center}
           \footnotesize
-          \begin{stampbox}
-            \begin{tabular}{rl}
-              \pkg{width} & 宽度 \\
-              \pkg{height} & 高度 \\
-              \pkg{scale} & 缩放 \\
-              \pkg{angle} & 角度 \\
-            \end{tabular}
-          \end{stampbox}
+          \begin{tabular}{rl}
+            \pkg{width} & 宽度 \\
+            \pkg{height} & 高度 \\
+            \pkg{scale} & 缩放 \\
+            \pkg{angle} & 角度 \\
+          \end{tabular}
         \end{center}
       }
       \only<5>{
         \env{figure} 为一个浮动体环境（\env{table} 也是），可以将其移动到其他位置上以减少行文中的空白。可以添加可选参数以指定如何放置浮动体，最多可以使用四种位置描述符：
         \begin{center}
           \footnotesize
-          \begin{stampbox}
-            \begin{tabular}{cll}
-              \pkg{h} & Here & 尽可能在这里 \\
-              \pkg{t} & Top & 页面顶部 \\
-              \pkg{b} & Bottom & 页面底部 \\
-              \pkg{p} & Page & 浮动体专页 \\
-            \end{tabular}
-          \end{stampbox}
+          \begin{tabular}{cll}
+            \pkg{h} & Here & 尽可能在这里 \\
+            \pkg{t} & Top & 页面顶部 \\
+            \pkg{b} & Bottom & 页面底部 \\
+            \pkg{p} & Page & 浮动体专页 \\
+          \end{tabular}
         \end{center}
         还可以只使用 \pkg{float} 宏包提供的 \pkg{H} 描述符以强制置于此处。
       }
@@ -726,7 +707,7 @@
     \end{column}
     \begin{column}{0.4\textwidth}
       \includepdflarge{subfigures}\vspace{15pt}
-      \pkg{subcaption} 宏包提供了 \env{subfigure} 环境（以及 \env{subtable}），可以用于以子图的形式插入，编号会增加一级。也可以为子图添加子集引用编号。
+      \pkg{subcaption} 宏包提供了 \env{subfigure} 环境（以及 \env{subtable}），可以用于以子图的形式插入，编号会增加一级。也可以为子图添加子级引用编号。
     \end{column}
   \end{columns}
 \end{frame}
@@ -760,17 +741,15 @@
         使用 \env{tabular} 环境绘制表格。需要添加参数（称为\textbf{表格导言}）以确定每一列的对齐方式。引入 \pkg{array} 宏包来使用更多的\textbf{引导符}。
         \begin{center}
           \footnotesize
-          \begin{stampbox}
-            \begin{tabular}{>{\ttfamily}ll}
-              \alert{l} & 向左对齐 \\
-              \alert{c} & 居中对齐 \\
-              \alert{r} & 向右对齐 \\
-              \alert{p\{3cm\}} & 固定列宽，两端对齐 \\
-              \alert{m\{3cm\}} & \texttt{p} + 垂直居中对齐 \\
-              \alert{>\{\textbackslash{}bfseries\}} & 后一列单元格前加命令 \\
-              \alert{*\{3\}\{l\}} & 三个左对齐列 \\
-            \end{tabular}
-          \end{stampbox}
+          \begin{tabular}{>{\ttfamily}ll}
+            \alert{l} & 向左对齐 \\
+            \alert{c} & 居中对齐 \\
+            \alert{r} & 向右对齐 \\
+            \alert{p\{3cm\}} & 固定列宽，两端对齐 \\
+            \alert{m\{3cm\}} & \texttt{p} + 垂直居中对齐 \\
+            \alert{>\{\textbackslash{}bfseries\}} & 后一列单元格前加命令 \\
+            \alert{*\{3\}\{l\}} & 三个左对齐列 \\
+          \end{tabular}
         \end{center}
       }
       \only<2>{
@@ -812,11 +791,9 @@
     \begin{column}{0.4\textwidth}
       \cmd{multicolumn} 命令不仅可以用于合并同行的单元格，还可以用于临时地屏蔽表格导言对该列的对齐方式定义。这里用于居中表头。
       \begin{center}
-        \begin{stampbox}
-          \parbox{0.85\linewidth}{
-            \ttfamily\color{blue}\textbackslash{}multicolumn\{格数\}\{对齐方式\}\{内容\}
-          }
-        \end{stampbox}
+        \parbox{0.85\linewidth}{
+          \ttfamily\color{blue}\textbackslash{}multicolumn\{格数\}\{对齐方式\}\{内容\}
+        }
       \end{center}
       跨页表格考虑使用 \pkg{longtable} 宏包。带标注的表格可以考虑使用 \pkg{threeparttable} 宏包。考虑使用在线工具生成表格代码 \link{https://www.tablesgenerator.com/latex_tables}。
     \end{column}
