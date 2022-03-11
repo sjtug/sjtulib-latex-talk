@@ -3,10 +3,329 @@
 \part{SJTUThesis}
 
 \begin{frame}
-    \frametitle{SJTUThesis 简介}
-    \begin{itemize}
+  \frametitle{简介}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
         \item 最早由韦建文于 2009 年 11 月发布 0.1a 版，2018 年起由 SJTUG 接手维护
         \item 最新版：\SJTUThesisVersion{} (\SJTUThesisDate)
         \item 支持本科、硕士、博士学位论文以及课程论文的排版
-    \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{exampleblock}{}
+        \begin{minipage}[c]{1cm}
+          \includegraphics[width=0.8cm]{\getcontribpath{sjtug}{vi/sjtug}}
+        \end{minipage}
+        \begin{minipage}[c]{2cm}
+          \href{https://github.com/sjtug}{sjtug}/\href{https://github.com/sjtug/SJTUThesis}{SJTUThesis}
+        \end{minipage}
+      \end{exampleblock}
+      \vspace{-8pt}
+      \begin{block}{}
+        \scriptsize
+        上海交通大学 \hologo{XeLaTeX} 学位论文及课程论文模板 | Shanghai Jiao Tong University \hologo{XeLaTeX} Thesis Template
+      \end{block}
+      \vspace{-8pt}
+      \begin{alertblock}{}
+        \scriptsize
+        \begin{tabular}{cl}
+          \faStar & 2.4k \\
+          \faEye & 55 \\
+          \faCodeBranch & 701 \\
+        \end{tabular}
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{下载与编译}
+  \alert{下载} 推荐安装 Git \link{https://git-scm.com/} 后，克隆 SJTUG 镜像仓库
+  \begin{exampleblock}{\faGit*}
+    \ttfamily\small
+    git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
+  \end{exampleblock}
+
+  \alert{编译} 推荐使用 \pkg{latexmk} 编译\footnote{\hologo{MiKTeX} 用户需要手动安装 Perl 解释器 \link{https://www.perl.org/get.html} 才能使用 \pkg{latexmk}。}，在不能够利用自带的 \texttt{.latexmkrc} 配置文件的情况下，需要查清楚在对应的编辑器中如何使用 \hologo{XeLaTeX} + \hologo{biber} 编译 \link{https://github.com/sjtug/SJTUThesis/blob/master/README.md}。
+  \begin{exampleblock}{\faTerminal}
+    \ttfamily\small
+    latexmk -xelatex main
+  \end{exampleblock}
+
+  Overleaf 用户可以下载压缩包后，上传并采用 \hologo{XeLaTeX} 编译方式。
+\end{frame}
+
+\begin{frame}[fragile, label=covers]
+  \begin{codeblock}[firstnumber=3]{main.tex}
+|\alert{\% 载入 SJTUThesis 模版}|
+\documentclass[|\only<1>{\highlight{type}}\only<2>{type}|=|\only<1>{bachelor}\only<2>{\highlight{bachelor}}|]{sjtuthesis}
+  \end{codeblock}
+  \begin{figure}
+    \parbox{0.9\textwidth}{
+      \begin{subfigure}{0.20\textwidth}
+        \framebox{\includegraphics[width=\linewidth]{support/thesis/bachelor}}
+        \caption{\only<1>{学士}\only<2>{\texttt{bachelor}}}
+      \end{subfigure}\hfill
+      \begin{subfigure}{0.20\textwidth}
+        \framebox{\includegraphics[width=\linewidth]{support/thesis/master}}
+        \caption{\only<1>{硕士}\only<2>{\texttt{master}}}
+      \end{subfigure}\hfill
+      \begin{subfigure}{0.20\textwidth}
+        \framebox{\includegraphics[width=\linewidth]{support/thesis/doctor}}
+        \caption{\only<1>{博士}\only<2>{\texttt{doctor}}}
+      \end{subfigure}\hfill
+      \begin{subfigure}{0.20\textwidth}
+        \framebox{\includegraphics[width=\linewidth]{support/thesis/course}}
+        \caption{\only<1>{课程}\only<2>{\texttt{course}}}
+      \end{subfigure}
+      \caption{论文类型示例\only<2>{ \texttt{type}}}
+    }
+  \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{基本配置}
+  \framesubtitle{\texttt{\textbackslash{}input\{setup\}}}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \includegraphics[page=9]{thesisdir}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{codeblock}[firstnumber=12]{main.tex}
+|\highlightline<1>|% 论文基本配置，加载宏包等全局配置
+|\highlightline<1>|\input{setup}
+
+\begin{document}
+
+%TC:ignore
+
+|\highlightline<2>|% 标题页
+|\highlightline<2>|\maketitle
+      \end{codeblock}
+      \visible<2>{
+        \cmd{sjtusetup} 中的 \pkg{info} 将会修改封面的信息设置（见第 \ref{covers} 页）。
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{基本配置}
+  \framesubtitle{\texttt{\textbackslash{}sjtusetup}}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \includegraphics[page=1]{thesisdir}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{codeblock}[firstnumber=3]{setup.tex}
+\sjtusetup{
+  info = {
+    title    = {||上海交通大学学位论文 \LaTeX{} 模板示例文档},
+    title*   = {A Sample for \LaTeX-based SJTU Thesis Template},
+    author   = {||某\quad{}某},
+    author* = {Mo Mo},
+  },
+  style = {
+    header-logo-color = red,
+  },
+  name = {
+    publications = {||攻读学位期间完成的论文},
+  },
+}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{版权页}
+  \framesubtitle{\texttt{\textbackslash{}copyrightpage}}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \only<1>{
+        \includegraphics[page=9]{thesisdir}
+      }
+      \only<2>{
+        \includegraphics[page=2]{thesisdir}
+      }
+      \only<3>{
+        \begin{figure}[H]
+          \framebox{\includegraphics[page=2,width=0.4\linewidth]{bachelor}}
+          \caption{版权页}
+        \end{figure}
+      }
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{codeblock}[firstnumber=22]{main.tex}
+|\highlightline<1>|% 原创性声明及使用授权书
+|\highlightline<1>|\copyrightpage
+|\highlightline<2>|% 插入外置原创性声明及使用授权书
+|\highlightline<2>|% \copyrightpage[scans/sample-copyright-old.pdf]
+      \end{codeblock}
+      \only<1>{
+        \cmd{copyrightpages} 可以用于插入版权页。
+      }
+      \only<2>{
+        \cmd{copyrightpages} 也接受一个可选参数，用于直接使用扫描件。
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{前置部分}
+  \framesubtitle{\texttt{\textbackslash{}frontmatter}}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \only<1>{
+        \includegraphics[page=9]{thesisdir}
+      }
+      \only<2>{
+        \includegraphics[page=3]{thesisdir}
+      }
+      \only<3>{
+        \begin{figure}[H]
+          \begin{subfigure}{0.45\textwidth}
+            \framebox{\includegraphics[page=3,width=\linewidth]{bachelor}}
+            \caption{中文}
+          \end{subfigure}\hfill
+          \begin{subfigure}{0.45\textwidth}
+            \framebox{\includegraphics[page=4,width=\linewidth]{bachelor}}
+            \caption{英文}
+          \end{subfigure}
+          \caption{摘要}
+        \end{figure}
+      }
+      \only<4>{
+        \begin{figure}[H]
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=5,width=0.6\linewidth]{bachelor}}
+            \caption{目录}
+          \end{subfigure}
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=6,width=0.6\linewidth]{bachelor}}
+            \caption{插图}
+          \end{subfigure}
+
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=7,width=0.6\linewidth]{bachelor}}
+            \caption{表格}
+          \end{subfigure}
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=8,width=0.6\linewidth]{bachelor}}
+            \caption{算法}
+          \end{subfigure}
+          \caption{索引}
+        \end{figure}
+      }
+      \only<5>{
+        \includegraphics[page=4]{thesisdir}
+      }
+      \only<6>{
+        \begin{figure}[H]
+          \framebox{\includegraphics[page=9,width=0.5\linewidth]{bachelor}}
+          \caption{符号对照表}
+        \end{figure}
+      }
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{codeblock}[firstnumber=30]{main.tex}
+|\highlightline<2-3>|% 摘要
+|\highlightline<2-3>|\input{contents/abstract}
+
+|\highlightline<4>|% 目录
+|\highlightline<4>|\tableofcontents
+|\highlightline<4>|% 插图索引
+|\highlightline<4>|\listoffigures*
+|\highlightline<4>|% 表格索引
+|\highlightline<4>|\listoftables*
+|\highlightline<4>|% 算法索引
+|\highlightline<4>|\listofalgorithms*
+
+|\highlightline<5-6>|% 符号对照表
+|\highlightline<5-6>|\input{contents/nomenclature}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{主体部分}
+  \framesubtitle{\texttt{\textbackslash{}mainmatter}}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \only<1>{
+        \includegraphics[page=5]{thesisdir}
+      }
+      \only<2>{
+        \begin{figure}[H]
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=11,width=0.6\linewidth]{bachelor}}
+            \caption{简介}
+          \end{subfigure}
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=13,width=0.6\linewidth]{bachelor}}
+            \caption{数学}
+          \end{subfigure}
+
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=16,width=0.6\linewidth]{bachelor}}
+            \caption{浮动体}
+          \end{subfigure}
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=22,width=0.6\linewidth]{bachelor}}
+            \caption{总结}
+          \end{subfigure}
+          \caption{主体部分}
+        \end{figure}
+      }
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{codeblock}[firstnumber=47]{main.tex}
+|\highlightline|% 正文内容
+|\highlightline|\input{contents/intro}
+|\highlightline|\input{contents/math_and_citations}
+|\highlightline|\input{contents/floats}
+|\highlightline|\input{contents/summary}
+
+%TC:ignore
+
+% 参考文献
+\printbibliography[heading=bibintoc]
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{参考文献}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \includegraphics[page=6]{thesisdir}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{codeblock}[firstnumber=111,numbersep=2pt]{setup.tex}
+% 使用 BibLaTeX 处理参考文献
+%   biblatex-gb7714-2015 常用选项
+%     gbnamefmt=lowercase     姓名大小写由输入信息确定
+%     gbpub=false             禁用出版信息缺失处理
+\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+% 文献表字体
+% \renewcommand{\bibfont}{\zihao{-5}}
+% 文献表条目间的间距
+\setlength{\bibitemsep}{0pt}
+|\highlightline|% 导入参考文献数据库
+|\highlightline|\addbibresource{bibdata/thesis.bib}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
 \end{frame}

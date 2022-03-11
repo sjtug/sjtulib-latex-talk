@@ -3,6 +3,7 @@
 \part{学习 \LaTeX{}}
 % FIXME: Part Page miniframe overflow
 % FIXME: footnote fault numbering
+% FIXME: section pop up in navigation in advance
 
 \begin{frame}[plain]
   \vfil
@@ -278,10 +279,10 @@
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{排版英文最简示例}
-|\only<1>{\highlightline}|\documentclass{article}
-|\only<2>{\highlightline}|\begin{document}
-|\only<3>{\highlightline}|  Together for a Shared Future
-|\only<2>{\highlightline}|\end{document}
+|\highlightline<1>|\documentclass{article}
+|\highlightline<2>|\begin{document}
+|\highlightline<3>|  Together for a Shared Future
+|\highlightline<2>|\end{document}
       \end{codeblock}
     \end{column}
   \end{columns}
@@ -327,11 +328,11 @@
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{排版中文\only<2->{最佳实践}}
-|\only<2>{\highlightline}|\documentclass{|\only<1>{article}\only<2->{ctexart}|}
+|\highlightline<2>|\documentclass{|\only<1>{article}\only<2->{ctexart}|}
 |\only<1>{\highlightline\textbackslash{}usepackage\{ctex\}\hfill\color{cprimary}\% 导言区}|
 \begin{document}
-|\only<3>{\highlightline}|    一起向未来
-|\only<4>{\highlightline}|
+|\highlightline<3>|    一起向未来
+|\highlightline<4>|
   Together for a Shared Future
 \end{document}
       \end{codeblock}
@@ -373,9 +374,9 @@
       \begin{codeblock}[]{样式}
 \documentclass{ctexart}
 \begin{document}
-|\only<2>{\highlightline}|  \textbf{||一起向未来}
+|\highlightline<2>|  \textbf{||一起向未来}
 
-|\only<3>{\highlightline}|  \emph{Together for a Shared Future}
+|\highlightline<3>|  \emph{Together for a Shared Future}
 \end{document}
       \end{codeblock}
     \end{column}
@@ -424,8 +425,8 @@
       \begin{codeblock}[]{大小}
 \documentclass{ctexart}
 \begin{document}
-|\only<2>{\highlightline}|  {\bfseries\Large 一起向未来\par}
-|\only<3>{\highlightline}|  {\itshape Together for a Shared Future}
+|\highlightline<2>|  {\bfseries\Large 一起向未来\par}
+|\highlightline<3>|  {\itshape Together for a Shared Future}
 \end{document}
       \end{codeblock}
     \end{column}
@@ -529,6 +530,14 @@
     \begin{column}{0.4\textwidth}
       \only<1>{
         \cmd{tableofcontents} 用来生成对于目次命令的目录。如果你想设定显示到哪个层级，在这个命令前使用 \cmd{setcounter\{tocdepth\}\{层次\}}
+
+        如果你想在目录中使用更短的标题：
+
+            \cmd{section[短标题]\{长标题\}}
+
+        如果你想让本目次的标题不显示在目录中：
+
+            \cmd{section*\{无标题\}}
       }
       \only<2>{
         对于大型文档而言，使用多个文件管理源文件通常是更方便的。而 \cmd{include} 和 \cmd{input} 都以相对路径的方式插入其他 \TeX{} 文档。
@@ -541,11 +550,11 @@
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{主文档}
 \documentclass{ctexrep}
-|\only<3>{\highlightline}|\includeonly{learnlatex,sjtuthesis}
+|\highlightline<3>|\includeonly{learnlatex,sjtuthesis}
 \begin{document}
-|\only<1>{\highlightline}|  \tableofcontents
+|\highlightline<1>|  \tableofcontents
 |\only<2-3>{\highlightline}|  \include{learnlatex}
-|\only<3>{\highlightline}|  \include{sjtuthesis}
+|\highlightline<3>|  \include{sjtuthesis}
 \end{document}
       \end{codeblock}
     \end{column}
@@ -586,14 +595,14 @@
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{插入单图\only<4->{最佳实践}}
 \documentclass{ctexart}
-|\only<2>{\highlightline}|\usepackage{graphicx}
-|\only<2>{\highlightline}|\graphicspath{{figs/}{pics/}}
+|\highlightline<2>|\usepackage{graphicx}
+|\highlightline<2>|\graphicspath{{figs/}{pics/}}
 \begin{document}
-|\only<5>{\highlightline}|\begin{figure}[ht]
-|\only<6>{\highlightline}|  \centering
-|\only<3>{\highlightline}|  \includegraphics[width=|\only<1-3>{4cm}\only<4->{0.4\textbackslash{}textwidth}|]{sjtug}
-|\only<7>{\highlightline}|  \caption{SJTUG 徽标}\label{fig:sjtug}
-|\only<5>{\highlightline}|\end{figure}
+|\highlightline<5>|\begin{figure}[ht]
+|\highlightline<6>|  \centering
+|\highlightline<3>|  \includegraphics[width=|\only<1-3>{4cm}\only<4->{0.4\textbackslash{}textwidth}|]{sjtug}
+|\highlightline<7>|  \caption{SJTUG 徽标}\label{fig:sjtug}
+|\highlightline<5>|\end{figure}
 \end{document}
       \end{codeblock}
     \end{column}
@@ -652,16 +661,16 @@
 \graphicspath{{figs/}{pics/}}
 \begin{document}
   \begin{figure}[ht]
-|\only<1>{\highlightline}|    \begin{minipage}{0.48\textwidth}
+|\highlightline<1>|    \begin{minipage}{0.48\textwidth}
       \centering
       \includegraphics[height=2cm]{sjtug}
-|\only<2>{\highlightline}|      \caption{SJTUG 徽标}\label{fig:sjtug}
-|\only<1>{\highlightline}|    \end{minipage}\hfill
-|\only<1>{\highlightline}|    \begin{minipage}{0.48\textwidth}
+|\highlightline<2>|      \caption{SJTUG 徽标}\label{fig:sjtug}
+|\highlightline<1>|    \end{minipage}\hfill
+|\highlightline<1>|    \begin{minipage}{0.48\textwidth}
       \centering
       \includegraphics[height=2cm]{sjtugt}
-|\only<2>{\highlightline}|      \caption{SJTUG||文字}\label{fig:sjtugt}
-|\only<1>{\highlightline}|    \end{minipage}
+|\highlightline<2>|      \caption{SJTUG||文字}\label{fig:sjtugt}
+|\highlightline<1>|    \end{minipage}
   \end{figure}
 \end{document}
       \end{codeblock}
@@ -724,14 +733,14 @@
 \begin{table}[ht]
   \centering
   \caption{||北京冬奥会吉祥物}
-|\only<1>{\highlightline}|  \begin{tabular}{lp{3cm}}
-|\only<2>{\highlightline}|    \toprule
-|\only<3>{\highlightline}|吉祥物 & 描述                          \\
-|\only<2>{\highlightline}|    \midrule
-|\only<3>{\highlightline}|冰墩墩 & 2022 年北京冬季奥运会吉祥物  \\
-|\only<3>{\highlightline}|雪容融 & 2022 年北京冬季残奥会吉祥物  \\
-|\only<2>{\highlightline}|    \bottomrule
-|\only<1>{\highlightline}|  \end{tabular}
+|\highlightline<1>|  \begin{tabular}{lp{3cm}}
+|\highlightline<2>|    \toprule
+|\highlightline<3>|吉祥物 & 描述                          \\
+|\highlightline<2>|    \midrule
+|\highlightline<3>|冰墩墩 & 2022 年北京冬季奥运会吉祥物  \\
+|\highlightline<3>|雪容融 & 2022 年北京冬季残奥会吉祥物  \\
+|\highlightline<2>|    \bottomrule
+|\highlightline<1>|  \end{tabular}
 \end{table}
 \end{document}
       \end{codeblock}
@@ -883,26 +892,26 @@
     \begin{column}{0.5\textwidth}
       \begin{codeblock}[]{图}
 \begin{figure}
-|\only<1>{\highlightline}|  \caption{||示例}\label{fig:example}
+|\highlightline<1>|  \caption{||示例}\label{fig:example}
 \end{figure}
       \end{codeblock}
       \begin{codeblock}[]{表}
 \begin{table}
-|\only<1>{\highlightline}|  \caption{||示例}\label{tab:example}
+|\highlightline<1>|  \caption{||示例}\label{tab:example}
 \end{table}
       \end{codeblock}
     \end{column}
     \begin{column}{0.5\textwidth}
 \begin{codeblock}[]{目次}
-|\only<1>{\highlightline}|\section{||示例}\label{sec:example}
+|\highlightline<1>|\section{||示例}\label{sec:example}
 \end{codeblock}
 
 \begin{codeblock}[]{公式}
 \begin{equation}
   a = b + c
-|\only<1>{\highlightline}|\label{eq:example}
+|\highlightline<1>|\label{eq:example}
 \end{equation}
-|\only<2>{\highlightline}|如公式 \eqref{eq:example} 所示，
+|\highlightline<2>|如公式 \eqref{eq:example} 所示，
 \end{codeblock}
     \end{column}
   \end{columns}

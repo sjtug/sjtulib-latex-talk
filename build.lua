@@ -4,6 +4,7 @@ module       = "latex-talk"
 
 docfiledir   = "."
 typesetfiles = {"latex-talk.tex"}
+typesetopts  = "-interaction=nonstopmode -shell-escape"
 
 -- Package for Overleaf
 sourcedir    = "."
@@ -25,12 +26,26 @@ supportdir = "support"
 -- and copy the output pdf into outputdir.
 function latexmk_typeset(file, typesetdir, outputdir)
     local latexmkexe = "latexmk"
-    local latexmkopt = "-xelatex -interaction=nonstopmode"
+    local latexmkopt = "-xelatex -interaction=nonstopmode -shell-escape"
     local errorlevel = os.execute("cd " .. typesetdir .. " && " 
         .. latexmkexe .. " " .. file .. " " .. latexmkopt)
     local pdffile = file:gsub("%.tex$", ".pdf")
-    cp("main.pdf", typesetdir, outputdir)
+    cp(pdffile, typesetdir, outputdir)
     return errorlevel
+end
+
+-- typeset all the tex files in dir.
+function typesetdirtex(dir)
+    for _, file in ipairs(filelist(dir, "*.tex")) do
+        if fileexists(dir .. "/" .. file:gsub("%.tex$", ".pdf")) == false then
+            errorlevel = latexmk_typeset(file, dir, dir)
+            if errorlevel ~= 0 then
+                print("! latexmk " .. file .. " failed")
+                return errorlevel
+            end
+        end
+    end
+    return 0
 end
 
 -- typseset_demo_tasks() start after support file copying
@@ -59,7 +74,7 @@ function typeset_demo_tasks()
     end
 
     -- Required files in SJTUBeamer.
-    beamerdepreq = {"*.sty","contrib/","vi/",".vscode/"}
+    local beamerdepreq = {"*.sty","contrib/","vi/",".vscode/"}
     -- Move the required dependencies to the current folder
     -- for compatibility with overleaf version.
     -- and to the doc build directory for l3build typesetting.
@@ -80,10 +95,12 @@ function typeset_demo_tasks()
     --          you should just compile main.tex only.
 
     -- Compile the thesis v1 first.
-    errorlevel = latexmk_typeset("main.tex", thesisdepdir, suppthesisdir)
-    if errorlevel ~= 0 then
-        print("! latexmk main.tex failed")
-        return errorlevel
+    for _, file in ipairs({"bachelor.tex", "master.tex", "doctor.tex", "course.tex", "main.tex"}) do
+        errorlevel = latexmk_typeset(file, thesisdepdir, suppthesisdir)
+        if errorlevel ~= 0 then
+            print("! latexmk " .. file .. " failed")
+            return errorlevel
+        end
     end
 
     -- Compile the thesis v2.
@@ -110,14 +127,14 @@ function typeset_demo_tasks()
     end
 
     -- typeset auxiliary pdfs and cache them.
-    local exampledir = supportdir .. "/examples"
-    for _, file in ipairs(filelist(exampledir, "*.tex")) do
-        if fileexists(exampledir .. "/" .. file:gsub("%.tex$", ".pdf")) == false then
-            errorlevel = latexmk_typeset(file, exampledir, exampledir)
-            if errorlevel ~= 0 then
-                print("! latexmk " .. file .. " failed")
-                return errorlevel
-            end
+    local auxdirs = {
+        supportdir .. "/examples",
+        suppthesisdir .. "/figures"
+    }
+    for _, dir in ipairs(auxdirs) do
+        errorlevel = typesetdirtex(dir)
+        if errorlevel ~= 0 then
+            return errorlevel
         end
     end
 
@@ -126,6 +143,22 @@ function typeset_demo_tasks()
     --     local etypesetcommand = etypesetexe .. "  -ini -interaction=nonstopmode -jobname=" .. file:gsub("%.tex$", ".pdf") .. " \"&" .. typesetexe .. "\" mylatexformat.ltx "
     --     errorlevel = tex("\"\"\"" .. file .. "\"\"\"", ".", etypesetcommand)
     -- end
+
+    -- clean up the auxiliary files.
+    cleandirs = {
+        supportdir .. "/contents",
+        supportdir .. "/examples",
+        supportdir .. "/figures",
+        supportdir .. "/thesis"
+    }
+    cleansuffixs = {
+        ".aux",
+    }
+    for _, dir in ipairs(cleandirs) do
+        for _, suffix in ipairs(cleansuffixs) do
+            rm(dir, "*" .. suffix)
+        end
+    end
 
     -- Rerun the support file copying,
     -- because the typesetsuppfiles is set to none

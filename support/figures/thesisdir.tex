@@ -1,0 +1,56 @@
+\documentclass[beamer,tikz,preview]{standalone}
+\usepackage[edges]{forest}
+\usepackage{fontawesome5}
+
+\begin{document}
+\forestset{
+  is folder/.style={delay={content/.wrap value={\faFolder{} ##1}}},
+  is file/.style={delay={content/.wrap value={\faFile{} ##1}}},
+  path highlight/.code args={<#1>}{
+      \only<#1>{
+        \pgfkeysalso{
+          orange,
+          edge={orange},
+          for ancestors={edge={orange},
+              if level=0{}{orange}}
+        }
+      }
+    },
+  only/.code args={<#1>}{
+      \alt<#1>{}{\pgfkeysalso{before typesetting nodes={remove}}}
+},
+expanded/.code args={<#1>}{
+    \pgfkeysalso{for descendants={only=<#1>}}
+},
+}
+\begin{standaloneframe}
+  \begin{forest}
+    for tree = {grow'=0,folder,s sep=0mm,font=\sf}
+    [SJTUThesis
+      [bibdata, is folder
+          [thesis.bib, is file, only=<6>, path highlight=<6>]
+      ]
+      [contents, is folder
+          [abstract.tex, is file, only=<3>, path highlight=<3>]
+          [achievements.tex, is file, only=<8>, path highlight=<8>]
+          [acknowledgements.tex, is file, only=<8>, path highlight=<8>]
+          [app\_flow\_chart.tex, is file, only=<7>, path highlight=<7>]
+          [app\_maxwell\_equations.tex, is file, only=<7>, path highlight=<7>]
+          [digest.tex, is file, only=<8>, path highlight=<8>]
+          [floats.tex, is file, only=<5>, path highlight=<5>]
+          [intro.tex, is file, only=<5>, path highlight=<5>]
+          [math\_and\_citations.tex, is file, only=<5>, path highlight=<5>]
+          [nomenclature.tex, is file, only=<4>, path highlight=<4>]
+          [publications.tex, is file, only=<8>, path highlight=<8>]
+          [resume.tex, is file, only=<8>, path highlight=<8>]
+          [summary.tex, is file, only=<5>, path highlight=<5>]]
+      [figures, is folder]
+      [scans, is folder
+          [sample-copyright-old.pdf, is file, only=<2>, path highlight=<2>]]
+      [texmf, is folder]
+      [main.tex, is file, path highlight=<9>]
+      [setup.tex, is file, path highlight=<1>]
+    ]
+  \end{forest}
+\end{standaloneframe}
+\end{document}

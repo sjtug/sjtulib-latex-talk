@@ -8,7 +8,7 @@ l3build doc
 ```
 编译文件。
 
-之后可以使用默认编译方法如 `latexmk` 编译主文件 `latex-talk-2022.tex`。
+之后可以使用默认编译方法如 `latexmk` 编译主文件 `latex-talk.tex`。
 
 需要上传到 Overleaf 编译请使用
 ```

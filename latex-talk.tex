@@ -7,7 +7,7 @@
 \usetheme[my,default,topright]{sjtubeamer}
 \usemytheme[debug]{sjtug}
 \setbeamertemplate{background}{}
-\graphicspath{{support/images/}{support/examples/}{support/thesis}}
+\graphicspath{{support/}{support/contents/}{support/examples/}{support/figures/}{support/images/}{support/thesis/}}
 
 %% If you don't use sjtubeamer theme.
 %% Uncomment the following lines.
@@ -39,8 +39,8 @@
 \newcommand{\SJTUThesisVersion}{1.1.0rc1}
 \newcommand{\SJTUThesisDate}{2022/2/15}
 \newcommand{\SJTUBeamer}{\textsc{SJTUBeamer}}
-\newcommand{\SJTUBeamerVersion}{2.5.4}
-\newcommand{\SJTUBeamerDate}{2022/2/24}
+\newcommand{\SJTUBeamerVersion}{2.5.6}
+\newcommand{\SJTUBeamerDate}{2022/3/10}
 
 \newcommand\link[1]{\href{#1}{\faLink}}
 \newcommand\pkg[1]{\texttt{#1}}
@@ -50,7 +50,9 @@
 \def\cmdxmp#1#2#3{\small{\texttt{\color{DarkBlue}$\backslash$#1}\{#2\}\hspace{1em}\\ $\Rightarrow$\hspace{1em} {#3}\par\vskip1em}}
 
 \lstset{
-  escapechar=|
+  escapechar=|,
+  aboveskip=0pt, % -> 2.6.0
+  belowskip=0pt  % -> 2.6.0
 }
 
 \newcommand{\includepdflarge}[1]{\framebox{\includegraphics[width=\linewidth,trim=4cm 17cm 3cm 2cm,clip]{#1}}\vspace{-10pt}}
@@ -82,9 +84,14 @@
 
 \maketitle
 
+\xdef\oldlogo{\expandbeamertemplate{logo}}
+\logo{\insertpart\oldlogo}
+
 \include{support/contents/preface}
 \include{support/contents/learnlatex}
 \include{support/contents/sjtuthesis}
+
+\logo{\oldlogo}
 
 \def\bottomthanks{Happy \TeX{}ing!}
 \makebottom
