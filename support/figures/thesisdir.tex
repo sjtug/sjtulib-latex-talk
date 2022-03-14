@@ -47,7 +47,12 @@ expanded/.code args={<#1>}{
       [figures, is folder]
       [scans, is folder
           [sample-copyright-old.pdf, is file, only=<2>, path highlight=<2>]]
-      [texmf, is folder]
+      [texmf\only<10>{/tex/latex/sjtuthesis}, is folder, expanded=<10>
+          [fd, is folder]
+          [vi, is folder]
+          [sjtuthesis-graduate.ltx, is file]
+          [sjtuthesis-undergraduate.ltx, is file]
+          [sjtuthesis.cls, is file, path highlight=<10>]]
       [main.tex, is file, path highlight=<9>]
       [setup.tex, is file, path highlight=<1>]
     ]

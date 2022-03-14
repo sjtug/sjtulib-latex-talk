@@ -153,6 +153,14 @@ function typeset_demo_tasks()
     }
     cleansuffixs = {
         ".aux",
+        ".fdb_latexmk",
+        ".fls",
+        ".log",
+        ".synctex.gz",
+        ".nav",
+        ".snm",
+        ".toc",
+        ".out"
     }
     for _, dir in ipairs(cleandirs) do
         for _, suffix in ipairs(cleansuffixs) do

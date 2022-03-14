@@ -56,6 +56,75 @@
   Overleaf 用户可以下载压缩包后，上传并采用 \hologo{XeLaTeX} 编译方式。
 \end{frame}
 
+\begin{frame}
+  \frametitle{手动编译}
+  \alert{第一次编译失败} 如果没有办法通过通常方式编译成功，请尝试使用文件夹内附带 \faLinux{}\,\faApple{} \texttt{Makefile} 和 \faWindows{} \texttt{Compile.bat} 进行编译。
+
+  \alert{统计字数} 编写过程中也可以使用对应的命令调用 \TeX{}count 来统计正文字数。
+  \begin{columns}
+    \begin{column}{0.38\textwidth}
+      \begin{exampleblock}{\faLinux{}\,\faApple}
+        \ttfamily
+        make all\\
+        make clean\\
+        make cleanall\\
+        make wordcount
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \begin{exampleblock}{\faWindows}
+        \ttfamily
+        ./Compile.bat thesis\\
+        ./Compile.bat clean\\
+        ./Compile.bat cleanall\\
+        ./Compile.bat wordcount
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.24\textwidth}
+      \begin{block}{\faInfo}
+        \ttfamily
+        编译论文\\
+        清理中间文件\\
+        $\hookrightarrow +$删除论文\\
+        统计字数
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[label=compile]
+  \frametitle{编译问题排查}
+  \begin{columns}
+    \begin{column}{0.33\textwidth}
+      \begin{alertblock}{无法使用 \texttt{latexmk}\thesisissue{578}}
+        \hologo{MiKTeX} 需要安装 Perl 解释器。
+      \end{alertblock}  
+      \begin{alertblock}{C\TeX{} 套装无法编译\thesisissue{446}}
+        使用最新 \TeX{} 发行版。
+      \end{alertblock}
+      \begin{alertblock}{\hologo{pdfLaTeX} 无法编译\thesisissue{444}}
+        请使用 \texttt{latexmk}，或更改编辑器设置以 \hologo{XeLaTeX} 编译。
+      \end{alertblock}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \begin{alertblock}{缺少字体\thesisissue{564} \thesisdiscuss{598}}
+        更换字体集，或者安装对应字体。
+      \end{alertblock}
+      \begin{alertblock}{缺少汉字\thesisissue{533} \thesisdiscuss{617}}
+        去除使用 fandol 字体集的设定。或者是安装字体后，改用 \texttt{fontset=adobe} 或 \texttt{fontset=founder}。
+      \end{alertblock}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \begin{block}{\faInfoCircle{} README}
+        不同编辑器的设置请首先参阅 README \link{https://github.com/sjtug/SJTUThesis/blob/master/README.md} 文档。
+      \end{block}
+      \begin{block}{\faBookOpen{} Wiki}
+        其他编译问题推荐查阅 Wiki \link{https://github.com/sjtug/SJTUThesis/wiki} 的使用说明部分。
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \begin{frame}[fragile, label=covers]
   \begin{codeblock}[firstnumber=3]{main.tex}
 |\alert{\% 载入 SJTUThesis 模版}|
@@ -85,8 +154,38 @@
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{文档类选项}
+  % \framesubtitle{\textbackslash{}documentclass\{sjtuthesis\}}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \includegraphics[page=10]{thesisdir}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{table}[H]
+        \caption{文档类选项}
+        \footnotesize
+        \begin{tabular}{>{\ttfamily}rll}
+          \toprule
+          选项 & 含义 & 相关 \\
+          \midrule
+          type= & 指定论文类型 & 第 \ref{covers} 页\\
+          fontset= & 指定字体 & 第 \ref{compile} 页\\
+          \midrule
+          review & 开启盲审模式 & \thesisissue{195} \thesisissue{686} \\
+          twoside & 双页模式 & \thesisissue{554} \\
+          oneside & 单页模式 & \thesisissue{694} \\
+          openright & 章从奇数页开始 & \thesisdiscuss{724} \\
+          openany & 章从任意页开始 & \thesisissue{446} \\
+          \bottomrule
+        \end{tabular}
+      \end{table}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{基本配置}
-  \framesubtitle{\texttt{\textbackslash{}input\{setup\}}}
+  \framesubtitle{\textbackslash{}input\{setup\}}
   \begin{columns}
     \begin{column}{0.45\textwidth}
       \includegraphics[page=9]{thesisdir}
@@ -112,7 +211,7 @@
 
 \begin{frame}[fragile]
   \frametitle{基本配置}
-  \framesubtitle{\texttt{\textbackslash{}sjtusetup}}
+  \framesubtitle{\textbackslash{}sjtusetup}
   \begin{columns}
     \begin{column}{0.45\textwidth}
       \includegraphics[page=1]{thesisdir}
@@ -126,8 +225,7 @@
     author   = {||某\quad{}某},
     author* = {Mo Mo},
   },
-  style = {
-    header-logo-color = red,
+  style = { header-logo-color = red, 
   },
   name = {
     publications = {||攻读学位期间完成的论文},
@@ -138,9 +236,39 @@
   \end{columns}
 \end{frame}
 
+\begin{frame}
+  \frametitle{基本配置}
+  \framesubtitle{\textbackslash{}sjtusetup}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \includegraphics[page=1]{thesisdir}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{table}[H]
+        \centering
+        \caption{info 域}
+        \footnotesize
+        \begin{tabular}{lll} \toprule
+          命令作用 & 中文对应选项 & 英文对应选项 \\ \midrule
+          论文标题 & \texttt{title} & \texttt{title*} \\
+          关键字列表 & \texttt{keywords} & \texttt{keywords*} \\
+          作者姓名&  \texttt{author} &\texttt{author*}\\
+          申请学位名称 & \texttt{degree}&\texttt{degree*}\\
+          院系名称 & \texttt{department} & \texttt{department*}\\
+          专业名称 & \texttt{major} & \texttt{major*}\\
+          导师 & \texttt{supervisor} & \texttt{supervisor*}\\
+          副导师 & \texttt{assisupervisor} & \texttt{assisupervisor*}\\
+          日期 & \multicolumn{2}{c}{\texttt{date}}\\
+          学号 & \multicolumn{2}{c}{\texttt{id}}\\ \bottomrule
+          \end{tabular}
+      \end{table}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{版权页}
-  \framesubtitle{\texttt{\textbackslash{}copyrightpage}}
+  \framesubtitle{\textbackslash{}copyrightpage}
   \begin{columns}
     \begin{column}{0.45\textwidth}
       \only<1>{
@@ -175,7 +303,7 @@
 
 \begin{frame}[fragile]
   \frametitle{前置部分}
-  \framesubtitle{\texttt{\textbackslash{}frontmatter}}
+  \framesubtitle{\textbackslash{}frontmatter}
   \begin{columns}
     \begin{column}{0.45\textwidth}
       \only<1>{
@@ -256,7 +384,7 @@
 
 \begin{frame}[fragile]
   \frametitle{主体部分}
-  \framesubtitle{\texttt{\textbackslash{}mainmatter}}
+  \framesubtitle{\textbackslash{}mainmatter}
   \begin{columns}
     \begin{column}{0.45\textwidth}
       \only<1>{
@@ -306,6 +434,25 @@
   \end{columns}
 \end{frame}
 
+\begin{frame}
+  \frametitle{数学}
+  \begin{itemize}
+    \item 公式示例：\nolinkurl{contents/math_and_citations.tex}
+    \item \SJTUThesis{} 定义了常用的数学环境（需要手工引入 \texttt{ntheorem} 宏包）：
+      \begin{table}[h]
+        \centering
+        \footnotesize
+        \begin{tabular}{*{7}{l}}\toprule
+          assumption  & axiom   & conjecture & corollary    & definition  & example   & exercise  \\
+          假设        & 公理    & 猜想       & 推论         & 定义        & 例        & 练习      \\\midrule
+          lemma       & problem & proof      & proposition  & remark      & solution  & theorem   \\
+          引理        & 问题    & 证明       & 命题         & 注          & 解        & 定理      \\\bottomrule
+        \end{tabular}
+      \end{table}
+      \item \SJTUThesis{} 可以通过 \texttt{unimath} 选项使用 \pkg{unicode-math} 进行数学输入，注意与传统方式的区别。\thesisissue{555}
+  \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{参考文献}
   \begin{columns}
@@ -326,6 +473,123 @@
 |\highlightline|% 导入参考文献数据库
 |\highlightline|\addbibresource{bibdata/thesis.bib}
       \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{附录}
+  \framesubtitle{\textbackslash{}appendix}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \only<1>{
+        \includegraphics[page=7]{thesisdir}
+      }
+      \only<2>{
+        \begin{figure}[H]
+          \begin{subfigure}{0.45\linewidth}
+            \framebox{\includegraphics[width=\linewidth,page=24]{bachelor}}
+            \caption{}
+          \end{subfigure}\hfill
+          \begin{subfigure}{0.45\textwidth}
+            \framebox{\includegraphics[width=\linewidth,page=25]{bachelor}}
+            \caption{}
+          \end{subfigure}
+          \caption{附录}
+        \end{figure}
+      }
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{codeblock}[firstnumber=61]{main.tex}
+% 附录中图表不加入索引
+\captionsetup{list=no}
+
+% 附录内容
+|\highlightline|\input{contents/app_maxwell_equations}
+|\highlightline|\input{contents/app_flow_chart}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{结尾部分}
+  \framesubtitle{\textbackslash{}backmatter}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \only<1>{
+        \includegraphics[page=8]{thesisdir}
+      }
+      \only<2>{
+        \begin{figure}[H]
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=26,width=0.6\linewidth]{bachelor}}
+            \caption{致谢}
+          \end{subfigure}
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=27,width=0.6\linewidth]{bachelor}}
+            \caption{成就}
+          \end{subfigure}
+
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=28,width=0.6\linewidth]{bachelor}}
+            \caption{简历}
+          \end{subfigure}
+          \begin{subfigure}{0.30\linewidth}
+            \centering
+            \framebox{\includegraphics[page=29,width=0.6\linewidth]{bachelor}}
+            \caption{大摘要*}
+          \end{subfigure}
+          \caption{结尾部分}
+        \end{figure}
+      }
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{codeblock}[firstnumber=76]{main.tex}
+% 致谢
+\input{contents/acknowledgements}
+
+% 发表论文及科研成果
+% 盲审论文中，发表论文及科研成果等仅以第几作者注明即可，不要出现作者或他人姓名
+\input{contents/achievements}
+
+% 简历
+\input{contents/resume}
+
+% 学士学位论文要求在最后有一个大摘要，单独编页码
+\input{contents/digest}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{还有其他问题？}
+  \begin{columns}
+    \begin{column}{0.75\textwidth}
+    \begin{itemize}
+      \item[{\faComment*[regular]}] 日常模板或 \LaTeX{} 使用问题可以前往 Discussions \link{https://github.com/sjtug/SJTUThesis/discussions} 提问
+      
+      （解决后别忘了 \textcolor{green}{\faCheckCircle{} Mark as answer}
+      \item[{\faDotCircle[regular]}] 如果是 \textsc{SJTUThesis} 项目本身的 bug 和 feature request
+      
+      可以通过 Issues \link{https://github.com/sjtug/SJTUThesis/issues} 反馈。
+      \item[{\faCodeBranch}] 如果你有好点子，可以贡献代码
+     
+      向 \textsc{SJTU\TeX{}}(v1) \link{https://github.com/sjtug/SJTUTeX/tree/v1} 存储库发 PR，\par
+      而后把解包结果同步到 \textsc{SJTUThesis}。
+  
+      \item[{\faTag}] 如果你对正在基于 \LaTeX3 开发的新版感兴趣，\par
+      也欢迎向 \textsc{SJTU\TeX{}}(v2) \link{https://github.com/sjtug/SJTUTeX/tree/v2} 发 PR。
+  
+      \item[{\faQq}] 也欢迎在 QQ 群即时讨论。
+    \end{itemize}
+    \end{column}
+    \begin{column}{0.25\textwidth}
+      \includegraphics[height=0.7\textheight]{qq.jpg}
     \end{column}
   \end{columns}
 \end{frame}
