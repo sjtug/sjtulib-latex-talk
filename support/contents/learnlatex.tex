@@ -16,7 +16,7 @@
   \vfil
   \begin{center}
     \parbox{0.75\linewidth}{
-      Learn\LaTeX{}.org\cite{learnlatex} 提供了解 \LaTeX{} 的 16 篇简短的教程，并包含了一些可以在线运行的示例，可以通过亲自动手查看实验效果。本部分主要参考由 C\TeX{}-org 提供的中文翻译版本 \link{https://github.com/CTeX-org/learnlatex.github.io/tree/zh-Hans/zh-Hans/}。
+      Learn\LaTeX{}.org 提供了解 \LaTeX{} 的 16 篇简短的教程，并包含了一些可以在线运行的示例，可以通过亲自动手查看实验效果。本部分主要参考由 C\TeX{}-org 提供的中文翻译版本 \link{https://github.com/CTeX-org/learnlatex.github.io/tree/zh-Hans/zh-Hans/}。
     }
   \end{center}
   \vfil
@@ -271,9 +271,11 @@
           \item[\pkg{beamer}] 制作幻灯片
         \end{description}
       }
+
       \only<2>{
         \env{document} 环境用于指示文档主体的范围。\LaTeX{} 还有其他的使用 \cmd{begin} 和 \cmd{end} 的搭配，我们称这些为\textbf{环境}。它们将用来设定局部格式命令\footnotemark。
       }
+
       \only<3>{
         \includepdflarge{enminimal}
       }
@@ -287,6 +289,7 @@
       \end{codeblock}
     \end{column}
   \end{columns}
+
   \only<2>{\footnotetext{环境实际上是一个组，只不过通过语义化的形式预装了对应的格式命令。普通的组可以直接使用一对大括号之间的内容 \{$\cdots$\} 表示。}}
 \end{frame}
 
@@ -309,6 +312,7 @@
         \end{center}
         \vspace{-1cm}
       }
+
       \only<2>{
         C\TeX{} 建议对于之前提到的常规文档类，最佳实践是使用该宏集提供的四种中文文档类，以对特定类型提供额外的中文排版适配。
         \begin{center}
@@ -319,9 +323,11 @@
           \end{tabular}
         \end{center}
       }
+
       \only<3>{
         \includepdflarge{cnminimal}
       }
+
       \only<4>{
         大部分情况下，你都不应当在 \LaTeX{} 中强制断行：你几乎只是想另起一段，或者是想在段落之间添加空行（使用 \pkg{parskip} 宏包就可实现）。
         只有\alert{很少的}情况下你需要使用 \textbackslash{}\textbackslash{} 来另起一行而不另起一段。
@@ -350,6 +356,7 @@
       \only<1>{
         \includepdflarge{fontstyle}
       }
+
       \only<2>{
         可以使用显示样式设定命令对小段做加粗、斜体、等宽等等的处理。
         \begin{center}
@@ -365,6 +372,7 @@
           \end{tabular}
         \end{center}
       }
+
       \only<3>{
         与 Word 不同的是，\LaTeX{} 一般情况下并不需要使用上面的显式命令，而是采用逻辑标记的方法，
         比如 \cmd{emph} 可以强调文字，以及下面将要提到的目次命令（第 \ref{sectioning} 页）。
@@ -391,6 +399,7 @@
       \only<1>{
         \includepdflarge{fontsize}
       }
+
       \only<2>{
         同样地，你也可以显式地设定字体大小，但是这种命令会更改行文设置，所以需要使用一个组来限定作用范围\footnotemark。
         \begin{center}
@@ -406,6 +415,7 @@
           \end{tabular}
         \end{center}
       }
+
       \only<3>{
         也可以使用字体样式对应的更改字体设置的命令，这对于大段文段的设置而言也是很方便的。
         \begin{center}
@@ -432,6 +442,7 @@
       \end{codeblock}
     \end{column}
   \end{columns}
+
   \only<2>{\footnotetext{注意最后显式地使用 \cmd{par} 在改回大小前结束该段，否则会导致下一行的行间距异常！}}
 \end{frame}
 
@@ -540,10 +551,12 @@
 
             \cmd{section*\{目录没这个标题\}}
       }
+
       \only<2>{
         对于大型文档而言，使用多个文件管理源文件通常是更方便的。而 \cmd{include} 和 \cmd{input} 都以相对路径的方式插入其他 \TeX{} 文档。
         区别在于，\cmd{include} 命令会从新页开始并做一些内部调整，这基本上只对 \pkg{chapter} 这一级有用。而 \cmd{input} 会原样插入源代码。
       }
+
       \only<3>{
         但是 \cmd{include} 插入的文档可以使用 \cmd{includeonly} 管理当前要排印哪一部分的内容，利用所有章节辅助文件的同时，减少编译时间并专注于该部分的内容。
       }
@@ -611,12 +624,15 @@
       \only<1>{
         \includepdflarge{insertimage}
       }
+
       \only<2>{
         为了插入外部图片，需要使用 \pkg{graphicx} 宏包。之后在文档主体便可以使用 \cmd{includegraphics} 插入图片。导言区也可以加入 \cmd{graphicspath} 指定图片文件夹\footnotemark。
       }
+
       \only<3>{
         \cmd{includegraphics} 命令便以相对路径的方式插入图片，如果无同名图片，那么后缀名可以省略。可以使用可选参数指定插入的图片尺寸，最佳实践是使用 \cmd{textwidth} 或 \cmd{linewidth} 的相对值指定尺寸大小，以在未来可能的布局更改中保留一定的灵活性。
       }
+
       \only<4>{
         也可以通过键值对的方法设置图片的其他属性。
         \begin{center}
@@ -629,6 +645,7 @@
           \end{tabular}
         \end{center}
       }
+
       \only<5>{
         \env{figure} 为一个浮动体环境（\env{table} 也是），可以将其移动到其他位置上以减少行文中的空白。可以添加可选参数以指定如何放置浮动体，最多可以使用四种位置描述符：
         \begin{center}
@@ -642,9 +659,11 @@
         \end{center}
         还可以只使用 \pkg{float} 宏包提供的 \pkg{H} 描述符以强制置于此处。
       }
+
       \only<6>{
         采用 \cmd{centering} 命令而不是 \env{center} 环境来水平居中图片。这将避免多余的纵向间距。
       }
+
       \only<7>{
         使用 \cmd{caption} 命令输入题注，如果这个命令写在插入图片前面，题注将会在上方（中文中一般对 \env{table} 环境这么做）。后面将会看到如何对留有标记（\cmd{label}）的图片进行引用。
       }
@@ -680,9 +699,11 @@
       \only<1>{
         在 \env{figure} 环境里使用 \env{minipage} 小页制作列盒子，以并排两图并分别编号，需要设定强制参数以指定列宽。两个小页之间添加 \cmd{hfill} 使两个小页两端对齐。
       }
+
       \only<2>{
         在每个小页内部分别使用 \cmd{caption} 添加标签。
       }
+
       \only<3>{
         \includepdflarge{doubleimages}
       }
@@ -762,12 +783,15 @@
           \end{tabular}
         \end{center}
       }
+
       \only<2>{
         \pkg{booktabs} 宏包提供了标准三线表格所需要的行分割线：\cmd{toprule}，\cmd{midrule}，\cmd{bottomrule}。也可以使用 \cmd{cmidrule\{1-2\}} 来部分地绘制行分割线。一般不推荐在专业表格中使用纵向分割线。
       }
+
       \only<3>{
         每行内容使用 \textbackslash\textbackslash{} 分隔开，每行中的单元格使用 \& 分隔开。
       }
+
       \only<4>{
         \includepdflarge{table}
       }
@@ -886,9 +910,11 @@
   \only<1>{
     正如之前所提到的，\LaTeX{} 中使用 \cmd{label} 标记，然后可以使用 \cmd{ref} 来引用这个标记。 \cmd{label} 可以放在使用计数器的对象之后。
   }
+
   \only<2>{
     为了使得对公式编号的引用带有括号，推荐使用 \hologo{AmS}math 宏包中的 \cmd{eqref} 命令。对于多行公式环境，每一个换行符前都可以添加一个 \cmd{label} 用于引用该行公式。
   }
+  
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{codeblock}[]{图}
