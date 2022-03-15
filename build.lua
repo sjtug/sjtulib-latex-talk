@@ -126,6 +126,16 @@ function typeset_demo_tasks()
         end
     end
 
+    local suppbeamerdir = supportdir .. "/beamer"
+    cp("*", suppbeamerdir, beamerdepdir)
+    for _, file in ipairs({"hello.tex"}) do
+        errorlevel = latexmk_typeset(file, beamerdepdir, suppbeamerdir)
+        if errorlevel ~= 0 then
+            print("! latexmk " .. file .. " failed")
+            return errorlevel
+        end
+    end
+
     -- typeset auxiliary pdfs and cache them.
     local auxdirs = {
         supportdir .. "/examples",

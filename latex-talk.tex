@@ -7,7 +7,7 @@
 \usetheme[my,default,topright]{sjtubeamer}
 \usemytheme[debug]{sjtug}
 \setbeamertemplate{background}{}
-\graphicspath{{support/}{support/contents/}{support/examples/}{support/figures/}{support/images/}{support/thesis/}}
+\graphicspath{{support/}{support/contents/}{support/examples/}{support/figures/}{support/images/}{support/thesis/}{support/beamer/}}
 
 %% If you don't use sjtubeamer theme.
 %% Uncomment the following lines.
@@ -32,6 +32,7 @@
 \usepackage{ulem}
 \usepackage{subcaption}
 \usepackage{booktabs}
+
 \newcommand{\BOOK}[1]{\color{black}#1}
 \newcommand{\TAG}[1]{\color{black}[#1]}
 \newcommand{\URL}[1]{\color{structure}\url{#1}}
@@ -80,7 +81,8 @@
 \includeonly{
   support/contents/preface,
   support/contents/learnlatex,
-  support/contents/sjtuthesis
+  support/contents/sjtuthesis,
+  support/contents/interlude,
 }
 
 \begin{document}
@@ -93,6 +95,7 @@
 \include{support/contents/preface}
 \include{support/contents/learnlatex}
 \include{support/contents/sjtuthesis}
+\include{support/contents/interlude}
 
 \logo{\oldlogo}
 
