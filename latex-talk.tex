@@ -33,9 +33,11 @@
 \usepackage{subcaption}
 \usepackage{booktabs}
 
-\newcommand{\BOOK}[1]{\color{black}#1}
-\newcommand{\TAG}[1]{\color{black}[#1]}
-\newcommand{\URL}[1]{\color{structure}\url{#1}}
+\newenvironment{mybibliography}{\begin{list}{\lower.25em\hbox{\pgfuseimage{beamericonarticle}}}{}}{\end{list}}
+\newcommand{\AUTHOR}[1]{\textcolor{structure}{#1}}
+\newcommand{\BOOK}[1]{\textcolor{black}{#1}}
+\newcommand{\TAG}[1]{\textcolor{black}{[#1]}}
+\newcommand{\URL}[1]{\textcolor{structure}{\url{#1}}}
 
 \newcommand{\SJTUThesis}{\textsc{SJTUThesis}}
 \newcommand{\SJTUThesisVersion}{1.1.0rc1}
