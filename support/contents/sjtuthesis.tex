@@ -1,4 +1,4 @@
-% !TeX root = ..\..\latex-talk.tex
+% !TeX root = ../../latex-talk.tex
 
 \part{SJTUThesis}
 
@@ -157,10 +157,10 @@
   \frametitle{文档类选项}
   % \framesubtitle{\textbackslash{}documentclass\{sjtuthesis\}}
   \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \includegraphics[page=10]{thesisdir}
+    \begin{column}{0.4\textwidth}
+      \includegraphics[page=1]{thesisdir}
     \end{column}
-    \begin{column}{0.55\textwidth}
+    \begin{column}{0.6\textwidth}
       \begin{table}[H]
         \caption{文档类选项}
         \footnotesize
@@ -187,10 +187,10 @@
   \frametitle{基本配置}
   \framesubtitle{\textbackslash{}input\{setup\}}
   \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \includegraphics[page=9]{thesisdir}
+    \begin{column}{0.35\textwidth}
+      \includegraphics[page=2]{thesisdir}
     \end{column}
-    \begin{column}{0.55\textwidth}
+    \begin{column}{0.65\textwidth}
       \begin{codeblock}[firstnumber=12]{main.tex}
 |\highlightline<1>|% 论文基本配置，加载宏包等全局配置
 |\highlightline<1>|\input{setup}
@@ -201,22 +201,22 @@
 
 |\highlightline<2>|% 标题页
 |\highlightline<2>|\maketitle
-      \end{codeblock}
-      \visible<2>{
-        \cmd{sjtusetup} 中的 \pkg{info} 将会修改封面的信息设置（见第 \ref{covers} 页）。
-      }
-    \end{column}
-  \end{columns}
+\end{codeblock}
+\visible<2>{
+  \cmd{sjtusetup} 中的 \pkg{info} 将会修改封面的信息设置（见第 \ref{covers} 页）。
+}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{基本配置}
   \framesubtitle{\textbackslash{}sjtusetup}
   \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \includegraphics[page=1]{thesisdir}
+    \begin{column}{0.35\textwidth}
+      \includegraphics[page=3]{thesisdir}
     \end{column}
-    \begin{column}{0.55\textwidth}
+    \begin{column}{0.65\textwidth}
       \begin{codeblock}[firstnumber=3]{setup.tex}
 \sjtusetup{
   info = {
@@ -225,7 +225,7 @@
     author   = {||某\quad{}某},
     author* = {Mo Mo},
   },
-  style = { header-logo-color = red, 
+  style = { header-logo-color = red,
   },
   name = {
     publications = {||攻读学位期间完成的论文},
@@ -240,27 +240,27 @@
   \frametitle{基本配置}
   \framesubtitle{\textbackslash{}sjtusetup}
   \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \includegraphics[page=1]{thesisdir}
+    \begin{column}{0.35\textwidth}
+      \includegraphics[page=3]{thesisdir}
     \end{column}
-    \begin{column}{0.55\textwidth}
+    \begin{column}{0.65\textwidth}
       \begin{table}[H]
         \centering
         \caption{info 域}
         \footnotesize
         \begin{tabular}{lll} \toprule
-          命令作用 & 中文对应选项 & 英文对应选项 \\ \midrule
-          论文标题 & \texttt{title} & \texttt{title*} \\
-          关键字列表 & \texttt{keywords} & \texttt{keywords*} \\
-          作者姓名&  \texttt{author} &\texttt{author*}\\
-          申请学位名称 & \texttt{degree}&\texttt{degree*}\\
-          院系名称 & \texttt{department} & \texttt{department*}\\
-          专业名称 & \texttt{major} & \texttt{major*}\\
-          导师 & \texttt{supervisor} & \texttt{supervisor*}\\
-          副导师 & \texttt{assisupervisor} & \texttt{assisupervisor*}\\
-          日期 & \multicolumn{2}{c}{\texttt{date}}\\
-          学号 & \multicolumn{2}{c}{\texttt{id}}\\ \bottomrule
-          \end{tabular}
+          命令作用     & 中文对应选项                      & 英文对应选项             \\ \midrule
+          论文标题     & \texttt{title}                    & \texttt{title*}          \\
+          关键字列表   & \texttt{keywords}                 & \texttt{keywords*}       \\
+          作者姓名     & \texttt{author}                   & \texttt{author*}         \\
+          申请学位名称 & \texttt{degree}                   & \texttt{degree*}         \\
+          院系名称     & \texttt{department}               & \texttt{department*}     \\
+          专业名称     & \texttt{major}                    & \texttt{major*}          \\
+          导师         & \texttt{supervisor}               & \texttt{supervisor*}     \\
+          副导师       & \texttt{assisupervisor}           & \texttt{assisupervisor*} \\
+          日期         & \multicolumn{2}{c}{\texttt{date}}                            \\
+          学号         & \multicolumn{2}{c}{\texttt{id}}                              \\ \bottomrule
+        \end{tabular}
       \end{table}
     \end{column}
   \end{columns}
@@ -270,12 +270,12 @@
   \frametitle{版权页}
   \framesubtitle{\textbackslash{}copyrightpage}
   \begin{columns}
-    \begin{column}{0.45\textwidth}
+    \begin{column}{0.4\textwidth}
       \only<1>{
-        \includegraphics[page=9]{thesisdir}
+        \includegraphics[page=2]{thesisdir}
       }
       \only<2>{
-        \includegraphics[page=2]{thesisdir}
+        \includegraphics[page=4]{thesisdir}
       }
       \only<3>{
         \begin{figure}[H]
@@ -284,7 +284,7 @@
         \end{figure}
       }
     \end{column}
-    \begin{column}{0.55\textwidth}
+    \begin{column}{0.6\textwidth}
       \begin{codeblock}[firstnumber=22]{main.tex}
 |\highlightline<1>|% 原创性声明及使用授权书
 |\highlightline<1>|\copyrightpage
@@ -295,171 +295,53 @@
         \cmd{copyrightpages} 可以用于插入版权页。
       }
       \only<2>{
-        \cmd{copyrightpages} 也接受一个可选参数，用于直接使用扫描件。
-      }
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{前置部分}
-  \framesubtitle{\textbackslash{}frontmatter}
-  \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \only<1>{
-        \includegraphics[page=9]{thesisdir}
-      }
-      \only<2>{
-        \includegraphics[page=3]{thesisdir}
+        \cmd{copyrightpages} 也接受一个可选参数，用于直接使用扫描件。\thesisissue{473}
       }
       \only<3>{
-        \begin{figure}[H]
-          \begin{subfigure}{0.45\textwidth}
-            \framebox{\includegraphics[page=3,width=\linewidth]{bachelor}}
-            \caption{中文}
-          \end{subfigure}\hfill
-          \begin{subfigure}{0.45\textwidth}
-            \framebox{\includegraphics[page=4,width=\linewidth]{bachelor}}
-            \caption{英文}
-          \end{subfigure}
-          \caption{摘要}
-        \end{figure}
+        现在原创性声明与使用授权书已合并为一页。
       }
-      \only<4>{
-        \begin{figure}[H]
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=5,width=0.6\linewidth]{bachelor}}
-            \caption{目录}
-          \end{subfigure}
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=6,width=0.6\linewidth]{bachelor}}
-            \caption{插图}
-          \end{subfigure}
-
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=7,width=0.6\linewidth]{bachelor}}
-            \caption{表格}
-          \end{subfigure}
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=8,width=0.6\linewidth]{bachelor}}
-            \caption{算法}
-          \end{subfigure}
-          \caption{索引}
-        \end{figure}
-      }
-      \only<5>{
-        \includegraphics[page=4]{thesisdir}
-      }
-      \only<6>{
-        \begin{figure}[H]
-          \framebox{\includegraphics[page=9,width=0.5\linewidth]{bachelor}}
-          \caption{符号对照表}
-        \end{figure}
-      }
-    \end{column}
-    \begin{column}{0.55\textwidth}
-      \begin{codeblock}[firstnumber=30]{main.tex}
-|\highlightline<2-3>|% 摘要
-|\highlightline<2-3>|\input{contents/abstract}
-
-|\highlightline<4>|% 目录
-|\highlightline<4>|\tableofcontents
-|\highlightline<4>|% 插图索引
-|\highlightline<4>|\listoffigures*
-|\highlightline<4>|% 表格索引
-|\highlightline<4>|\listoftables*
-|\highlightline<4>|% 算法索引
-|\highlightline<4>|\listofalgorithms*
-
-|\highlightline<5-6>|% 符号对照表
-|\highlightline<5-6>|\input{contents/nomenclature}
-      \end{codeblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{主体部分}
-  \framesubtitle{\textbackslash{}mainmatter}
-  \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \only<1>{
-        \includegraphics[page=5]{thesisdir}
-      }
-      \only<2>{
-        \begin{figure}[H]
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=11,width=0.6\linewidth]{bachelor}}
-            \caption{简介}
-          \end{subfigure}
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=13,width=0.6\linewidth]{bachelor}}
-            \caption{数学}
-          \end{subfigure}
-
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=16,width=0.6\linewidth]{bachelor}}
-            \caption{浮动体}
-          \end{subfigure}
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=22,width=0.6\linewidth]{bachelor}}
-            \caption{总结}
-          \end{subfigure}
-          \caption{主体部分}
-        \end{figure}
-      }
-    \end{column}
-    \begin{column}{0.55\textwidth}
-      \begin{codeblock}[firstnumber=47]{main.tex}
-|\highlightline|% 正文内容
-|\highlightline|\input{contents/intro}
-|\highlightline|\input{contents/math_and_citations}
-|\highlightline|\input{contents/floats}
-|\highlightline|\input{contents/summary}
-
-%TC:ignore
-
-% 参考文献
-\printbibliography[heading=bibintoc]
-      \end{codeblock}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}
   \frametitle{数学}
-  \begin{itemize}
-    \item 公式示例：\nolinkurl{contents/math_and_citations.tex}
-    \item \SJTUThesis{} 定义了常用的数学环境（需要手工引入 \texttt{ntheorem} 宏包）：
-      \begin{table}[h]
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \includegraphics[page=5]{thesisdir}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \SJTUThesis{} 定义了常用的数学环境（需要引入 \pkg{ntheorem} 或者 \pkg{amsthm} 宏包）。
+
+      \begin{table}[H]
         \centering
+        \caption{\textsc{SJTUThesis} 定义的数学环境}
         \footnotesize
-        \begin{tabular}{*{7}{l}}\toprule
-          assumption  & axiom   & conjecture & corollary    & definition  & example   & exercise  \\
-          假设        & 公理    & 猜想       & 推论         & 定义        & 例        & 练习      \\\midrule
-          lemma       & problem & proof      & proposition  & remark      & solution  & theorem   \\
-          引理        & 问题    & 证明       & 命题         & 注          & 解        & 定理      \\\bottomrule
+        \begin{tabular}{>{\ttfamily}rl|>{\ttfamily}rl}
+          \toprule
+          assumption  & 假设  & lemma       & 引理 \\
+          axiom       & 公理  & problem     & 问题 \\
+          conjecture  & 猜想  & proof       & 证明 \\
+          corollary   & 推论  & proposition & 命题 \\
+          definition  & 定义  & remark      & 注   \\
+          example     & 例    & solution    & 解   \\
+          exercise    & 练习  & theorem     & 定理 \\
+          \bottomrule
         \end{tabular}
       \end{table}
-      \item \SJTUThesis{} 可以通过 \texttt{unimath} 选项使用 \pkg{unicode-math} 进行数学输入，注意与传统方式的区别。\thesisissue{555}
-  \end{itemize}
+
+      \SJTUThesis{} 可以通过 \texttt{unimath} 选项使用 \pkg{unicode-math} 进行数学输入，注意与传统方式的区别。\thesisissue{555}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{参考文献}
   \begin{columns}
-    \begin{column}{0.45\textwidth}
+    \begin{column}{0.4\textwidth}
       \includegraphics[page=6]{thesisdir}
     \end{column}
-    \begin{column}{0.55\textwidth}
+    \begin{column}{0.6\textwidth}
       \begin{codeblock}[firstnumber=111,numbersep=2pt]{setup.tex}
 % 使用 BibLaTeX 处理参考文献
 %   biblatex-gb7714-2015 常用选项
@@ -477,118 +359,29 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{附录}
-  \framesubtitle{\textbackslash{}appendix}
-  \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \only<1>{
-        \includegraphics[page=7]{thesisdir}
-      }
-      \only<2>{
-        \begin{figure}[H]
-          \begin{subfigure}{0.45\linewidth}
-            \framebox{\includegraphics[width=\linewidth,page=24]{bachelor}}
-            \caption{}
-          \end{subfigure}\hfill
-          \begin{subfigure}{0.45\textwidth}
-            \framebox{\includegraphics[width=\linewidth,page=25]{bachelor}}
-            \caption{}
-          \end{subfigure}
-          \caption{附录}
-        \end{figure}
-      }
-    \end{column}
-    \begin{column}{0.55\textwidth}
-      \begin{codeblock}[firstnumber=61]{main.tex}
-% 附录中图表不加入索引
-\captionsetup{list=no}
-
-% 附录内容
-|\highlightline|\input{contents/app_maxwell_equations}
-|\highlightline|\input{contents/app_flow_chart}
-      \end{codeblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{结尾部分}
-  \framesubtitle{\textbackslash{}backmatter}
-  \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \only<1>{
-        \includegraphics[page=8]{thesisdir}
-      }
-      \only<2>{
-        \begin{figure}[H]
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=26,width=0.6\linewidth]{bachelor}}
-            \caption{致谢}
-          \end{subfigure}
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=27,width=0.6\linewidth]{bachelor}}
-            \caption{成就}
-          \end{subfigure}
-
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=28,width=0.6\linewidth]{bachelor}}
-            \caption{简历}
-          \end{subfigure}
-          \begin{subfigure}{0.30\linewidth}
-            \centering
-            \framebox{\includegraphics[page=29,width=0.6\linewidth]{bachelor}}
-            \caption{大摘要*}
-          \end{subfigure}
-          \caption{结尾部分}
-        \end{figure}
-      }
-    \end{column}
-    \begin{column}{0.55\textwidth}
-      \begin{codeblock}[firstnumber=76]{main.tex}
-% 致谢
-\input{contents/acknowledgements}
-
-% 发表论文及科研成果
-% 盲审论文中，发表论文及科研成果等仅以第几作者注明即可，不要出现作者或他人姓名
-\input{contents/achievements}
-
-% 简历
-\input{contents/resume}
-
-% 学士学位论文要求在最后有一个大摘要，单独编页码
-\input{contents/digest}
-      \end{codeblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
 \begin{frame}
   \frametitle{还有其他问题？}
   \begin{columns}
-    \begin{column}{0.75\textwidth}
-    \begin{itemize}
-      \item[{\faComment*[regular]}] 日常模板或 \LaTeX{} 使用问题可以前往 Discussions \link{https://github.com/sjtug/SJTUThesis/discussions} 提问
-      
-      （解决后别忘了 \textcolor{green}{\faCheckCircle{} Mark as answer}
-      \item[{\faDotCircle[regular]}] 如果是 \textsc{SJTUThesis} 项目本身的 bug 和 feature request
-      
-      可以通过 Issues \link{https://github.com/sjtug/SJTUThesis/issues} 反馈。
-      \item[{\faCodeBranch}] 如果你有好点子，可以贡献代码
-     
-      向 \textsc{SJTU\TeX{}}(v1) \link{https://github.com/sjtug/SJTUTeX/tree/v1} 存储库发 PR，\par
-      而后把解包结果同步到 \textsc{SJTUThesis}。
-  
-      \item[{\faTag}] 如果你对正在基于 \LaTeX3 开发的新版感兴趣，\par
-      也欢迎向 \textsc{SJTU\TeX{}}(v2) \link{https://github.com/sjtug/SJTUTeX/tree/v2} 发 PR。
-  
-      \item[{\faQq}] 也欢迎在 QQ 群即时讨论。
-    \end{itemize}
+    \begin{column}{0.73\textwidth}
+      \begin{itemize}
+        \item[{\faComment*[regular]}] 日常模板或 \LaTeX{} 使用问题可以前往 Discussions \link{https://github.com/sjtug/SJTUThesis/discussions} 提问
+
+        （解决后别忘了 \textcolor{green}{\faCheckCircle{} Mark as answer}
+        \item[{\faDotCircle[regular]}] 如果是 \textsc{SJTUThesis} 项目本身的 bug 和 feature request
+
+        可以通过 Issues \link{https://github.com/sjtug/SJTUThesis/issues} 反馈。
+        \item[{\faCodeBranch}] 如果你有好点子，可以贡献代码
+
+          向 \textsc{SJTU\TeX{}}(v1) \link{https://github.com/sjtug/SJTUTeX/tree/v1} 存储库发 PR，\par
+          而后把解包结果同步到 \textsc{SJTUThesis}。
+
+        \item[{\faTag}] 如果你对正在基于 \LaTeX3 开发的新版感兴趣，\par
+          也欢迎向 \textsc{SJTU\TeX{}}(v2) \link{https://github.com/sjtug/SJTUTeX/tree/v2} 发 PR。
+
+        \item[{\faQq}] 也欢迎在 QQ 群即时讨论。
+      \end{itemize}
     \end{column}
-    \begin{column}{0.25\textwidth}
+    \begin{column}{0.27\textwidth}
       \includegraphics[height=0.7\textheight]{qq.jpg}
     \end{column}
   \end{columns}
