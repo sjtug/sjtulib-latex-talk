@@ -131,7 +131,7 @@
 \documentclass[|\only<1>{\highlight{type}}\only<2>{type}|=|\only<1>{bachelor}\only<2>{\highlight{bachelor}}|]{sjtuthesis}
   \end{codeblock}
   \begin{figure}
-    \parbox{0.9\textwidth}{
+    \hspace{-7pt}\parbox{0.97\textwidth}{
       \begin{subfigure}{0.20\textwidth}
         \framebox{\includegraphics[width=\linewidth]{support/thesis/bachelor}}
         \caption{\only<1>{学士}\only<2>{\texttt{bachelor}}}
@@ -153,15 +153,16 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}
   \frametitle{文档类选项}
-  % \framesubtitle{\textbackslash{}documentclass\{sjtuthesis\}}
   \begin{columns}
     \begin{column}{0.4\textwidth}
-      \includegraphics[page=1]{thesisdir}
+      \includegraphics[page=1,scale=0.9]{thesisdir}
     \end{column}
     \begin{column}{0.6\textwidth}
-      \begin{table}[H]
+
+      \only<1>{
+      \begin{table}
         \caption{文档类选项}
         \footnotesize
         \begin{tabular}{>{\ttfamily}rll}
@@ -179,6 +180,22 @@
           \bottomrule
         \end{tabular}
       \end{table}
+      }
+
+      \only<2>{
+        更多文档类选项，请查阅 \textsc{SJTU\TeX{}}(v1) 的开发文档，老版本开发文档中有些接口可能已废弃 \link{https://github.com/sjtug/SJTUThesis/releases/download/1.0.0rc7/sjtuthesis.pdf}。
+
+        \begin{exampleblock}{\faTerminal}
+          \ttfamily\footnotesize
+          git clone https://mirror.sjtu.edu.cn/git/SJTUTeX.git \\
+          cd SJTUTeX/source \\
+          \textcolor{gray}{\# \faLinux\,\faApple} \\
+          make build \\
+          \textcolor{gray}{\# \faWindows} \\
+          xetex sjtuthesis.ins \\
+          latexmk -xelatex sjtuthesis.dtx -f
+        \end{exampleblock}
+      }
     \end{column}
   \end{columns}
 \end{frame}
@@ -202,7 +219,11 @@
 |\highlightline<2>|% 标题页
 |\highlightline<2>|\maketitle
 \end{codeblock}
-\visible<2>{
+\only<1>{
+  引入 \texttt{setup.tex} 来导入主要的信息录入与宏包加载配置（见第 \ref{setup} 页）。
+}
+
+\only<2>{
   \cmd{sjtusetup} 中的 \pkg{info} 将会修改封面的信息设置（见第 \ref{covers} 页）。
 }
 \end{column}
@@ -236,7 +257,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[label=setup]
   \frametitle{基本配置}
   \framesubtitle{\textbackslash{}sjtusetup}
   \begin{columns}
@@ -244,7 +265,7 @@
       \includegraphics[page=3]{thesisdir}
     \end{column}
     \begin{column}{0.65\textwidth}
-      \begin{table}[H]
+      \begin{table}
         \centering
         \caption{info 域}
         \footnotesize
@@ -277,12 +298,6 @@
       \only<2>{
         \includegraphics[page=4]{thesisdir}
       }
-      \only<3>{
-        \begin{figure}[H]
-          \framebox{\includegraphics[page=2,width=0.4\linewidth]{bachelor}}
-          \caption{版权页}
-        \end{figure}
-      }
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[firstnumber=22]{main.tex}
@@ -292,15 +307,11 @@
 |\highlightline<2>|% \copyrightpage[scans/sample-copyright-old.pdf]
       \end{codeblock}
       \only<1>{
-        \cmd{copyrightpages} 可以用于插入版权页。
+        \cmd{copyrightpage} 可以用于插入版权页。
       }
 
       \only<2>{
-        \cmd{copyrightpages} 也接受一个可选参数，用于直接使用扫描件。\thesisissue{473}
-      }
-      
-      \only<3>{
-        现在原创性声明与使用授权书已合并为一页。
+        \cmd{copyrightpage} 也接受一个可选参数，用于直接使用扫描件。\thesisissue{473}
       }
     \end{column}
   \end{columns}
@@ -315,7 +326,7 @@
     \begin{column}{0.6\textwidth}
       \SJTUThesis{} 定义了常用的数学环境（需要引入 \pkg{ntheorem} 或者 \pkg{amsthm} 宏包）。
 
-      \begin{table}[H]
+      \begin{table}
         \centering
         \caption{\textsc{SJTUThesis} 定义的数学环境}
         \footnotesize
