@@ -7,7 +7,9 @@
   \begin{columns}
     \begin{column}{0.6\textwidth}
       \begin{itemize}
-        \item 最早由韦建文于 2009 年 11 月发布 0.1a 版，2018 年起由 SJTUG 接手维护
+        \item 最早由韦建文于 2009 年 11 月发布 0.1a 版
+        \item 2018 年起由 SJTUG 接手维护
+        \item 2019 年 6 月吴伟健重构了整个宏包的代码，升级版本号为 1.0
         \item 最新版：\SJTUThesisVersion{} (\SJTUThesisDate)
         \item 支持本科、硕士、博士学位论文以及课程论文的排版
       \end{itemize}
@@ -111,7 +113,7 @@
         更换字体集，或者安装对应字体。
       \end{alertblock}
       \begin{alertblock}{缺少汉字\thesisissue{533} \thesisdiscuss{617}}
-        去除使用 fandol 字体集的设定。或者是安装字体后，改用 \texttt{fontset=adobe} 或 \texttt{fontset=founder}。
+        去除使用 fandol 字体集的设定。或者是安装字体后，改用 \texttt{cjk-font=adobe} 或 \texttt{cjk-font=founder}。
       \end{alertblock}
     \end{column}
     \begin{column}{0.33\textwidth}
@@ -170,7 +172,7 @@
           选项 & 含义 & 相关 \\
           \midrule
           type= & 指定论文类型 & 第 \ref{covers} 页\\
-          fontset= & 指定字体 & 第 \ref{compile} 页\\
+          cjk-font= & 指定字体 & 第 \ref{compile} 页\\
           \midrule
           review & 开启盲审模式 & \thesisissue{195} \thesisissue{686} \\
           twoside & 双页模式 & \thesisissue{554} \\
