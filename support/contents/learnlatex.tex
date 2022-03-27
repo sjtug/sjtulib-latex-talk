@@ -1,7 +1,6 @@
 % !TeX root = ../../latex-talk.tex
 
 \part{学习 \LaTeX{}}
-% FIXME: Part Page miniframe overflow
 % FIXME: footnote fault numbering
 % FIXME: section pop up in navigation in advance
 
@@ -948,7 +947,7 @@
 
 \begin{frame}[fragile]
   \frametitle{文献引用}
-  \LaTeX{} 管理参考文献可以采用专用数据库文件 \texttt{.bib}，很多的文献管理文件比如 EndNote \link{https://lic.sjtu.edu.cn/Default/softshow/tag/MDAwMDAwMDAwMLGImKE}, Zotero \link{https://www.zotero.org/}, JabRef \link{https://www.jabref.org/} 都可以直接导出这种格式的文件用于 \LaTeX{} 论文中的引用。一般不需要手写数据库文件，你只需要注意每一个文献会在数据库中有一个主键，这个类似于上文的 \cmd{label} 标记，只是要引用数据库中的文献需要使用 \cmd{cite} 命令。
+  \LaTeX{} 可以通过专用数据库文件 \texttt{.bib} 自动生成参考文献，很多的文献管理文件比如 EndNote \link{https://lic.sjtu.edu.cn/Default/softshow/tag/MDAwMDAwMDAwMLGImKE}, Zotero \link{https://www.zotero.org/}, JabRef \link{https://www.jabref.org/} 都可以直接导出这种格式的文件用于 \LaTeX{} 论文中的引用。一般不需要手写数据库文件，你只需要注意每一个文献会在数据库中有一个主键，这个类似于上文的 \cmd{label} 标记，只是要引用数据库中的文献需要使用 \cmd{cite} 命令。
   
   \begin{codeblock}[]{ref.bib}
 |\highlightline|@phdthesis{devoftech,|\hfill\alert{\% 类型为博士论文，主键为\texttt{devoftech}}|
@@ -965,13 +964,19 @@
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{block}{\hologo{BibTeX} + \pkg{natbib}}
-        一般期刊提交使用这种方法，\pkg{natbib} 宏包将提供命令 \cmd{citet}（文本引用） 和 \cmd{citep}（括号引用）。中文引用可以直接使用 \pkg{gbt7714} 宏包，但是角模式和正文模式不能混用。
+        一般期刊提交使用这种方法，\pkg{natbib} 宏包将提供命令 \cmd{citet}（文本引用） 和 \cmd{citep}（括号引用）。
       \end{block}
+      \begin{alertblock}{\hologo{BibTeX} + \pkg{gbt7714}}
+        中文引用可以直接使用 \pkg{gbt7714} 宏包，但是角模式和正文模式不能混用。
+      \end{alertblock}
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{block}{\hologo{biber} + \pkg{biblatex}}
-        这是更容易自定义的方法，与 \hologo{BibTeX} 的运作方式稍有不同。\pkg{biblatex} 提供了更加智能的引用命令。而中文引用可以使用 \pkg{biblatex} 宏包的样式 \pkg{gb7714-2015}，使用该样式需要使用 \hologo{XeLaTeX} 编译。
+        这是更容易自定义的方法，与 \hologo{BibTeX} 的运作方式稍有不同。\pkg{biblatex} 提供了更加智能的引用命令。
       \end{block}
+      \begin{alertblock}{\hologo{biber} + \pkg{biblatex-gb7714-2015}}
+        而中文引用可以使用 \pkg{biblatex} 宏包的样式 \pkg{gb7714-2015}，需使用 \hologo{XeLaTeX} 编译。
+      \end{alertblock}
     \end{column}
   \end{columns}
 \end{frame}

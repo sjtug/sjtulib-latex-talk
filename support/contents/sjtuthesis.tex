@@ -42,6 +42,78 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{\only<1>{为什么使用 \LaTeX{} 排版论文？}\only<2>{当然它们也互相学习}}
+  \begin{columns}[t]
+    \begin{column}{0.25\textwidth}
+      \begin{exampleblock}{\faMarkdown{} Markdown}
+        \begin{itemize}
+          \item[\faPlus] 技术文档流行
+          \item[\faPlus] 语法简单 
+          \item[\faMinus] 不内置格式控制
+        \end{itemize}
+      \end{exampleblock}
+      \only<2>{
+        \begin{block}{}
+          \begin{itemize}
+            \item[\faBolt] R Markdown (Bookdown) 模板 \link{https://github.com/bubifengyun/SJTUThesis-Rmd} \link{https://github.com/bubifengyun/SJTUThesis-Rmd}
+            \item[\faAsterisk] 配套 MathJax 渲染公式  
+          \end{itemize}
+        \end{block}
+      }
+    \end{column}
+    \begin{column}{0.25\textwidth}
+      \begin{exampleblock}{\faFileWord{} Word}
+        \begin{itemize}
+          \item[\faPlus] 通用论文格式
+          \item[\faPlus] 所见即所得
+          \item[\faMinus] 进阶排版仍困难 
+        \end{itemize}
+      \end{exampleblock}
+      \only<2>{
+        \begin{block}{}
+          \begin{itemize}
+            \item[\faBolt] 数学公式可以直接通过 \LaTeX{} 格式转换
+            \item[\faAsterisk] 也就是 Unicode Math 输入方式 
+          \end{itemize}
+        \end{block}
+      }
+    \end{column}
+    \begin{column}{0.25\textwidth}
+      \begin{block}{\LaTeX{} SJTUThesis}
+        \begin{itemize}
+          \item[\faPlus] 学术论文格式
+          \item[\faPlus] 内容样式分离
+          \item[\faMinus] 上手有门槛 
+        \end{itemize}
+      \end{block}
+      \only<2>{
+        \begin{exampleblock}{}
+          \begin{itemize}
+            \item[\faBolt] \TeX{} 的可视性改良 \TeX{}\raise-0.25em\hbox{\footnotesize MACS} \link{http://texmacs.org/tmweb/home/welcome.en.html}
+          \end{itemize}
+        \end{exampleblock}
+      }
+    \end{column}
+    \begin{column}{0.25\textwidth}
+      \begin{exampleblock}{\faAdobe{} InDesign}
+        \begin{itemize}
+          \item[\faPlus] 专业杂志排版
+          \item[\faPlus] 精细调整
+          \item[\faMinus] 过于复杂专业  
+        \end{itemize}
+      \end{exampleblock}
+      \only<2>{
+        \begin{block}{}
+          \begin{itemize}
+            \item[\faBolt] 传说用了 \TeX{} 的一些算法 \link{https://mp.weixin.qq.com/s/GASGHK-GsIg2Fwb2jWwpvw}
+          \end{itemize}
+        \end{block}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
   \frametitle{下载与编译}
   \alert{下载} 推荐安装 Git \link{https://git-scm.com/} 后，克隆 SJTUG 镜像仓库
   \begin{exampleblock}{\faGit*}
@@ -49,13 +121,13 @@
     git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
   \end{exampleblock}
 
-  \alert{编译} 推荐使用 \pkg{latexmk} 编译\footnote{\hologo{MiKTeX} 用户需要手动安装 Perl 解释器 \link{https://www.perl.org/get.html} 才能使用 \pkg{latexmk}。}，在不能够利用自带的 \texttt{.latexmkrc} 配置文件的情况下，需要查清楚在对应的编辑器中如何使用 \hologo{XeLaTeX} + \hologo{biber} 编译 \link{https://github.com/sjtug/SJTUThesis/blob/master/README.md}。
+  \alert{编译} 推荐使用 \pkg{latexmk} 编译\footnote{\hologo{MiKTeX} 用户需要手动安装 Perl 解释器 \link{https://www.perl.org/get.html} 才能使用 \pkg{latexmk}。}，在不能够利用自带的 \texttt{.latexmkrc} 配置文件的情况下，需要查清楚在对应的编辑器中如何使用 \hologo{XeLaTeX} + \hologo{biber} 编译\footnote{这种情况下，你可能需要查清楚如何全局安装该文档类，并刷新文件名数据库。} \link{https://github.com/sjtug/SJTUThesis/blob/master/README.md}。
   \begin{exampleblock}{\faTerminal}
     \ttfamily\small
     latexmk -xelatex main
   \end{exampleblock}
 
-  Overleaf 用户可以下载压缩包后，上传并采用 \hologo{XeLaTeX} 编译方式。
+  \alert{在线} Overleaf 用户可以下载压缩包后，上传并采用 \hologo{XeLaTeX} 编译方式。
 \end{frame}
 
 \begin{frame}
@@ -128,10 +200,12 @@
 \end{frame}
 
 \begin{frame}[fragile, label=covers]
-  \begin{codeblock}[firstnumber=3]{main.tex}
-|\alert{\% 载入 SJTUThesis 模版}|
-\documentclass[|\only<1>{\highlight{type}}\only<2>{type}|=|\only<1>{bachelor}\only<2>{\highlight{bachelor}}|]{sjtuthesis}
-  \end{codeblock}
+%   \begin{codeblock}[firstnumber=3]{main.tex}
+% |\alert{\% 载入 SJTUThesis 模版}|
+% \documentclass[|\only<1>{\highlight{type}}\only<2>{type}|=|\only<1>{bachelor}\only<2>{\highlight{bachelor}}|]{sjtuthesis}
+%   \end{codeblock}
+  \frametitle{论文类型}
+  % \framesubtitle{\textbackslash{}documentclass[type=bachelor]\{sjtuthesis\}}
   \begin{figure}
     \hspace{-7pt}\parbox{0.97\textwidth}{
       \begin{subfigure}{0.20\textwidth}
@@ -185,12 +259,14 @@
       }
 
       \only<2>{
-        更多文档类选项，请查阅 \textsc{SJTU\TeX{}}(v1) 的开发文档，老版本开发文档中有些接口可能已废弃 \link{https://github.com/sjtug/SJTUThesis/releases/download/1.0.0rc7/sjtuthesis.pdf}。
+        更多文档类选项，请查阅 \textsc{SJTU\TeX{}}(v1) 的开发文档 \link{https://github.com/sjtug/SJTUTeX/releases/download/v1.1.0/sjtuthesis.pdf}。
 
         \begin{exampleblock}{\faTerminal}
           \ttfamily\footnotesize
           git clone https://mirror.sjtu.edu.cn/git/SJTUTeX.git \\
-          cd SJTUTeX/source \\
+          cd SJTUTeX \\
+          git checkout v1 \\
+          cd source \\
           \textcolor{gray}{\# \faLinux\,\faApple} \\
           make build \\
           \textcolor{gray}{\# \faWindows} \\
@@ -204,37 +280,31 @@
 
 \begin{frame}[fragile]
   \frametitle{基本配置}
-  \framesubtitle{\textbackslash{}input\{setup\}}
   \begin{columns}
-    \begin{column}{0.35\textwidth}
-      \includegraphics[page=2]{thesisdir}
+    \begin{column}{0.4\textwidth}
+      \includegraphics[page=3]{thesisdir}
     \end{column}
-    \begin{column}{0.65\textwidth}
+    \begin{column}{0.6\textwidth}
+      在 \texttt{main.tex} 中引入 \texttt{setup.tex} 来导入主要的信息录入与宏包加载配置（见第 \ref{setup} 页）。
+      其中 \cmd{sjtusetup} 中的 \pkg{info} 将会修改封面的信息设置（见第 \ref{covers} 页）。
+
       \begin{codeblock}[firstnumber=12]{main.tex}
-|\highlightline<1>|% 论文基本配置，加载宏包等全局配置
-|\highlightline<1>|\input{setup}
+% 论文基本配置，加载宏包等全局配置
+\input{setup}
 
 \begin{document}
 
 %TC:ignore
 
-|\highlightline<2>|% 标题页
-|\highlightline<2>|\maketitle
-\end{codeblock}
-\only<1>{
-  引入 \texttt{setup.tex} 来导入主要的信息录入与宏包加载配置（见第 \ref{setup} 页）。
-}
-
-\only<2>{
-  \cmd{sjtusetup} 中的 \pkg{info} 将会修改封面的信息设置（见第 \ref{covers} 页）。
-}
-\end{column}
-\end{columns}
+% 标题页
+\maketitle
+      \end{codeblock}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{基本配置}
-  \framesubtitle{\textbackslash{}sjtusetup}
   \begin{columns}
     \begin{column}{0.35\textwidth}
       \includegraphics[page=3]{thesisdir}
@@ -261,7 +331,6 @@
 
 \begin{frame}[label=setup]
   \frametitle{基本配置}
-  \framesubtitle{\textbackslash{}sjtusetup}
   \begin{columns}
     \begin{column}{0.35\textwidth}
       \includegraphics[page=3]{thesisdir}
@@ -291,30 +360,20 @@
 
 \begin{frame}[fragile]
   \frametitle{版权页}
-  \framesubtitle{\textbackslash{}copyrightpage}
   \begin{columns}
     \begin{column}{0.4\textwidth}
-      \only<1>{
-        \includegraphics[page=2]{thesisdir}
-      }
-      \only<2>{
-        \includegraphics[page=4]{thesisdir}
-      }
+      \includegraphics[page=4]{thesisdir}
     \end{column}
     \begin{column}{0.6\textwidth}
-      \begin{codeblock}[firstnumber=22]{main.tex}
-|\highlightline<1>|% 原创性声明及使用授权书
-|\highlightline<1>|\copyrightpage
-|\highlightline<2>|% 插入外置原创性声明及使用授权书
-|\highlightline<2>|% \copyrightpage[scans/sample-copyright-old.pdf]
-      \end{codeblock}
-      \only<1>{
-        \cmd{copyrightpage} 可以用于插入版权页。
-      }
+      \cmd{copyrightpage} 可以用于插入版权页。
+      也可接受一个可选参数，用于直接使用扫描件。\thesisissue{473}
 
-      \only<2>{
-        \cmd{copyrightpage} 也接受一个可选参数，用于直接使用扫描件。\thesisissue{473}
-      }
+      \begin{codeblock}[firstnumber=22]{main.tex}
+% 原创性声明及使用授权书
+\copyrightpage
+% 插入外置原创性声明及使用授权书
+% \copyrightpage[scans/sample-copyright-old.pdf]
+      \end{codeblock}
     \end{column}
   \end{columns}
 \end{frame}
@@ -375,7 +434,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Word？}
+  \frametitle{Word}
   \begin{itemize}
     \item[{\faQuestionCircle[regular]}] 跟 Word 的参考实现略有不同 
     \item[{\faCheckCircle[regular]}] 毕设论文的格式只要不违背《上海交通大学关于本科生毕业设计（论文）工作的指导意见》\link{https://github.com/sjtug/SJTUThesis/files/6505296/default.pdf} \thesisissue{621}、《上海交通大学博士、硕士学位论文撰写指南》\link{https://www.gs.sjtu.edu.cn/info/1143/5801.htm} \thesisissue{652} 即可，其他细节上的修改可以先搜索解决方案，再反馈给我们。
