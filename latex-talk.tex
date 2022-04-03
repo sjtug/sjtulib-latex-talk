@@ -40,11 +40,11 @@
 \newcommand{\URL}[1]{\textcolor{structure}{\url{#1}}}
 
 \newcommand{\SJTUThesis}{\textsc{SJTUThesis}}
-\newcommand{\SJTUThesisVersion}{1.1.0rc1}
+\newcommand{\SJTUThesisVersion}{1.1.0}
 \newcommand{\SJTUThesisDate}{2022/3/26}
 \newcommand{\SJTUBeamer}{\textsc{SJTUBeamer}}
-\newcommand{\SJTUBeamerVersion}{2.5.7}
-\newcommand{\SJTUBeamerDate}{2022/3/21}
+\newcommand{\SJTUBeamerVersion}{2.6.0}
+\newcommand{\SJTUBeamerDate}{2022/4/1}
 
 \newcommand{\thesisissue}[1]{\href{https://github.com/sjtug/SJTUThesis/issues/#1}{\textsuperscript{\textcolor{.!90!DarkBlue}{\underline{\faCheckCircle{}#1}}}}}
 \newcommand{\thesisdiscuss}[1]{\href{https://github.com/sjtug/SJTUThesis/discussions/#1}{\textsuperscript{\textcolor{.!90!DarkBlue}{\underline{\faComments{}#1}}}}}
@@ -56,9 +56,7 @@
 \def\cmdxmp#1#2#3{\small{\texttt{\color{DarkBlue}$\backslash$#1}\{#2\}\hspace{1em}\\ $\Rightarrow$\hspace{1em} {#3}\par\vskip1em}}
 
 \lstset{
-  escapechar=|,
-  aboveskip=0pt, % -> 2.6.0
-  belowskip=0pt  % -> 2.6.0
+  escapechar=|
 }
 
 \newcommand{\includepdflarge}[1]{\framebox{\includegraphics[width=\linewidth,trim=4cm 17cm 3cm 2cm,clip]{#1}}\vspace{-10pt}}
@@ -91,15 +89,10 @@
 
 \maketitle
 
-\xdef\oldlogo{\expandbeamertemplate{logo}}
-\logo{\insertpart\oldlogo}
-
 \include{support/contents/preface}
 \include{support/contents/learnlatex}
 \include{support/contents/sjtuthesis}
 \include{support/contents/intermission}
-
-\logo{\oldlogo}
 
 \def\bottomthanks{Happy \TeX{}ing!}
 \makebottom

@@ -15,13 +15,13 @@
   \vfil
   \begin{center}
     \parbox{0.75\linewidth}{
-      Learn\LaTeX{}.org 提供了解 \LaTeX{} 的 16 篇简短的教程，并包含了一些可以在线运行的示例，可以通过亲自动手查看实验效果。本部分主要参考由 C\TeX{}-org 提供的中文翻译版本 \link{https://github.com/CTeX-org/learnlatex.github.io/tree/zh-Hans/zh-Hans/}。
+      Learn\LaTeX{}.org 提供了解 \LaTeX{} 的 16 篇简短的教程，并包含了一些可以在线运行的示例，可以通过亲自动手查看实验效果。本部分主要参考由 \CTeX{}-org 提供的中文翻译版本 \link{https://github.com/CTeX-org/learnlatex.github.io/tree/zh-Hans/zh-Hans/}。
     }
   \end{center}
   \vfil
 \end{frame}
 
-{ % Start of shaded number logo
+\begingroup % Start of shaded number logo
 
 \newcommand{\shadedfont}[2][1pt]{
   % #1 (optional): shadow distance
@@ -140,7 +140,7 @@
   \frametitle{Unicode 引擎}
   \begin{table}
     \caption{主流 \hologo{(La)TeX} 程序
-    \footnote{(u)p\TeX{} 是日语最常用的引擎，生成 \texttt{.dvi}，支持 Unicode。}\footnote{Ap\TeX{} 具有底层 CJK 支持，内联 Ruby，Color Emoji。}}
+    \footnote{(u)p\TeX{} 是日语最常用的引擎，生成 \texttt{.dvi}，支持 Unicode。}\footnote{Ap\TeX{} \link{https://github.com/clerkma/ptex-ng} 具有底层 CJK 支持，内联 Ruby，Color Emoji。}}
     \footnotesize
     \begin{stampbox}
       \begin{tabular}{c>{\raggedright}*{3}{p{3.5cm}}}
@@ -170,7 +170,7 @@
     \footnotesize
     \begin{stampbox}
       \begin{tabular}{c>{\raggedright}*{3}{p{3.2cm}}}
-        \alert{发行版}     & \hologo{MiKTeX} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-21.12-x64.exe}   & \TeX{} Live \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/tlnet/install-tl.zip}   & Mac\TeX{} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/mac/mactex/mactex-20210328.pkg}  \\[2pt] % Replace with TeX Live 2022 link
+        \alert{发行版}     & \hologo{MiKTeX} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-21.12-x64.exe}   & \TeX{} Live \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/}   & Mac\TeX{} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/mac/mactex/}  \\[2pt]
         \alert{特点}      &  只安装必要文件，依赖用时更新  &  所有平台均可使用，每年发布一次 & Mac 系统专用，对 \TeX{} Live 的进一步打包 \\
         \alert{推荐平台}  & \faWindows  & \faLinux &  \faApple \\
       \end{tabular}
@@ -205,7 +205,7 @@
 
   \begin{center}
     \parbox{0.8\textwidth}{
-      推荐使用 SJTUG 软件镜像服务，离得近，下得快。
+      推荐使用 SJTUG 软件镜像服务 \link{https://mirror.sjtu.edu.cn/}，离得近，下得快。
       
       \begin{description}
         \footnotesize
@@ -231,7 +231,7 @@
   \end{table}
   \begin{center}
     \parbox{.9\textwidth}{
-      使用专为 \LaTeX{} 设计的编辑器将带来更多便利，因为它们往往会提供一键编译、内置 PDF 阅读器以及语法高亮等功能。几乎所有现代的 \LaTeX{} 编辑器都提供 Sync\TeX{} 这一强大的功能，以在 PDF 和 代码间对应跳转。
+      使用专为 \LaTeX{} 设计的编辑器将带来更多便利，因为它们往往会提供一键编译、内置 PDF 阅读器以及语法高亮等功能。几乎所有现代的 \LaTeX{} 编辑器都提供 Sync\TeX{} 这一强大的功能，以在 PDF 和代码间对应跳转。
     }
   \end{center}
 \end{frame}
@@ -261,13 +261,13 @@
   \begin{columns}[c]
     \begin{column}{0.4\textwidth}
       \only<1>{
-        \cmd{documentclass} 命令加载了\textbf{文档类}。\pkg{article} 是由 \LaTeX{}提供的用于排版短文档的基本文档类。
+        \cmd{documentclass} 命令加载了\textbf{文档类}。\pkg{article} 是由 \LaTeX{} 提供的用于排版短文档的基本文档类。
         \begin{description}
           \footnotesize
           \item[\pkg{article}] 不包含章的短文档
           \item[\pkg{report}] 含有章的单面印刷文档
           \item[\pkg{book}] 含有章的双面印刷文档
-          \item[\pkg{beamer}] 制作幻灯片
+          \item[\pkg{beamer}] 幻灯片
         \end{description}
       }
 
@@ -297,9 +297,10 @@
   \frametitle{中文排版}
   \begin{columns}[c]
     \begin{column}{0.4\textwidth}
+
       \only<1>{
         \cmd{usepackage} 用于使用宏包以向 \LaTeX{} 添加或修改功能，需要在\textbf{导言区}调用。
-        这里使用 \pkg{ctex} 宏集以获得中文支持。其调用底层因随不同的引擎而不同。
+        这里使用 \pkg{ctex} 宏集以获得中文支持。其调用底层因不同的引擎而不同。
         \begin{center}
           \footnotesize
           \begin{tabular}{c*{3}{c}}
@@ -313,7 +314,7 @@
       }
 
       \only<2>{
-        C\TeX{} 建议对于之前提到的常规文档类，最佳实践是使用该宏集提供的四种中文文档类，以对特定类型提供额外的中文排版适配。
+        \CTeX{} 建议对于之前提到的常规文档类，最佳实践是使用该宏集提供的四种中文文档类，以对特定类型提供额外的中文排版适配。
         \begin{center}
           \footnotesize
           \begin{tabular}{cc}
@@ -357,7 +358,7 @@
       }
 
       \only<2>{
-        可以使用显示样式设定命令对小段做加粗、斜体、等宽等等的处理。
+        可以使用显式样式设定命令对小段做加粗、斜体、等宽等等的处理。
         \begin{center}
           \footnotesize
           \begin{tabular}{rl}
@@ -513,7 +514,7 @@
       \begin{center}
         \footnotesize
         \begin{tabular}{rll}
-          命令 & 中文 & 层次 \\
+          命令 & 含义 & 层次 \\
           \cmd{chapter} & 章\footnotemark & \sout{0} \\
           \cmd{section} & 节 & 1 \\
           \cmd{subsection} & 小节 & 2 \\
@@ -539,6 +540,7 @@
   \frametitle{组织文档}
   \begin{columns}
     \begin{column}{0.4\textwidth}
+
       \only<1>{
         \cmd{tableofcontents} 用来生成对于目次命令的目录。如果你想设定显示到哪个层级，在这个命令前使用 \cmd{setcounter\{tocdepth\}\{层次\}}
 
@@ -587,7 +589,7 @@
       子文件中就不需要添加 \env{document} 环境了\footnotemark。
     \end{column}
     \begin{column}{0.6\textwidth}
-      \begin{codeblock}[]{主文档}
+      \begin{codeblock}[]{主文档 main.tex}
 |\highlightline|\documentclass{ctexrep}
 \includeonly{learnlatex,sjtuthesis}
 \begin{document}
@@ -950,7 +952,7 @@
   \LaTeX{} 可以通过专用数据库文件 \texttt{.bib} 自动生成参考文献，很多的文献管理文件比如 EndNote \link{https://lic.sjtu.edu.cn/Default/softshow/tag/MDAwMDAwMDAwMLGImKE}, Zotero \link{https://www.zotero.org/}, JabRef \link{https://www.jabref.org/} 都可以直接导出这种格式的文件用于 \LaTeX{} 论文中的引用。一般不需要手写数据库文件，你只需要注意每一个文献会在数据库中有一个主键，这个类似于上文的 \cmd{label} 标记，只是要引用数据库中的文献需要使用 \cmd{cite} 命令。
   
   \begin{codeblock}[]{ref.bib}
-|\highlightline|@phdthesis{devoftech,|\hfill\alert{\% 类型为博士论文，主键为\texttt{devoftech}}|
+|\highlightline|@article{devoftech,|\hfill\alert{\% 类型为期刊论文，主键为\texttt{devoftech}}|
   title={||新时期我国信息技术产业的发展},
   author={||江泽民},
   year={2008}
@@ -1023,4 +1025,4 @@
   \end{columns}
 \end{frame}
 
-} % End of customized shaded number logo
+\endgroup % End of customized shaded number logo
