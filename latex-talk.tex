@@ -65,12 +65,12 @@
 
 \newcommand{\includepdflarge}[1]{\framebox{\includegraphics[width=\linewidth,trim=4cm 17cm 3cm 2cm,clip]{#1}}\vspace{-10pt}}
 
-\title{从零开始使用 \LaTeX{} 排版论文}
+\title{\LaTeX{} 新语}
 \subtitle{上海交通大学图书馆专题培训讲座}
 \author{李子龙}
 \institute[SJTU Linux User Group]{上海交通大学 Linux 用户组}
 \date{\the\year\,年\,\the\month\,月}
-\subject{LaTeX, 论文排版, SJTUThesis}
+\subject{LaTeX, SJTUThesis, SJTUBeamer}
 
 \hypersetup{
   pdfsubject         = {上海交通大学图书馆专题培训讲座},
@@ -87,18 +87,13 @@
   support/contents/learnlatex,
   support/contents/sjtuthesis,
   support/contents/intermission,
+  support/contents/sjtubeamer,
+  support/contents/visualization
 }
 
 \begin{document}
 
-\maketitle
-
-\include{support/contents/preface}
-\include{support/contents/learnlatex}
-\include{support/contents/sjtuthesis}
-\include{support/contents/intermission}
-
-\def\bottomthanks{Happy \TeX{}ing!}
-\makebottom
+% \input{support/contents/lec1}
+\input{support/contents/lec2}
 
 \end{document}
