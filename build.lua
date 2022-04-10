@@ -26,7 +26,7 @@ supportdir = "support"
 -- and copy the output pdf into outputdir.
 function latexmk_typeset(file, typesetdir, outputdir)
     local latexmkexe = "latexmk"
-    local latexmkopt = "-xelatex -interaction=nonstopmode -shell-escape"
+    local latexmkopt = "-xelatex -interaction=nonstopmode -shell-escape -outdir=."
     local errorlevel = os.execute("cd " .. typesetdir .. " && " 
         .. latexmkexe .. " " .. file .. " " .. latexmkopt)
     local pdffile = file:gsub("%.tex$", ".pdf")
