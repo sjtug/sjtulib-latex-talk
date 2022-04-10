@@ -1,0 +1,20 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{ctex}
+\begin{document}
+\begin{tikzpicture}
+\tikzset{
+ every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+ small dot/.style={fill=black,circle,scale=0.3},
+}
+\begin{axis}[xlabel={$\theta$/$^\circ$},
+ylabel={射线强度$\frac{R}{1/s}$},
+title={晶体衍射曲线($U$=30kV,$I$=10mA)},
+width=12cm,
+height=6cm,
+]
+ \addplot [blue] table[col sep=comma,] {c.csv};
+\end{axis}
+\end{tikzpicture}
+\end{document}

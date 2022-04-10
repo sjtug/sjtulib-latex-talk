@@ -1,0 +1,17 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{ctex}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[title={输出电压与轴平面位置的关系},
+xlabel={$x$/cm},
+ylabel={$y$/cm},
+zlabel={输出电压 $U$/V},
+legend pos={north east},
+]
+ \addplot3 [surf,] table[] {d.dat};
+ \legend{输出电压,}
+\end{axis}
+\end{tikzpicture}
+\end{document}

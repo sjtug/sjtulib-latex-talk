@@ -1,0 +1,32 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{pgfplotstable}
+\usepackage{ctex}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[ymin={0},
+xlabel={$\theta$/$^\circ$},
+ylabel={射线强度 $\frac{R}{1/s}$},
+title={不同电压下的局部衍射拟合线},
+]
+ \pgfplotstableread [row sep=crcr] {x y\\4 22.2\\4.1 70.4\\4.2 127\\\\}{\volta};
+ \pgfplotstableread [row sep=crcr] {x y\\4.3 12.2\\4.4 42.2\\4.5 79.6\\4.6 130\\4.7 162.4\\4.8 199.4\\\\}{\voltb};
+ \pgfplotstableread [row sep=crcr] {x y\\4.7 19.4\\4.8 48\\4.9 86.4\\5 114.2\\5.1 145.6\\5.2 169.4\\\\}{\voltc};
+ \pgfplotstableread [row sep=crcr] {x y\\5.1 19.6\\5.2 36\\5.3 64\\5.4 91.4\\5.5 114.6\\\\}{\voltd};
+ \pgfplotstableread [row sep=crcr] {x y\\5.5 7\\5.6 20.4\\5.7 35.6\\5.8 55.6\\5.9 66.8\\6 81.2\\6.1 92.6\\\\}{\volte};
+ \addplot+ [only marks,] table[x=x,y=y] {\volta};
+ \addplot+ [only marks,] table[x=x,y=y] {\voltb};
+ \addplot+ [only marks,] table[x=x,y=y] {\voltc};
+ \addplot+ [only marks,] table[x=x,y=y] {\voltd};
+ \addplot+ [only marks,] table[x=x,y=y] {\volte};
+ \pgfplotsset{cycle list shift=-5};
+ \addplot+ [no markers,] table[x=x,y={create col/linear regression={y=y}}] {\volta};
+ \addplot+ [no markers,] table[x=x,y={create col/linear regression={y=y}}] {\voltb};
+ \addplot+ [no markers,] table[x=x,y={create col/linear regression={y=y}}] {\voltc};
+ \addplot+ [no markers,] table[x=x,y={create col/linear regression={y=y}}] {\voltd};
+ \addplot+ [no markers,] table[x=x,y={create col/linear regression={y=y}}] {\volte};
+ \legend{30kV,28kV,26kV,24kV,22kV,}
+\end{axis}
+\end{tikzpicture}
+\end{document}

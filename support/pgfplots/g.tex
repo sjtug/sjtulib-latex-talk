@@ -1,0 +1,18 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{ctex}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[xmin={0},
+xmax={7000},
+xlabel={$f$/Hz},
+ylabel={$\frac{I}{I_m}$},
+title={RLC 谐振电路幅值-频率变化图},
+xmajorgrids,grid style={white},extra x ticks={1597,3380},extra x tick style={grid style={red},xticklabel={\textcolor{red}{$\pgfmathprintnumber\tick$}},tick label style={yshift=5mm}},
+ymajorgrids,extra y ticks={0.71},extra y tick style={grid style={red},yticklabel={\textcolor{red}{$\pgfmathprintnumber\tick$}}}
+]
+ \addplot+ [] table[col sep=comma,] {f.csv};
+\end{axis}
+\end{tikzpicture}
+\end{document}

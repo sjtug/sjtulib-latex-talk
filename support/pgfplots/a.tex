@@ -1,0 +1,23 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{ctex}
+\begin{document}
+\begin{tikzpicture}
+\tikzset{
+ every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+ small dot/.style={fill=black,circle,scale=0.3},
+}
+\begin{axis}[ylabel={输出电压 U/V},
+xlabel={磁感应强度 B/Gs},
+title={磁阻转换器输出电压与磁感应强度的关系},
+legend pos={south east},
+]
+ \addplot+ [] table[col sep=comma] {a.csv};
+ \addplot+ [no markers,domain=-6:6] {0.2536*x - 0.0016};
+ \node [font=\tiny] at (axis description cs:0.5,0.7) {$y=0.2536x-0.0016$};
+ \node [font=\tiny] at (axis description cs:0.5,0.65) {$R=0.9998$};
+ \legend{输出电压,线性拟合,}
+\end{axis}
+\end{tikzpicture}
+\end{document}

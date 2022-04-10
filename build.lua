@@ -139,7 +139,8 @@ function typeset_demo_tasks()
     -- typeset auxiliary pdfs and cache them.
     local auxdirs = {
         supportdir .. "/examples",
-        supportdir .. "/figures"
+        supportdir .. "/figures",
+        supportdir .. "/pgfplots"
     }
     for _, dir in ipairs(auxdirs) do
         errorlevel = typesetdirtex(dir)
@@ -159,7 +160,8 @@ function typeset_demo_tasks()
         supportdir .. "/contents",
         supportdir .. "/examples",
         supportdir .. "/figures",
-        supportdir .. "/thesis"
+        supportdir .. "/thesis",
+        supportdir .. "/pgfplots"
     }
     cleansuffixs = {
         ".aux",
