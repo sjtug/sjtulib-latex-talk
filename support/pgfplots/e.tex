@@ -1,0 +1,19 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{ctex}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[axis x line={middle},
+axis y line={middle},
+legend pos={south east},
+title={饱和磁回滞曲线},
+xlabel={$H$/(A$\cdot$m$^{-1}$)},
+ylabel={$B$/T},
+]
+ \addplot+ [] table[col sep=comma,] {e1.csv};
+ \addplot+ [] table[col sep=comma,] {e2.csv};
+ \legend{修正前,修正后,}
+\end{axis}
+\end{tikzpicture}
+\end{document}
