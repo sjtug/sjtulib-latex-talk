@@ -10,7 +10,7 @@
         \item 最早由韦建文于 2009 年 11 月发布 0.1a 版
         \item 2018 年起由 SJTUG 接手维护
         \item 2019 年 6 月吴伟健重构了整个宏包的代码，升级版本号为 1.0
-        \item 现在主要由吴伟健与迟先生准备其 2.0 版本
+        \item 现在主要由吴伟健与张驰准备其 2.0 版本
         \item 最新版：\SJTUThesisVersion{} (\SJTUThesisDate)
         \item 支持本科、硕士、博士学位论文以及课程论文的排版
       \end{itemize}
@@ -202,12 +202,7 @@
 \end{frame}
 
 \begin{frame}[fragile, label=covers]
-%   \begin{codeblock}[firstnumber=3]{main.tex}
-% |\alert{\% 载入 SJTUThesis 模版}|
-% \documentclass[|\only<1>{\highlight{type}}\only<2>{type}|=|\only<1>{bachelor}\only<2>{\highlight{bachelor}}|]{sjtuthesis}
-%   \end{codeblock}
   \frametitle{论文类型}
-  % \framesubtitle{\textbackslash{}documentclass[type=bachelor]\{sjtuthesis\}}
   \begin{figure}
     \hspace{-7pt}\parbox{0.97\textwidth}{
       \begin{subfigure}{0.20\textwidth}
@@ -234,10 +229,10 @@
 \begin{frame}
   \frametitle{文档类选项}
   \begin{columns}
-    \begin{column}{0.4\textwidth}
+    \begin{column}{0.35\textwidth}
       \includegraphics[page=1,scale=0.9]{thesisdir}
     \end{column}
-    \begin{column}{0.6\textwidth}
+    \begin{column}{0.65\textwidth}
 
       \only<1>{
       \begin{table}
@@ -261,7 +256,7 @@
       }
 
       \only<2>{
-        更多文档类选项，请查阅 \textsc{SJTU\TeX{}}(v1) 的开发文档 \link{https://github.com/sjtug/SJTUTeX/releases/download/v1.1.0/sjtuthesis.pdf}。
+        更多文档类选项查阅 \textsc{SJTU\TeX{}}(v1) 的开发文档 \link{https://github.com/sjtug/SJTUTeX/releases/download/v1.1.0/sjtuthesis.pdf}。
 
         \begin{exampleblock}{\faTerminal}
           \ttfamily\footnotesize
@@ -283,35 +278,42 @@
 \begin{frame}[fragile]
   \frametitle{基本配置}
   \begin{columns}
-    \begin{column}{0.4\textwidth}
-      \includegraphics[page=3]{thesisdir}
+    \begin{column}{0.35\textwidth}
+      \includegraphics[page=2]{thesisdir}
     \end{column}
-    \begin{column}{0.6\textwidth}
-      在 \texttt{main.tex} 中引入 \texttt{setup.tex} 来导入主要的信息录入与宏包加载配置（见第 \ref{setup} 页）。
-      其中 \cmd{sjtusetup} 中的 \pkg{info} 将会修改封面的信息设置（见第 \ref{covers} 页）。
+    \begin{column}{0.65\textwidth}
+
+      \only<1>{
+      在 \texttt{main.tex} 中引入 \texttt{setup.tex} 来导入主要的信息录入与宏包加载配置。
+      }
+
+      \only<2>{
+      其中 \cmd{sjtusetup}（第 \ref{sjtusetup} 页）中的 \pkg{info} 将会修改封面的信息设置。
+      }
 
       \begin{codeblock}[firstnumber=12]{main.tex}
-% 论文基本配置，加载宏包等全局配置
-\input{setup}
+|\highlightline<1>|% 论文基本配置，加载宏包等全局配置
+|\highlightline<1>|\input{setup}
 
 \begin{document}
 
 %TC:ignore
 
-% 标题页
-\maketitle
+|\highlightline<2>|% 标题页
+|\highlightline<2>|\maketitle
       \end{codeblock}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}[fragile, label=sjtusetup]
   \frametitle{基本配置}
   \begin{columns}
     \begin{column}{0.35\textwidth}
       \includegraphics[page=3]{thesisdir}
     \end{column}
     \begin{column}{0.65\textwidth}
+      \vspace*{-0.2cm}
       \begin{codeblock}[firstnumber=3]{setup.tex}
 \sjtusetup{
   info = {
@@ -375,6 +377,89 @@
 \copyrightpage
 % 插入外置原创性声明及使用授权书
 % \copyrightpage[scans/sample-copyright-old.pdf]
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{三个部分}
+  \framesubtitle{前置部分}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \includegraphics[page=7]{thesisdir}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      前言从 \cmd{frontmatter} 处开始，页码设置为大写罗马数字，主要包含摘要和目录内容。
+      \begin{codeblock}[firstnumber=27]{main.tex}
+|\highlightline|% 前置部分
+|\highlightline|\frontmatter
+
+% 摘要
+\input{contents/abstract}
+
+% 目录
+\tableofcontents
+% ...
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{三个部分}
+  \framesubtitle{正文部分}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \includegraphics[page=8]{thesisdir}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      正文从 \cmd{mainmatter} 处开始，页码设置为正常数字，包含正文、参考文献、附录内容。
+      \begin{codeblock}[firstnumber=47]{main.tex}
+|\highlightline|% 主体部分
+|\highlightline|\mainmatter
+
+% 正文内容
+\input{contents/intro}
+\input{contents/math_and_citations}
+\input{contents/floats}
+\input{contents/summary}
+
+%TC:ignore
+
+% 参考文献
+\printbibliography[heading=bibintoc]
+
+% 附录
+\appendix
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{三个部分}
+  \framesubtitle{结尾部分}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \includegraphics[page=9]{thesisdir}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      结尾从 \cmd{backmatter} 处开始，页码设置为正常数字，包含致谢等相关情况。
+      \begin{codeblock}[firstnumber=71]{main.tex}
+|\highlightline|% 结尾部分
+|\highlightline|\backmatter
+
+% 用于盲审的论文需隐去致谢、发表论文、科研成果、简历
+
+% 致谢
+\input{contents/acknowledgements}
+
+% 发表论文及科研成果
+% 盲审论文中，发表论文及科研成果等仅以第几作者注明即可，不要出现作者或他人姓名
+\input{contents/achievements}
+
+%...
       \end{codeblock}
     \end{column}
   \end{columns}
