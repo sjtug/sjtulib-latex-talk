@@ -7,7 +7,7 @@
 \usetheme[my,default,topright]{sjtubeamer}
 \usemytheme{sjtug}
 \setbeamertemplate{background}{}
-\graphicspath{{support/}{support/contents/}{support/examples/}{support/figures/}{support/images/}{support/thesis/}{support/beamer/}{support/pgfplots}}
+\graphicspath{{support/}{support/contents/}{support/examples/}{support/figures/}{support/images/}{support/thesis/}{support/beamer/}{support/pgfplots/}}
 
 %% If you don't use sjtubeamer theme.
 %% Uncomment the following lines.
@@ -24,6 +24,10 @@
 %   \end{frame}
 % }
 % \newenvironment{\codeblock}[2][]{\begin{verbatim}}{\end{verbatim}}
+% \newenvironment{bibliolist}[1]{\begin{thebibliography}{#1}}{\end{thebibliography}}
+% \newcommand{\articleitem}{\item}
+% \newcommand{\bookitem}{\item}
+% \newcommand{\onlineitem}{\item}
 
 \usepackage{fontawesome5}
 \usepackage{hologo}
@@ -33,18 +37,12 @@
 \usepackage{subcaption}
 \usepackage{booktabs}
 
-\newenvironment{mybibliography}{\begin{list}{\lower3.5pt\hbox{\hskip2pt\pgfuseimage{beamericonarticle}\hskip1pt}}{}}{\end{list}}
-\newcommand{\AUTHOR}[1]{\textcolor{structure}{#1}}
-\newcommand{\BOOK}[1]{\textcolor{black}{#1}}
-\newcommand{\TAG}[1]{\textcolor{black}{[#1]}}
-\newcommand{\URL}[1]{\textcolor{structure}{\url{#1}}}
-
 \newcommand{\SJTUThesis}{\textsc{SJTUThesis}}
 \newcommand{\SJTUThesisVersion}{1.1.0}
 \newcommand{\SJTUThesisDate}{2022/3/26}
 \newcommand{\SJTUBeamer}{\textsc{SJTUBeamer}}
-\newcommand{\SJTUBeamerVersion}{2.6.0}
-\newcommand{\SJTUBeamerDate}{2022/4/1}
+\newcommand{\SJTUBeamerVersion}{2.6.1}
+\newcommand{\SJTUBeamerDate}{2022/4/21}
 
 \newcommand{\thesisissue}[1]{\href{https://github.com/sjtug/SJTUThesis/issues/#1}{\textsuperscript{\textcolor{.!90!DarkBlue}{\underline{\faCheckCircle{}#1}}}}}
 \newcommand{\thesisdiscuss}[1]{\href{https://github.com/sjtug/SJTUThesis/discussions/#1}{\textsuperscript{\textcolor{.!90!DarkBlue}{\underline{\faComments{}#1}}}}}
@@ -65,6 +63,9 @@
 
 \newcommand{\includepdflarge}[1]{\framebox{\includegraphics[width=\linewidth,trim=4cm 17cm 3cm 2cm,clip]{#1}}\vspace{-10pt}}
 
+%% Use pympress to show the notes on the second screen.
+% \setbeameroption{show notes on second screen}
+
 \title{\LaTeX{} 新语}
 \subtitle{上海交通大学图书馆专题培训讲座}
 \author{李子龙}
@@ -83,12 +84,12 @@
 }
 
 \includeonly{
-  support/contents/preface,
   support/contents/learnlatex,
   support/contents/sjtuthesis,
   support/contents/intermission,
   support/contents/sjtubeamer,
-  support/contents/visualization
+  support/contents/visualization,
+  support/contents/boost
 }
 
 \begin{document}

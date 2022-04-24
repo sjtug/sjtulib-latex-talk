@@ -1,4 +1,4 @@
-% !TeX root = latex-talk.tex
+% !TeX root = ../latex-talk.tex
 
 \title{如何使用 beamer 制作学术报告幻灯片}
 \subtitle{上海交通大学图书馆专题培训讲座}
@@ -8,8 +8,50 @@
 \subject{LaTeX, 幻灯片制作, SJTUBeamer}
 \maketitle
 
+\providecommand{\TikZ}{Ti\textit{k}Z}
+\providecommand{\pgf}{\textsc{pgf}}
+
+\begin{frame}{关于}
+  \begin{columns}[c]
+	\begin{column}{.7\textwidth}
+	  \begin{block}{如何使用 beamer 制作学术报告幻灯片}
+		\alert{\url{https://github.com/sjtug/sjtulib-latex-talk}}
+		
+		\begin{flushleft}
+		  \small 介绍 \LaTeX{} 幻灯片模板 \textsc{SJTUBeamer} 的使用方法，以及 \LaTeX{} 图形绘制的简明方法，帮助学生制作出像模像样的学术幻灯片。
+		\end{flushleft}
+
+		\begin{tabular*}{0.8\linewidth}{@{\extracolsep{\fill}}lll@{}}
+		  \scriptsize 最后更新 & \scriptsize 幻灯片下载 & \scriptsize 许可证 \\
+		  \today & Overleaf \link{https://www.overleaf.com/read/fvwxzvcxhcwd} & \href{https://creativecommons.org/licenses/by-sa/4.0/}{\faCreativeCommons\,\faCreativeCommonsBy\,\faCreativeCommonsSa} \\ 
+		\end{tabular*}
+	  \end{block}
+	  \vspace{0.2cm}
+	\end{column}
+	\begin{column}{.3\textwidth}
+	  \qrcode[hyperlink, height=4cm]{https://www.overleaf.com/read/fvwxzvcxhcwd}
+	\end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{讲稿主要参考}
+  \begin{bibliolist}{00}
+    \onlineitem 吕荐瑞.
+    \newblock \LaTeX{} 文档排版教程[EB/OL].
+    \newblock 2018. \url{https://lvjr.bitbucket.io/tutorial/learn-latex.pdf}
+	\onlineitem \LaTeX{} 工作室.
+	\newblock \TikZ{} \& \pgf{} 手册 (3.1.5b) 笔记[EB/OL].
+	\newblock 2020. \url{https://www.latexstudio.net/archives/51804.html}
+    \onlineitem \textsc{Hansimov}. 
+    \newblock 如何加速 \LaTeX{} 编译[EB/OL].
+	\newblock 2019. \url{https://zhuanlan.zhihu.com/p/55043560}
+  \end{bibliolist}
+\end{frame}
+
 \include{support/contents/sjtubeamer}
 \include{support/contents/visualization}
+\include{support/contents/boost}
 
 \def\bottomthanks{Happy \TeX{}ing!}
 \makebottom
