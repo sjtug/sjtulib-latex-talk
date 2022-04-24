@@ -1,0 +1,93 @@
+% !TeX root = ../../latex-talk.tex
+
+\part{\LaTeX{} 无止境}
+
+\begin{frame}
+  \begin{itemize}
+    \item 绝大多数 \LaTeX{} 宏包发布于 CTAN (Comprehensive \TeX{} Archive Network) \link{https://www.ctan.org/}，1992 年建站以来，至今已经吸引 2855 名贡献者发布其 6215 个宏包。 
+    \item 正如一般不会在简历上写精通 C++ 一样，也都基本不敢写精通 \LaTeX{} \sout{（虽然没有什么大用}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{编译速度}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{exampleblock}{\faWindows}
+        \begin{itemize}
+          \item \hologo{pdfLaTeX} 仍是目前最快的。
+          \item 中文支持方面需要做变通方法。
+          \item I/O 速度成为瓶颈。
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{exampleblock}{\faLinux{} \faApple}
+        \begin{itemize}
+          \item \hologo{XeLaTeX} 已经足够快。
+          \item \CTeX{} 需要 \hologo{XeLaTeX} 或 \hologo{LuaLaTeX}。
+          \item 主要取决于单核性能。
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{文章}
+        \begin{itemize}
+          \item \LaTeX{} 的主要设计用途。
+          \item \hologo{pdfLaTeX}, \hologo{XeLaTeX} 和 \hologo{LuaLaTeX} 理想状态下速度差距不大 \link{https://stone-zeng.github.io/2019-07-24-tex-benchmark/}。
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{幻灯}
+        \begin{itemize}
+          \item \LaTeX{} 的图形偏门流派。
+          \item 由于 \textsc{pgf} 的引入使得 \hologo{LuaLaTeX} 明显偏慢。
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{加速轮子}
+  \begin{columns}
+    \begin{column}{0.33\textwidth}
+      \begin{exampleblock}{ReportBoost \link{https://github.com/LogCreative/ReportBoost}}
+        \begin{tabular}{p{0.9\textwidth}}
+          提供一个已经配置完备的 Visual Studio Code 预编译工程目录。\\
+          \midrule
+          主要使用 \hologo{eTeX} 对 \hologo{pdfLaTeX} 在 \faWindows{} 上转储头文件为一个中间文件，减少 I/O 操作。
+          \note{\hologo{eTeX} 是原生 \TeX{} 的扩展版本，支持更多的字符数，\hologo{XeTeX} 和 \hologo{LuaTeX} 基于其演变而来。}\\
+          \midrule
+          对 \hologo{XeLaTeX} 和 \hologo{LuaLaTeX} 支持不佳。
+        \end{tabular}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \begin{exampleblock}{AutoBeamer \link{https://github.com/LogCreative/AutoBeamer}}
+        \begin{tabular}{p{0.9\textwidth}}
+          主要提供将 \faMarkdown{} 文件翻译为 \LaTeX{} \pkg{beamer} 代码的功能。\\
+          \midrule
+          \pkg{pandoc} \link{https://pandoc.org/index.html} 也可以将 \faMarkdown{} 转换为 \LaTeX{} 幻灯片代码，但结果不够干净。\\
+          \midrule
+          使用网页脚本语言 \faJs{} 造轮子主要考虑跨平台与未来功能迁移的可能。
+        \end{tabular}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \begin{exampleblock}{BeamerBoost \link{https://github.com/LogCreative/BeamerBoost}}
+        \begin{tabular}{p{0.9\textwidth}}
+          主要提供对 \pkg{beamer} 文档类自然切割单位（帧）的脏区与并行渲染实现，更早拿到每帧结果。\\
+          \midrule
+          目前只能采用预编译的手段减少进程切换开销，主要面向 \faWindows{} 编译较慢情况的预览。\\
+          \midrule
+          导航栏结果未必准确。
+        \end{tabular}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
