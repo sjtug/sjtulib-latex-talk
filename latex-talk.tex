@@ -28,6 +28,7 @@
 % \newcommand{\articleitem}{\item}
 % \newcommand{\bookitem}{\item}
 % \newcommand{\onlineitem}{\item}
+% \newenvironment{shadedsection}{}{}
 
 \usepackage{fontawesome5}
 \usepackage{hologo}
@@ -62,6 +63,7 @@
 }
 
 \newcommand{\includepdflarge}[1]{\framebox{\includegraphics[width=\linewidth,trim=4cm 17cm 3cm 2cm,clip]{#1}}\vspace{-10pt}}
+\newcommand{\includebeamerlarge}[2][1]{\framebox{\includegraphics[width=0.75\linewidth,page=#1]{#2}}}
 
 %% Use pympress to show the notes on the second screen.
 % \setbeameroption{show notes on second screen}

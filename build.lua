@@ -128,7 +128,7 @@ function typeset_demo_tasks()
 
     local suppbeamerdir = supportdir .. "/beamer"
     cp("*", suppbeamerdir, beamerdepdir)
-    for _, file in ipairs({"hello.tex"}) do
+    for _, file in ipairs(filelist(suppbeamerdir, "*.tex")) do
         errorlevel = latexmk_typeset(file, beamerdepdir, suppbeamerdir)
         if errorlevel ~= 0 then
             print("! latexmk " .. file .. " failed")
@@ -161,7 +161,8 @@ function typeset_demo_tasks()
         supportdir .. "/examples",
         supportdir .. "/figures",
         supportdir .. "/thesis",
-        supportdir .. "/pgfplots"
+        supportdir .. "/pgfplots",
+        supportdir .. "/beamer",
     }
     cleansuffixs = {
         ".aux",

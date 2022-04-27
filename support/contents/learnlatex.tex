@@ -21,21 +21,7 @@
   \vfil
 \end{frame}
 
-\begingroup % Start of shaded number logo
-
-\newcommand{\shadedfont}[2][1pt]{
-  % #1 (optional): shadow distance
-  % #2: the text needed to be shaded
-  \hbox{\rlap{\color{gray}\hskip#1#2}#2}
-}
-\setcounter{section}{-1}
-\newcommand{\updatelogo}{
-  \logo{
-    \raise.3ex\hbox{\tiny\insertsection}\shadedfont{\arabic{section}}
-  }
-}
-\let\oldsection=\section
-\renewcommand{\section}[1]{\oldsection{#1}\updatelogo}
+\begin{shadedsection}
 
 \section{是什么}
 \begin{frame}
@@ -1025,4 +1011,4 @@
   \end{columns}
 \end{frame}
 
-\endgroup % End of customized shaded number logo
+\end{shadedsection}
