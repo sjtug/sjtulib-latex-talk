@@ -247,13 +247,13 @@
   \begin{columns}[c]
     \begin{column}{0.4\textwidth}
       \only<1>{
-        \cmd{documentclass} 命令加载了\textbf{文档类}。\pkg{article} 是由 \LaTeX{} 提供的用于排版短文档的基本文档类。
+        \cmd{documentclass} 命令加载了\textbf{文档类}。\cls{article} 是由 \LaTeX{} 提供的用于排版短文档的基本文档类。
         \begin{description}
           \footnotesize
-          \item[\pkg{article}] 不包含章的短文档
-          \item[\pkg{report}] 含有章的单面印刷文档
-          \item[\pkg{book}] 含有章的双面印刷文档
-          \item[\pkg{beamer}] 幻灯片
+          \item[\cls{article}] 不包含章的短文档
+          \item[\cls{report}] 含有章的单面印刷文档
+          \item[\cls{book}] 含有章的双面印刷文档
+          \item[\cls{beamer}] 幻灯片
         \end{description}
       }
 
@@ -304,8 +304,8 @@
         \begin{center}
           \footnotesize
           \begin{tabular}{cc}
-            \pkg{ctexart} & \pkg{ctexrep} \\
-            \pkg{ctexbook} & \pkg{ctexbeamer} \\
+            \cls{ctexart} & \cls{ctexrep} \\
+            \cls{ctexbook} & \cls{ctexbeamer} \\
           \end{tabular}
         \end{center}
       }
@@ -519,7 +519,7 @@
       \end{codeblock}
     \end{column}
   \end{columns}
-  \footnotetext{章这一级只在 \pkg{report} 和 \pkg{book} 文档类（包括对应的中文文档类）有定义。还有不常用的 \cmd{part} (0@\pkg{article}/-1@\pkg{report}\&\pkg{book}\&\pkg{beamer}) 以及更低层次的 \cmd{paragraph} (4) 与 \cmd{subparagraph} (5)。 }
+  \footnotetext{章这一级只在 \cls{report} 和 \cls{book} 文档类（包括对应的中文文档类）有定义。还有不常用的 \cmd{part} (0@\cls{article}/-1@\cls{report}\&\cls{book}\&\cls{beamer}) 以及更低层次的 \cmd{paragraph} (4) 与 \cmd{subparagraph} (5)。 }
 \end{frame}
 
 \begin{frame}[fragile]%
@@ -625,10 +625,10 @@
         \begin{center}
           \footnotesize
           \begin{tabular}{rl}
-            \pkg{width} & 宽度 \\
-            \pkg{height} & 高度 \\
-            \pkg{scale} & 缩放 \\
-            \pkg{angle} & 角度 \\
+            \opt{width} & 宽度 \\
+            \opt{height} & 高度 \\
+            \opt{scale} & 缩放 \\
+            \opt{angle} & 角度 \\
           \end{tabular}
         \end{center}
       }
@@ -638,13 +638,13 @@
         \begin{center}
           \footnotesize
           \begin{tabular}{cll}
-            \pkg{h} & Here & 尽可能在这里 \\
-            \pkg{t} & Top & 页面顶部 \\
-            \pkg{b} & Bottom & 页面底部 \\
-            \pkg{p} & Page & 浮动体专页 \\
+            \opt{h} & Here & 尽可能在这里 \\
+            \opt{t} & Top & 页面顶部 \\
+            \opt{b} & Bottom & 页面底部 \\
+            \opt{p} & Page & 浮动体专页 \\
           \end{tabular}
         \end{center}
-        还可以只使用 \pkg{float} 宏包提供的 \pkg{H} 描述符以强制置于此处。
+        还可以只使用 \pkg{float} 宏包提供的 \opt{H} 描述符以强制置于此处。
       }
 
       \only<6>{
