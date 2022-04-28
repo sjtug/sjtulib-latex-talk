@@ -164,7 +164,7 @@
   \frametitle{文档类设置}
 
   \only<1>{
-    为文档类设置 \pkg{aspectratio} 选项可以更改幻灯片的长宽比。其他通用选项详见 \textit{The Beamer Class -- User Guide} \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/macros/latex/contrib/beamer/doc/beameruserguide.pdf}。帧环境 \env{frame} 详见第 \ref{frame} 页。
+    为文档类设置 \opt{aspectratio} 选项可以更改幻灯片的长宽比。其他通用选项详见 \textit{The Beamer Class -- User Guide} \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/macros/latex/contrib/beamer/doc/beameruserguide.pdf}。帧环境 \env{frame} 详见第 \ref{frame} 页。
   }
 
   \only<2>{
@@ -203,7 +203,7 @@
       }
 
       \only<2>{
-        还可以适配 \pkg{beamer} 自带的外样式，可以通过 \pkg{topright} 或 \pkg{bottomright} 选项切换徽标位置。
+        还可以适配 \cls{beamer} 自带的外样式，可以通过 \opt{topright} 或 \opt{bottomright} 选项切换徽标位置。
         \note{sidebar 外样式略有一些 BUG。}
       }
 
@@ -298,7 +298,7 @@
   \frametitle{SJTUThesis 对应的特殊方法}
   \begin{columns}
     \begin{column}{0.55\textwidth}
-      \env{codeblock} 环境用于创建代码抄录盒子。与 SJTUThesis 略有不同的是，它需要一个强制参数指定标题，并且注意在所在帧上添加 \pkg{fragile} 选项。
+      \env{codeblock} 环境用于创建代码抄录盒子。与 SJTUThesis 略有不同的是，它需要一个强制参数指定标题，并且注意在所在帧上添加 \opt{fragile} 选项。
     \end{column}
     \begin{column}{0.45\textwidth}
       \begin{codeblock}{代码盒子}
@@ -363,7 +363,7 @@
 \begin{frame}
   \frametitle{slides}
 
-  \pkg{slides} 是为 20 世纪 80 年代中期物理投影片开发的文档类。
+  \cls{slides} 是为 20 世纪 80 年代中期物理投影片开发的文档类。
 
   \begin{columns}
     \begin{column}{0.33\textwidth}
@@ -403,7 +403,7 @@
 \begin{frame}
   \frametitle{beamer}
 
-  \pkg{beamer} 是含有一些 PDF 交互式演示功能的文档类。
+  \cls{beamer} 是含有一些 PDF 交互式演示功能的文档类。
 
   \begin{figure}
     \centering
@@ -436,7 +436,7 @@
     \begin{column}{0.5\textwidth}
       
       \only<1>{
-        \pkg{beamer} 的自然切割单位为 \env{frame}（帧），一帧可以派生出很多张幻灯片（slide）。
+        \cls{beamer} 的自然切割单位为 \env{frame}（帧），一帧可以派生出很多张幻灯片（slide）。
       }
 
       \only<2>{
@@ -623,7 +623,7 @@
     \end{tabular}
   \end{table}
 
-  渐进切换是 \pkg{beamer} 非常强大的编程模型，合理使用可以减少重复代码的编写。但也希望它的文本参数不要太过复杂，否则可能无法解析。\textsl{Keep It Simple, Stupid.}
+  渐进切换是 \cls{beamer} 非常强大的编程模型，合理使用可以减少重复代码的编写。但也希望它的文本参数不要太过复杂，否则可能无法解析。\textsl{Keep It Simple, Stupid.}
 
   \note{后来 PowerPoint 才有渐进切换的动画效果。}
 \end{frame}
@@ -716,7 +716,7 @@
   \frametitle{分栏}
   \begin{columns}[t]
     \begin{column}{.5\textwidth}
-      \pkg{beamer} 提供的标准分栏方法是 \env{columns} 环境，硬分栏方法有助于保持设计。
+      \cls{beamer} 提供的标准分栏方法是 \env{columns} 环境，硬分栏方法有助于保持设计。
       
       \begin{codeblock}{}
 \documentclass{ctexbeamer}
@@ -772,7 +772,7 @@
   \note[item]{标题名称断帧接续，意为断开帧继续，也就是自动将一帧的内容切分为多张幻灯片。}
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
-      对 \env{frame} 环境赋予 \pkg{allowframebreaks} 参数，一张幻灯片内多余的内容就会流入到下一张幻灯片中。
+      对 \env{frame} 环境赋予 \opt{allowframebreaks} 参数，一张幻灯片内多余的内容就会流入到下一张幻灯片中。
       
       \begin{codeblock}[]{}
 \documentclass{ctexbeamer}
@@ -785,12 +785,12 @@
       \end{codeblock}
 
       \begin{alertblock}{}
-        \pkg{allowframebreaks=0.8} 将指定每一个子页的高度占比不超过 0.8\cmd{textheight}。\textcolor{structure}{$\blacktriangle$}
+        \opt{allowframebreaks=0.8} 将指定每一个子页的高度占比不超过 0.8\cmd{textheight}。\textcolor{structure}{$\blacktriangle$}
       \end{alertblock}
       
     \end{column}
     \begin{column}{0.5\textwidth}
-      对于数学公式而言，可以对 \env{frame} 环境\textbf{再}赋予 \pkg{allowdisplaybreaks} 参数，就可以对公式按行截断。
+      对于数学公式而言，可以对 \env{frame} 环境\textbf{再}赋予 \opt{allowdisplaybreaks} 参数，就可以对公式按行截断。
 
       \begin{codeblock}{}
 \documentclass{ctexbeamer}
@@ -920,9 +920,9 @@
   \frametitle{注意事项}
   \begin{itemize}
     \item 建议在制作幻灯片时尽量分点展示，分段会导致段与段之间的分界不够明显。
-    \item 尽量不使用代码抄录环境，使用时需要在 \env{frame} 上添加 \pkg{fragile} 选项。
+    \item 尽量不使用代码抄录环境，使用时需要在 \env{frame} 上添加 \opt{fragile} 选项。
     \item 可以多用图标代替文字，比如使用 \pkg{fontawesome5} 宏包。
-    \item 尽可能使用矢量图形，大型图片先压缩再插入，必要时开启 \pkg{draft} 选项。
+    \item 尽可能使用矢量图形，大型图片先压缩再插入，必要时开启 \opt{draft} 选项。
     \item 避免嵌入动画与视频，转而采用超链接的方式。
     \begin{center}
       \ttfamily

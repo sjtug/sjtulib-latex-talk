@@ -11,7 +11,7 @@
 
   \begin{itemize}
     \item \TikZ{} (\alert{T}i\textit{k}Z \alert{i}st \textit{\alert{k}ein} \alert{Z}eichenprogramm\footnote{中文含义是“\TikZ{} 不是一个绘图程序”，德文跟随 \textbf{G}NU's \textbf{N}ot \textbf{U}nix! 传统。}) 定义了一些 \TeX{} 中的绘图命令，基础语法神似矢量字体设计语言 \hologo{METAFONT} 指令。
-    \item \pgf{} (\alert{p}ortable \alert{g}raphics \alert{f}ormat\note[item]{pgf 很像 PDF 的全称：\textbf{p}ortable \textbf{d}ocument \textbf{f}ormat。}) 组成了 \TikZ{} 的基本层。\pkg{beamer} 的一些机制也是基于此底层实现的。
+    \item \pgf{} (\alert{p}ortable \alert{g}raphics \alert{f}ormat\note[item]{pgf 很像 PDF 的全称：\textbf{p}ortable \textbf{d}ocument \textbf{f}ormat。}) 组成了 \TikZ{} 的基本层。\cls{beamer} 的一些机制也是基于此底层实现的。
   \end{itemize}
 
   \begin{figure}
@@ -28,7 +28,7 @@
     \begin{column}{0.6\textwidth}
       
       \only<1>{
-        可以直接在文档导言区使用 \TikZ{} 包 \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/base/doc/pgfmanual.pdf}，或者采用 \pkg{standalone} 文档类。 
+        可以直接在文档导言区使用 \TikZ{} 包 \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/base/doc/pgfmanual.pdf}，或者采用 \cls{standalone} 文档类。 
 
         \note[item]{如果需要使用中文，还需要添加 \pkg{ctex} 宏包。}
       }
@@ -42,11 +42,11 @@
       }
 
       \only<4>{
-        \cmd{draw} 用来描边，\pkg{edge} 用来指示这是一条线段，参数 \pkg{->} 用来说明这是一个箭头。紧随其后可以添加线段上的节点，\pkg{above},\pkg{below},\pkg{left},\pkg{right} 可以用来指示相对位置。
+        \cmd{draw} 用来描边，\opt{edge} 用来指示这是一条线段，参数 \opt{->} 用来说明这是一个箭头。紧随其后可以添加线段上的节点，\opt{above}, \opt{below}, \opt{left}, \opt{right} 可以用来指示相对位置。
       }
 
       \only<5>{
-        \pkg{draw} 参数用于对节点描边。
+        \opt{draw} 参数用于对节点描边。
       }
 
       \begin{codeblock}[]{使用 \TikZ{}}
@@ -288,7 +288,7 @@
         \item \TikZ{} 还内置很多的库可供使用！
         \item \TikZ{} 还有很多的衍生库可供使用！
         \note[item]{不只是 \pgfplots{}。}
-        \item 推荐使用 \pkg{standalone} 文档类编译再插入。
+        \item 推荐使用 \cls{standalone} 文档类编译再插入。
         \item 内存不足时需要使用 \hologo{LuaLaTeX} 编译。
         \note[item]{\hologo{LuaLaTeX} 使用了动态内存。}
         \item 使用 \pkg{external} 库缓存也是可行的。
