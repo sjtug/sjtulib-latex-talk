@@ -287,8 +287,10 @@
       \begin{itemize}
         \item \TikZ{} 还内置很多的库可供使用！
         \item \TikZ{} 还有很多的衍生库可供使用！
-        \note{不只是 \pgfplots{}。}
+        \note[item]{不只是 \pgfplots{}。}
         \item 推荐使用 \pkg{standalone} 文档类编译再插入。
+        \item 内存不足时需要使用 \hologo{LuaLaTeX} 编译。
+        \note[item]{\hologo{LuaLaTeX} 使用了动态内存。}
         \item 使用 \pkg{external} 库缓存也是可行的。
         \item 更多内容请见手册\footnotemark。
       \end{itemize}
@@ -305,14 +307,14 @@
     \end{column}
   \end{columns}
 
-  \footnotetext{中文版：\LaTeX{} 工作室.
+  \footnotetext{（中文版）\LaTeX{} 工作室.
   \TikZ{} \& \pgf{} 手册 (3.1.5b) 笔记[EB/OL].
-  2020. \url{https://www.latexstudio.net/archives/51804.html}}
+  2020. \link{https://www.latexstudio.net/archives/51804.html}}
   
-  \note{看文档需要使用 texdoc pgf，这个笔记大略翻译了很多内容。\LaTeX{} 工作室的网站上也有很多 \TikZ{} 的 fancy 内容，感兴趣的可以参考。}
+  \note[item]{看文档需要使用 texdoc pgf，这个笔记大略翻译了很多内容。\LaTeX{} 工作室的网站上也有很多 \TikZ{} 的 fancy 内容，感兴趣的可以参考。}
 
-  \note{可以做的很 fancy，也可以用它很基本的功能。因为有一种职业叫科技绘图，这种图形约是符合要求的矢量图。\TikZ{} 的意义在于提供了一种 inline 绘图的方式，有助于管理工程，过早优化万恶之源，这样的方式有助于减少重新绘制的可能。}
+  \note[item]{可以做的很 fancy，也可以用它很基本的功能。因为有一种职业叫科技绘图，这种图形约是符合要求的矢量图。\TikZ{} 的意义在于提供了一种 inline 绘图的方式，有助于管理工程，过早优化万恶之源，这样的方式有助于减少重新绘制的可能。}
 
-  \note{\pgf{} 提供了一种很方便的写循环的方式：\cmd{foreach} \cmd{x} in \{1,...,10\}\{循环体\}}
+  \note[item]{\pgf{} 提供了一种很方便的写循环的方式：\cmd{foreach} \cmd{x} in \{1,...,10\}\{循环体\}}
   
 \end{frame}

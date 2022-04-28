@@ -3,11 +3,88 @@
 \part{\LaTeX{} 无止境}
 
 \begin{frame}
+  \frametitle{宏包}
+
   \begin{itemize}
     \item 绝大多数 \LaTeX{} 宏包发布于 CTAN (Comprehensive \TeX{} Archive Network) \link{https://www.ctan.org/}，1992 年建站以来，至今已经吸引 2855 名贡献者发布其 6215 个宏包。 
     \item \note{正如一般不会在简历上写精通 C 一样，也都}基本不敢写精通 \LaTeX{} \sout{（虽然没有什么大用}
+    \item 可以通过编写宏来简化输入，可以阅读 \pkg{clsguide}\footnote{（中文版）刘海洋~译. 写给 \LaTeXe{} 类与宏包的作者[EB/OL]. 2010. \link{https://github.com/CTeX-org/ctex-doc/blob/master/clsguide-zh-cn/clsguide-zh-cn.tex}}, 
+    \pkg{xparse}\footnote{（中文版）盛文博~译. \pkg{xparse} 宏包：进行文档命令解析[EB/OL]. 2018. \link{https://github.com/WenboSheng/LaTeX3-doc-cn/blob/master/xparse-doc-cn/xparse-cn.pdf}} 文档。
   \end{itemize}
+
+  \begin{exampleblock}{定义宏举例}
+    \begin{description}
+      \item[\TeX] \cmd{def}\texttt{\textbackslash{}foo}\#1\#2\{\#1 of \#2\}
+      \item[\LaTeXe] \cmd{newcommand}\texttt{\textbackslash{}foo}[2]\{\#1 of \#2\}
+      \item[\LaTeX3] \cmd{NewDocumentCommand}\texttt{\textbackslash{}foo}\{mm\}\{\#1 of \#2\}
+    \end{description}
+  \end{exampleblock}
+
+  \note{简单了解即可。}
   
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{错误}
+  \begin{columns}
+    \begin{column}{0.55\textwidth}
+      \begin{codeblock}[]{未定义命令}
+\newcommand\mycommand{\textbold{hmmm}}
+My command is used here \mycommand.
+      \end{codeblock}
+      \begin{codeblock}[]{括号不配对}
+\usepackage[leqno}{amsmath}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{codeblock}[]{文件缺失}
+\usepackage{amsmathz}
+      \end{codeblock}
+      \begin{codeblock}[]{数学模式有空行}
+\begin{equation}
+
+  1=2
+
+\end{equation}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{错误}
+  \begin{columns}
+    \begin{column}{0.55\textwidth}
+      \begin{block}{未定义命令}
+        \begin{lstlisting}
+! Undefined control sequence.
+\mycommand ->\textbold 
+                        {hmmm}
+l.8 My command is used here \mycommand
+                                      .
+? 
+        \end{lstlisting}
+      \end{block}
+      \begin{block}{括号不配对}
+        \begin{lstlisting}
+! Argument of \@fileswith@ptions has an extra }.
+        \end{lstlisting}
+      \end{block}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{block}{文件缺失}
+        \begin{lstlisting}
+! LaTeX Error: File `amsmathz.sty' not found.
+        \end{lstlisting}
+        \note{检查是否安装了该宏包。或者宏包是否在搜索路径内。}
+      \end{block}
+      \begin{block}{数学模式有空行}
+        \begin{lstlisting}
+! Missing $ inserted.
+        \end{lstlisting}
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -90,4 +167,8 @@
       \end{exampleblock}
     \end{column}
   \end{columns}
+
+  \note{这些程序还都处于相互分离的阶段。但是也可以看到这种使用 Unix 哲学所涉及的程序带来的好处：每一个程序只做好一件事。模块化、尽可能使用文本输入输出流有助于程序的构建与修改，每一个部分都可以换成新的零件。}
+
+  \note{beamer（与动画 \pkg{animate}） 可能是目前 \LaTeX{} 方面唯一有可能并行化的东西。}
 \end{frame}
