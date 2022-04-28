@@ -62,8 +62,8 @@
   escapechar=|
 }
 
-\newcommand{\includepdflarge}[1]{\framebox{\includegraphics[width=\linewidth,trim=4cm 17cm 3cm 2cm,clip]{#1}}\vspace{-10pt}}
-\newcommand{\includebeamerlarge}[2][1]{\framebox{\includegraphics[width=0.75\linewidth,page=#1]{#2}}}
+\newcommand{\includepdflarge}[1]{{\setlength{\fboxsep}{0pt}\framebox{\includegraphics[width=\linewidth,trim=4cm 17cm 3cm 2cm,clip]{#1}}\vspace{-10pt}}}
+\newcommand{\includebeamerlarge}[2][1]{{\setlength{\fboxsep}{0pt}\framebox{\includegraphics[width=0.75\linewidth,page=#1]{#2}}}}
 
 %% Use pympress to show the notes on the second screen.
 % \setbeameroption{show notes on second screen}

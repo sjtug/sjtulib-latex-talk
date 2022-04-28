@@ -22,13 +22,94 @@
   \note[item]{\LaTeX3 中的 \texttt{l3draw} \link{https://github.com/latex3/latex3/tree/main/l3experimental/l3draw} 妄图统一这种绘图宏包，目前仍处于实验阶段。}
 \end{frame}
 
-\begin{frame}[label=tikz]
+\begin{frame}[fragile,label=tikz]
   \frametitle{引入 \TikZ{}}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      
+      \only<1>{
+        可以直接在文档导言区使用 \TikZ{} 包 \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/base/doc/pgfmanual.pdf}，或者采用 \pkg{standalone} 文档类。 
+
+        \note[item]{如果需要使用中文，还需要添加 \pkg{ctex} 宏包。}
+      }
+
+      \only<2>{
+        引入 \TikZ{} 后，使用 \env{tikzpicture} 环境开始绘制。
+      }
+
+      \only<3>{
+        \TikZ{} 命令需要以分号结尾。\cmd{node} 命令用于创建节点，还可以为该节点标记标签以便后续引用。
+      }
+
+      \only<4>{
+        \cmd{draw} 用来描边，\pkg{edge} 用来指示这是一条线段，参数 \pkg{->} 用来说明这是一个箭头。紧随其后可以添加线段上的节点，\pkg{above},\pkg{below},\pkg{left},\pkg{right} 可以用来指示相对位置。
+      }
+
+      \only<5>{
+        \pkg{draw} 参数用于对节点描边。
+      }
+
+      \begin{codeblock}[]{使用 \TikZ{}}
+|\highlightline<1>|\documentclass[tikz]{standalone}
+\begin{document}
+|\highlightline<2>|\begin{tikzpicture}
+|\highlightline<3,5>|  \node|\only<5>{[draw]}| (v1) at (0,0) {$x$};
+|\highlightline<3,5>|  \node|\only<5>{[draw]}| (v2) at (1,0) {$a$};
+|\highlightline<4>|  \draw[->]  (v1) edge 
+|\highlightline<4>|    node [above] {$z$} (v2);
+|\highlightline<2>|\end{tikzpicture}
+||\end{document}
+      \end{codeblock}
+      
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \begin{tikzpicture}
+          \only<1-4>{
+            \node (v1) at (0,0) {\only<3>{\color{red}}$x$};
+            \node (v2) at (1,0) {\only<3>{\color{red}}$a$};
+          }
+          \only<5>{
+            \node[draw] (v1) at (0,0) {\only<3>{\color{red}}$x$};
+            \node[draw] (v2) at (1,0) {\only<3>{\color{red}}$a$};
+          }
+          \only<1-3,5>{\draw[->]  (v1) edge node [above] {$z$} (v2);}
+          \only<4>{\draw[->,red]  (v1) edge node [above,red] {$z$} (v2);}
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}
   \frametitle{\TikZ{}Edt}
   \raisebox{-.5\dp\strutbox}{\includegraphics[height=\baselineskip]{tikzedt}} \TikZ{}Edt \link{http://www.tikzedt.org/} 是一款半图形化的即时绘图编辑器，在 \faWindows{} 上工作较好。
+
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.5\textheight]{tikzedtui}
+        \caption{\TikZ{}Edt 界面}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{itemize}
+        \item 善用工具栏功能 \link{http://www.tikzedt.org/doc.html}
+        
+        \includegraphics[width=\linewidth]{tooltip}
+        \item 开始时会提示生成缩略图
+        
+        {\tiny Compilation $\blacktriangleright$ Compile snippet thumbnails}
+        \item 如果有时编译不成功了，尝试重新预编译头
+        
+        {\tiny Compilation $\blacktriangleright$ (Re-)Generate precompiled headers}
+        \item 可以更改头文件
+        
+        {\tiny Settings $\blacktriangleright$ Compiler}
+      \end{itemize}
+    \end{column}
+  \end{columns}
 
   \note[item]{框架基于 Windows Presentation Foundation (WPF)，代码开源与 Google Code。2014 年，该项目伴随着这个开源代码平台的终结也开发停止，作者跑路。其适配的 \faApple{} 版本由于跟不上 Mac OS 的更新似乎不再可用，在 \faLinux{} 上更趋向于一种模拟。本人希望在未来有空的时候迁移到 .NET Core 3.1 上，修改一些脚本文件，以原生跨平台，主要看微软在迁移层面的表现（本人也对 WPF 较为熟悉，但是这个框架也已慢慢地 deprecated，很多年前是比较流行的，主要这个是 \faWindows{} 专有框架）。}
 
@@ -37,14 +118,138 @@
 
 \section{PGFPlots}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{PGFPlots}
+  \onslide<1>{
+    \pgfplots{} \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/contrib/pgfplots/doc/pgfplots.pdf} 是基于 \pgf{}/\TikZ{} 的宏包，用于生成高质量中等数据规模的统计图。
+  }
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+
+      \only<1>{
+        \begin{center}
+          \includegraphics[width=0.75\textwidth]{pgfplots}
+        \end{center}
+      }
+
+      \only<2>{
+        引入 \pgfplots{} 包，然后通过 \cmd{pgfplotsset} 设定版本和其他全局设定。
+      }
+
+      \only<3>{
+        \env{axis} 环境用于插入 \pgfplots{} 统计图。
+      }
+
+      \only<4>{
+        \cmd{addplot} 命令用于新建一个数据序列，其后不跟类型的情况下为关于 $x$ 的函数图像。
+
+        \begin{table}
+          \centering
+          \footnotesize
+          \begin{tabular}{>{\ttfamily}ll}
+            \cmd{addplot} & 函数 \\
+            \cmd{addplot} coordinates & 坐标点 \\
+            \cmd{addplot} table & 文件表格 \\
+          \end{tabular}
+        \end{table}
+      }
+
+      \only<5>{
+        \cmd{legend} 用于创建图例，使用逗号分隔每个序列的名称。
+      }
+
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      
+      \begin{codeblock}[]{使用 \pgfplots{}}
+\documentclass[tikz]{standalone}
+|\highlightline<2>|\usepackage{pgfplots}
+|\highlightline<2>|\pgfplotsset{compat=newest}
+\begin{document}
+|\highlightline<3>|\begin{axis}
+|\highlightline<4>|  \addplot {x^2};
+|\highlightline<5>|  \legend{data,};
+|\highlightline<3>|\end{axis}
+||\end{document}
+      \end{codeblock}
+      
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{PGFPlotsTable}
+
+  \only<1>{
+    \pgfplotstable{} \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/contrib/pgfplots/doc/pgfplotstable.pdf} 是用于数据处理的子包，可以用来从文件排印表格。
+  }
+
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      
+      \only<1>{
+        \includepdflarge{pgfplotstable}
+      }
+
+      \only<2>{
+        \cmd{pgfplotstableset} 用于设定全局设置。这里设定了默认使用 CSV 文件，表格采用标准三线表格式。
+
+        \begin{block}{\faInfo{}}
+          SJTUBeamer 已经预先设置了这些格式。
+        \end{block}
+      }
+
+      \only<3>{
+        \cmd{pgfplotstabletypeset} 用于从文件排印表格。这样你的 CSV 文件就可以通过 Excel 软件编辑与处理。
+        \note{又一层内容与格式分离！}
+      }
+
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      
+      \begin{codeblock}[]{使用 \pgfplotstable{}}
+\documentclass{ctexart}
+\usepackage{booktabs}
+|\highlightline<1>|\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+|\highlightline<2>|\pgfplotstableset{
+  col sep=comma,
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={
+    after row=\bottomrule},
+}
+\begin{document}
+|\highlightline<3>|  \pgfplotstabletypeset[]{data.csv}
+||\end{document}
+      \end{codeblock}
+      
+    \end{column}
+  \end{columns}
 
 \end{frame}
 
 \begin{frame}
   \frametitle{PGFPlotsEdt}
-  \raisebox{-\dp\strutbox}{\includegraphics[height=\baselineskip]{pgfplotsedt}} PGFPlotsEdt \link{https://logcreative.github.io/PGFPlotsEdt/?lang=cn} 是一款基于 \pgfplots{} 的界面化绘图编辑器，基于 \faVuejs{} 开发。
+  \raisebox{-\dp\strutbox}{\includegraphics[height=\baselineskip]{pgfplotsedt}} PGFPlotsEdt \link{https://logcreative.github.io/PGFPlotsEdt/?lang=cn} 是一款基于 \pgfplots{} 的统计绘图编辑器，基于 \faVuejs{} 开发。
+
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{itemize}
+        \item 顶部按钮提供了一些示例。
+        \item 推荐首先在设定中设置好参数（比如三维）。
+        \item 可以设置坐标系相关样式。
+        \item 直接按下 \faExclamationTriangle{} 手动编辑代码。
+        \note{按下没有回头路。因为回头路我没做好。}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.4\textheight]{pgfplotsedtui}
+        \caption{PGFPlotsEdt 界面}
+      \end{figure}
+    \end{column}
+  \end{columns}
 
   \note{当年是想做个跟 \TikZ{}Edt 类似的软件，用于快速生成统计图代码。也想过使用 Qt 写，当然后面放弃了，转向编写网页应用。当时本人还没有什么服务器，就写了个纯前端。}
 \end{frame}
@@ -72,4 +277,42 @@
       \includegraphics[width=\linewidth]{g}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{更多可能}
+
+  \begin{columns}
+    \begin{column}{0.58\textwidth}
+      \begin{itemize}
+        \item \TikZ{} 还内置很多的库可供使用！
+        \item \TikZ{} 还有很多的衍生库可供使用！
+        \note{不只是 \pgfplots{}。}
+        \item 推荐使用 \pkg{standalone} 文档类编译再插入。
+        \item 使用 \pkg{external} 库缓存也是可行的。
+        \item 更多内容请见手册\footnotemark。
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{figure}
+        \begin{tikzpicture}[scale=0.7,every node/.style={scale=0.7}]
+          \node[draw,fill=white] (v1) at (-1.5,0) {\includegraphics[scale=0.7]{tkzeuclide}};
+          \node[draw,fill=white] at (1.5,-2) {\includegraphics[scale=0.3]{circuitikz}};
+          \node[draw,fill=white] at (-1.5,-3) {\includegraphics[scale=0.3]{automata}};
+        \end{tikzpicture}
+        \caption{\ttfamily tkz-euclide \link{http://mirrors.sjtug.sjtu.edu.cn/CTAN/macros/latex/contrib/tkz/tkz-euclide/doc/tkz-euclide.pdf}, circuitikz \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf}, automata (tikzlibrary)}
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+  \footnotetext{中文版：\LaTeX{} 工作室.
+  \TikZ{} \& \pgf{} 手册 (3.1.5b) 笔记[EB/OL].
+  2020. \url{https://www.latexstudio.net/archives/51804.html}}
+  
+  \note{看文档需要使用 texdoc pgf，这个笔记大略翻译了很多内容。\LaTeX{} 工作室的网站上也有很多 \TikZ{} 的 fancy 内容，感兴趣的可以参考。}
+
+  \note{可以做的很 fancy，也可以用它很基本的功能。因为有一种职业叫科技绘图，这种图形约是符合要求的矢量图。\TikZ{} 的意义在于提供了一种 inline 绘图的方式，有助于管理工程，过早优化万恶之源，这样的方式有助于减少重新绘制的可能。}
+
+  \note{\pgf{} 提供了一种很方便的写循环的方式：\cmd{foreach} \cmd{x} in \{1,...,10\}\{循环体\}}
+  
 \end{frame}
