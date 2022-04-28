@@ -1,0 +1,12 @@
+\documentclass{ctexart}
+\usepackage{booktabs}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\pgfplotstableset{
+    col sep=comma,
+    every head row/.style={before row=\toprule,after row=\midrule},
+    every last row/.style={after row=\bottomrule},
+}
+\begin{document}
+  \pgfplotstabletypeset[]{data.csv}
+\end{document}

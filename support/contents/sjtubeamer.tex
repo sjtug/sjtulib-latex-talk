@@ -164,7 +164,7 @@
   \frametitle{文档类设置}
 
   \only<1>{
-    为文档类设置 \pkg{aspectratio} 选项可以更改幻灯片的长宽比。其他通用选项详见 \textit{The Beamer class -- User Guide} \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/macros/latex/contrib/beamer/doc/beameruserguide.pdf}。帧环境 \env{frame} 详见第 \ref{frame} 页。
+    为文档类设置 \pkg{aspectratio} 选项可以更改幻灯片的长宽比。其他通用选项详见 \textit{The Beamer Class -- User Guide} \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/macros/latex/contrib/beamer/doc/beameruserguide.pdf}。帧环境 \env{frame} 详见第 \ref{frame} 页。
   }
 
   \only<2>{
@@ -303,7 +303,7 @@
     \begin{column}{0.45\textwidth}
       \begin{codeblock}{代码盒子}
 |\textbackslash{}begin\{codeblock\}|[language=python]{Python 代码}
-||  print("Hello, world!")
+||print("Hello, world!")
 |\textbackslash{}end\{codeblock\}|
       \end{codeblock}
     \end{column}
@@ -537,6 +537,8 @@
             \\
         \end{tabular}
       \end{table}
+
+      \note{注意要分段的话，\cmd{only} 前后的内容要空行，否则会有诡异的首行空格。}
       }
 
       \only<2-4>{
@@ -622,6 +624,8 @@
   \end{table}
 
   渐进切换是 \pkg{beamer} 非常强大的编程模型，合理使用可以减少重复代码的编写。但也希望它的文本参数不要太过复杂，否则可能无法解析。\textsl{Keep It Simple, Stupid.}
+
+  \note{后来 PowerPoint 才有渐进切换的动画效果。}
 \end{frame}
 
 \begin{frame}[fragile]
