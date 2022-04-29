@@ -15,7 +15,7 @@
   \end{itemize}
 
   \begin{figure}
-    \includegraphics[width=0.75\textwidth]{tikzlings}
+    \includegraphics[width=0.75\textwidth]{support/figures/tikzlings.pdf}
     \caption{\TikZ{}lings 绘制的小动物 \link{https://github.com/samcarter/tikzlings}}
   \end{figure}
 
@@ -107,7 +107,7 @@ child [concept color=gray, grow=0] {
     \begin{column}{0.4\textwidth}
       \begin{figure}
         \centering
-        \includegraphics[height=0.4\textheight]{mindmap}
+        \includegraphics[height=0.4\textheight]{support/figures/mindmap.pdf}
         \caption{\ttfamily \pkg{mindmap} (tikzlibrary)}
       \end{figure}
     \end{column}
@@ -118,13 +118,13 @@ child [concept color=gray, grow=0] {
 
 \begin{frame}
   \frametitle{\TikZ{}Edt}
-  \raisebox{-.5\dp\strutbox}{\includegraphics[height=\baselineskip]{tikzedt}} \TikZ{}Edt \link{http://www.tikzedt.org/} 是一款半图形化的即时绘图编辑器，在 \faWindows{} 上工作较好。
+  \raisebox{-.5\dp\strutbox}{\includegraphics[height=\baselineskip]{support/images/tikzedt.png}} \TikZ{}Edt \link{http://www.tikzedt.org/} 是一款半图形化的即时绘图编辑器，在 \faWindows{} 上工作较好。
 
   \begin{columns}
     \begin{column}{0.6\textwidth}
       \begin{figure}
         \centering
-        \includegraphics[height=0.5\textheight]{tikzedtui}
+        \includegraphics[height=0.5\textheight]{support/images/tikzedtui.jpg}
         \caption{\TikZ{}Edt 界面}
       \end{figure}
     \end{column}
@@ -132,7 +132,7 @@ child [concept color=gray, grow=0] {
       \begin{itemize}
         \item 善用工具栏功能 \link{http://www.tikzedt.org/doc.html}
         
-        \includegraphics[width=\linewidth]{tooltip}
+        \includegraphics[width=\linewidth]{support/images/tooltip.png}
         \item 开始时会提示生成缩略图
         
         {\tiny Compilation $\blacktriangleright$ Compile snippet thumbnails}
@@ -163,7 +163,7 @@ child [concept color=gray, grow=0] {
 
       \only<1>{
         \begin{center}
-          \includegraphics[width=0.75\textwidth]{pgfplots}
+          \includegraphics[width=0.75\textwidth]{support/figures/pgfplots.pdf}
         \end{center}
       }
 
@@ -223,7 +223,7 @@ child [concept color=gray, grow=0] {
     \begin{column}{0.4\textwidth}
       
       \only<1>{
-        \includepdflarge{pgfplotstable}
+        \includepdflarge{support/examples/pgfplotstable.pdf}
       }
 
       \only<2>{
@@ -237,6 +237,10 @@ child [concept color=gray, grow=0] {
       \only<3>{
         \cmd{pgfplotstabletypeset} 用于从文件排印表格。这样你的 CSV 文件就可以通过 Excel 软件编辑与处理。
         \note{又一层内容与格式分离！}
+
+        \begin{block}{\faExclamationTriangle}
+          含有中文内容的表格需要使用 \hologo{XeLaTeX} 编译！
+        \end{block}
       }
 
     \end{column}
@@ -265,7 +269,7 @@ child [concept color=gray, grow=0] {
 
 \begin{frame}
   \frametitle{PGFPlotsEdt}
-  \raisebox{-\dp\strutbox}{\includegraphics[height=\baselineskip]{pgfplotsedt}} PGFPlotsEdt \link{https://logcreative.github.io/PGFPlotsEdt/?lang=cn} 是一款基于 \pgfplots{} 的统计绘图编辑器，基于 \faVuejs{} 开发。
+  \raisebox{-\dp\strutbox}{\includegraphics[height=\baselineskip]{support/images/pgfplotsedt.pdf}} PGFPlotsEdt \link{https://logcreative.github.io/PGFPlotsEdt/?lang=cn} 是一款基于 \pgfplots{} 的统计绘图编辑器，基于 \faVuejs{} 开发。
 
   \begin{columns}
     \begin{column}{0.4\textwidth}
@@ -280,7 +284,7 @@ child [concept color=gray, grow=0] {
     \begin{column}{0.6\textwidth}
       \begin{figure}
         \centering
-        \includegraphics[height=0.4\textheight]{pgfplotsedtui}
+        \includegraphics[height=0.4\textheight]{support/images/pgfplotsedtui.jpg}
         \caption{PGFPlotsEdt 界面}
       \end{figure}
     \end{column}
@@ -293,23 +297,23 @@ child [concept color=gray, grow=0] {
   \frametitle{PGFPlotsEdt 帮助我完成物理实验报告图...}
   \begin{columns}
     \begin{column}{0.25\textwidth}
-      \includegraphics[width=\linewidth]{a}
-      \includegraphics[width=\linewidth]{b}
+      \includegraphics[width=\linewidth]{support/pgfplots/a.pdf}
+      \includegraphics[width=\linewidth]{support/pgfplots/b.pdf}
     \end{column}
     \begin{column}{0.50\textwidth}
-      \includegraphics[width=\linewidth]{c}
+      \includegraphics[width=\linewidth]{support/pgfplots/c.pdf}
       \begin{columns}
         \begin{column}{0.5\linewidth}
-          \includegraphics[width=\linewidth]{d}
+          \includegraphics[width=\linewidth]{support/pgfplots/d.pdf}
         \end{column}
         \begin{column}{0.5\linewidth}
-          \includegraphics[width=\linewidth]{e}
+          \includegraphics[width=\linewidth]{support/pgfplots/e.pdf}
         \end{column}
       \end{columns}
     \end{column}
     \begin{column}{0.25\textwidth}
-      \includegraphics[width=\linewidth]{f}
-      \includegraphics[width=\linewidth]{g}
+      \includegraphics[width=\linewidth]{support/pgfplots/f.pdf}
+      \includegraphics[width=\linewidth]{support/pgfplots/g.pdf}
     \end{column}
   \end{columns}
 \end{frame}
@@ -333,9 +337,9 @@ child [concept color=gray, grow=0] {
     \begin{column}{0.42\textwidth}
       \begin{figure}
         \begin{tikzpicture}[scale=0.7,every node/.style={scale=0.7}]
-          \node[draw,fill=white] (v1) at (-1.5,0) {\includegraphics[scale=0.7]{tkzeuclide}};
-          \node[draw,fill=white] at (1.5,-2) {\includegraphics[scale=0.3]{circuitikz}};
-          \node[draw,fill=white] at (-1.5,-3) {\includegraphics[scale=0.3]{automata}};
+          \node[draw,fill=white] (v1) at (-1.5,0) {\includegraphics[scale=0.7]{support/figures/tkzeuclide.pdf}};
+          \node[draw,fill=white] at (1.5,-2) {\includegraphics[scale=0.3]{support/figures/circuitikz.pdf}};
+          \node[draw,fill=white] at (-1.5,-3) {\includegraphics[scale=0.3]{support/figures/automata.pdf}};
         \end{tikzpicture}
         \caption{\ttfamily tkz-euclide \link{http://mirrors.sjtug.sjtu.edu.cn/CTAN/macros/latex/contrib/tkz/tkz-euclide/doc/tkz-euclide.pdf}, circuitikz \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf}, automata (tikzlibrary)}
       \end{figure}

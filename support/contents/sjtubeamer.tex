@@ -18,7 +18,7 @@
     \begin{column}{0.4\textwidth}
       \begin{exampleblock}{}
         \begin{minipage}[c]{1cm}
-          \includegraphics[width=0.8cm]{\getcontribpath{sjtug}{vi/sjtug}}
+          \includegraphics[width=0.8cm]{support/examples/pics/sjtug.pdf}
         \end{minipage}
         \begin{minipage}[c]{2cm}
           \href{https://github.com/sjtug}{sjtug}/\href{https://github.com/sjtug/SJTUBeamer}{SJTUBeamer}
@@ -116,7 +116,7 @@
         \end{exampleblock}
       \end{column}
       \begin{column}{0.3\textwidth}
-        \framebox{\includegraphics[width=\linewidth]{mirrorclone}}
+        \framebox{\includegraphics[width=\linewidth]{support/images/mirrorclone.jpg}}
       \end{column}
     \end{columns}
     \note{进入镜像站页面后，点击 git/SJTUBeamer.git。跳转可能稍有 BUG，所以可能要退回来再点一次即可进入该页面。}
@@ -135,7 +135,7 @@
         \end{exampleblock}
       \end{column}
       \begin{column}{0.3\textwidth}
-        \framebox{\includegraphics[width=\linewidth]{sjtubeamerfirst}}
+        \framebox{\includegraphics[width=\linewidth]{support/images/sjtubeamerfirst.pdf}}
       \end{column}
     \end{columns}
   }
@@ -152,7 +152,7 @@
         \end{exampleblock}
       \end{column}
       \begin{column}{0.3\textwidth}
-        \framebox{\includegraphics[width=\linewidth]{sjtubeamerdevguidefirst}}
+        \framebox{\includegraphics[width=\linewidth]{support/images/sjtubeamerdevguidefirst.pdf}}
       \end{column}
     \end{columns}
     \note{用英文写实际上是因为国内做 beamer 的比较少。sad。}
@@ -186,7 +186,7 @@
     \end{column}
     \begin{column}{0.38\textwidth}
       \begin{center}
-        \includebeamerlarge{welcome}
+        \includebeamerlarge{support/beamer/welcome.pdf}
       \end{center}
     \end{column}
   \end{columns}
@@ -225,13 +225,13 @@
     \begin{column}{0.4\textwidth}
       \only<1>{
         \begin{figure}
-          \includegraphics[width=\linewidth]{sjtubeamercover}
+          \includegraphics[width=\linewidth]{support/images/sjtubeamercover.jpg}
           \caption{封面样式}
         \end{figure}
       }
       \only<2>{
         \begin{figure}
-          \includegraphics[width=\linewidth]{sjtubeamerouter}
+          \includegraphics[width=\linewidth]{support/images/sjtubeamerouter.jpg}
           \caption{外样式}
         \end{figure}
       }
@@ -346,7 +346,7 @@
     \begin{column}{0.45\textwidth}
       \begin{figure}
         \centering
-        \includebeamerlarge{sjtug}
+        \includebeamerlarge{support/beamer/sjtug.pdf}
         \caption{SJTUG 子主题}
       \end{figure}
     \end{column}
@@ -371,7 +371,7 @@
         \centering
         \begin{stampbox}[sjtuRedPrimary]
           \scriptsize
-          \includegraphics[width=0.88\linewidth]{slides.jpg}
+          \includegraphics[width=0.88\linewidth]{support/images/slides.jpg}
         \end{stampbox}
         \caption{幻灯影片}
       \end{figure}
@@ -381,7 +381,7 @@
         \centering
         \begin{stampbox}[sjtuRedPrimary]
           \scriptsize
-          \includegraphics[width=0.88\linewidth]{screen.jpg}
+          \includegraphics[width=0.88\linewidth]{support/images/screen.jpg}
         \end{stampbox}
         \caption{准备荧幕}
       \end{figure}
@@ -391,7 +391,7 @@
         \centering
         \begin{stampbox}[sjtuRedPrimary]
           \scriptsize
-          \includegraphics[width=0.88\linewidth]{project.jpg}
+          \includegraphics[width=0.88\linewidth]{support/images/project.jpg}
         \end{stampbox}
         \caption{投影放映}
       \end{figure}
@@ -407,7 +407,7 @@
 
   \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{pympress.jpg}
+    \includegraphics[width=0.7\linewidth]{support/images/pympress.jpg}
     \caption{Pympress 阅读器\footnote{需要使用 \cmd{note} 添加笔记，并在导言区添加 \cmd{setbeameroption\{notes on second screen\}} 以启用第二屏功能。} \link{https://github.com/Cimbali/pympress}}
     \note[item]{使用 Pympress 阅读器以最大化 beamer 的交互功能（左侧为放映窗口，右侧为演示者视图），并使用类似于 PowerPoint 演示者视图的界面方便演讲，可便携安装。我也参与了界面的汉化工作。}
     \note[item]{为了使用目前的汉化版本，你需要使用 1.7.2 版本，需要从 PyPi 上手动安装包并且按照指示安装依赖（目前只推荐 \faLinux{} 和 \faApple{} 这么做）。}
@@ -445,7 +445,7 @@
 
       \only<3>{
         \begin{center}
-          \includebeamerlarge{frame}
+          \includebeamerlarge{support/beamer/frame.pdf}
         \end{center}
       }
     \end{column}
@@ -481,13 +481,13 @@
       }
 
       \only<2-4>{
-        \makebox[1cm][l]{\includebeamerlarge[1]{pause}}
+        \makebox[1cm][l]{\includebeamerlarge[1]{support/beamer/pause.pdf}}
       }
       \only<3-4>{
-        \makebox[1cm][l]{\includebeamerlarge[2]{pause}}
+        \makebox[1cm][l]{\includebeamerlarge[2]{support/beamer/pause.pdf}}
       }
       \only<4>{
-        \makebox[1cm][l]{\includebeamerlarge[3]{pause}}
+        \makebox[1cm][l]{\includebeamerlarge[3]{support/beamer/pause.pdf}}
       }
     \end{column}
   \end{columns}
@@ -544,9 +544,9 @@
       \only<2-4>{
         \begin{center}
           \begin{tikzpicture}
-            \node at (0,0) {\includebeamerlarge[1]{only}};
-            \only<3->{\node at (0,-2) {\includebeamerlarge[2]{only}};}
-            \only<4>{\node at (0,-4) {\includebeamerlarge[3]{only}};}
+            \node at (0,0) {\includebeamerlarge[1]{support/beamer/only.pdf}};
+            \only<3->{\node at (0,-2) {\includebeamerlarge[2]{support/beamer/only.pdf}};}
+            \only<4>{\node at (0,-4) {\includebeamerlarge[3]{support/beamer/only.pdf}};}
           \end{tikzpicture}
         \end{center}
       }
@@ -598,9 +598,9 @@
       \only<2-4>{
         \begin{center}
           \begin{tikzpicture}
-            \node at (0,0) {\includebeamerlarge[1]{onslide}};
-            \only<3->{\node at (0,-2) {\includebeamerlarge[2]{onslide}};}
-            \only<4>{\node at (0,-4) {\includebeamerlarge[3]{onslide}};}
+            \node at (0,0) {\includebeamerlarge[1]{support/beamer/onslide.pdf}};
+            \only<3->{\node at (0,-2) {\includebeamerlarge[2]{support/beamer/onslide.pdf}};}
+            \only<4>{\node at (0,-4) {\includebeamerlarge[3]{support/beamer/onslide.pdf}};}
           \end{tikzpicture}
         \end{center}
       }
@@ -651,13 +651,13 @@
         对列表环境添加 \texttt{<+->} 修饰符可以逐项添加覆盖效果。\texttt{<+-|alert@+>} 还可以高亮当前的覆盖项目。
       }
       \only<2-4>{
-        \makebox[1cm][l]{\includebeamerlarge[1]{itemizeoverlay}}
+        \makebox[1cm][l]{\includebeamerlarge[1]{support/beamer/itemizeoverlay.pdf}}
       }
       \only<3-4>{
-        \makebox[1cm][l]{\includebeamerlarge[2]{itemizeoverlay}}
+        \makebox[1cm][l]{\includebeamerlarge[2]{support/beamer/itemizeoverlay.pdf}}
       }
       \only<4>{
-        \makebox[1cm][l]{\includebeamerlarge[3]{itemizeoverlay}}
+        \makebox[1cm][l]{\includebeamerlarge[3]{support/beamer/itemizeoverlay.pdf}}
       }
     \end{column}
   \end{columns}
@@ -874,7 +874,7 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{center}
-        \includebeamerlarge[2]{label}
+        \includebeamerlarge[2]{support/beamer/label.pdf}
       \end{center}
     \end{column}
   \end{columns}
