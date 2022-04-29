@@ -173,7 +173,9 @@ function typeset_demo_tasks()
         ".nav",
         ".snm",
         ".toc",
-        ".out"
+        ".out",
+        ".xdv",
+        ".vrb"
     }
     for _, dir in ipairs(cleandirs) do
         for _, suffix in ipairs(cleansuffixs) do
