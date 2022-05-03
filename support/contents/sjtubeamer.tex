@@ -112,7 +112,7 @@
 
         \begin{exampleblock}{\faGit* 从镜像站克隆最新版}
           \ttfamily\footnotesize
-          git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
+          git clone https://mirror.sjtu.edu.cn/git/SJTUBeamer.git/
         \end{exampleblock}
       \end{column}
       \begin{column}{0.3\textwidth}
@@ -126,6 +126,8 @@
     \begin{columns}
       \begin{column}{0.7\textwidth}
         《SJTUBeamer 使用手册》\link{https://github.com/sjtug/SJTUBeamer/releases/download/v2.6.0/sjtubeamer.pdf} 给出了大量的示例，用于快速上手 SJTUBeamer 的基本使用方法。推荐大家从一个干净的文档一步步码出来这些例子，或者遇到问题先按手册查询。本讲座仅做概览。
+
+        \note{这些例子含有 beamer 文档类的基础用法，一步步地完成可以较快地学会这些知识。}
 
         \begin{exampleblock}{\faTerminal{} 从源码编译文档}
           \ttfamily\footnotesize
@@ -155,7 +157,7 @@
         \framebox{\includegraphics[width=\linewidth]{support/images/sjtubeamerdevguidefirst.pdf}}
       \end{column}
     \end{columns}
-    \note{用英文写实际上是因为国内做 beamer 的比较少。sad。}
+    \note{用英文写开发手册实际上是因为国内做 beamer 的比较少。sad。}
   }
 
 \end{frame}
@@ -165,10 +167,12 @@
 
   \only<1>{
     为文档类设置 \opt{aspectratio} 选项可以更改幻灯片的长宽比。其他通用选项详见 \textit{The Beamer Class -- User Guide} \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/macros/latex/contrib/beamer/doc/beameruserguide.pdf}。帧环境 \env{frame} 详见第 \ref{frame} 页。
+    \note{有些教室可能还在用 4:3 比例（不调整默认是 4:3 比例），在 beamer 里调整比例要比 PowerPoint 里要方便的多，因为内容与格式分离了，不会导致比例失调的情况。}
   }
 
   \only<2>{
-    SJTUBeamer 依赖于 \texttt{ctexbeamer} 文档类（如果编写英文幻灯片，可以直接使用 \texttt{beamer} 文档类），相关字体设置详见《\CTeX{} 宏集手册》\link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/language/chinese/ctex/ctex.pdf}。
+    SJTUBeamer 依赖于 \cls{ctexbeamer} 文档类（如果编写英文幻灯片，可以直接使用 \cls{beamer} 文档类），相关字体设置详见《\CTeX{} 宏集手册》\link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/language/chinese/ctex/ctex.pdf}。
+    \note{\opt{fontset} 可以被指定为诸如 \opt{ubuntu}, \opt{adobe}, \opt{founder} 等，注意 SJTUThesis 中只能使用 \opt{cjk-font} 调整，暂时没有为 SJTUBeamer 设定单独字体样式的想法，毕竟幻灯片跟论文还是不太相同的。当然如果以后有什么“交大字体”啦，我们可以考虑适配一下。}
   }
 
   \begin{columns}
@@ -190,7 +194,6 @@
       \end{center}
     \end{column}
   \end{columns}
-  
 \end{frame}
 
 \begin{frame}[fragile]
@@ -199,12 +202,18 @@
     \begin{column}{0.6\textwidth}
 
       \only<1>{
-      为了使用 SJTUBeamer，需要在根目录中创建一个文件，并添加 \cmd{usetheme\{sjtubeamer\}}。你可以添加用逗号分隔的选项切换不同的设计样式。
+        为了使用 SJTUBeamer，需要在根目录中创建一个文件，并添加 \cmd{usetheme\{sjtubeamer\}}。你可以添加用逗号分隔的选项切换不同的设计样式。
+        \note{使用 \opt{maxplus}, \opt{max}, \opt{min} 切换不同的封面样式（包含节次页）。使用 \opt{red}, \opt{blue} 来切换主色调。使用 \opt{dark} 和 \opt{light} 来切换不同的亮度主题。}
       }
 
       \only<2>{
         还可以适配 \cls{beamer} 自带的外样式，可以通过 \opt{topright} 或 \opt{bottomright} 选项切换徽标位置。
-        \note{sidebar 外样式略有一些 BUG。}
+        \note{
+          使用外样式关键字切换页面布局，使用 \opt{topright} 和 \opt{bottomright} 切换徽标的位置。
+        
+          sidebar 外样式略有一些 BUG，就是封面页会有文字偏移，感兴趣地可以考虑修正一下，暂时没有找到太好的通用方法。冷知识，10 年前也有学长做了个 \href{https://github.com/X-Wei/aBeamerTemplate4SJTU}{SJTU Beamer 模板}发布于水源 BBS，使用的就是 sidebar 外样式。
+          
+          别小看这两页，SJTUBeamer 很多代码都放在这两页上了，这两页已经可以组合出 $3\times 2\times 2\times 9\times 2=216$ 种可能了（忽略徽标位置的话正好 108 种）。}
       }
 
       \begin{codeblock}[]{}
@@ -292,6 +301,7 @@
     \end{column}
   \end{columns}
 
+  \note{SJTU 视觉形象识别系统规定的一些图案，采用 \TikZ{} 代码的方式绘制出来。}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -309,7 +319,7 @@
     \end{column}
   \end{columns}
 
-  \note{当然你可以将 \env{codeblock} 环境的强制参数留空，但要保留大括号。这样就不会产生代码块的标题。}
+  \note[item]{当然你可以将 \env{codeblock} 环境的强制参数留空，但要保留大括号。这样就不会产生代码块的标题。}
 
   \begin{columns}
     \begin{column}{0.55\textwidth}
@@ -323,6 +333,8 @@
       \end{bibliolist}
     \end{column}
   \end{columns}
+
+  \note[item]{\env{bibliolist} 的环境定义与 SJTUThesis 相同，但是对 \cls{beamer} 有了特殊的优化。}
 
 \end{frame}
 
@@ -352,7 +364,7 @@
     \end{column}
   \end{columns}
 
-  \note{有的插件并不需要向 sjtubeamer 设定 my 选项。}
+  \note{有的插件并不需要向 sjtubeamer 设定 my 选项。下面来了解一下 \cls{beamer} 的基础模型，因为我觉得这些部分可能要比前面这些设定参数要难一点，所以放在了偏后的位置。}
   
 \end{frame}
 
@@ -398,6 +410,7 @@
     \end{column}
   \end{columns}
   \footnotetext{图像由 nickelodeon 持有版权。} % Overleaf 版本将会将图像设为 draft
+  \note{我拿海绵宝宝举例说明，首先准备好一卷幻灯影片，放入幻灯机后准备个荧幕，然后按下按钮切换不同的幻灯片，如果是以前的话，你还可以专门找个助手帮你切片，然后你示意一下去切片。}
 \end{frame}
 
 \begin{frame}
@@ -437,10 +450,12 @@
       
       \only<1>{
         \cls{beamer} 的自然切割单位为 \env{frame}（帧），一帧可以派生出很多张幻灯片（slide）。
+        \note{当然后来由 Joseph Wright 和 Vedran Miletic 维护，由 samcarter（后文提到的 \pkg{tikzlings} 的作者）提供支持服务。}
       }
 
       \only<2>{
         \cmd{frametitle} 用于指定该帧的标题，\cmd{framesubtitle} 还可以用来指定该帧的子标题。
+        \note{当然也可以在 \env{frame} 环境后用大括号添加这两个参数，两者都是可行的。}
       }
 
       \only<3>{
@@ -478,16 +493,17 @@
 
       \only<1>{
         \cmd{pause} 用来渐进地展示每一部分的内容，未展示的内容会有占位。
+        \note{可以注意一下下面几张幻灯片，默认情况下应该是垂直居中对齐（\env{frame} 默认的 \opt{c} 参数）的，而下面几张会有一定的偏移，就是因为占位的内容被实际排印出来，但是通过内部机制隐藏掉了这些内容。}
       }
 
       \only<2-4>{
-        \makebox[1cm][l]{\includebeamerlarge[1]{support/beamer/pause.pdf}}
+        \makebox[0.8cm][l]{\scalebox{0.8}{\includebeamerlarge[1]{support/beamer/pause.pdf}}}
       }
       \only<3-4>{
-        \makebox[1cm][l]{\includebeamerlarge[2]{support/beamer/pause.pdf}}
+        \makebox[0.8cm][l]{\scalebox{0.8}{\includebeamerlarge[2]{support/beamer/pause.pdf}}}
       }
       \only<4>{
-        \makebox[1cm][l]{\includebeamerlarge[3]{support/beamer/pause.pdf}}
+        \makebox[0.8cm][l]{\scalebox{0.8}{\includebeamerlarge[3]{support/beamer/pause.pdf}}}
       }
     \end{column}
   \end{columns}
@@ -514,7 +530,7 @@
 
       \only<1>{
 
-      \cmd{only} 需要通过\alert{修饰符}来指定内容排印的子幻灯片编号，没有显示的内容将不会占位。由于内容没有被实际排印出来，可能会在不同的子幻灯片间产生版面抖动问题。
+      \cmd{only} 需要通过\alert{修饰符}来指定内容排印的子幻灯片编号，没有显示的内容将不会占位。由于内容没有被实际排印出来，可能会在不同的子幻灯片间产生版面抖动。
 
       \begin{table}
         \centering
@@ -543,7 +559,7 @@
 
       \only<2-4>{
         \begin{center}
-          \begin{tikzpicture}
+          \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
             \node at (0,0) {\includebeamerlarge[1]{support/beamer/only.pdf}};
             \only<3->{\node at (0,-2) {\includebeamerlarge[2]{support/beamer/only.pdf}};}
             \only<4>{\node at (0,-4) {\includebeamerlarge[3]{support/beamer/only.pdf}};}
@@ -597,7 +613,7 @@
 
       \only<2-4>{
         \begin{center}
-          \begin{tikzpicture}
+          \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
             \node at (0,0) {\includebeamerlarge[1]{support/beamer/onslide.pdf}};
             \only<3->{\node at (0,-2) {\includebeamerlarge[2]{support/beamer/onslide.pdf}};}
             \only<4>{\node at (0,-4) {\includebeamerlarge[3]{support/beamer/onslide.pdf}};}
@@ -622,6 +638,8 @@
       \cmd{visible}<x> & $=$ & \cmd{onslide}+<x>\footnote{\cmd{onslide+} 和 \cmd{onslide} 的区别在于前者即使在全局使用透明覆盖模式时 \cmd{setbeamercovered\{transparent\}} 透明度也是无效的（只能全显示或不显示）。} \\
     \end{tabular}
   \end{table}
+  
+  \note{在导言区使用 \cmd{setbeamercovered\{transparent\}} 将会产生半透明的效果。}
 
   渐进切换是 \cls{beamer} 非常强大的编程模型，合理使用可以减少重复代码的编写。但也希望它的文本参数不要太过复杂，否则可能无法解析。\textsl{Keep It Simple, Stupid.}
 
@@ -648,7 +666,8 @@
     \begin{column}{0.5\textwidth}
       
       \only<1>{
-        对列表环境添加 \texttt{<+->} 修饰符可以逐项添加覆盖效果。\texttt{<+-|alert@+>} 还可以高亮当前的覆盖项目。
+        对列表环境添加 \opt{<+->} 修饰符可以逐项添加覆盖效果。\opt{<+-|alert@+>} 还可以高亮当前的覆盖项目。
+        \note{还有一些特殊的渐进切换语法糖，比如列表覆盖可以直接在环境上添加简单的修饰符。还可以使用 \opt{alert} 参数来高亮当前项目。}
       }
       \only<2-4>{
         \makebox[1cm][l]{\includebeamerlarge[1]{support/beamer/itemizeoverlay.pdf}}
@@ -668,6 +687,7 @@
   \begin{columns}[b]
     \begin{column}{0.5\textwidth}
       一些样式命令可以添加与 \cmd{alt} 行为类似的可选修饰符参数（替换覆盖）。
+      \note[item]{这些样式命令可以直接添加修饰符来设定高亮的子幻灯片编号，采用当前子幻灯片替换宏的方法。注意这是替换覆盖。}
       \begin{table}
         \footnotesize
         \begin{tabular}{lll}
@@ -688,6 +708,7 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       区块和定理环境可以添加与 \cmd{onslide} 行为类似的可选修饰符参数（占位覆盖）。
+      \note[item]{这些预定义的 block 和 theorem 环境也可以添加修饰符参数，用于占位覆盖的情况。}
       \begin{table}
         \footnotesize
         \begin{tabular}{lll}
@@ -737,6 +758,8 @@
     \end{column}
     \begin{column}{.5\textwidth}
       如果你想让过长的内容自动分栏，不妨尝试 \pkg{multicol} 宏包中的 \env{multicols} 环境。
+
+      \note[item]<1>{我个人还是蛮推荐使用 \env{multicols} 的，因为 \env{columns} 带来不便的同时，可能会导致一些宏包无法正常工作（比如 \pkg{parskip}）。当然对于本幻灯片而言，更多的应当使用 \env{columns} 因为我需要配合 \env{codeblock} 环境排印代码，需要硬分栏（不希望这一栏的代码跑到另一栏的说明中去）。}
       
       \begin{codeblock}{}
 \documentclass{ctexbeamer}
@@ -752,19 +775,20 @@
 
       \only<1>{
         \begin{alertblock}{}
-          \env{columns} 环境可以添加可选参数，用于指定两栏纵向对齐方式（\texttt{b},\texttt{c},\texttt{t},\texttt{T}）。\textcolor{structure}{$\blacktriangleleft$}
+          \env{columns} 环境可以添加可选参数，用于指定两栏纵向对齐方式（\opt{b},\opt{c},\opt{t},\opt{T}）。\textcolor{structure}{$\blacktriangleleft$}
         \end{alertblock}
+        \note[item]{\opt{b} 底部对齐，\opt{c} 中心对齐，\opt{t} 顶部基线对齐，\opt{T} 顶部对齐（\opt{t} 奇怪的时候不妨试试这个参数）。}
       }
       
       \only<2>{
         \begin{alertblock}{}
           \env{column} 环境用于分栏，需要强制参数用于指定栏宽。\textcolor{structure}{$\blacktriangleleft$}
         \end{alertblock}
+        \note[item]{\env{columns} 环境的下一级子环境一般情况下应当是 \env{column}。}
       }
       
     \end{column}
   \end{columns}
-  \note[item]{我个人还是蛮推荐使用 \env{multicols} 的，因为 \env{columns} 带来不便的同时，可能会导致一些宏包无法正常工作（比如 \pkg{parskip}）。当然对于本幻灯片而言，更多的应当使用 \env{columns} 因为我需要配合 \env{codeblock} 环境排印代码，需要硬分栏（不希望这一栏的代码跑到另一栏的说明中去）。}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -857,6 +881,8 @@
 \begin{frame}[fragile,label=jump]
   \frametitle{引用跳转}
   最基本的跳转方式是对 \env{frame} 添加一个标签，之后使用 \cmd{ref} 该标签跳转。
+
+  \note{或许可以直接在 \env{frame} 环境内和往常一样添加 \cmd{label} 标签，但是这样会导致无法精确地使用修饰符跳转到对应的子页。所以更推荐的做法是直接在 \env{frame} 环境上添加 \opt{label} 参数，注意这个参数的内容不能有冒号。}
   
   \begin{columns}
     \begin{column}{0.5\textwidth}
@@ -883,6 +909,9 @@
 \begin{frame}[fragile]
   \frametitle{按钮跳转}
   还可以采用 \cmd{hyperlink} 外加自带的按钮命令跳转。
+
+  \note{\cmd{hyperlink} 用于跳转标签，而 \cmd{href} 用于跳转特定的地址 URL。}
+
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{codeblock}[]{}
