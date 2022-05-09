@@ -172,7 +172,7 @@
   }
 
   \only<2>{
-    SJTUBeamer 依赖于 \cls{ctexbeamer} 文档类（如果编写英文幻灯片，可以直接使用 \cls{beamer} 文档类），相关字体设置详见《\CTeX{} 宏集手册》\link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/language/chinese/ctex/ctex.pdf}。
+    SJTUBeamer 依赖于 \cls{ctexbeamer} 文档类\footnote{如果编写英文幻灯片，请直接使用 \cls{beamer} 文档类。}，相关字体设置详见《\CTeX{} 宏集手册》\link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/language/chinese/ctex/ctex.pdf}。
     \note{\opt{fontset} 可以被指定为诸如 \opt{ubuntu}, \opt{adobe}, \opt{founder} 等，注意 SJTUThesis 中只能使用 \opt{cjk-font} 调整，暂时没有为 SJTUBeamer 设定单独字体样式的想法，毕竟幻灯片跟论文还是不太相同的。当然如果以后有什么“交大字体”啦，我们可以考虑适配一下。}
   }
 
@@ -339,16 +339,31 @@
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{SJTUBeamer 的其他附加方法}
+  \highlight[sjtuBluePrimary]{高亮} \cmd{highlight} 用于产生高亮效果。
+  
+  \paragraph{段落} \cmd{paragraph} 在 \cls{beamer} 中原本是无效的。
+
+  \vspace*{0.25em}
+
+  \cmd{makebottom} 用于创建底页，\cls{beamer} 中只有 \cmd{maketitle}。
+
+  \vspace*{1em}
+
+  如果你需要迁移幻灯片至其他样式，可以尝试通过 \cmd{usetheme} 加载该存储库中的 \pkg{nosjtubeamer} 样式。\sout{或者是直接改个徽标}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{欢迎贡献主题}
-  SJTUBeamer 设计了一套简单的接口，用于将幻灯片修改成你的主题！使用 \cmd{usemytheme} 调用社区版 \pkg{contrib} 文件夹内的插件 \link{https://github.com/sjtug/SJTUBeamer/issues/81}，可以阅读对应插件附带的文档源码了解如何使用该插件。
+  SJTUBeamer 设计了一套简单的接口，用于将幻灯片修改成你的主题！使用 \cmd{usesjtutheme} 调用社区版 \pkg{contrib} 文件夹内的插件 \link{https://github.com/sjtug/SJTUBeamer/issues/81}，可以阅读对应插件附带的文档源码了解如何使用该插件。
   
   \begin{columns}
     \begin{column}{0.55\textwidth}
       \begin{codeblock}{使用子主题}
 \documentclass{ctexbeamer}
 \usetheme[my]{sjtubeamer}
-|\highlightline|\usemytheme{sjtug}
+|\highlightline|\usesjtutheme{sjtug}
 \begin{document}
   \begin{frame}
     ||使用 SJTUG 子主题。
@@ -774,17 +789,16 @@
 \end{document}
       \end{codeblock}
 
+      \small
+      \vspace*{1em}
+
       \only<1>{
-        \begin{alertblock}{}
-          \env{columns} 环境可以添加可选参数，用于指定两栏纵向对齐方式（\opt{b},\opt{c},\opt{t},\opt{T}）。\textcolor{structure}{$\blacktriangleleft$}
-        \end{alertblock}
+        \env{columns} 环境可以添加可选参数，用于指定两栏纵向对齐方式（\opt{b},\opt{c},\opt{t},\opt{T}）。\textcolor{structure}{$\blacktriangleleft$}
         \note[item]{\opt{b} 底部对齐，\opt{c} 中心对齐，\opt{t} 顶部基线对齐，\opt{T} 顶部对齐（\opt{t} 奇怪的时候不妨试试这个参数）。}
       }
       
       \only<2>{
-        \begin{alertblock}{}
-          \env{column} 环境用于分栏，需要强制参数用于指定栏宽。\textcolor{structure}{$\blacktriangleleft$}
-        \end{alertblock}
+        \env{column} 环境用于分栏，需要强制参数用于指定栏宽。\textcolor{structure}{$\blacktriangleleft$}
         \note[item]{\env{columns} 环境的下一级子环境一般情况下应当是 \env{column}。}
       }
       
@@ -809,9 +823,12 @@
 ||\end{document}
       \end{codeblock}
 
-      \begin{alertblock}{}
+      \vspace*{2em}
+      \small
+
+      % \begin{alertblock}{}
         \opt{allowframebreaks=0.8} 将指定每一个子页的高度占比不超过 0.8\cmd{textheight}。\textcolor{structure}{$\blacktriangle$}
-      \end{alertblock}
+      % \end{alertblock}
       
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -856,9 +873,11 @@
 ||    \end{frame}
 ||\end{document}
       \end{codeblock}
-      \begin{alertblock}{}
+      \small
+      \vspace*{1em}
+      % \begin{alertblock}{}
         更多详见 AutoBeamer 的 \faCodeBranch{} \pkg{pkg} 分支 \link{https://github.com/LogCreative/AutoBeamer/tree/pkg}
-      \end{alertblock}
+      % \end{alertblock}
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{codeblock}[]{autobeamer.sty}
