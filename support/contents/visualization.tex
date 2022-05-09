@@ -141,8 +141,7 @@
   \begin{columns}
     \begin{column}{0.4\textwidth}
       还可以通过 \cmd{usetikzlibrary} 调用内置库来绘制更多类型的图像。
-      
-      \note{比如 \pkg{mindmap} 可以用来绘制思维导图。}
+      比如 \pkg{mindmap} 可以用来绘制思维导图 \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/base/doc/images/pgfmanual-mindmap-1.pdf}。
 
       \note{声明该 \env{tikzpicture} 为 \opt{mindmap} 类型，并使用 \opt{child} 指示子级，一个父级可以跟多个子级，子级可以嵌套子级。\opt{grow} 参数用来指示旋转角度，最后需要用分号结束。}
 
@@ -169,7 +168,7 @@ child [concept color=gray, grow=0] {
     \end{column}
   \end{columns}
 
-  \note{\pkg{mindmap} 库是 \TikZ{} 中非常 iconic 的一个库。}
+  \note{\pkg{mindmap} 库是 \TikZ{} 中非常 iconic 的一个库。文档中专门有一个例子来展示这个功能。}
 \end{frame}
 
 \begin{frame}
