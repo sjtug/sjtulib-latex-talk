@@ -1,6 +1,6 @@
-# 从零开始使用 LaTeX 排版论文
+# 从零开始使用 LaTeX 排版论文/幻灯片
 
-上海交通大学图书馆专题培训讲座 2022 年《从零开始使用 LaTeX 排版论文》。
+上海交通大学图书馆专题培训讲座 2022 年《从零开始使用 LaTeX 排版论文》与《如何使用 beamer 制作学术报告幻灯片》。
 
 ### 第一次编译
 
@@ -22,7 +22,7 @@ l3build doc
 ```
 l3build ctan
 ```
-将生成的 `sjtulib-talk-ctan.zip` 上传，并使用 XeLaTeX 编译。受 Overleaf 编译时长限制，目前可以在节首链接上看到最近一次讲座的内容。可以下载预编译的 Overleaf 版本，在 `latex-talk.tex` 主文件中更改需要编译的部分后，手动本地编译全部的内容。
+将生成的 `sjtulib-talk-ctan.zip` 上传，并使用 XeLaTeX 编译。受 Overleaf 编译时长限制，目前可以在节首链接上看到最近一次讲座的内容。可以下载预编译的 Overleaf 版本，在 `latex-talk.tex` 主文件中选择需要编译哪些部分后，手动本地编译全部内容。
 
 ### 贡献/许可
 

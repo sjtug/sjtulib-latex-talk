@@ -19,6 +19,8 @@
     \caption{\TikZ{}lings 绘制的小动物 \link{https://github.com/samcarter/tikzlings}}
   \end{figure}
 
+  \note[item]{最主要的用途是编程式输出矢量图形。}
+
   \note[item]{\LaTeX3 中的 \texttt{l3draw} \link{https://github.com/latex3/latex3/tree/main/l3experimental/l3draw} 妄图统一这种绘图宏包，目前仍处于实验阶段。}
 \end{frame}
 
@@ -101,7 +103,7 @@
         \vspace{4ex}
 
         \onslide<3>{
-          \cmd{foreach} 可以嵌套使用。
+          \cmd{foreach} 可以嵌套使用。实际上 \cmd{foreach} 也可以接受多个参数的同时迭代，\cmd{foreach} \cmd{x}/\cmd{y} in \{1/2,2/3,3/4\} \{循环体\}。
         }
       }
 
@@ -143,7 +145,7 @@
       还可以通过 \cmd{usetikzlibrary} 调用内置库来绘制更多类型的图像。
       比如 \pkg{mindmap} 可以用来绘制思维导图 \link{https://mirrors.sjtug.sjtu.edu.cn/CTAN/graphics/pgf/base/doc/images/pgfmanual-mindmap-1.pdf}。
 
-      \note{声明该 \env{tikzpicture} 为 \opt{mindmap} 类型，并使用 \opt{child} 指示子级，一个父级可以跟多个子级，子级可以嵌套子级。\opt{grow} 参数用来指示旋转角度，最后需要用分号结束。}
+      \note{声明该 \env{tikzpicture} 为 \opt{mindmap} 类型，并使用 \opt{child} 指示子级，一个父级可以跟多个子级，子级可以嵌套子级。\opt{grow} 参数用来指示旋转角度，最后需要用分号结束。如果不想手动设定旋转角度，还可以在整幅图上使用 \opt{grow cyclic} 参数，如果想要实现这个链接所实现的效果，建议查看 \pgf{} 手册的 Tutorial 部分。}
 
       \begin{figure}
         \centering
