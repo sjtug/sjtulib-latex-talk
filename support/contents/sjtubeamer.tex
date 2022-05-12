@@ -126,7 +126,7 @@
   \only<2>{
     \begin{columns}
       \begin{column}{0.7\textwidth}
-        《SJTUBeamer 使用手册》\link{https://github.com/sjtug/SJTUBeamer/releases/download/v2.6.0/sjtubeamer.pdf} 给出了大量的示例，用于快速上手 SJTUBeamer 的基本使用方法。推荐大家从一个干净的文档一步步码出来这些例子，或者遇到问题先按手册查询。本讲座仅做概览。
+        《SJTUBeamer 使用手册》\link{https://github.com/sjtug/SJTUBeamer/releases/download/v2.8.0/sjtubeamer.pdf} 给出了大量的示例，用于快速上手 SJTUBeamer 的基本使用方法。推荐大家从一个干净的文档一步步码出来这些例子，或者遇到问题先按手册查询。本讲座仅做概览。
 
         \note{这些例子含有 beamer 文档类的基础用法，一步步地完成可以较快地学会这些知识。}
 
@@ -146,7 +146,7 @@
   \only<3>{
     \begin{columns}
       \begin{column}{0.7\textwidth}
-        \textit{Development Guide of SJTUBeamer} \link{https://github.com/sjtug/SJTUBeamer/releases/download/v2.6.0/sjtubeamerdevguide.pdf} 对于想要了解 SJTUBeamer 框架与原理的人会比较有用，感兴趣的可以通过阅读该手册尝试对代码更改提 PR 或贡献插件 \link{https://github.com/sjtug/SJTUBeamer/issues/81}。本讲座不会涉及这一部分。
+        \textit{Development Guide of SJTUBeamer} \link{https://github.com/sjtug/SJTUBeamer/releases/download/v2.8.0/sjtubeamerdevguide.pdf} 对于想要了解 SJTUBeamer 框架与原理的人会比较有用，感兴趣的可以通过阅读该手册尝试对代码更改提 PR 或贡献插件 \link{https://github.com/sjtug/SJTUBeamer/issues/81}。本讲座不会涉及这一部分。
         \begin{exampleblock}{\faTerminal{} 代码同步}
           \ttfamily\footnotesize
           cd src\\
@@ -214,7 +214,7 @@
         
           sidebar 外样式略有一些 BUG，就是封面页会有文字偏移，感兴趣地可以考虑修正一下，暂时没有找到太好的通用方法。冷知识，10 年前也有学长做了个 \href{https://github.com/X-Wei/aBeamerTemplate4SJTU}{SJTU Beamer 模板}发布于水源 BBS，使用的就是 sidebar 外样式。
           
-          别小看这两页，SJTUBeamer 很多代码都放在这两页上了，这两页已经可以组合出 $3\times 2\times 2\times 9\times 2=216$ 种可能了（忽略徽标位置的话正好 108 种）。}
+          别小看这两页，SJTUBeamer 很多代码都放在这两页上了，这两页已经可以组合出 $3\times 2\times 2\times 9\times 2=216$ 种可能了（忽略徽标位置的话正好 108 种）。每次展示都用同一种样式显得比较单调，适当的时候可以改改选项试试这些样式。}
       }
 
       \begin{codeblock}[]{}
@@ -893,7 +893,7 @@
       \end{codeblock}
     \end{column}
   \end{columns}
-  \note{AutoBeamer 自动切割未来可能是一个较大的程序，要想真的完成自动从论文生成幻灯片，需要将后文的那些机制都结合起来，如果我有时间的话或许会写成 VS Code 插件。再高级点就要加 Machine Learning，提取每一段语义的思想分割并生成标题，这个 idea 或许有商业价值，但我觉得谁想做谁做吧，现在还是处于相对初级的阶段。}
+  \note{AutoBeamer 自动切割未来可能是一个较大的程序，要想真的完成自动从论文生成幻灯片，需要将后文的那些机制都结合起来，如果我有时间的话或许会写成 VS Code 插件。再高级点就要加 Machine Learning/NLP，提取每一段语义的思想分割并生成标题，这个 idea 或许有商业价值（当然最近的 Google I/O 大会已经发布了 Google Docs 的最新 TL;DR 功能。\link{https://support.google.com/docs/thread/150906266/google-docs-new-feature-summaries?hl=en}），但我觉得谁想做谁做吧，现在还是处于相对初级的阶段。}
 \end{frame}
 
 \section{跳转}
@@ -975,7 +975,7 @@
     \item 避免嵌入动画与视频，转而采用超链接的方式。
     \begin{center}
       \ttfamily
-      \cmd{href}\{run:地址\}\{链接标识\}
+      \cmd{href}\{run:\,地址\}\{链接标识\}
     \end{center}
   \end{itemize}
 \end{frame}

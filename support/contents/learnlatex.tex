@@ -815,7 +815,7 @@
       \cmd{multicolumn} 命令不仅可以用于合并同行的单元格，还可以用于临时地屏蔽表格导言对该列的对齐方式定义。这里用于居中表头。
       \begin{center}
         \parbox{0.85\linewidth}{
-          \ttfamily\color{blue}\textbackslash{}multicolumn\{格数\}\{对齐方式\}\{内容\}
+          \cmd{multicolumn\{格数\}\{对齐方式\}\{内容\}}
         }
       \end{center}
       跨页表格考虑使用 \pkg{longtable} 宏包。带标注的表格可以考虑使用 \pkg{threeparttable} 宏包。考虑使用在线工具生成表格代码 \link{https://www.tablesgenerator.com/latex_tables}。
