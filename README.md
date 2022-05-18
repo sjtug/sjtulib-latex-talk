@@ -16,13 +16,11 @@ l3build doc
 
 ### 上传至 Overleaf
 
-[![](https://img.shields.io/badge/overleaf-lecture2-green.svg)](https://www.overleaf.com/read/fvwxzvcxhcwd) 
-
 需要上传到 Overleaf 编译请使用
 ```
 l3build ctan
 ```
-将生成的 `sjtulib-talk-ctan.zip` 上传，并使用 XeLaTeX 编译。受 Overleaf 编译时长限制，目前可以在节首链接上看到最近一次讲座的内容。可以下载预编译的 Overleaf 版本，在 `latex-talk.tex` 主文件中选择需要编译哪些部分后，手动本地编译全部内容。
+将生成的 `sjtulib-talk-ctan.zip` 上传，并使用 XeLaTeX 编译。受 Overleaf 编译时长限制，目前可以在[这个链接](https://www.overleaf.com/read/fvwxzvcxhcwd)上看到最近一次讲座的内容。可以下载预编译的 Overleaf 版本，在 `latex-talk.tex` 主文件中选择需要编译哪些部分后，手动本地编译全部内容。
 
 ### 贡献/许可
 
