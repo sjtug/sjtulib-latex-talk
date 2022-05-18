@@ -1,0 +1,20 @@
+\documentclass{ctexbeamer}
+\usetheme{sjtubeamer}
+\AtBeginSection[]{
+    \begin{frame}
+        \tableofcontents[currentsection, hideallsubsections]
+    \end{frame}
+}
+\begin{document}
+    \begin{frame}
+        \frametitle{目录}
+        \tableofcontents[hideallsubsections]
+    \end{frame}
+
+    \section{第一节}
+    \section{第二节}
+    \section{第三节}
+    \begin{frame}[plain]
+        \sectionpage
+    \end{frame}
+\end{document}

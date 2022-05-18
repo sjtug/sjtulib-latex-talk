@@ -120,7 +120,7 @@
       \end{column}
     \end{columns}
     \note[item]{GitHub 上克隆的是开发版（社区版），Release 得到的是稳定版，虽然开发版比稳定版稳定，但是稳定版在镜像站的加持下下载会更快一些。}
-    \note[item]{进入镜像站页面后，点击 git/SJTUBeamer.git。跳转可能稍有 BUG，所以可能要退回来再点一次即可进入该页面。}
+    \note[item]{进入镜像站页面后，点击 github/SJTUBeamer（点击 git/SJTUBeamer.git 会有 BUG）。}
   }
 
   \only<2>{
@@ -212,7 +212,7 @@
         \note{
           使用外样式关键字切换页面布局，使用 \opt{topright} 和 \opt{bottomright} 切换徽标的位置。
         
-          sidebar 外样式略有一些 BUG，就是封面页会有文字偏移，感兴趣地可以考虑修正一下，暂时没有找到太好的通用方法。冷知识，10 年前也有学长做了个 \href{https://github.com/X-Wei/aBeamerTemplate4SJTU}{SJTU Beamer 模板}发布于水源 BBS，使用的就是 sidebar 外样式。
+          sidebar 外样式略有一些 BUG，就是封面页会有文字偏移，感兴趣地可以考虑修正一下，暂时没有找到太好的通用方法，这种情况下可以考虑不使用标题页或只使用 maxplus 版本。冷知识，10 年前也有学长做了个 \href{https://github.com/X-Wei/aBeamerTemplate4SJTU}{SJTU Beamer 模板}发布于水源 BBS，使用的就是 sidebar 外样式。
           
           别小看这两页，SJTUBeamer 很多代码都放在这两页上了，这两页已经可以组合出 $3\times 2\times 2\times 9\times 2=216$ 种可能了（忽略徽标位置的话正好 108 种）。每次展示都用同一种样式显得比较单调，适当的时候可以改改选项试试这些样式。}
       }
@@ -249,6 +249,92 @@
   \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{目录}
+  \cmd{tableofcontents} 命令在 \cls{beamer} 中可以添加参数以更改要展示的节次标题。\opt{hideallsubsections} 参数用于不排印小节标题。
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      
+      \begin{codeblock}[]{目录页}
+||\documentclass{ctexbeamer}
+\usetheme{sjtubeamer}
+\begin{document}
+  \begin{frame}
+    \frametitle{||目录}
+|\highlightline|    \tableofcontents[hideallsubsections]
+  ||\end{frame}
+||\end{document}
+      \end{codeblock}
+      
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \centering
+      \includebeamerlarge[1]{support/beamer/toc.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{目录}
+  \only<1>{
+    \cmd{AtBeginSection} 用于向每节开始添加内容。
+  }
+
+  \only<2>{
+    最常见的做法是添加当前节的高亮目录，添加 \opt{currentsection} 参数高亮该节。
+  }
+
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      
+      \begin{codeblock}[]{节目录}
+||\documentclass{ctexbeamer}
+\usetheme{sjtubeamer}
+|\highlightline<1>|\AtBeginSection[]{
+  \begin{frame}
+|\highlightline<2>|    \tableofcontents[currentsection, hideallsubsections]
+  ||\end{frame}
+|\highlightline<1>|}
+\begin{document}
+  \section{||第一节}
+||\end{document}
+      \end{codeblock}
+      
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \centering
+      \includebeamerlarge[2]{support/beamer/toc.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{目录}
+  也可以通过 \cmd{sectionpage} 添加节页，在 SJTUBeamer 里最好在帧上添加 \opt{plain} 参数，以隐藏导航栏。
+
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      
+      \begin{codeblock}[]{节页}
+||\documentclass{ctexbeamer}
+\usetheme{sjtubeamer}
+\AtBeginSection[]{
+|\highlightline|  \begin{frame}[plain]
+|\highlightline|    \sectionpage
+  ||\end{frame}
+}
+\begin{document}
+  \section{||第一节}
+||\end{document}
+      \end{codeblock}
+      
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \centering
+      \includebeamerlarge[5]{support/beamer/toc.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
 
 \begin{frame}
   \frametitle{符合交大视觉形象识别系统}
@@ -381,6 +467,7 @@
   \end{columns}
 
   \note{有的插件并不需要向 sjtubeamer 设定 my 选项。下面来了解一下 \cls{beamer} 的基础模型，因为我觉得这些部分可能要比前面这些设定参数要难一点，所以放在了偏后的位置。以及 SJTUBeamer 对下面的内容优化程度可能还稍显不足。}
+  \note{展示几个自建主题。}
   
 \end{frame}
 
@@ -441,6 +528,7 @@
     \note[item]{使用 Pympress 阅读器以最大化 beamer 的交互功能（左侧为放映窗口，右侧为演示者视图），并使用类似于 PowerPoint 演示者视图的界面方便演讲，可便携安装。我也参与了界面的汉化工作。}
     \note[item]{为了使用目前的汉化版本，你需要使用 1.7.2 版本，需要从 PyPi 上手动安装包并且按照指示安装依赖（目前只推荐 \faLinux{} 和 \faApple{} 这么做）。}
     \note[item]{也就是 \texttt{pip install pympress --user} 并安装依赖。之后就是 \texttt{pympress} 启动。}
+    \note[item]{Pympress 与 LibreOffice 的 Impress Presentation 名称有关。}
   \end{figure}
 
 \end{frame}
@@ -467,6 +555,7 @@
       \only<1>{
         \cls{beamer} 的自然切割单位为 \env{frame}（帧），一帧可以派生出很多张幻灯片（slide）。
         \note{当然后来由 Joseph Wright 和 Vedran Miletic 维护，由 samcarter（后文提到的 \pkg{tikzlings} 的作者）提供支持服务。}
+        \note{以及 Till Tantau 是当时为了他 PhD 答辩时制作的 beamer 宏包，SJTUBeamer 发起人谌翔是为了他本科答辩时制作的，我重构的一部分是为了我自己某课程大作业 pre 准备的。}
       }
 
       \only<2>{
@@ -683,7 +772,7 @@
       
       \only<1>{
         对列表环境添加 \opt{<+->} 修饰符可以逐项添加覆盖效果。\opt{<+-|alert@+>} 还可以高亮当前的覆盖项目。
-        \note{还有一些特殊的渐进切换语法糖，比如列表覆盖可以直接在环境上添加简单的修饰符。还可以使用 \opt{alert} 参数来高亮当前项目。}
+        \note{还有一些特殊的渐进切换语法糖，比如列表覆盖可以直接在环境上添加简单的修饰符。还可以使用 \opt{alert} 参数来高亮当前项目。以及 \cmd{beamerdefaultoverlayspecification}\{\opt{<+->}\} 可以设定默认覆盖选项。}
       }
       \only<2-4>{
         \makebox[1cm][l]{\includebeamerlarge[1]{support/beamer/itemizeoverlay.pdf}}
@@ -970,6 +1059,7 @@
   \begin{itemize}
     \item 建议在制作幻灯片时尽量分点展示，分段会导致段与段之间的分界不够明显。
     \item 尽量不使用代码抄录环境，使用时需要在 \env{frame} 上添加 \opt{fragile} 选项。
+    \note{用抄录环境的话最好定义一个命令，然后使用 \cmd{texttt} 更改为等宽字体样式即可。}
     \item 可以多用图标代替文字，比如使用 \pkg{fontawesome5} 宏包。
     \item 尽可能使用矢量图形，大型图片先压缩再插入，必要时开启 \opt{draft} 选项。
     \item 避免嵌入动画与视频，转而采用超链接的方式。
