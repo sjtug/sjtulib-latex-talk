@@ -3,8 +3,8 @@
 \begin{document}
 \begin{tikzpicture}
     \tkzDefPoints{0/0/A,3/0/B,2/2/C}
-    \tkzDefTriangleCenter[euler](A,B,C) \tkzGetPoint{E}
-    \tkzDrawCircle[euler,blue](A,B,C)
+    \tkzDefCircle[euler](A,B,C) \tkzGetPoints{E}{e}
+    \tkzDrawCircle[blue](E,e)
     \tkzDefMidPoint(A,B) \tkzGetPoint{M_c}
     \tkzDefMidPoint(A,C) \tkzGetPoint{M_b}
     \tkzDefMidPoint(B,C) \tkzGetPoint{M_a}

@@ -23,7 +23,7 @@ supportdir = "support"
 
 -- Compile on latexmk,
 -- for a custom compiling environment typesetdir.
--- and copy the output pdf into outputdir.
+-- And copy the output pdf into outputdir.
 function latexmk_typeset(file, typesetdir, outputdir)
     local latexmkexe = "latexmk"
     local latexmkopt = "-xelatex -interaction=nonstopmode -shell-escape -outdir=. -quiet"
@@ -114,14 +114,14 @@ function typeset_demo_tasks()
     rm("*", thesisdepdir .. "/texmf/tex/latex/sjtuthesis")
     cp("*", thesisv2depdir .. "/sjtuthesis/build/unpacked",
         thesisdepdir .. "/texmf/tex/latex/sjtuthesis")
-    errorlevel = latexmk_typeset("dev-v2", thesisdepdir, suppthesisdir)
+    errorlevel = latexmk_typeset("dev-v2.tex", thesisdepdir, suppthesisdir)
     if errorlevel ~= 0 then
         print("! latexmk dev-v2.tex failed")
         print("+ Try updating the newtx package to 2022/01/12 (1.7) and later.")
         errorlevel = os.execute("tlmgr update newtx")   -- Might not be useful for MiKTeX distribution.
         errorlevel = errorlevel + latexmk_typeset("dev-v2", thesisdepdir, suppthesisdir)
         if errorlevel ~= 0 then
-            print("  Or stay tuned for TeX Live 2022.")
+            print("  Or upadte to TeX Live 2022.")
             return errorlevel
         end
     end
