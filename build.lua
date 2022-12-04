@@ -108,11 +108,11 @@ function typeset_demo_tasks()
     -- generate the sty files by l3build convention
     -- for general compatibility over platforms.
     os.execute(
-        "cd " .. thesisv2depdir .. "/sjtuthesis"
+        "cd " .. thesisv2depdir .. "/sjtutex"
         .. " && " .. "l3build unpack")
     -- replace the old dependencies in SJTUThesis.
     rm("*", thesisdepdir .. "/texmf/tex/latex/sjtuthesis")
-    cp("*", thesisv2depdir .. "/sjtuthesis/build/unpacked",
+    cp("*", thesisv2depdir .. "/sjtutex/build/unpacked",
         thesisdepdir .. "/texmf/tex/latex/sjtuthesis")
     errorlevel = latexmk_typeset("dev-v2.tex", thesisdepdir, suppthesisdir)
     if errorlevel ~= 0 then
