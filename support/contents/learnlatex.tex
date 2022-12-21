@@ -4,6 +4,29 @@
 % FIXME: footnote fault numbering
 % FIXME: section pop up in navigation in advance
 
+\begin{frame}
+  \frametitle{本部分主要参考}
+  \begin{bibliolist}{00}
+    \onlineitem 陈晟祺~等.
+    \newblock 如何使用 \LaTeX\ 排版论文[EB/OL].
+    \newblock 2021. \url{https://github.com/tuna/thulib-latex-talk}.
+
+    \onlineitem 曾祥东.
+    \newblock 现代 \LaTeX\ 入门讲座[EB/OL].
+    \newblock 2022. \url{https://github.com/stone-zeng/latex-talk}.
+
+    \onlineitem \LaTeX\ Project.
+    \CTeX\ 开发小组~译．
+    \newblock learnlatex.org[EB/OL].
+    \newblock 2022. \url{https://github.com/CTeX-org/learnlatex.github.io}.
+  
+    \onlineitem \textsc{Oetiker T}, \textsc{Partl H}, \textsc{Hyna I}, \textsc{Schlegl E}.
+    \CTeX\ 开发小组~译．
+    \newblock 一份（不太）简短的 \LaTeXe{} 介绍：或 111 分钟了解 \LaTeXe{}[EB/OL]. \newblock\newblock 2021.
+    \url{https://ctan.org/pkg/lshort-zh-cn}.
+  \end{bibliolist}
+\end{frame}
+
 \begin{frame}[plain]
   \vfil
   \begin{center}
@@ -122,7 +145,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[label={frame:engine}]
   \frametitle{Unicode 引擎}
   \begin{table}
     \caption{主流 \hologo{(La)TeX} 程序
@@ -963,7 +986,7 @@
         这是更容易自定义的方法，与 \hologo{BibTeX} 的运作方式稍有不同。\pkg{biblatex} 提供了更加智能的引用命令。
       \end{block}
       \begin{alertblock}{\hologo{biber} + \pkg{biblatex-gb7714-2015}}
-        而中文引用可以使用 \pkg{biblatex} 宏包的样式 \pkg{gb7714-2015}，需使用 \hologo{XeLaTeX} 编译。
+        而中文引用可以使用 \pkg{biblatex} 宏包的样式 \pkg{gb7714-2015}。
       \end{alertblock}
     \end{column}
   \end{columns}

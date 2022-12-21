@@ -1,0 +1,44 @@
+% !TeX root = ../latex-talk.tex
+
+\title{使用 \LaTeX{} 排版毕业论文}
+\subtitle{上海交通大学图书馆专题培训讲座}
+\author{李子龙}
+\institute[SJTU Linux User Group]{上海交通大学 Linux 用户组}
+\date{2022 年 12 月}
+\subject{LaTeX, 论文排版, SJTUThesis, 模版编写}
+\maketitle
+
+\begin{frame}{关于}
+  \begin{columns}[c]
+  \begin{column}{.7\textwidth}
+    \begin{block}{使用 \LaTeX{} 排版毕业论文}
+    \alert{\url{https://github.com/sjtug/sjtulib-latex-talk}}
+    
+    \begin{flushleft}
+      \begin{itemize}
+        \item 从零开始跑起来 \LaTeX{}，只用十步了解其基础操作；
+        \item 学会使用 \SJTUThesis{} 交大毕业论文模板，新版说明；
+        \item 简要了解 \LaTeX{} 模板的编写，触类旁通。
+      \end{itemize}
+    \end{flushleft}
+
+    \begin{tabular*}{0.8\linewidth}{@{\extracolsep{\fill}}lll@{}}
+      \scriptsize 最后更新 & \scriptsize 幻灯片下载 & \scriptsize 许可证 \\
+      \today & Overleaf \link{https://www.overleaf.com/read/fvwxzvcxhcwd} & \href{https://creativecommons.org/licenses/by-sa/4.0/}{\faCreativeCommons\,\faCreativeCommonsBy\,\faCreativeCommonsSa} \\ 
+    \end{tabular*}
+    \end{block}
+    \vspace{0.2cm}
+  \end{column}
+  \begin{column}{.3\textwidth}
+    \qrcode[hyperlink, height=4cm]{https://www.overleaf.com/read/fvwxzvcxhcwd}
+  \end{column}
+  \end{columns}
+\end{frame}
+
+\include{support/contents/learnlatex}
+\include{support/contents/sjtuthesis}
+\include{support/contents/newversion}
+\include{support/contents/template}
+
+\def\bottomthanks{Happy \TeX{}ing!}
+\makebottom

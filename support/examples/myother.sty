@@ -1,0 +1,7 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{myother}[2022/12/28 v1.0 My other package]
+\DeclareOption{SJTU}{\def\otherschool{FDU}}
+\DeclareOption{FDU}{\def\otherschool{SJTU}}
+\ExecuteOptions{FDU}
+\ProcessOptions*
+\newcommand{\othercmd}{}

@@ -1,0 +1,349 @@
+% !TeX root = ../../latex-talk.tex
+
+\part{模版编写}
+
+\begin{frame}
+  \frametitle{本部分主要参考}
+
+  \begin{bibliolist}{00}
+    \onlineitem \textsc{USTC \TeX{} Users Group}.
+    \newblock \LaTeX{} 模板开发最佳实践[EB/OL].
+    \newblock 2019. \href{https://github.com/ustctug/ustcthesis/wiki/LaTeX-模板开发最佳实践}
+    {\ttfamily https://github.com/ustctug/ustcthesis/wiki/LaTeX-模板开发最佳实践}.
+
+    \onlineitem 项子越.
+    \newblock \LaTeX3 教程[EB/OL].
+    \newblock 2021. \url{https://github.com/xziyue/latex3-chinese-video}.
+
+    \onlineitem \textsc{Wright J.}
+    \newblock A model \texttt{.dtx} file [EB/OL].
+    \newblock 2009. \url{https://www.texdev.net/2009/10/06/a-model-dtx-file/}.
+  \end{bibliolist}
+
+  \note{由于这些文章贡献者比较多，所以只以出现位置的所属作为作者。}
+\end{frame}
+
+\begin{frame}
+  \frametitle{模板是什么}
+
+  \begin{itemize}
+    \item 已经设计好的格式框架
+    \item<1-> \alert{不好的模板} 需要将时间花在调整格式框架上
+    \item<2> \alert{好的模板} 适度封装底层实现，抽象功能以统一管理，使用户专注于内容
+  \end{itemize}
+
+  \begin{figure}
+    \begin{subfigure}{0.5\textwidth}
+      \framebox{
+        \parbox{\textwidth}{
+        {\bfseries\Large 3.3 本章小结}\vspace{6bp}
+
+        \only<1>{{\scriptsize \btn{黑体 \faAngleDown} \btn{四号 \faAngleDown} \btn{\bfseries B} \btn{\faListOl} \btn{段落 \faExternalLink*}
+        段前 \btn{24 磅 \faSort} 段后 \btn{6 磅 \faSort} 行距 \btn{单倍行距 \faAngleDown} 特殊格式 \btn{(无) \faAngleDown}}}
+
+        \only<2>{\btn{\parbox{5em}{\fbox{\bfseries 1.1 AaBb}\\{\scriptsize\centering 标题 2}}}}
+
+        {\vspace{5bp}\songti\hspace{2em}本章介绍了……\vspace{5bp}}
+
+        \only<1>{{\scriptsize \btn{宋体 \faAngleDown} \btn{小四 \faAngleDown} \btn{段落 \faExternalLink*}
+        段前 \btn{0 行 \faSort} 段后 \btn{0 行 \faSort} 行距 \btn{固定值 \faAngleDown} 设置值 \btn{20 磅 \faSort} 特殊格式
+        \btn{首行缩进 \faAngleDown} 磅值：\btn{2 字符 \faSort}}}
+
+        \only<2>{\btn{\parbox{5em}{\fbox{AaBbCcDd}\\{\scriptsize\centering 0\_缩进正文}}}}
+        }
+      }
+      \caption{Word \only<2>{\link{https://shuiyuan.sjtu.edu.cn/t/topic/78768}}}
+    \end{subfigure}
+    \hspace{2em}
+    \begin{subfigure}{0.4\textwidth}
+      \scriptsize
+      \framebox{
+        \parbox{\textwidth}{
+          \only<1>{
+            \cmd{newpage}\\
+            \cmd{fancyhead}[LH]\{上海交通大学学位论文\}\\
+            \cmd{fancyhead}[RH]\{第四章\cmd{quad}全文总结\}\\
+            \cmd{section}\{全文总结\}\\
+            本文介绍了……
+          }
+          \only<2>{
+            \cmd{chapter}\{全文总结\}\\
+            本文介绍了……
+          }
+        }
+      }
+      \vspace{10ex}
+      \caption{\LaTeX{}}
+    \end{subfigure}
+    \caption{\only<1>{不}好的模板}
+  \end{figure}
+
+  \note[item]{我不太倾向于讲“Word 思维”这种东西，我认为只有好的模板
+  与不好的模板，把 Word 用得很麻烦大概是对 Word 了解的不够，学习 \LaTeX{}
+  可以帮你更好地学习 Word。}
+  \note[item]<1>{当然，在 Word 里你也可以使用格式刷，但是我更喜欢复制粘贴。
+  这种方法治标不治本，一旦某一种样式需要更正，由于没有为格式添加语义标签，
+  所有的地方都需要重新设定格式。硬编号更是一种灾难，一旦前面有编号变动，
+  后面都需要变动，以及交叉引用几乎无从下手。}
+  \note[item]<2>{有一位用过 \LaTeX{} 的大佬借助于 Word 域代码也搞出一个
+  “非官方”模板，我试了一下很好用，直接使用预设好的样式就可以实现统一管理。}
+\end{frame}
+
+\begin{frame}
+  \frametitle{封装的好处}
+
+  \begin{itemize}
+    \item 统一管理，同类型的样式可以被同步更改。
+    \item<2-> 在不破坏顶层接口的情况下，无感升级底层实现。
+    \item<4> 保持与标准类统一的接口，可以方便用户迁移内容于其他模板。
+  \end{itemize}
+
+  \begin{figure}
+    \begin{tabular}{cl}
+      \framebox[6em]{文档} & \cmd{chapter}\{全文总结\} \\
+      \framebox[6em]{接口} & \only<1>{“语义格式”}\only<2->{\cmd{chapter}} \\
+      \framebox[6em]{模板} & 
+        \only<1>{\texttt{.cls} 或 \texttt{.sty}}%
+        \only<2>{\cmd{ctexset}\{\texttt{chapter/...=...}\}}%
+        \only<3>{\cmd{ctex\_set:nn}\{\texttt{chapter}\}\{...\}}%
+        \only<4>{$\langle\text{\cls{fduthesis 的实现}}\rangle$ \link{https://github.com/stone-zeng/fduthesis}} \\
+      \framebox[6em]{内核} & 
+        \only<1>{第 \ref{frame:latexiii} 页}%
+        \only<2>{\LaTeXe{}}%
+        \only<3->{\LaTeX3} \\
+      \framebox[6em]{引擎} & 
+        \only<1>{第 \ref{frame:engine} 页}%
+        \only<2->{\hologo{XeTeX}, \hologo{LuaTeX}}%
+        \only<3>{, (\hologo{pdfTeX})}%
+        \only<4>{, (\hologo{pdfTeX}, Ap\TeX{})} \\
+    \end{tabular}
+    \caption{封装}
+  \end{figure}
+
+  \note[item]{\SJTUThesis{} 在底层从 \LaTeXe{} 升级为 \LaTeX3 的时候，
+  几乎没有破坏顶层接口，用户升级模板时几乎是替换模板代码即可使用。}
+  \note[item]{\SJTUBeamer{} 底层何时升级至 \LaTeX3？我想大概会等到
+  \cls{beamer} 文档类底层使用 \LaTeX3 重写，或者出现了使用 \pkg{l3draw}
+  实现的幻灯片宏包，届时我们将迁移。}
+  \note[item]{大部分的模板是对 \LaTeX{} 中“语义格式”的重新实现，一般存于 \texttt{.cls} 或 \texttt{.sty} 文件中。}
+  \note[item]{对基础格式的实现一般是引擎的事情，一般称“原语”，比如如何实现加粗本身、如何读取字体文件。}
+\end{frame}
+
+\begin{frame}
+  \frametitle{阅读文档}
+
+  了解一个宏包最好的方式是阅读宏包的文档。如果有多个文档备选，添加 \texttt{-l} 开关。
+  \note{不要硬核 DIY，觉得不看说明书是一种很酷的行为，阅读文档实际上会帮你节省很多时间。}
+
+  \begin{exampleblock}{\faTerminal}
+    \ttfamily
+    texdoc \textit{<pkg>}\\
+    texdoc -l \textit{<pkg>}
+  \end{exampleblock}
+
+  如果你仍有问题：
+  \begin{itemize}
+    \item 可以考虑向 \TeX{} StackExchange \link{https://tex.stackexchange.com/} 寻找解答或提出问题。
+    \item 中文相关的问题可以在 \CTeX{} 临时论坛 \link{https://github.com/CTeX-org/forum} 搜寻。
+    \item 也可以在宏包文档提供的存储库内开 Discussions 或提 Issue。
+    \item 提问时请附上最小工作案例（MWE）与日志文件。
+    \item 模板开发常用文档列表：\link{https://github.com/ustctug/ustcthesis/wiki/参与开发}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile,label={frame:latexiii}]
+  \frametitle{\LaTeXe{} 与 \LaTeX3}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{exampleblock}{\TeX{}\hfill\texttt{texbytopic} \link{https://github.com/CTeX-org/tex-by-topic-cn}}
+        基础方法，提供与引擎层的直接交互。
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{}
+\def\tempa#1{[#1]}
+\newcount{tempb}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \note<1>[item]{\TeX{} 作为最底层，提供了与引擎直接交互的原语。编写模板的话，只是偶尔用一下里面的东西，一般会有上层更好的封装。
+  这个东西内部机理深不可测，但是真的理解好了对于做相关工作的人来说会有帮助
+  （知乎上看到了个研究 \TeX{} 的最后运用在了自己软件当中数学公式的排版。\link{https://www.zhihu.com/question/400835896/answer/1528269456}）
+  这方面的读物，\TeX{} Live 里自带的是 \pkg{texbytopic}，这里链接附上的是它尚未完成的中译版。
+  当然，我读的更多的是 Knuth 的 The \TeX{}book \link{https://github.com/seuliang/the-texbook-cn}。}
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{alertblock}{\LaTeXe{}\hfill\texttt{latex2e.pdf} \link{https://github.com/CTeX-org/ctex-doc/blob/master/clsguide-zh-cn/clsguide-zh-cn.tex}}
+        目前最流行的语法版本，增强的命令检查。
+      \end{alertblock}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{}
+|\only<2>{\highlightline\ttfamily\cmd{makeatletter}}|
+\newcommand{\sjtu@tempa}[1][]{[#1]}
+\newcounter{tempb}
+|\only<2>{\highlightline\ttfamily\cmd{makeatother}}|
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \note<1>[item]{\LaTeXe{} 是目前最广泛使用的 \LaTeX{} 版本，通过新的命令定义接口，实现对命令的额外检查（有没有定义过），
+  并提供可选参数的设定。近三十年来大家都在用 \LaTeXe{} 构建许多宏包。
+  \TeX{} Live 自带的是 \pkg{latex2e}，这个可能要加个 \texttt{.pdf} 才能看到，是非官方的一本百科全书。官方的 \textit{\LaTeX{} Companion} 花钱而且到现在第三版还没出来。}
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{block}{\LaTeX3\hfill\texttt{interface3} \link{https://github.com/WenboSheng/LaTeX3-doc-cn}}
+        显式的参数定义，标准的编程接口，未来趋势。
+      \end{block}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{}
+|\only<2>{\highlightline\ttfamily\cmd{ExplSyntaxOn}}|
+\NewDocumentCommand{\tempa}{O{}}{[#1]}
+\fp_new:N \l_sjtu_tempb_fp
+|\only<2>{\highlightline\ttfamily\cmd{ExplSyntaxOff}}|
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \note<1>[item]{\LaTeXe{} 固然不错，但是它提供的功能还是没有那么全面：比如只能是第一个参数为可选参数，搞个键值对参数需要引入宏包；
+  浮点数运算仍然会丢精度，命名随意等等。这些在 \LaTeX3{} 得到了很好的解决，它提供了标准的接口，\cmd{NewDocumentCommand} 可以
+  非常全面，最早是 \pkg{xparse} 宏包引入的，中文翻译：\link{https://github.com/WenboSheng/LaTeX3-doc-cn/blob/master/xparse-doc-cn/xparse-cn.pdf}，
+  最新的 \TeX{} 发行版已经不必特别引入了。命名方面，\pkg{expl} 文档（中文翻译：\link{https://github.com/WenboSheng/LaTeX3-doc-cn/blob/master/expl3-doc-cn/expl3-cn.pdf}）
+  提供了 \LaTeX3 的命名规范，现在会区分全局、局部、常量，作用域，以及更多的变量类型。里面提供的 \texttt{fp} 类型的表现已经能够接近于
+  IEEE754 标准了 \link{https://www.texdev.net/2018/12/09/floating-point-calculations-in-latex}，这对于绘图来说是一个非常好的准备，
+  因为以前用原生的 \env{picture} 环境画一些对齐的线都费劲，因为浮点数精度都丢了。一般都需要引入浮点数的相关宏包。
+  这里的 \pkg{interface3} 文档提供了 \LaTeX3 内核所有接口的信息，如果你学过其他编程语言，可能这个东西会更好上手一些。}
+
+  \note<2>[item]{这几种编程风格是可以在同一个文件中使用的。
+  对于 \LaTeXe{} 你需要使用 \cmd{makeatletter} 和 \cmd{makeatother} 来改变 @ 的字符类别，一般使用 @ 来分割命令的作用域与内容；
+  对于 \LaTeX3 你需要使用 \cmd{ExplSyntaxOn} 和 \cmd{ExplSyntaxOff} 来改变 \_ 和 : 的字符类别。}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{模板结构}
+
+  \only<1-2>{模板的大致结构是接受初始化选项；提供文档接口；传递选项给其他模块，引用其他模块的命令。}
+  \only<2>{这样不同的模块就可以组合起来。}
+  \only<3>{了解文档类/宏包的框架编写结构可以参见 \texttt{texdoc clsguide} \link{https://github.com/CTeX-org/ctex-doc/blob/master/clsguide-zh-cn/clsguide-zh-cn.tex}。使用有关宏包时，命令名称或略有不同。}
+  \note<3>{请注意，可以使用不同的宏包来优化这种编写结构，所以命令形式可能在不同的情况下会略有不同。}
+  \only<4>{\cmd{NeedsTeXFormat} 可以用来规定最低要求的 \LaTeX{} 版本。\cmd{ProvidesClass} 指明文档类的元信息：日期、版本、说明。}
+  \only<5>{\cmd{DeclareOption} 声明文档类选项。}
+  \only<6>{\cmd{ExecuteOption} 执行默认选项。}
+  \only<7>{\cmd{ProcessOptions*} 执行文档传来的选项。}
+  \only<8>{\cmd{LoadClass} 用来加载一个基础文档类。}
+  \only<9>{也就是引入文档类时中括号内传入的选项。}
+  \only<10>{文档类内部对接口进行声明。}
+  \only<11>{在文档中就可以使用接口执行对应操作。}
+  \only<12>{\cmd{PassOptionsToPackage} 用来向其他宏包传递选项。}
+  \only<13>{\cmd{RequirePackage} 将会加载宏包并使用之前传递的选项。}
+  \only<14>{引入其他宏包后，还可以在文档类内使用这些宏包提供的接口。}
+
+  \begin{columns}
+    \only<3-8,10,12-14>{\hspace*{2em}}
+    \only<9,11>{\hspace*{-.6\textwidth}}
+    \begin{column}<3-8,10,12-14>{.6\textwidth}
+      \begin{codeblock}[]{myart.cls}
+|\highlightline<4>|\NeedsTeXFormat{LaTeX2e}[2020/10/01]
+|\highlightline<4>|\ProvidesClass{myart}[2022/12/28 v1.0 My]
+|\highlightline<5>|\DeclareOption{sjtu}{\def\school{SJTU}}
+|\highlightline<5>|\DeclareOption{fdu}{\def\school{FDU}}
+|\highlightline<6>|\ExecuteOptions{fdu}
+|\highlightline<7>|\ProcessOptions*
+|\highlightline<8>|\LoadClass{article}
+|\highlightline<10>|\newcommand{\mycmd}[1]{#1 in \school}
+|\highlightline<12>|\PassOptionsToPackage{\school}{myother}
+|\highlightline<13>|\RequirePackage{myother}
+|\highlightline<14>|\othercmd % provided by myother
+      \end{codeblock}
+    \end{column}
+    \only<1-2,9,11>{\hspace*{-8em}}
+    \begin{column}{.35\textwidth}
+      \begin{figure}
+        \centering
+        \alt<4-9>{\highlight{选项}}{选项} \\
+        $\downarrow$ \\
+        \framebox[6em]{模板}\rlap{$\rightarrow$ \alt<10-11>{\highlight{接口}}{接口}} \\
+        \only<1,3-11>{$\downarrow$ \\ 其他模块}
+        \only<12-14>{$\downarrow$ \\ \highlight{其他模块}}
+        \only<2>{%
+          \framebox[6em]{模块}\rlap{$\rightarrow$ 接口} \\
+          \framebox[6em]{模块}\rlap{$\rightarrow$ 接口}%
+        }
+      \end{figure}
+    \end{column}
+    \only<3-8,10,12-14>{\hspace*{-10em}}
+    \begin{column}<9,11>{.5\textwidth}
+      \begin{codeblock}[]{testmyart.tex}
+|\highlightline<9>|\documentclass[sjtu]{myart}
+\begin{document}
+|\highlightline<11>|  \mycmd{SJTUG}
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+
+  \note<14>{可以使用 MCM 模板触类旁通，演示一下。}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文学编程}
+
+  \note{这两页主要是 \SJTUTeX{} 使用的开发模型，很多开发者现在已经不愿意使用 Doc\TeX{}，
+  因为那个可能会因注释过多加载宏包缓慢的年代已经过去了，现在的计算机性能相较于几十年前已经大幅提升。}
+
+  当代码具有规模后，丰富的注释可以让源代码更加可读，使用 Doc\TeX{} 文档来存储这些带注释的源文件，区别于部署的文档类、样式文件。
+  也可以排版 Doc\TeX{} 文件输出 PDF 文档以供查阅。\link{https://www.texdev.net/2009/10/06/a-model-dtx-file/}
+
+  \begin{columns}
+    \begin{column}{.4\textwidth}
+      \begin{figure}
+        \centering
+        \btn{\ttfamily sjtutex.dtx}\\
+        $\swarrow$ \quad $\downarrow$ \quad $\downarrow$ \quad $\searrow$\\
+        \btn{\ttfamily .ins} \btn{\ttfamily .cls} \btn{\ttfamily .cfg} \btn{\ttfamily .def} \\[0.5ex]
+        {\small 安装文件 文档类 \quad 辅助文件 \hspace*{2em}}
+        \caption{\SJTUTeX{} 解包示意图}
+      \end{figure}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{exampleblock}{\faTerminal}
+        \ttfamily
+        {\color{gray} \# SJTUTeX 封装了 ins 至 dtx 内部，可以自解包} \\
+        xetex sjtutex.dtx \\
+        {\color{gray} \# SJTUBeamer 使用了额外的 ins 文件引导解包}\\
+        xetex beamerthemesjtubeamer.ins \\
+      \end{exampleblock}
+      
+    \end{column}
+  \end{columns}
+
+
+  \note{Jupyter Notebook 也是一种文学编程。}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{l3build}
+  
+  \begin{columns}
+    \begin{column}{.3\textwidth}
+      \includegraphics{support/figures/beamerdir.pdf}
+    \end{column}
+    \begin{column}{.6\textwidth}
+      \pkg{l3build} \link{https://github.com/latex3/l3build} 是辅助 \TeX{} 宏包开发的 Lua 脚本集合，可以用来进行工程管理、项目测试。\texttt{build.lua} 用于配置工程。
+      \note{以前使用 Doc\TeX{} 文件的时候，\TeX{} 宏包开发喜欢单文件一把梭。但是对于复杂的项目，单文件的开发总会让代码定位变得复杂。
+      现在 \TeX{} 社区有了 l3build 这个统一框架用来管理多文件模块，特别地，它提供了回归测试工具。}
+    
+      \begin{description}
+        \small
+        \item[\ttfamily l3build unpack] 将 \texttt{source/} 中的源文件解包至 \texttt{build/unpacked}，运行时文件移至 \texttt{build/local}。
+        \item[\ttfamily l3build doc] 编译定义在 \texttt{doc/} 中定义的文档，同时移进 \texttt{build/doc} 中的还有 \texttt{support/}。
+        \item[\ttfamily l3build check] 对 \texttt{testfiles/} 中的文件进行回归测试。
+        \item[\ttfamily l3build ctan] 执行上述所有流程，输出部署结果至 \texttt{build/distrib}，生成 \texttt{*-ctan.zip} 压缩文件。 
+      \end{description}
+    \end{column}
+  \end{columns}
+
+\end{frame}

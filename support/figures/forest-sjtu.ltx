@@ -1,0 +1,22 @@
+\RequirePackage[edges]{forest}
+\RequirePackage{fontawesome5}
+\forestset{
+  is folder/.style={delay={content/.wrap value={\faFolder{} ##1}}},
+  is file/.style={delay={content/.wrap value={\faFile{} ##1}}},
+  path highlight/.code args={<#1>}{
+      \only<#1>{
+        \pgfkeysalso{
+          orange,
+          edge={orange},
+          for ancestors={edge={orange},
+              if level=0{}{orange}}
+        }
+      }
+    },
+  only/.code args={<#1>}{
+      \alt<#1>{}{\pgfkeysalso{before typesetting nodes={remove}}}
+},
+expanded/.code args={<#1>}{
+    \pgfkeysalso{for descendants={only=<#1>}}
+},
+}

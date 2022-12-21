@@ -312,3 +312,5 @@ SJTUTeX/
 
 # Release package
 *.zip
+
+.DS_Store

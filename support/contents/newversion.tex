@@ -1,0 +1,91 @@
+% !TeX root = ../../latex-talk.tex
+
+\part{新版说明}
+
+\begin{frame}
+  \frametitle{SJTUThesis}
+  \framesubtitle{学位论文模板}
+  SJTUThesis v2 转向使用 \LaTeX3 编程。由于 \LaTeX3 的相关宏包经常更新，您需要安装最新版本的 \TeX{} 发行版。
+
+  \begin{figure}
+    \scriptsize
+    \begin{columns}[c]
+      \hfill
+      \begin{column}{0.2\textwidth}
+        \fzerobox{\includegraphics[width=\linewidth]{support/images/sjtuthesisv1.pdf}}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{tabular}{>{\color{sjtuRedPrimary}}c@{\,}>{\color{sjtuRedPrimary}}l>{\color{sjtuBlueSecondary}}r@{\,}>{\color{sjtuBlueSecondary}}c}
+          \faMinus{} & \LaTeXe{}               & \LaTeX3                         & \faPlus{} \\
+          \faMinus{} & 旧版封面                    & 新版封面                            & \faPlus{} \\
+          \faMinus{} & \texttt{type=course}    &                                 &           \\
+                     &                         & \texttt{math-style}             & \faPlus{} \\
+                     &                         & \texttt{nointlimits, intlimits} & \faPlus{} \\
+                     &                         & \texttt{upint, slint}           & \faPlus{} \\
+          \faMinus{} & \texttt{running-title}  &                                 &           \\
+          \faMinus{} & \texttt{assisupervisor} & \texttt{assoc-supervisor}       & \faPlus{} \\
+                     &                         & \texttt{co-supervisor}          & \faPlus{} \\
+                     &                         & \texttt{style/}                 & \faPlus{} \\
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.2\textwidth}
+        \fzerobox{\includegraphics[width=\linewidth]{support/images/sjtuthesisv2.pdf}}
+      \end{column}
+      \hfill
+    \end{columns}
+    \caption{\SJTUThesis{} v1.x 到 v2.0 的变化}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{SJTUBeamer}
+  \framesubtitle{幻灯片模板}
+  \begin{figure}
+    \scriptsize
+    \begin{columns}[c]
+      \hfill\hfill
+      \begin{column}{0.2\textwidth}
+        \begin{tabular}{>{\color{sjtuRedPrimary}}r@{\,}>{\color{sjtuBlueSecondary}}c}
+          \textbackslash\texttt{definelogo}   & \faAsterisk{} \\
+          快速入门                                & \faPlus{}     \\
+          用户手册优化                              & \faPlus{}     \\
+          开发手册优化                              & \faPlus{}     \\
+          \textbackslash\texttt{usesjtutheme} & \faAsterisk{} \\
+          poster 海报子主题                        & \faPlus{}     \\
+          启用 Discussions                      & \faPlus{}     \\
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.3\textwidth}
+        \fzerobox{\includegraphics[width=0.995\linewidth]{support/images/sjtubeamerquickstartfirst.pdf}}\\
+        \fzerobox{\includegraphics[width=0.485\linewidth]{support/images/sjtubeamerfirst.pdf}}\hfill
+        \fzerobox{\includegraphics[width=0.485\linewidth]{support/images/sjtubeamerdevguidefirst.pdf}}
+      \end{column}
+      \begin{column}{0.26\textwidth}
+        \fzerobox{\includegraphics[width=\linewidth]{support/beamer/poster.pdf}}
+      \end{column}
+      \hfill\hfill
+    \end{columns}
+    \caption{\SJTUBeamer{} v2.9 到 v3.0 的变化}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\SJTUTeX{}}
+  \framesubtitle{和它的朋友}
+
+  \begin{columns}
+    \begin{column}{.45\textwidth}
+      \begin{description}
+        \item[SJTUReport] 为课程大报告设计。
+        \item[SJTUArticle] 为课程小论文设计。
+      \end{description}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{figure}
+        \includegraphics{support/figures/sjtutex.pdf}
+        \caption{\SJTUTeX{} 和它的朋友}
+      \end{figure}    
+    \end{column}
+  \end{columns}
+
+\end{frame}
