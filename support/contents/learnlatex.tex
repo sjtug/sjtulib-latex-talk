@@ -392,7 +392,7 @@
       \begin{codeblock}[]{样式}
 \documentclass{ctexart}
 \begin{document}
-|\highlightline<2>|  \textbf{||一起向未来}
+|\highlightline<2>|  \textbf{|\phantom{}|一起向未来}
 
 |\highlightline<3>|  \emph{Together for a Shared Future}
 \end{document}
@@ -488,9 +488,9 @@
 \documentclass{ctexart}
 \begin{document}
 |\highlightline|  \begin{description}
-    \item[||第一] 文本
-    \item[||第二] 文本
-    \item[||第三] 文本  
+    \item[|\phantom{}|第一] 文本
+    \item[|\phantom{}|第二] 文本
+    \item[|\phantom{}|第三] 文本  
 |\highlightline|  \end{description}
 \end{document}
       \end{codeblock}
@@ -535,7 +535,7 @@
       \begin{codeblock}[]{目次}
 \documentclass{ctexart}
 \begin{document}
-|\highlightline|  \section{||概念}
+|\highlightline|  \section{|\phantom{}|概念}
 |\highlightline|  \subsection{\LaTeX{}}
   \LaTeX{} 是一个用以排版高质量作品的文档准备系统。
 \end{document}
@@ -590,8 +590,8 @@
   \begin{columns}
     \begin{column}{0.4\textwidth}
       \begin{codeblock}[]{learnlatex.tex}
-|\highlightline|\chapter{||学习 \LaTeX{}}
-\section{||概念}
+|\highlightline|\chapter{|\phantom{}|学习 \LaTeX{}}
+\section{|\phantom{}|概念}
 \subsection{\LaTeX{}}
 \LaTeX{} 是一个用以排版高质量作品的文档准备系统。
       \end{codeblock}
@@ -699,7 +699,7 @@
 |\highlightline<1>|    \begin{minipage}{0.48\textwidth}
       \centering
       \includegraphics[height=2cm]{sjtugt}
-|\highlightline<2>|      \caption{SJTUG||文字}\label{fig:sjtugt}
+|\highlightline<2>|      \caption{SJTUG|\phantom{}|文字}\label{fig:sjtugt}
 |\highlightline<1>|    \end{minipage}
   \end{figure}
 \end{document}
@@ -735,12 +735,12 @@
 |\highlightline|    \begin{subfigure}{0.48\textwidth}
       \centering
       \includegraphics[height=2cm]{sjtug}
-      \caption{||徽标}
+      \caption{|\phantom{}|徽标}
 |\highlightline|    \end{subfigure}\hfill
 |\highlightline|    \begin{subfigure}{0.48\textwidth}
       \centering
       \includegraphics[height=2cm]{sjtugt}
-      \caption{||文字}
+      \caption{|\phantom{}|文字}
 |\highlightline|    \end{subfigure}
     \caption{SJTUG}\label{fig:sjtug}
   \end{figure}
@@ -765,7 +765,7 @@
 \begin{document}
 \begin{table}[ht]
   \centering
-  \caption{||北京冬奥会吉祥物}
+  \caption{|\phantom{}|北京冬奥会吉祥物}
 |\highlightline<1>|  \begin{tabular}{lp{3cm}}
 |\highlightline<2>|    \toprule
 |\highlightline<3>|吉祥物 & 描述                          \\
@@ -820,14 +820,14 @@
 \begin{document}
 \begin{table}[ht]
   \centering
-  \caption{||北京冬奥会吉祥物}
+  \caption{|\phantom{}|北京冬奥会吉祥物}
   \begin{tabular}{lp{3cm}}
     \toprule
-|\highlightline|\multicolumn{1}{c}{||吉祥物} &
-|\highlightline|\multicolumn{1}{c}{||描述} \\
+|\highlightline|\multicolumn{1}{c}{|\phantom{}|吉祥物} &
+|\highlightline|\multicolumn{1}{c}{|\phantom{}|描述} \\
     \midrule
-||冰墩墩 & 2022 年北京冬季奥运会吉祥物  \\
-||雪容融 & 2022 年北京冬季残奥会吉祥物  \\
+|\phantom{}|冰墩墩 & 2022 年北京冬季奥运会吉祥物  \\
+|\phantom{}|雪容融 & 2022 年北京冬季残奥会吉祥物  \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -931,18 +931,18 @@
     \begin{column}{0.5\textwidth}
       \begin{codeblock}[]{图}
 \begin{figure}
-|\highlightline<1>|  \caption{||示例}\label{fig:example}
+|\highlightline<1>|  \caption{|\phantom{}|示例}\label{fig:example}
 \end{figure}
       \end{codeblock}
       \begin{codeblock}[]{表}
 \begin{table}
-|\highlightline<1>|  \caption{||示例}\label{tab:example}
+|\highlightline<1>|  \caption{|\phantom{}|示例}\label{tab:example}
 \end{table}
       \end{codeblock}
     \end{column}
     \begin{column}{0.5\textwidth}
 \begin{codeblock}[]{目次}
-|\highlightline<1>|\section{||示例}\label{sec:example}
+|\highlightline<1>|\section{|\phantom{}|示例}\label{sec:example}
 \end{codeblock}
 
 \begin{codeblock}[]{公式}
@@ -962,8 +962,8 @@
   
   \begin{codeblock}[]{ref.bib}
 |\highlightline|@article{devoftech,|\hfill\alert{\% 类型为期刊论文，主键为\texttt{devoftech}}|
-  title={||新时期我国信息技术产业的发展},
-  author={||江泽民},
+  title={|\phantom{}|新时期我国信息技术产业的发展},
+  author={|\phantom{}|江泽民},
   year={2008}
 }
   \end{codeblock}
@@ -1002,7 +1002,7 @@
 \bibliographystyle{gbt7714-numerial}
 % \citestyle{numbers}  % 正文模式
 \begin{document}
-  ||他指出了...\cite{devoftech}
+  |\phantom{}|他指出了...\cite{devoftech}
   \bibliography{ref}
 \end{document}
       \end{codeblock}
@@ -1013,8 +1013,8 @@
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
 \addbibresource{ref.bib}
 \begin{document}
-  ||他在文献 \parencite{devoftech}
-  ||指出了...\cite{devoftech}
+  |\phantom{}|他在文献 \parencite{devoftech}
+  |\phantom{}|指出了...\cite{devoftech}
   \printbibliography
 \end{document}
       \end{codeblock}

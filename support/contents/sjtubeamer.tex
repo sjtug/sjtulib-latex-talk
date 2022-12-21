@@ -183,10 +183,10 @@
 \usetheme{sjtubeamer}
 \begin{document}
   \begin{frame}
-    \frametitle{||欢迎}
-    ||你好，SJTUBeamer||！
-||  \end{frame}
-||\end{document}
+    \frametitle{|\phantom{}|欢迎}
+    |\phantom{}|你好，SJTUBeamer|\phantom{}|！
+|\phantom{}|  \end{frame}
+|\phantom{}|\end{document}
       \end{codeblock}
     \end{column}
     \begin{column}{0.38\textwidth}
@@ -221,15 +221,15 @@
 \documentclass{ctexbeamer}
 |\highlightline|\usetheme[|\only<1>{maxplus,blue,light}\only<2>{default,topright}|]{sjtubeamer}
 \begin{document}
-  \title{||使用 Beamer 制作学术报告幻灯片}
-  \subtitle{||上海交通大学图书馆专题培训讲座}
-  \author{||李子龙}
+  \title{|\phantom{}|使用 Beamer 制作学术报告幻灯片}
+  \subtitle{|\phantom{}|上海交通大学图书馆专题培训讲座}
+  \author{|\phantom{}|李子龙}
   \institute[SJTUG]{SJTU Linux User Group}
   \date{2022 年 5 月}
 |\highlightline<1>|  \maketitle
-|\highlightline<1>|  \part{||介绍}
+|\highlightline<1>|  \part{|\phantom{}|介绍}
 |\highlightline<1>|  \makebottom
-||\end{document}
+|\phantom{}|\end{document}
       \end{codeblock}
     \end{column}
     \begin{column}{0.4\textwidth}
@@ -256,14 +256,14 @@
     \begin{column}{0.6\textwidth}
       
       \begin{codeblock}[]{目录页}
-||\documentclass{ctexbeamer}
+|\phantom{}|\documentclass{ctexbeamer}
 \usetheme{sjtubeamer}
 \begin{document}
   \begin{frame}
-    \frametitle{||目录}
+    \frametitle{|\phantom{}|目录}
 |\highlightline|    \tableofcontents[hideallsubsections]
-  ||\end{frame}
-||\end{document}
+  |\phantom{}|\end{frame}
+|\phantom{}|\end{document}
       \end{codeblock}
       
     \end{column}
@@ -288,16 +288,16 @@
     \begin{column}{0.6\textwidth}
       
       \begin{codeblock}[]{节目录}
-||\documentclass{ctexbeamer}
+|\phantom{}|\documentclass{ctexbeamer}
 \usetheme{sjtubeamer}
 |\highlightline<1>|\AtBeginSection[]{
   \begin{frame}
 |\highlightline<2>|    \tableofcontents[currentsection, hideallsubsections]
-  ||\end{frame}
+  |\phantom{}|\end{frame}
 |\highlightline<1>|}
 \begin{document}
-  \section{||第一节}
-||\end{document}
+  \section{|\phantom{}|第一节}
+|\phantom{}|\end{document}
       \end{codeblock}
       
     \end{column}
@@ -316,16 +316,16 @@
     \begin{column}{0.6\textwidth}
       
       \begin{codeblock}[]{节页}
-||\documentclass{ctexbeamer}
+|\phantom{}|\documentclass{ctexbeamer}
 \usetheme{sjtubeamer}
 \AtBeginSection[]{
 |\highlightline|  \begin{frame}[plain]
 |\highlightline|    \sectionpage
-  ||\end{frame}
+  |\phantom{}|\end{frame}
 }
 \begin{document}
-  \section{||第一节}
-||\end{document}
+  \section{|\phantom{}|第一节}
+|\phantom{}|\end{document}
       \end{codeblock}
       
     \end{column}
@@ -400,7 +400,7 @@
     \begin{column}{0.45\textwidth}
       \begin{codeblock}{代码盒子}
 |\textbackslash{}begin\{codeblock\}|[language=python]{Python 代码}
-||print("Hello, world!")
+|\phantom{}|print("Hello, world!")
 |\textbackslash{}end\{codeblock\}|
       \end{codeblock}
     \end{column}
@@ -452,9 +452,9 @@
 |\highlightline|\usesjtutheme{sjtug}
 \begin{document}
   \begin{frame}
-    ||使用 SJTUG 子主题。
-||  \end{frame}
-||\end{document}
+    |\phantom{}|使用 SJTUG 子主题。
+|\phantom{}|  \end{frame}
+|\phantom{}|\end{document}
       \end{codeblock}
     \end{column}
     \begin{column}{0.45\textwidth}
@@ -543,9 +543,9 @@
 \documentclass{ctexbeamer}
 \begin{document}
 |\highlightline<1>|\begin{frame}
-|\highlightline<2>|  \frametitle{||beamer 介绍}
-|\highlightline<2>|  \framesubtitle{||发起人}
-|\highlightline<3>|  beamer 由|| Till Tantau 发起。
+|\highlightline<2>|  \frametitle{|\phantom{}|beamer 介绍}
+|\highlightline<2>|  \framesubtitle{|\phantom{}|发起人}
+|\highlightline<3>|  beamer 由|\phantom{}| Till Tantau 发起。
 |\highlightline<1>|\end{frame}
 \end{document}
       \end{codeblock}
@@ -590,7 +590,7 @@
 |\highlightline<1>|  \pause
 |\highlightline<4>|        
 |\highlightline<4>|    第三段
-||\end{frame}
+|\phantom{}|\end{frame}
 \end{document}
       \end{codeblock}
     \end{column}
@@ -621,14 +621,14 @@
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{codeblock}{替代覆盖}
-||\documentclass{ctexbeamer}
-||\begin{document}
+|\phantom{}|\documentclass{ctexbeamer}
+|\phantom{}|\begin{document}
   \begin{frame}
-|\highlightline<3->|    \only<2->{||第二}
-|\highlightline<2>|    \only<1>{||第一}
-|\highlightline<2,4>|    \only<1,3>{||第三}
-||  \end{frame}
-||\end{document}
+|\highlightline<3->|    \only<2->{|\phantom{}|第二}
+|\highlightline<2>|    \only<1>{|\phantom{}|第一}
+|\highlightline<2,4>|    \only<1,3>{|\phantom{}|第三}
+|\phantom{}|  \end{frame}
+|\phantom{}|\end{document}
       \end{codeblock}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -702,11 +702,11 @@
       \begin{codeblock}{占位覆盖}
 \documentclass{ctexbeamer}
 \begin{document}
-||  \begin{frame}
-|\highlightline<3->|    \onslide<2->{||第二}
-|\highlightline<2>|    \onslide<1>{||第一}
-|\highlightline<2,4>|    \onslide<1,3>{||第三}
-||  \end{frame}
+|\phantom{}|  \begin{frame}
+|\highlightline<3->|    \onslide<2->{|\phantom{}|第二}
+|\highlightline<2>|    \onslide<1>{|\phantom{}|第一}
+|\highlightline<2,4>|    \onslide<1,3>{|\phantom{}|第三}
+|\phantom{}|  \end{frame}
 \end{document}
       \end{codeblock}
     \end{column}
@@ -764,7 +764,7 @@
 |\highlightline<3-4>|      \item 第二点
 |\highlightline<4>|      \item 第三点
     \end{itemize}
-||  \end{frame}
+|\phantom{}|  \end{frame}
 \end{document}
       \end{codeblock}
     \end{column}
@@ -806,9 +806,9 @@
         \end{tabular}
       \end{table}
       \begin{codeblock}[]{样式覆盖}
-\textbf<1>{||第一页加粗}
-\alert<2>{||第二页强调}
-\textcolor<3>{blue}{||第三页变蓝}
+\textbf<1>{|\phantom{}|第一页加粗}
+\alert<2>{|\phantom{}|第二页强调}
+\textcolor<3>{blue}{|\phantom{}|第三页变蓝}
       \end{codeblock}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -828,8 +828,8 @@
       \end{table}
       \vspace*{0.2cm}
       \begin{codeblock}[]{环境覆盖}
-\begin{theorem}<2->[||定理名]
-||  第二页之后显示该定理。
+\begin{theorem}<2->[|\phantom{}|定理名]
+|\phantom{}|  第二页之后显示该定理。
 \end{theorem}
       \end{codeblock}
     \end{column}
@@ -850,13 +850,13 @@
   \begin{frame}
 |\highlightline<1>|    \begin{columns}[c]
 |\highlightline<2>|      \begin{column}{.5\textwidth}
-        ||第一栏
+        |\phantom{}|第一栏
 |\highlightline<2>|      \end{column}
 |\highlightline<2>|      \begin{column}{.5\textwidth}
-        ||第二栏
+        |\phantom{}|第二栏
 |\highlightline<2>|      \end{column}
 |\highlightline<1>|    \end{columns}
-||  \end{frame}
+|\phantom{}|  \end{frame}
 \end{document}
       \end{codeblock}
       
@@ -872,9 +872,9 @@
 \begin{document}
   \begin{frame}
 |\highlightline|    \begin{multicols}{2}
-      ||所有内容
+      |\phantom{}|所有内容
 |\highlightline|    \end{multicols}
-||  \end{frame}
+|\phantom{}|  \end{frame}
 \end{document}
       \end{codeblock}
 
@@ -905,11 +905,11 @@
       \begin{codeblock}[]{}
 \documentclass{ctexbeamer}
 \usepackage{zhlipsum}
-||\begin{document}
+|\phantom{}|\begin{document}
 |\highlightline|  \begin{frame}[allowframebreaks]
     \zhlipsum[1-2]
-||  \end{frame}
-||\end{document}
+|\phantom{}|  \end{frame}
+|\phantom{}|\end{document}
       \end{codeblock}
 
       \vspace*{2em}
@@ -933,8 +933,8 @@
        &+ c \\
     % 长公式...
 \end{align*}
-||    \end{frame}
-||\end{document}
+|\phantom{}|    \end{frame}
+|\phantom{}|\end{document}
       \end{codeblock}
     \end{column}
   \end{columns}
@@ -959,8 +959,8 @@
 \begin{document}
     \begin{frame}[allowframebreaks=0.8,fragile]
         % Your full article ...
-||    \end{frame}
-||\end{document}
+|\phantom{}|    \end{frame}
+|\phantom{}|\end{document}
       \end{codeblock}
       \small
       \vspace*{1em}
@@ -999,12 +999,12 @@
 \documentclass{ctexbeamer}
 \begin{document}
 |\highlightline|  \begin{frame}[label=target]
-    ||跳转到的帧。
-||  \end{frame}
+    |\phantom{}|跳转到的帧。
+|\phantom{}|  \end{frame}
   \begin{frame}
-|\highlightline|    ||详见第 \ref{target} 页。
-||  \end{frame}
-||\end{document}
+|\highlightline|    |\phantom{}|详见第 \ref{target} 页。
+|\phantom{}|  \end{frame}
+|\phantom{}|\end{document}
       \end{codeblock}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -1027,13 +1027,13 @@
 \documentclass{ctexbeamer}
 \begin{document}
 |\highlightline|  \begin{frame}[label=target]
-    ||跳转到的帧。
-||  \end{frame}
+    |\phantom{}|跳转到的帧。
+|\phantom{}|  \end{frame}
   \begin{frame}
 |\highlightline|    \hyperlink{target}{
-|\highlightline|  \beamergotobutton{||跳转}}
-||  \end{frame}
-||\end{document}
+|\highlightline|  \beamergotobutton{|\phantom{}|跳转}}
+|\phantom{}|  \end{frame}
+|\phantom{}|\end{document}
       \end{codeblock}
     \end{column}
     \begin{column}{0.5\textwidth}
