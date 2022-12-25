@@ -23,7 +23,7 @@
         \item 最早由韦建文于 2009 年 11 月发布 0.1a 版
         \item 2018 年起由 SJTUG 接手维护
         \item 2019 年 6 月吴伟健重构了整个宏包的代码，升级版本号为 1.0
-        \item 2022 年 11 月模板改版后，使用 \LaTeX3 重构 2.0 版本
+        \item 2022 年 11 月模板改版后，吴伟健、张驰等人使用 \LaTeX3 重构 2.0 版本
         \item 最新版：\SJTUThesisVersion{} (\SJTUThesisDate)
         \item 支持本科、硕士、博士学位论文的排版
       \end{itemize}
@@ -33,7 +33,7 @@
         \begin{minipage}[c]{1cm}
           \includegraphics[width=0.8cm]{\getcontribpath{sjtug}{vi/sjtug}}
         \end{minipage}
-        \begin{minipage}[c]{2cm}
+        \begin{minipage}[c]{3cm}
           \href{https://github.com/sjtug}{sjtug}/\href{https://github.com/sjtug/SJTUThesis}{SJTUThesis}
         \end{minipage}
       \end{exampleblock}
@@ -215,24 +215,18 @@
   \end{columns}
 \end{frame}
 
-% FIXME: replace to the overview of thesis when v2 is ready.
 \begin{frame}[fragile, label=covers]
-  \frametitle{论文类型}
-  \begin{figure}
-    \hspace{-7pt}\parbox{0.8\textwidth}{
-      \begin{subfigure}{0.20\textwidth}
-        \framebox{\includegraphics[width=\linewidth]{support/thesis/bachelor.pdf}}
-        \caption{\only<1>{学士}\only<2>{\texttt{bachelor}}}
-      \end{subfigure}\hfill
-      \begin{subfigure}{0.20\textwidth}
-        \framebox{\includegraphics[width=\linewidth]{support/thesis/master.pdf}}
-        \caption{\only<1>{硕士}\only<2>{\texttt{master}}}
-      \end{subfigure}\hfill
-      \begin{subfigure}{0.20\textwidth}
-        \framebox{\includegraphics[width=\linewidth]{support/thesis/doctor.pdf}}
-        \caption{\only<1>{博士}\only<2>{\texttt{doctor}}}
+  \frametitle{论文组成}
+  \begin{figure}[h]
+    \centering
+    \foreach \thesispage/\thesisnote in {
+      1/{中文封面},3/{英文封面},5/{版权页},7/{中文摘要},9/{英文摘要},11/{目录},13/{插图目录},15/{表格目录},
+      17/{正文},27/{参考文献},29/{附录},31/{成果},33/{致谢},35/{大摘要}} {%
+      \begin{subfigure}{.13\textwidth}
+        \centering
+        \fzerobox{\includegraphics[width=\textwidth,page=\thesispage]{support/thesis/sample-thesis-zh.pdf}}
+        \caption{\thesisnote}
       \end{subfigure}
-      \caption{论文类型示例\only<2>{ \texttt{type}}}
     }
   \end{figure}
 \end{frame}
@@ -241,32 +235,55 @@
   \frametitle{文档类选项}
   \begin{columns}
     \begin{column}{0.35\textwidth}
-      \includegraphics[page=2]{support/figures/thesisdir.pdf}
+      \includegraphics[page=1]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.65\textwidth}
-      文档类选项是指在载入文档类时的可选选项，多个选项使用逗号隔开。
+      文档类选项是指在载入文档类时的可选选项，多个选项使用逗号隔开，文档类选项会对所有加载的宏包可见。
       \begin{codeblock}[escapechar="]{main.tex}
 % !TeX encoding = UTF-8
 
 % 载入 SJTUThesis 模版
 "\highlightline"\documentclass[type=master]{sjtuthesis}
 % 选项
-%   type=[doctor|master|bachelor|course],
+%   type=[doctor|master|bachelor],
 %   zihao=[-4|5],
 %   lang=[zh|en],
 %   review,
 %   [twoside|oneside]
       \end{codeblock}
-      
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文档类选项}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[page=1]{support/figures/thesisdir.pdf}
+    \end{column}
+    \begin{column}{0.7\textwidth}
+      我是学士，写英文论文
+      \begin{codeblock}[]{}
+|\phantom{}|\documentclass[type=bachelor,lang=en]{sjtuthesis}
+      \end{codeblock}
+      我是硕士，盲审
+      \begin{codeblock}[]{}
+|\phantom{}|\documentclass[type=master,review]{sjtuthesis}
+      \end{codeblock}
+      我是博士，先写着电子版不空页
+      \begin{codeblock}[]{}
+|\phantom{}|\documentclass[type=doctor,openany]{sjtuthesis}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \note{有 ChatGPT 那味了。}
 \end{frame}
 
 \begin{frame}
   \frametitle{文档类选项}
   \begin{columns}
     \begin{column}{0.35\textwidth}
-      \includegraphics[page=1,scale=0.9]{support/figures/thesisdir.pdf}
+      \includegraphics[page=2,scale=0.9]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.65\textwidth}
       \begin{table}
@@ -277,7 +294,10 @@
           选项 & 含义 & 相关 \\
           \midrule
           type= & 指定论文类型 & 第 \ref{covers} 页\\
-          cjk-font= & 指定字体 & 第 \ref{compile} 页\\
+          \midrule
+          cjk-font= & 指定中文字体 & \\
+          text-font= & 指定西文字体 & 第 \ref{frame:fonts} 页\\
+          math-font= & 指定数学字体 & \\
           \midrule
           review & 开启盲审模式 & \thesisissue{195} \thesisissue{686} \\
           twoside & 双页模式 & \thesisissue{554} \\
@@ -293,20 +313,65 @@
   \end{columns}
 \end{frame}
 
+\begin{frame}[label={frame:fonts}]
+  \frametitle{字体配置}
+  \newcommand{\noticemark}{\alert{\normalshape *}}
+  \begin{columns}
+    \begin{column}{0.35\textwidth}
+      \includegraphics[page=3,scale=0.9]{support/figures/thesisdir.pdf}
+    \end{column}
+    \begin{column}{.65\textwidth}
+      相较于 \CTeX{} 使用 \texttt{fontset} 设定中文字体集，
+      \SJTUThesis{} 还提供了西文、数学字体集的设定\footnotemark。
+
+      {
+        \medskip
+        \ttfamily\scriptsize
+        \alert{cjk-font=...\hfill 中文字体}
+        
+        \stamphrule\medskip
+
+        \foreach \sjtufontname/\sjtufontdesc in {adobe/{adobe \faAdobe\noticemark},{fandol}/{fandol \noticemark},{founder},mac/{mac \faApple{} \noticemark},windows/{windows \faWindows},ubuntu/{ubuntu \faUbuntu{} \noticemark}}{
+          \begin{minipage}{2.2cm}
+            \centering
+            \includefontpreview{support/thesis/cjkfont-\sjtufontname.pdf}\\
+            \raisebox{0.8ex}{\sjtufontdesc}
+          \end{minipage}
+        }
+
+        \bigskip
+
+        \alert{text-font=..., math-font=...\hfill 西文与数学字体}
+
+        \stamphrule\medskip
+
+        \foreach \sjtufontname/\sjtufontdesc in {{cambria}/{cambria \noticemark},{lm},{newcm}/{newcm \noticemark},{newpx},{newtx},{stixtwo}/{stixtwo \noticemark},{times},{xits}/{xits \noticemark}}{
+          \begin{minipage}{2cm}
+            \centering
+            \includefontpreview{support/thesis/latinfont-\sjtufontname.pdf}\\
+            \raisebox{0.8ex}{\sjtufontdesc}
+          \end{minipage}
+        }
+      }
+    \end{column}
+  \end{columns}
+  \footnotetext{\noticemark 表示无法使用 pdf\LaTeX{} 编译。}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{基本配置}
   \begin{columns}
     \begin{column}{0.35\textwidth}
-      \includegraphics[page=2]{support/figures/thesisdir.pdf}
+      \includegraphics[page=1]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.65\textwidth}
 
       \only<1>{
-      在 \texttt{main.tex} 中引入 \texttt{setup.tex} 来导入主要的信息录入与宏包加载配置。
+        在 \texttt{main.tex} 中引入 \texttt{setup.tex} 来导入主要的信息录入与宏包加载配置。
       }
 
       \only<2>{
-      其中 \cmd{sjtusetup}（第 \ref{sjtusetup} 页）中的 \opt{info} 将会修改封面的信息设置。
+        \alert{(a,b)} 其中 \cmd{sjtusetup}（第 \ref{sjtusetup} 页）中的 \opt{info} 将会修改封面的信息设置。
       }
 
       \begin{codeblock}[firstnumber=12]{main.tex}
@@ -328,7 +393,7 @@
   \frametitle{基本配置}
   \begin{columns}
     \begin{column}{0.35\textwidth}
-      \includegraphics[page=3]{support/figures/thesisdir.pdf}
+      \includegraphics[page=4]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.65\textwidth}
       \vspace*{-0.2cm}
@@ -354,7 +419,7 @@
   \frametitle{基本配置}
   \begin{columns}
     \begin{column}{0.35\textwidth}
-      \includegraphics[page=3]{support/figures/thesisdir.pdf}
+      \includegraphics[page=4]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.65\textwidth}
       \begin{table}
@@ -384,16 +449,17 @@
   \frametitle{版权页}
   \begin{columns}
     \begin{column}{0.4\textwidth}
-      \includegraphics[page=4]{support/figures/thesisdir.pdf}
+      \includegraphics[page=5]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.6\textwidth}
-      \cmd{copyrightpage} 可以用于插入版权页。
+      \alert{(c)} \cmd{copyrightpage} 可以用于插入版权页。
       也可接受一个可选参数，用于直接使用扫描件，此时需要载入 \pkg{pdfpages} 包。\thesisissue{473}
 
       \begin{codeblock}[firstnumber=22]{main.tex}
 % 原创性声明及使用授权书
 \copyrightpage
 % 插入外置原创性声明及使用授权书
+% 导言区添加 \usepackage{pdfpages}
 % \copyrightpage[scans/sample-copyright-old.pdf]
       \end{codeblock}
     \end{column}
@@ -405,10 +471,10 @@
   \framesubtitle{前置部分}
   \begin{columns}
     \begin{column}{0.4\textwidth}
-      \includegraphics[page=7]{support/figures/thesisdir.pdf}
+      \includegraphics[page=8]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.6\textwidth}
-      前言从 \cmd{frontmatter} 处开始，页码设置为大写罗马数字，主要包含摘要和目录内容。
+      \alert{(d,e,f,g,h)} 前言从 \cmd{frontmatter} 处开始，页码设置为大写罗马数字，主要包含摘要和目录内容。
       \begin{codeblock}[firstnumber=27]{main.tex}
 |\highlightline|% 前置部分
 |\highlightline|\frontmatter
@@ -429,10 +495,10 @@
   \framesubtitle{正文部分}
   \begin{columns}
     \begin{column}{0.4\textwidth}
-      \includegraphics[page=8]{support/figures/thesisdir.pdf}
+      \includegraphics[page=9]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.6\textwidth}
-      正文从 \cmd{mainmatter} 处开始，页码设置为正常数字，包含正文、参考文献、附录内容。
+      \alert{(i,j,k)} 正文从 \cmd{mainmatter} 处开始，页码设置为正常数字，包含正文、参考文献、附录内容。
       \begin{codeblock}[firstnumber=47]{main.tex}
 |\highlightline|% 主体部分
 |\highlightline|\mainmatter
@@ -460,10 +526,10 @@
   \framesubtitle{结尾部分}
   \begin{columns}
     \begin{column}{0.4\textwidth}
-      \includegraphics[page=9]{support/figures/thesisdir.pdf}
+      \includegraphics[page=10]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.6\textwidth}
-      结尾从 \cmd{backmatter} 处开始，页码设置为正常数字，包含致谢等相关情况。
+      \alert{(k,l,m,n)} 结尾从 \cmd{backmatter} 处开始，页码设置为正常数字，包含致谢等相关情况。
       \begin{codeblock}[firstnumber=71]{main.tex}
 |\highlightline|% 结尾部分
 |\highlightline|\backmatter
@@ -484,10 +550,10 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{数学}
+  \frametitle{数学定理环境}
   \begin{columns}
     \begin{column}{0.4\textwidth}
-      \includegraphics[page=5]{support/figures/thesisdir.pdf}
+      \includegraphics[page=6]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.6\textwidth}
       \SJTUThesis{} 定义了常用的数学环境（需要引入 \pkg{ntheorem} 或者 \pkg{amsthm} 宏包）。
@@ -516,7 +582,7 @@
   \frametitle{参考文献}
   \begin{columns}
     \begin{column}{0.4\textwidth}
-      \includegraphics[page=6]{support/figures/thesisdir.pdf}
+      \includegraphics[page=7]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[firstnumber=111,numbersep=2pt]{setup.tex}

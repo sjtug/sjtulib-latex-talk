@@ -95,7 +95,7 @@ function typeset_demo_tasks()
     --          you should just compile main.tex only.
 
     -- Compile the thesis v1 first.
-    for _, file in ipairs({"bachelor.tex", "master.tex", "doctor.tex", "course.tex", "main.tex"}) do
+    for _, file in ipairs(filelist(suppthesisdir, "*.tex")) do
         errorlevel = latexmk_typeset(file, thesisdepdir, suppthesisdir)
         if errorlevel ~= 0 then
             print("! latexmk " .. file .. " failed")
@@ -104,27 +104,15 @@ function typeset_demo_tasks()
     end
 
     -- Compile the thesis v2.
-    -- Dependencies is at SJTUTeX, 
-    -- generate the sty files by l3build convention
-    -- for general compatibility over platforms.
+    -- Generate the samples.
+    -- FIXME: once merged, use v2 branch.
+    os.execute("cd " .. thesisv2depdir ..
+                " && git checkout v2-expansion")
     os.execute(
         "cd " .. thesisv2depdir .. "/sjtutex"
-        .. " && " .. "l3build unpack")
+        .. " && " .. "l3build doc")
     -- replace the old dependencies in SJTUThesis.
-    rm("*", thesisdepdir .. "/texmf/tex/latex/sjtuthesis")
-    cp("*", thesisv2depdir .. "/sjtutex/build/unpacked",
-        thesisdepdir .. "/texmf/tex/latex/sjtuthesis")
-    errorlevel = latexmk_typeset("dev-v2.tex", thesisdepdir, suppthesisdir)
-    if errorlevel ~= 0 then
-        print("! latexmk dev-v2.tex failed")
-        print("+ Try updating the newtx package to 2022/01/12 (1.7) and later.")
-        errorlevel = os.execute("tlmgr update newtx")   -- Might not be useful for MiKTeX distribution.
-        errorlevel = errorlevel + latexmk_typeset("dev-v2", thesisdepdir, suppthesisdir)
-        if errorlevel ~= 0 then
-            print("  Or upadte to TeX Live 2022.")
-            return errorlevel
-        end
-    end
+    cp("sample-*.pdf", thesisv2depdir .. "/sjtutex/build/doc",suppthesisdir)
 
     local suppbeamerdir = supportdir .. "/beamer"
     cp("*", suppbeamerdir, beamerdepdir)
@@ -148,12 +136,6 @@ function typeset_demo_tasks()
             return errorlevel
         end
     end
-
-    -- TODO: accelerate the compilation through etex.
-    -- for _, file in ipairs(typesetfiles) do
-    --     local etypesetcommand = etypesetexe .. "  -ini -interaction=nonstopmode -jobname=" .. file:gsub("%.tex$", ".pdf") .. " \"&" .. typesetexe .. "\" mylatexformat.ltx "
-    --     errorlevel = tex("\"\"\"" .. file .. "\"\"\"", ".", etypesetcommand)
-    -- end
 
     -- clean up the auxiliary files.
     cleandirs = {

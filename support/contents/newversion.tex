@@ -22,7 +22,6 @@
                      &                         & \texttt{math-style}             & \faPlus{} \\
                      &                         & \texttt{nointlimits, intlimits} & \faPlus{} \\
                      &                         & \texttt{upint, slint}           & \faPlus{} \\
-          \faMinus{} & \texttt{running-title}  &                                 &           \\
           \faMinus{} & \texttt{assisupervisor} & \texttt{assoc-supervisor}       & \faPlus{} \\
                      &                         & \texttt{co-supervisor}          & \faPlus{} \\
                      &                         & \texttt{style/}                 & \faPlus{} \\
@@ -46,13 +45,13 @@
       \hfill\hfill
       \begin{column}{0.2\textwidth}
         \begin{tabular}{>{\color{sjtuRedPrimary}}r@{\,}>{\color{sjtuBlueSecondary}}c}
-          \textbackslash\texttt{definelogo}   & \faAsterisk{} \\
-          快速入门                                & \faPlus{}     \\
-          用户手册优化                              & \faPlus{}     \\
-          开发手册优化                              & \faPlus{}     \\
-          \textbackslash\texttt{usesjtutheme} & \faAsterisk{} \\
-          poster 海报子主题                        & \faPlus{}     \\
-          启用 Discussions                      & \faPlus{}     \\
+          \textbackslash\texttt{definelogo}                                     & \faAsterisk{} \\
+          快速入门                                                                  & \faPlus{}     \\
+          用户手册优化                                                                & \faPlus{}     \\
+          开发手册优化                                                                & \faPlus{}     \\
+          \textbackslash\texttt{usesjtutheme}                                   & \faAsterisk{} \\
+          poster 海报子主题                                                          & \faPlus{}     \\
+          启用 Discussions \link{https://github.com/sjtug/SJTUBeamer/discussions} & \faPlus{}     \\
         \end{tabular}
       \end{column}
       \begin{column}{0.3\textwidth}
@@ -75,16 +74,26 @@
 
   \begin{columns}
     \begin{column}{.45\textwidth}
-      \begin{description}
-        \item[SJTUReport] 为课程大报告设计。
-        \item[SJTUArticle] 为课程小论文设计。
-      \end{description}
+      \begin{figure}
+        \begin{subfigure}{\textwidth}
+          \centering
+          \fzerobox{\includegraphics[page=1,height=.25\textheight]{support/thesis/sample-report-zh.pdf}}
+          \fzerobox{\includegraphics[page=2,height=.25\textheight]{support/thesis/sample-report-zh.pdf}}
+          \caption{\textsc{SJTUReport} 课程大论文}
+        \end{subfigure}
+        \begin{subfigure}{\textwidth}
+          \centering
+          \fzerobox{\includegraphics[page=1,height=.25\textheight]{support/thesis/sample-article-zh.pdf}}
+          \fzerobox{\includegraphics[page=2,height=.25\textheight]{support/thesis/sample-article-zh.pdf}}
+          \caption{\textsc{SJTUArticle} 课程小论文}
+        \end{subfigure}
+      \end{figure}
     \end{column}
     \begin{column}{.5\textwidth}
       \begin{figure}
         \includegraphics{support/figures/sjtutex.pdf}
         \caption{\SJTUTeX{} 和它的朋友}
-      \end{figure}    
+      \end{figure}
     \end{column}
   \end{columns}
 

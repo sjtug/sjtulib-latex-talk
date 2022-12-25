@@ -3,6 +3,7 @@
 \forestset{
   is folder/.style={delay={content/.wrap value={\faFolder{} ##1}}},
   is file/.style={delay={content/.wrap value={\faFile{} ##1}}},
+  is file fuzzy/.style={delay={content/.wrap value={{\faFile[regular]} ##1}}},
   path highlight/.code args={<#1>}{
       \only<#1>{
         \pgfkeysalso{

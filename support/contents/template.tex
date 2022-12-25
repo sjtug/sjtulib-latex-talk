@@ -13,7 +13,7 @@
 
     \onlineitem 项子越.
     \newblock \LaTeX3 教程[EB/OL].
-    \newblock 2021. \url{https://github.com/xziyue/latex3-chinese-video}.
+    \newblock 2021. \url{https://www.bilibili.com/video/BV1L44y1676h}.
 
     \onlineitem \textsc{Wright J.}
     \newblock A model \texttt{.dtx} file [EB/OL].
@@ -225,7 +225,7 @@
 \begin{frame}[fragile]
   \frametitle{模板结构}
 
-  \only<1-2>{模板的大致结构是接受初始化选项；提供文档接口；传递选项给其他模块，引用其他模块的命令。}
+  \only<1-2>{模板的大致结构是接受选项；提供文档接口；传递选项给其他模块，引用其他模块的命令。}
   \only<2>{这样不同的模块就可以组合起来。}
   \only<3>{了解文档类/宏包的框架编写结构可以参见 \texttt{texdoc clsguide} \link{https://github.com/CTeX-org/ctex-doc/blob/master/clsguide-zh-cn/clsguide-zh-cn.tex}。使用有关宏包时，命令名称或略有不同。}
   \note<3>{请注意，可以使用不同的宏包来优化这种编写结构，所以命令形式可能在不同的情况下会略有不同。}
@@ -290,6 +290,7 @@
 
 \begin{frame}[fragile]
   \frametitle{文学编程}
+  \framesubtitle{Doc\TeX{}}
 
   \note{这两页主要是 \SJTUTeX{} 使用的开发模型，很多开发者现在已经不愿意使用 Doc\TeX{}，
   因为那个可能会因注释过多加载宏包缓慢的年代已经过去了，现在的计算机性能相较于几十年前已经大幅提升。}
@@ -309,7 +310,7 @@
       \end{figure}
     \end{column}
     \begin{column}{.5\textwidth}
-      \begin{exampleblock}{\faTerminal 解包方法}
+      \begin{exampleblock}{\faTerminal}
         \ttfamily
         {\color{gray} \# SJTUTeX 封装了 ins 至 dtx 内部，可以自解包} \\
         xetex sjtutex.dtx \\
@@ -320,17 +321,17 @@
     \end{column}
   \end{columns}
 
-
-  \note{Jupyter Notebook 也是一种文学编程。}
+  \note{Jupyter Notebook 也是一种文学编程，将代码生成文档的相关工具（比如 Sphinx）也属于文学编程。}
 
 \end{frame}
 
 \begin{frame}
-  \frametitle{l3build}
+  \frametitle{工程管理}
+  \framesubtitle{l3build}
   
   \begin{columns}
     \begin{column}{.3\textwidth}
-      \includegraphics{support/figures/beamerdir.pdf}
+      \includegraphics[scale=0.9]{support/figures/beamerdir.pdf}
     \end{column}
     \begin{column}{.6\textwidth}
       \pkg{l3build} \link{https://github.com/latex3/l3build} 是辅助 \TeX{} 宏包开发的 Lua 脚本集合，可以用来进行工程管理、项目测试。\texttt{build.lua} 用于配置工程。
@@ -341,9 +342,9 @@
         \small
         \item[\ttfamily l3build unpack] 将 \texttt{source/} 中的源文件解包至 \texttt{build/unpacked}，产物文件移至 \texttt{build/local}。
         \item[\ttfamily l3build doc] 编译定义在 \texttt{doc/} 中的文档，同时移进 \texttt{build/doc} 中的还有 \texttt{support/}。
-        \item[\ttfamily l3build check] 对 \texttt{testfiles/} 中的文件进行回归测试。
+        \item[\ttfamily l3build check] 对 \texttt{testfiles/} 中的文件回归测试。
         \item[\ttfamily l3build ctan] 执行上述所有流程，输出部署结果至 \texttt{build/distrib}，生成 \texttt{*-ctan.zip} 压缩文件。
-        \item[\ttfamily l3build install] 将解包后的文件安装至 \TeX{} Live，MiK\TeX{} 需要指定 \texttt{--texmf} 参数。
+        \item[\ttfamily l3build install] 将解包后的文件安装至 \TeX{} Live，MiK\TeX{} 需要指定 \texttt{--texmfhome} 参数。新安装时需要刷新文件名数据库。
       \end{description}
     \end{column}
   \end{columns}
