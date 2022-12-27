@@ -14,13 +14,18 @@
     \onlineitem 项子越.
     \newblock \LaTeX3 教程[EB/OL].
     \newblock 2021. \url{https://www.bilibili.com/video/BV1L44y1676h}.
+    \link{http://www.alanshawn.com/latex3-tutorial/}
 
     \onlineitem \textsc{Wright J.}
     \newblock A model \texttt{.dtx} file [EB/OL].
     \newblock 2009. \url{https://www.texdev.net/2009/10/06/a-model-dtx-file/}.
+    \link{https://liam.page/2015/01/23/literate-programming-in-latex/}
   \end{bibliolist}
 
-  \note{由于这些文章贡献者比较多，所以只以出现位置的所属作为作者。}
+  \note[item]{由于第一篇文章的贡献者比较多，所以只以出现位置的所属作为作者。}
+  \note[item]{项子越的主页 \url{http://www.alanshawn.com/latex3-tutorial/} 有全面的英文版资料，
+  甚至还有使用 \LaTeX3 刷 LeetCode 题的例子 \url{http://www.alanshawn.com/advanced-typesetting/}。}
+  \note[item]{还有 \url{https://liam.page/2015/01/23/literate-programming-in-latex/} 可供参考。}
 \end{frame}
 
 \begin{frame}
@@ -343,11 +348,13 @@
         \item[\ttfamily l3build unpack] 将 \texttt{source/} 中的源文件解包至 \texttt{build/unpacked}，产物文件移至 \texttt{build/local}。
         \item[\ttfamily l3build doc] 编译定义在 \texttt{doc/} 中的文档，同时移进 \texttt{build/doc} 中的还有 \texttt{support/}。
         \item[\ttfamily l3build check] 对 \texttt{testfiles/} 中的文件回归测试。
-        \item[\ttfamily l3build ctan] 执行上述所有流程，输出部署结果至 \texttt{build/distrib}，生成 \texttt{*-ctan.zip} 压缩文件。
+        \item[\ttfamily l3build ctan] 执行上述所有流程，输出部署结果至 \texttt{build/distrib}，生成 \texttt{*-ctan.zip} 压缩文件。\link{https://tug.org/tds/}
         \item[\ttfamily l3build install] 将解包后的文件安装至 \TeX{} Live，MiK\TeX{} 需要指定 \texttt{--texmfhome} 参数。新安装时需要刷新文件名数据库。
       \end{description}
     \end{column}
   \end{columns}
+
+  \note{*-ctan.zip 中可以包含 .tds.zip，可以放在 \TeX{} 发行版的 TDS (\TeX{} Directory Structure) 文件目录下，之后刷新文件名数据库。}
 
   \note{学完这些，你大概就可以看懂（can read）源代码，做出给自己使用的“宏包”了，甚至是一个“模板”：
   可以使用 \LaTeX3 语法不用费心的处理数据，l3build 管理工程。

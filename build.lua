@@ -105,9 +105,7 @@ function typeset_demo_tasks()
 
     -- Compile the thesis v2.
     -- Generate the samples.
-    -- FIXME: once merged, use v2 branch.
-    os.execute("cd " .. thesisv2depdir ..
-                " && git checkout v2-expansion")
+    os.execute("cd " .. thesisv2depdir)
     os.execute(
         "cd " .. thesisv2depdir .. "/sjtutex"
         .. " && " .. "l3build doc")
