@@ -23,9 +23,9 @@
   \end{bibliolist}
 
   \note[item]{由于第一篇文章的贡献者比较多，所以只以出现位置的所属作为作者。}
-  \note[item]{项子越的主页 \url{http://www.alanshawn.com/latex3-tutorial/} 有全面的英文版资料，
-  甚至还有使用 \LaTeX3 刷 LeetCode 题的例子 \url{http://www.alanshawn.com/advanced-typesetting/}。}
-  \note[item]{还有 \url{https://liam.page/2015/01/23/literate-programming-in-latex/} 可供参考。}
+  \note[item]{项子越的主页 \link{http://www.alanshawn.com/latex3-tutorial/} 有全面的英文版资料，
+  甚至还有使用 \LaTeX3 刷 LeetCode 题的例子 \link{http://www.alanshawn.com/advanced-typesetting/}。}
+  \note[item]{还有 \link{https://liam.page/2015/01/23/literate-programming-in-latex/} 可供参考。}
 \end{frame}
 
 \begin{frame}
@@ -90,6 +90,9 @@
   这种方法治标不治本，一旦某一种样式需要更正，由于没有为格式添加语义标签，
   所有的地方都需要重新设定格式。硬编号更是一种灾难，一旦前面有编号变动，
   后面都需要变动，以及交叉引用几乎无从下手。}
+  \note[item]<1>{以及 Word 中的多倍行距是不严谨的（详见 \pkg{zhlineskip} 宏包），
+  对于不同的字体会有不同的实际倍数的行距。使用磅值定义行间距是严谨的，在严肃排版中经常使用，
+  个人认为，是为了方便用户别去记那么多的磅值有了多倍行距这种说法，这个概念最好限定于日常使用中。}
   \note[item]<2>{有一位用过 \LaTeX{} 的大佬借助于 Word 域代码也搞出一个
   “非官方”模板，我试了一下很好用，直接使用预设好的样式就可以实现统一管理。}
 \end{frame}
@@ -212,7 +215,7 @@
       \end{codeblock}
     \end{column}
   \end{columns}
-  \note<1>[item]{\LaTeXe{} 固然不错，但是它提供的功能还是没有那么全面：比如只能是第一个参数为可选参数，搞个键值对参数需要引入宏包；
+  \note<2>[item]{\LaTeXe{} 固然不错，但是它提供的功能还是没有那么全面：比如只能是第一个参数为可选参数，搞个键值对参数需要引入宏包；
   浮点数运算仍然会丢精度，命名随意等等。这些在 \LaTeX3{} 得到了很好的解决，它提供了标准的接口，\cmd{NewDocumentCommand} 可以
   非常全面，最早是 \pkg{xparse} 宏包引入的，中文翻译：\link{https://github.com/WenboSheng/LaTeX3-doc-cn/blob/master/xparse-doc-cn/xparse-cn.pdf}，
   最新的 \TeX{} 发行版已经不必特别引入了。命名方面，\pkg{expl} 文档（中文翻译：\link{https://github.com/WenboSheng/LaTeX3-doc-cn/blob/master/expl3-doc-cn/expl3-cn.pdf}）
@@ -340,9 +343,7 @@
     \end{column}
     \begin{column}{.6\textwidth}
       \pkg{l3build} \link{https://github.com/latex3/l3build} 是辅助 \TeX{} 宏包开发的 Lua 脚本集合，可以用来进行工程管理、项目测试。\texttt{build.lua} 用于配置工程。
-      \note{以前使用 Doc\TeX{} 文件的时候，\TeX{} 宏包开发喜欢单文件一把梭。但是对于复杂的项目，单文件的开发总会让代码定位变得复杂。
-      现在 \TeX{} 社区有了 l3build 这个统一框架用来管理多文件模块，特别地，它提供了回归测试工具。}
-    
+      
       \begin{description}
         \small
         \item[\ttfamily l3build unpack] 将 \texttt{source/} 中的源文件解包至 \texttt{build/unpacked}，产物文件移至 \texttt{build/local}。
@@ -354,9 +355,12 @@
     \end{column}
   \end{columns}
 
-  \note{*-ctan.zip 中可以包含 .tds.zip，可以放在 \TeX{} 发行版的 TDS (\TeX{} Directory Structure) 文件目录下，之后刷新文件名数据库。}
+  \note{以前使用 Doc\TeX{} 文件的时候，\TeX{} 宏包开发喜欢单文件一把梭。但是对于复杂的项目，单文件的开发总会让代码定位变得复杂。
+  现在 \TeX{} 社区有了 l3build 这个统一框架用来管理多文件模块，特别地，它提供了回归测试工具。
 
-  \note{学完这些，你大概就可以看懂（can read）源代码，做出给自己使用的“宏包”了，甚至是一个“模板”：
+  *-ctan.zip 中可以包含 .tds.zip，可以放在 \TeX{} 发行版的 TDS (\TeX{} Directory Structure) 文件目录下，之后刷新文件名数据库。
+
+  学完这些，你大概就可以看懂（can read）源代码，做出给自己使用的“宏包”了，甚至是一个“模板”：
   可以使用 \LaTeX3 语法不用费心的处理数据，l3build 管理工程。
   但是距离做出能够传上 CTAN 的通用宏包还有很长的一段距离，因为如果为了解决一个实际的 \TeX{} 需求，
   你可能还需要阅读其他宏包的接口与源码，并做出一些 hack 出来，

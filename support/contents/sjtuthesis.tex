@@ -126,6 +126,24 @@
       }
     \end{column}
   \end{columns}
+  \note{\emph{这页仅作简要介绍。}
+
+  让我们来讨论 the elephant in the room：为什么用 \LaTeX{} 排版论文？
+  }
+  \note<1>[item]{Markdown 很好啊，方便的语法，一般技术文档也常用。但就是因为它太简单了，没有内置样式控制，一般需要借助 HTML,CSS 那一套东西。}
+  \note<2>[item]{也会有一些人尝试通过 R Markdown（Bookdown）改进，当然你也可以试着使用 \LaTeX{} 里的 \pkg{markdown} 宏包
+  （这有点像各种前端博客框架渲染 Markdown 为 HTML，只不过这里渲染 \LaTeX{} 生成 PDF，代码抄录方面已经有 Sphinx 这个工具 \link{https://github.com/sphinx-doc/sphinx}），
+  以及可以通过 MathJax 渲染 \TeX{} 公式。
+  }
+  \note<1>[item]{Word 很好啊，官方钦定的论文写作方法，可见即可得，但是进阶排版仍然可以困难。就拿排版公式来说，
+  大家以前初高中学的、或者是计算机二级考的 Word 2003 要排版公式，一种是装 MathType 插件，版本间不兼容、一种是搞个域代码+替换字体。}
+  \note<2>[item]{Word 2007 之后添加了插入正经的 Unicode 公式功能，但默认的 Calibri Math 字体以及符号布局仍然赶不上 \TeX{} 的美感。
+  }
+  \note<1>[item]{根据之前学到的一些技巧，看起来不难对吧（虽然有我诱导的成分），然后它内容与样式分离的设计理念已经渗入了很多领域。以及很多学术论文都需要 \LaTeX{} 的提交。}
+  \note<2>[item]{当然现在也推出了可见即可得的编辑器 \hologo{LyX}，Overelaf 的可视模式（虽然这两个并不是一个东西）；以及迟先生很喜欢的 TeXmacs，一种不使用 \TeX{} 底层的、但是效果相像的排版程序。
+  }
+  \note<1>[item]{设计相关专业的同学可能更喜欢 Adobe Indesign，对图文混排更为擅长。但是它也足够复杂，虽然提供了几乎所有的排版用具，但是我还没见过用它排版几十页充满公式的论文的（或许有人会开先河？）。}
+  \note<2>[item]{以及传说它用了 \TeX{} 的一些算法，所以 \TeX{} 还是老大哥，兼具美感和批量化处理的折中方法。}
 \end{frame}
 
 \begin{frame}
@@ -144,6 +162,7 @@
 
   \alert{在线} 直接使用 Overleaf 链接 \link{https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b}。
   其他在线平台用户可以下载压缩包，上传至对应平台并采用 \hologo{XeLaTeX} 编译，请注意使用最新版本的 \TeX{} Live。
+  \note{不会 Git 的同学可以直接 Download ZIP。}
 \end{frame}
 
 \begin{frame}
@@ -213,6 +232,12 @@
       \end{block}
     \end{column}
   \end{columns}
+  \note{两个进阶问题：
+  
+  如果之前出现了编译错误，在重新编译前，最好清理一下临时文件（\texttt{make clean}）。
+
+  如果是 biber 出现了问题，还可以尝试 \texttt{rm -rfv \$(biber --cache)}。\thesisdiscuss{774}
+  }
 \end{frame}
 
 \begin{frame}[label=covers]
@@ -229,6 +254,7 @@
       \end{subfigure}
     }
   \end{figure}
+  \note{虽然说符号表在新版中是要放在附录中，但是学位论文规范中却说可以放在正文前，所以你可以自行选择。}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -443,6 +469,7 @@
       \end{table}
     \end{column}
   \end{columns}
+  \note{有些选项是 v2 更名或新增的。}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -629,6 +656,7 @@
           而后把解包结果同步到 \textsc{SJTUThesis}。
         
         \item[{\faQq}] 也欢迎在 QQ 群即时讨论。
+        \note{群之前满了，社长给腾讯充了钱，让它可以接着塞人。}
       \end{itemize}
     \end{column}
     \begin{column}{0.27\textwidth}
