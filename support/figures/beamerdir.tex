@@ -1,0 +1,25 @@
+\documentclass[beamer,tikz,preview]{standalone}
+\input{forest-sjtu.ltx}
+
+\begin{document}
+\begin{standaloneframe}
+  \begin{forest}
+  for tree = {grow'=0,folder,s sep=0mm,font=\sf}
+  [SJTUBeamer/src
+    [build, is folder
+      [distrib, is folder]
+      [doc, is folder]
+      [local, is folder]
+      [result, is folder]
+      [test, is folder]
+      [unpacked, is folder]
+    ]
+    [doc, is folder]
+    [source, is folder]
+    [support, is folder]
+    [testfiles, is folder]
+    [build.lua, is file]
+  ]
+  \end{forest}
+\end{standaloneframe}
+\end{document}
