@@ -37,13 +37,13 @@ end
 -- typeset all the tex files in dir.
 function typesetdirtex(dir)
     for _, file in ipairs(filelist(dir, "*.tex")) do
-        if fileexists(dir .. "/" .. file:gsub("%.tex$", ".pdf")) == false then
-            errorlevel = latexmk_typeset(file, dir, dir)
-            if errorlevel ~= 0 then
-                print("! latexmk " .. file .. " failed")
-                return errorlevel
-            end
+        -- if fileexists(dir .. "/" .. file:gsub("%.tex$", ".pdf")) == false then
+        errorlevel = latexmk_typeset(file, dir, dir)
+        if errorlevel ~= 0 then
+            print("! latexmk " .. file .. " failed")
+            return errorlevel
         end
+        -- end
     end
     return 0
 end
@@ -91,10 +91,7 @@ function typeset_demo_tasks()
     local suppthesisdir = supportdir .. "/thesis"
     cp("*", suppthesisdir, thesisdepdir)
 
-    -- WARNING: When thesis v1 is deprecated,
-    --          you should just compile main.tex only.
-
-    -- Compile the thesis v1 first.
+    -- Compile the SJTUThesis first.
     for _, file in ipairs(filelist(suppthesisdir, "*.tex")) do
         errorlevel = latexmk_typeset(file, thesisdepdir, suppthesisdir)
         if errorlevel ~= 0 then
@@ -103,14 +100,12 @@ function typeset_demo_tasks()
         end
     end
 
-    -- Compile the thesis v2.
+    -- Compile the SJTUTeX.
     -- Generate the samples.
     os.execute("cd " .. thesisv2depdir)
     os.execute(
         "cd " .. thesisv2depdir .. "/sjtutex"
         .. " && " .. "l3build doc")
-    -- replace the old dependencies in SJTUThesis.
-    cp("sample-*.pdf", thesisv2depdir .. "/sjtutex/build/doc",suppthesisdir)
 
     local suppbeamerdir = supportdir .. "/beamer"
     cp("*", suppbeamerdir, beamerdepdir)
