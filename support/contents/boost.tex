@@ -138,48 +138,48 @@ l.8 My command is used here \mycommand
   \note[item]{用 PowerPoint 做完幻灯片会有一种空虚感，因为可能会做大量的重复工作。而 beamer 如果使用的好的话不会。}
 \end{frame}
 
-\begin{frame}
-  \frametitle{加速轮子}
-  \begin{columns}
-    \begin{column}{0.33\textwidth}
-      \begin{exampleblock}{ReportBoost \link{https://github.com/LogCreative/ReportBoost}}
-        \begin{tabular}{p{0.9\textwidth}}
-          提供一个已经配置完备的 Visual Studio Code 预编译工程目录。\\
-          \midrule
-          主要使用 \hologo{eTeX} 对 \hologo{pdfLaTeX} 在 \faWindows{} 上转储头文件为一个中间文件，减少 I/O 操作。
-          \note{\hologo{eTeX} 是原生 \TeX{} 的扩展版本，支持更多的字符数，\hologo{XeTeX} 和 \hologo{LuaTeX} 基于其演变而来。}\\
-          \midrule
-          对 \hologo{XeLaTeX} 和 \hologo{LuaLaTeX} 支持不佳。
-        \end{tabular}
-      \end{exampleblock}
-    \end{column}
-    \begin{column}{0.33\textwidth}
-      \begin{exampleblock}{AutoBeamer \link{https://github.com/LogCreative/AutoBeamer}}
-        \begin{tabular}{p{0.9\textwidth}}
-          主要提供将 \faMarkdown{} 文件翻译为 \LaTeX{} \cls{beamer} 代码的功能。\\
-          \midrule
-          \pkg{pandoc} \link{https://pandoc.org/index.html} 也可以将 \faMarkdown{} 转换为 \LaTeX{} 幻灯片代码，但结果不够干净。\\
-          \midrule
-          使用网页脚本语言 \faJs{} 造轮子主要考虑跨平台与未来功能迁移的可能。
-        \end{tabular}
-      \end{exampleblock}
-    \end{column}
-    \begin{column}{0.33\textwidth}
-      \begin{exampleblock}{BeamerBoost \link{https://github.com/LogCreative/BeamerBoost}}
-        \begin{tabular}{p{0.9\textwidth}}
-          主要提供对 \cls{beamer} 文档类自然切割单位（帧）的脏区与并行渲染实现，更早拿到每帧结果。\\
-          \midrule
-          目前只能采用预编译的手段减少进程切换开销，主要面向 \faWindows{} 编译较慢情况的预览。\\
-          \midrule
-          导航栏结果未必准确。
-        \end{tabular}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
+% \begin{frame}
+%   \frametitle{加速轮子}
+%   \begin{columns}
+%     \begin{column}{0.33\textwidth}
+%       \begin{exampleblock}{ReportBoost \link{https://github.com/LogCreative/ReportBoost}}
+%         \begin{tabular}{p{0.9\textwidth}}
+%           提供一个已经配置完备的 Visual Studio Code 预编译工程目录。\\
+%           \midrule
+%           主要使用 \hologo{eTeX} 对 \hologo{pdfLaTeX} 在 \faWindows{} 上转储头文件为一个中间文件，减少 I/O 操作。
+%           \note{\hologo{eTeX} 是原生 \TeX{} 的扩展版本，支持更多的字符数，\hologo{XeTeX} 和 \hologo{LuaTeX} 基于其演变而来。}\\
+%           \midrule
+%           对 \hologo{XeLaTeX} 和 \hologo{LuaLaTeX} 支持不佳。
+%         \end{tabular}
+%       \end{exampleblock}
+%     \end{column}
+%     \begin{column}{0.33\textwidth}
+%       \begin{exampleblock}{AutoBeamer \link{https://github.com/LogCreative/AutoBeamer}}
+%         \begin{tabular}{p{0.9\textwidth}}
+%           主要提供将 \faMarkdown{} 文件翻译为 \LaTeX{} \cls{beamer} 代码的功能。\\
+%           \midrule
+%           \pkg{pandoc} \link{https://pandoc.org/index.html} 也可以将 \faMarkdown{} 转换为 \LaTeX{} 幻灯片代码，但结果不够干净。\\
+%           \midrule
+%           使用网页脚本语言 \faJs{} 造轮子主要考虑跨平台与未来功能迁移的可能。
+%         \end{tabular}
+%       \end{exampleblock}
+%     \end{column}
+%     \begin{column}{0.33\textwidth}
+%       \begin{exampleblock}{BeamerBoost \link{https://github.com/LogCreative/BeamerBoost}}
+%         \begin{tabular}{p{0.9\textwidth}}
+%           主要提供对 \cls{beamer} 文档类自然切割单位（帧）的脏区与并行渲染实现，更早拿到每帧结果。\\
+%           \midrule
+%           目前只能采用预编译的手段减少进程切换开销，主要面向 \faWindows{} 编译较慢情况的预览。\\
+%           \midrule
+%           导航栏结果未必准确。
+%         \end{tabular}
+%       \end{exampleblock}
+%     \end{column}
+%   \end{columns}
 
-  \note{这些程序还都处于相互分离的阶段。但是也可以看到这种使用 Unix 哲学所涉及的程序带来的好处：每一个程序只做好一件事。模块化、尽可能使用文本输入输出流有助于程序的构建与修改，每一个部分都可以换成新的零件。}
+%   \note{这些程序还都处于相互分离的阶段。但是也可以看到这种使用 Unix 哲学所涉及的程序带来的好处：每一个程序只做好一件事。模块化、尽可能使用文本输入输出流有助于程序的构建与修改，每一个部分都可以换成新的零件。}
 
-  \note{beamer（与动画 \pkg{animate}） 可能是目前 \LaTeX{} 方面唯一有可能并行化的东西。}
+%   \note{beamer（与动画 \pkg{animate}） 可能是目前 \LaTeX{} 方面唯一有可能并行化的东西。}
 
-  \note{当然如果完成这一步的话，就做出来一个 PowerPoint 了。}
-\end{frame}
+%   \note{当然如果完成这一步的话，就做出来一个 PowerPoint 了。}
+% \end{frame}
