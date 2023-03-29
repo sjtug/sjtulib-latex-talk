@@ -26,6 +26,7 @@
         \item 2022 年 11 月模板改版后，吴伟健、张驰等人使用 \LaTeX3 重构 2.0 版本
         \item 最新版：\SJTUThesisVersion{} (\SJTUThesisDate)
         \item 支持本科、硕士、博士学位论文的排版
+        \item 推荐使用最新版本的 \TeX{} 发行版编译
       \end{itemize}
     \end{column}
     \begin{column}{0.4\textwidth}
@@ -265,7 +266,7 @@
       \includegraphics[page=1]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.65\textwidth}
-      文档类选项是指在载入文档类时的可选选项，多个选项使用逗号隔开，文档类选项会对所有加载的宏包可见。
+      文档类选项是指在载入文档类时的可选选项，多个选项使用逗号隔开，文档类选项会对所有宏包可见。
       \begin{codeblock}[escapechar="]{main.tex}
 % !TeX encoding = UTF-8
 
@@ -276,7 +277,8 @@
 %   zihao=[-4|5],
 %   lang=[zh|en],
 %   review,
-%   [twoside|oneside]
+%   [twoside|oneside],
+%   math-style=[ISO|TeX],
       \end{codeblock}
     \end{column}
   \end{columns}
@@ -325,6 +327,7 @@
           cjk-font= & 指定中文字体 & \\
           text-font= & 指定西文字体 & 第 \ref{frame:fonts} 页\\
           math-font= & 指定数学字体 & \\
+          math-style= & 指定数学样式 & \\
           \midrule
           review & 开启盲审模式 & \thesisissue{195} \thesisissue{686} \\
           twoside & 双页模式 & \thesisissue{554} \\
@@ -427,14 +430,14 @@
       \begin{codeblock}[firstnumber=3]{setup.tex}
 \sjtusetup{
   info = {
-    title    = {|\phantom{}|上海交通大学学位论文 \LaTeX{} 模板示例文档},
-    title*   = {A Sample for \LaTeX-based SJTU Thesis Template},
-    author   = {|\phantom{}|某\quad{}某},
-    author* = {Mo Mo},
+    zh/title  = {|\phantom{}|上海交通大学学位论文 \LaTeX{} 模板示例文档},
+    en/title  = {A Sample for \LaTeX-based SJTU Thesis Template},
+    zh/author = {|\phantom{}|某\quad{}某},
+    en/author = {Mo Mo},
   },
   style = { float-seperator = {--}, },
   name = {
-    publications = {|\phantom{}|攻读学位期间完成的论文},
+    achv = {|\phantom{}|攻读学位期间完成的论文},
   },
 }
       \end{codeblock}
@@ -454,23 +457,24 @@
         \caption{info 域}
         \footnotesize
         \begin{tabular}{lll} \toprule
-          命令作用     & 中文对应选项                      & 英文对应选项             \\ \midrule
-          论文标题     & \texttt{title}                    & \texttt{title*}          \\
-          关键字列表   & \texttt{keywords}                 & \texttt{keywords*}       \\
-          作者姓名     & \texttt{author}                   & \texttt{author*}         \\
-          申请学位名称 & \texttt{degree}                   & \texttt{degree*}         \\
-          院系名称     & \texttt{department}               & \texttt{department*}     \\
-          专业名称     & \texttt{major}                    & \texttt{major*}          \\
-          导师         & \texttt{supervisor}               & \texttt{supervisor*}     \\
-          副导师       & \texttt{assoc-supervisor}           & \texttt{assoc-supervisor*} \\
-          联培导师     & \texttt{co-supervisor}              & \texttt{co-supervisor*} \\
-          日期         & \multicolumn{2}{c}{\texttt{date}}                            \\
-          学号         & \multicolumn{2}{c}{\texttt{id}}                              \\ \bottomrule
+          命令作用     & 中文对应选项                      & 英文对应选项                 \\ \midrule
+          论文标题     & \texttt{zh/title}                 & \texttt{en/title}            \\
+          关键字列表   & \texttt{zh/keywords}              & \texttt{en/keywords*}        \\
+          作者姓名     & \texttt{zh/author}                & \texttt{en/author}           \\
+          申请学位名称 & \texttt{zh/degree}                & \texttt{en/degree}           \\
+          院系名称     & \texttt{zh/department}            & \texttt{en/department}       \\
+          专业名称     & \texttt{zh/major}                 & \texttt{en/major}            \\
+          导师         & \texttt{zh/supervisor}            & \texttt{en/supervisor}       \\
+          副导师       & \texttt{zh/assoc-supervisor}      & \texttt{en/assoc-supervisor} \\
+          联培导师     & \texttt{zh/co-supervisor}         & \texttt{en/co-supervisor}    \\
+          日期         & \multicolumn{2}{c}{\texttt{date}}                                \\
+          学号         & \multicolumn{2}{c}{\texttt{id}}                                  \\ \bottomrule
         \end{tabular}
       \end{table}
     \end{column}
   \end{columns}
   \note{有些选项是 v2 更名或新增的。}
+  \note{注意现在使用语言前缀作为键名。}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -642,8 +646,8 @@
 
 \begin{frame}
   \frametitle{还有其他问题？}
-  \begin{columns}
-    \begin{column}{0.73\textwidth}
+  % \begin{columns}
+    % \begin{column}{0.73\textwidth}
       \begin{itemize}
         \item[{\faComment*[regular]}] 日常模板或 \LaTeX{} 使用问题可以前往 Discussions \link{https://github.com/sjtug/SJTUThesis/discussions} 提问
 
@@ -656,12 +660,12 @@
           向 \textsc{SJTU\TeX{}} \link{https://github.com/sjtug/SJTUTeX} 存储库发 PR，\par
           而后把解包结果同步到 \textsc{SJTUThesis}。
         
-        \item[{\faQq}] 也欢迎在 QQ 群即时讨论。
+        \item[{\faQq}] 也欢迎在 QQ 群（715273806）即时讨论。
         \note{群之前满了，社长给腾讯充了钱，让它可以接着塞人。}
       \end{itemize}
-    \end{column}
-    \begin{column}{0.27\textwidth}
-      \includegraphics[height=0.7\textheight]{support/images/qq.jpg}
-    \end{column}
-  \end{columns}
+    % \end{column}
+    % \begin{column}{0.27\textwidth}
+    %   \includegraphics[height=0.7\textheight]{support/images/qq.jpg}
+    % \end{column}
+  % \end{columns}
 \end{frame}
