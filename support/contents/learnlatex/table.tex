@@ -3,31 +3,35 @@
 \section{表}
 
 \begin{frame}[fragile]
-  \frametitle{简单表格}
+  \frametitle{三线表}
   \begin{columns}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{}
 \documentclass{ctexart}
-|\only<1-2>{\highlightline}|\usepackage{|\temporal<1>{array}{\highlight{array}}{array},\temporal<2>{booktabs}{\highlight{booktabs}}{booktabs}|}
+|\only<1-3>{\highlightline}|\usepackage{|\temporal<2>{array}{\highlight{array}}{array},\temporal<3>{booktabs}{\highlight{booktabs}}{booktabs}|}
 \begin{document}
-\begin{table}[ht]
+|\highlightline<1>|\begin{table}[ht]
   \centering
   \caption{|\phantom{}|北京冬奥会吉祥物}
-|\highlightline<1>|  \begin{tabular}{lp{3cm}}
-|\highlightline<2>|    \toprule
-|\highlightline<3>|吉祥物 & 描述                          \\
-|\highlightline<2>|    \midrule
-|\highlightline<3>|冰墩墩 & 2022 年北京冬季奥运会吉祥物  \\
-|\highlightline<3>|雪容融 & 2022 年北京冬季残奥会吉祥物  \\
-|\highlightline<2>|    \bottomrule
-|\highlightline<1>|  \end{tabular}
-\end{table}
+|\highlightline<1,2>|  \begin{tabular}{lp{3cm}}
+|\highlightline<1,3>|    \toprule
+|\highlightline<1,4>|吉祥物 & 描述                          \\
+|\highlightline<1,3>|    \midrule
+|\highlightline<1,4>|冰墩墩 & 2022 年北京冬季奥运会吉祥物  \\
+|\highlightline<1,4>|雪容融 & 2022 年北京冬季残奥会吉祥物  \\
+|\highlightline<1,3>|    \bottomrule
+|\highlightline<1,2>|  \end{tabular}
+|\highlightline<1>|\end{table}
 \end{document}
       \end{codeblock}
     \end{column}
     \begin{column}{0.4\textwidth}
 
       \only<1>{
+        \includepdflarge{support/examples/table.pdf}
+      }
+
+      \only<2>{
         使用 \env{tabular} 环境绘制表格。需要添加参数（称为\textbf{表格导言}）以确定每一列的对齐方式。引入 \pkg{array} 宏包来使用更多的\textbf{引导符}。
         \begin{center}
           \footnotesize
@@ -43,17 +47,14 @@
         \end{center}
       }
 
-      \only<2>{
+      \only<3>{
         \pkg{booktabs} 宏包提供了标准三线表格所需要的行分割线：\cmd{toprule}，\cmd{midrule}，\cmd{bottomrule}。也可以使用 \cmd{cmidrule\{1-2\}} 来部分地绘制行分割线。一般不推荐在专业表格中使用纵向分割线。
       }
 
-      \only<3>{
+      \only<4>{
         每行内容使用 \textbackslash\textbackslash{} 分隔开，每行中的单元格使用 \& 分隔开。
       }
 
-      \only<4>{
-        \includepdflarge{support/examples/table.pdf}
-      }
     \end{column}
   \end{columns}
 \end{frame}
