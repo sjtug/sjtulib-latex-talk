@@ -168,10 +168,10 @@
 \begin{frame}
   \frametitle{编译}
 
-  \alert{在线平台} Overleaf 在线平台在打开模板或上传压缩包后，选择 \hologo{XeLaTeX} 编译器即可编译。
+  \alert{在线平台} Overleaf 等在线平台在打开模板或上传压缩包后，选择 \hologo{XeLaTeX} 编译器即可编译。
   \medskip
 
-  \alert{VS Code + \LaTeX Workshop} 在命令面板（Ctrl + Shift + P）搜索运行 Build with recipe 并选择 \texttt{latexmk (xelatex)} 即可编译。可在 VS Code 配置文件中设置 \texttt{"latex-workshop.latex.recipe.default": "lastUsed"}，此后修改文件并保存时会沿用上次选择的 recipe。
+  \alert{VS Code + \LaTeX Workshop} 在命令面板（Ctrl + Shift + P）搜索运行 Build with recipe 并选择 \texttt{latexmk (xelatex)} 即可编译。可在 VS Code 配置文件中设置 \texttt{latex-workshop.latex.recipe.default} 为 \texttt{lastUsed}，此后修改文件并保存时会沿用上次选择的 recipe。
   \medskip
 
   \alert{手动编译} 推荐使用 \pkg{latexmk} 编译\footnote{\hologo{MiKTeX} 用户需要手动安装 Perl 解释器 \link{https://www.perl.org/get.html} 才能使用 \pkg{latexmk}。}，在不能够利用自带的 \texttt{.latexmkrc} 配置文件的情况下，需要查清楚在对应的编辑器中如何使用 \hologo{XeLaTeX} + \hologo{biber} 编译\footnote{这种情况下，你可能需要查清楚如何全局安装该文档类，并刷新文件名数据库。} \link{https://github.com/sjtug/SJTUThesis/blob/master/README.md}。
