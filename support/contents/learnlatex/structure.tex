@@ -66,30 +66,38 @@
   \frametitle{目次结构}
   \begin{columns}
     \begin{column}{0.4\textwidth}
-      \LaTeX{} 可以使用目次命令将文档划分层级\footnotemark，并自动设定对应字体样式和大小。
-      \begin{center}
-        \footnotesize
-        \begin{tabular}{rll}
-          命令 & 含义 & 层次 \\
-          \cmd{chapter} & 章\footnotemark & \sout{0} \\
-          \cmd{section} & 节 & 1 \\
-          \cmd{subsection} & 小节 & 2 \\
-          \cmd{subsubsection} & 小小节 & 3 \\
-        \end{tabular}
-      \end{center}
+
+      \only<1>{
+        \LaTeX{} 可以使用目次命令将文档划分层级\footnotemark，并自动设定对应字体样式和大小。
+        \begin{center}
+            \footnotesize
+            \begin{tabular}{rll}
+            命令 & 含义 & 层次 \\
+            \cmd{chapter} & 章\footnotemark & \sout{0} \\
+            \cmd{section} & 节 & 1 \\
+            \cmd{subsection} & 小节 & 2 \\
+            \cmd{subsubsection} & 小小节 & 3 \\
+            \end{tabular}
+        \end{center}
+      }
+
+      \only<2>{
+        \includepdflarge{support/examples/section.pdf}
+      }
+
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{目次}
 \documentclass{ctexart}
 \begin{document}
-|\highlightline|  \section{|\phantom{}|概念}
-|\highlightline|  \subsection{\LaTeX{}}
-  \LaTeX{} 是一个用以排版高质量作品的文档准备系统。
+|\highlightline<1>|  \section{概念}
+|\highlightline<1>|  \subsection{\LaTeX{}}
+  \LaTeX{} 是一个……
 \end{document}
       \end{codeblock}
     \end{column}
   \end{columns}
-  \footnotetext{章这一级只在 \cls{report} 和 \cls{book} 文档类（包括对应的中文文档类）有定义。还有不常用的 \cmd{part} (0@\cls{article}/-1@\cls{report}\&\cls{book}\&\cls{beamer}) 以及更低层次的 \cmd{paragraph} (4) 与 \cmd{subparagraph} (5)。 }
+  \only<1>{\footnotetext{章这一级只在 \cls{report} 和 \cls{book} 文档类（包括对应的中文文档类）有定义。还有不常用的 \cmd{part} (0@\cls{article}/-1@\cls{report}\&\cls{book}\&\cls{beamer}) 以及更低层次的 \cmd{paragraph} (4) 与 \cmd{subparagraph} (5)。 }}
   \note{而知道层次，对我们下面生成目录有帮助。}
 \end{frame}
 
@@ -115,23 +123,19 @@
         区别在于，\cmd{include} 命令会从新页开始并做一些内部调整，这基本上只对 \pkg{chapter} 这一级有用。而 \cmd{input} 会原样插入源代码。
       }
 
-      \only<3>{
-        但是 \cmd{include} 插入的文档可以使用 \cmd{includeonly} 管理当前要排印哪一部分的内容，利用所有章节辅助文件的同时，减少编译时间并专注于该部分的内容。
-      }
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{主文档}
 \documentclass{ctexrep}
-|\highlightline<3>|\includeonly{learnlatex,sjtuthesis}
 \begin{document}
 |\highlightline<1>|  \tableofcontents
-|\only<2-3>{\highlightline}|  \include{learnlatex}
-|\highlightline<3>|  \include{sjtuthesis}
+|\highlightline<2>|  \include{learnlatex}
+|\highlightline<2>|  \include{sjtuthesis}
 \end{document}
       \end{codeblock}
     \end{column}
   \end{columns}
-  \note<3>{当然，如果需要不换页插入源代码就不用 \cmd{include} 了，
+  \note<2>{当然，如果需要不换页插入源代码就不用 \cmd{include} 了，
   因为这最主要的好处在于能够在组建大型文档的时候，得到当前页码、编号的进度信息。
   在插入小部件时，还是推荐使用 \cmd{input}，这个命令不会额外地产生 \texttt{.aux} 文件，
   对于 I/O 反应慢的（说的就是 \faWindows{}）比较友好。}
@@ -142,24 +146,23 @@
   \begin{columns}
     \begin{column}{0.4\textwidth}
       \begin{codeblock}[]{learnlatex.tex}
-|\highlightline|\chapter{|\phantom{}|学习 \LaTeX{}}
+% !TeX root = main.tex
+\chapter{|\phantom{}|学习 \LaTeX{}}
 \section{|\phantom{}|概念}
 \subsection{\LaTeX{}}
-\LaTeX{} 是一个用以排版高质量作品的文档准备系统。
+……
       \end{codeblock}
-      子文件中就不需要添加 \env{document} 环境了\footnotemark。
+      子文件中不需要添加 \env{document} 环境。
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{主文档 main.tex}
-|\highlightline|\documentclass{ctexrep}
-\includeonly{learnlatex,sjtuthesis}
+\documentclass{ctexrep}
 \begin{document}
   \tableofcontents
-  \include{learnlatex}
-  \include{sjtuthesis}
+|\highlightline|  \input{learnlatex}
 \end{document}
       \end{codeblock}
     \end{column}
   \end{columns}
-  \footnotetext{如果想强制指定子文档的主文档，可以在文件第一行输入魔术命令：\texttt{\% !TeX root = main.tex}}
+  \footnotetext{第一行的魔术命令 \texttt{\% !TeX root = main.tex} 可提示编辑器当前文档所属的主文档位置}
 \end{frame}
