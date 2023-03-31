@@ -47,9 +47,9 @@
       \begin{alertblock}{}
         \scriptsize
         \begin{tabular}{cl}
-          \faStar & 2.6k \\
-          \faEye & 52 \\
-          \faCodeBranch & 726 \\
+          \faStar & 2.8k \\
+          \faEye & 54 \\
+          \faCodeBranch & 734 \\
         \end{tabular}
       \end{alertblock}
     \end{column}
@@ -60,68 +60,68 @@
   \frametitle{\only<1>{为什么使用 \LaTeX{} 排版论文？}\only<2>{当然它们也互相学习}}
   \begin{columns}[t]
     \begin{column}{0.25\textwidth}
-      \begin{exampleblock}{\faMarkdown{} Markdown}
+      \begin{exampleblock}{Markdown}
         \begin{itemize}
           \item[\faPlus] 技术文档流行
-          \item[\faPlus] 语法简单 
+          \item[\faPlus] 语法简单
           \item[\faMinus] 不内置格式控制
         \end{itemize}
       \end{exampleblock}
       \only<2>{
         \begin{block}{}
           \begin{itemize}
-            \item[\faBolt] R Markdown (Bookdown) 模板 \link{https://github.com/bubifengyun/SJTUThesis-Rmd} \link{https://github.com/bubifengyun/SJTUThesis-Rmd}
-            \item[\faAsterisk] 配套 MathJax 渲染公式  
+            \item[\faBolt] R Markdown (Bookdown) 模板 \link{https://github.com/bubifengyun/SJTUThesis-Rmd}
+            \item[\faAsterisk] 配套 MathJax 渲染公式
           \end{itemize}
         \end{block}
       }
     \end{column}
     \begin{column}{0.25\textwidth}
-      \begin{exampleblock}{\faFileWord{} Word}
+      \begin{exampleblock}{Word}
         \begin{itemize}
           \item[\faPlus] 通用论文格式
           \item[\faPlus] 所见即所得
-          \item[\faMinus] 进阶排版仍困难 
+          \item[\faMinus] 进阶排版仍困难
         \end{itemize}
       \end{exampleblock}
       \only<2>{
         \begin{block}{}
           \begin{itemize}
             \item[\faBolt] 数学公式可以直接通过 \LaTeX{} 格式转换
-            \item[\faAsterisk] 也就是 Unicode Math 输入方式 
+            \item[\faAsterisk] 也就是 Unicode Math 输入方式
           \end{itemize}
         \end{block}
       }
     \end{column}
     \begin{column}{0.25\textwidth}
-      \begin{block}{\LaTeX{} SJTUThesis}
+      \begin{exampleblock}{\LaTeX{}}
         \begin{itemize}
           \item[\faPlus] 学术论文格式
           \item[\faPlus] 内容样式分离
-          \item[\faMinus] 上手有门槛 
-        \end{itemize}
-      \end{block}
-      \only<2>{
-        \begin{exampleblock}{}
-          \begin{itemize}
-            \item[\faBolt] \TeX{} 的可视前端 \hologo{LyX} \link{https://www.lyx.org/Download} Overleaf Rich Text 模式
-            \item[\faAsterisk] \TeX{} 的可视改良 \TeX{}\raise-0.25em\hbox{\footnotesize MACS} \link{http://texmacs.org/tmweb/home/welcome.en.html} \link{https://mogan.app}
-          \end{itemize}
-        \end{exampleblock}
-      }
-    \end{column}
-    \begin{column}{0.25\textwidth}
-      \begin{exampleblock}{\faAdobe{} InDesign}
-        \begin{itemize}
-          \item[\faPlus] 专业杂志排版
-          \item[\faPlus] 精细调整
-          \item[\faMinus] 过于繁琐专业  
+          \item[\faMinus] 上手有门槛
         \end{itemize}
       \end{exampleblock}
       \only<2>{
         \begin{block}{}
           \begin{itemize}
-            \item[\faBolt] 传说用了 \TeX{} 的一些算法 \link{https://mp.weixin.qq.com/s/GASGHK-GsIg2Fwb2jWwpvw}
+            \item[\faBolt] \TeX{} 的可视前端 \hologo{LyX} \link{https://www.lyx.org/Download} Overleaf Rich Text 模式
+            \item[\faAsterisk] \TeX{} 的可视改良 \TeX{}\raise-0.25em\hbox{\footnotesize MACS} \link{http://texmacs.org/tmweb/home/welcome.en.html} \link{https://mogan.app}
+          \end{itemize}
+        \end{block}
+      }
+    \end{column}
+    \begin{column}{0.25\textwidth}
+      \begin{exampleblock}{Typst}
+        \begin{itemize}
+          \item[\faPlus] 渲染速度快
+          \item[\faPlus] 简单且可定制
+          \item[\faMinus] 目前还不成熟
+        \end{itemize}
+      \end{exampleblock}
+      \only<2>{
+        \begin{block}{}
+          \begin{itemize}
+            \item[\faBolt] 致力于像 \LaTeX 一样强大，但同时简单易用
           \end{itemize}
         \end{block}
       }
@@ -148,22 +148,37 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{开始使用}
-  \alert{下载} 推荐安装 Git \link{https://git-scm.com/} 后，克隆 SJTUG 镜像仓库
+  \frametitle{下载}
+
+  三种方式任选：
+  \medskip
+
+  \alert{Git 克隆} 使用 Git 克隆 GitHub SJTUThesis 仓库 \link{https://github.com/sjtug/SJTUThesis} 或 SJTUG 镜像仓库。
   \begin{exampleblock}{\faGit*}
     \ttfamily\small
     git clone https://mirror.sjtu.edu.cn/git/SJTUThesis.git/
   \end{exampleblock}
 
-  \alert{编译} 推荐使用 \pkg{latexmk} 编译\footnote{\hologo{MiKTeX} 用户需要手动安装 Perl 解释器 \link{https://www.perl.org/get.html} 才能使用 \pkg{latexmk}。}，在不能够利用自带的 \texttt{.latexmkrc} 配置文件的情况下，需要查清楚在对应的编辑器中如何使用 \hologo{XeLaTeX} + \hologo{biber} 编译\footnote{这种情况下，你可能需要查清楚如何全局安装该文档类，并刷新文件名数据库。} \link{https://github.com/sjtug/SJTUThesis/blob/master/README.md}。
+  \alert{下载压缩包} 在 GitHub 仓库的 Release 页面 \link{https://github.com/sjtug/SJTUThesis/releases} 下载最新的 Source code (zip)。
+  \medskip
+
+  \alert{在线平台} 直接使用 Overleaf 链接 \link{https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b}。其他在线平台用户可以下载压缩包，上传至对应平台。
+\end{frame}
+
+\begin{frame}
+  \frametitle{编译}
+
+  \alert{在线平台} Overleaf 在线平台在打开模板或上传压缩包后，选择 \hologo{XeLaTeX} 编译器即可编译。
+  \medskip
+
+  \alert{VS Code + \LaTeX Workshop} 在命令面板（Ctrl + Shift + P）搜索运行 Build with recipe 并选择 \texttt{latexmk (xelatex)} 即可编译。可在 VS Code 配置文件中设置 \texttt{"latex-workshop.latex.recipe.default": "lastUsed"}，此后修改文件并保存时会沿用上次选择的 recipe。
+  \medskip
+
+  \alert{手动编译} 推荐使用 \pkg{latexmk} 编译\footnote{\hologo{MiKTeX} 用户需要手动安装 Perl 解释器 \link{https://www.perl.org/get.html} 才能使用 \pkg{latexmk}。}，在不能够利用自带的 \texttt{.latexmkrc} 配置文件的情况下，需要查清楚在对应的编辑器中如何使用 \hologo{XeLaTeX} + \hologo{biber} 编译\footnote{这种情况下，你可能需要查清楚如何全局安装该文档类，并刷新文件名数据库。} \link{https://github.com/sjtug/SJTUThesis/blob/master/README.md}。
   \begin{exampleblock}{\faTerminal}
     \ttfamily\small
     latexmk -xelatex main
   \end{exampleblock}
-
-  \alert{在线} 直接使用 Overleaf 链接 \link{https://www.overleaf.com/latex/templates/sjtuthesis-latex-thesis-template-for-shanghai-jiao-tong-university/mkdwbyjbtfgg?r=sdkbtJ4qGS8kDZQQ&rm=d&rs=b}。
-  其他在线平台用户可以下载压缩包，上传至对应平台并采用 \hologo{XeLaTeX} 编译，请注意使用最新版本的 \TeX{} Live。
-  \note{不会 Git 的同学可以直接 Download ZIP。}
 \end{frame}
 
 \begin{frame}
@@ -208,7 +223,7 @@
     \begin{column}{0.33\textwidth}
       \begin{alertblock}{无法使用 \texttt{latexmk}\thesisissue{578}}
         \hologo{MiKTeX} 需要安装 Perl 解释器。
-      \end{alertblock}  
+      \end{alertblock}
       \begin{alertblock}{\CTeX{} 套装无法编译\thesisissue{446}}
         使用最新 \TeX{} 发行版。\link{https://github.com/Aloft-Lab/CTeX-Installer}
       \end{alertblock}
@@ -231,10 +246,13 @@
       \begin{block}{\faBookOpen{} Wiki}
         其他编译问题推荐查阅 Wiki \link{https://github.com/sjtug/SJTUThesis/wiki} 的使用说明部分。
       \end{block}
+      \begin{block}{\faComments{} Discussions}
+        如果实在无法解决，可以前往 Discussions \link{https://github.com/sjtug/SJTUThesis/discussions} 提问交流。
+      \end{block}
     \end{column}
   \end{columns}
   \note{两个进阶问题：
-  
+
   如果之前出现了编译错误，在重新编译前，最好清理一下临时文件（\texttt{make clean}）。
 
   如果是 biber 出现了问题，还可以尝试 \texttt{rm -rfv \$(biber --cache)}。\thesisdiscuss{774}
@@ -312,7 +330,7 @@
   \frametitle{文档类选项}
   \begin{columns}
     \begin{column}{0.35\textwidth}
-      \includegraphics[page=2,scale=0.9]{support/figures/thesisdir.pdf}
+      \includegraphics[page=1,scale=0.9]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.65\textwidth}
       \begin{table}
@@ -348,7 +366,7 @@
   \newcommand{\noticemark}{\alert{\normalshape \textopenbullet}}
   \begin{columns}
     \begin{column}{0.35\textwidth}
-      \includegraphics[page=3,scale=0.9]{support/figures/thesisdir.pdf}
+      \includegraphics[page=1,scale=0.9]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{.65\textwidth}
       相较于 \CTeX{} 使用 \texttt{fontset} 设定中文字体集，
@@ -358,7 +376,7 @@
         \medskip
         \ttfamily\scriptsize
         \alert{cjk-font=...\hfill 中文字体}
-        
+
         \stamphrule\medskip
 
         \foreach \sjtufontname/\sjtufontdesc in {adobe/{adobe \faAdobe\noticemark},{fandol}/{fandol \faLinux{} \noticemark},{founder},mac/{mac \faApple{} \noticemark},windows/{windows \faWindows},ubuntu/{ubuntu \noticemark}}{
@@ -392,7 +410,7 @@
   \frametitle{数学符号样式}
   \begin{columns}
     \begin{column}{0.35\textwidth}
-      \includegraphics[page=2,scale=0.9]{support/figures/thesisdir.pdf}
+      \includegraphics[page=1,scale=0.9]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.65\textwidth}
       新增数学符号样式 \texttt{math-style} 文档类选项，现在默认为 \texttt{ISO}，
@@ -404,7 +422,7 @@
       \begin{minipage}[c]{5cm}
         \includemathstylepreview{support/thesis/mathstyle-ISO.pdf}
       \end{minipage}
-       
+
       \begin{minipage}[c]{10em}
         \texttt{math-style=TeX}
       \end{minipage}
@@ -432,7 +450,7 @@
       }
 
       \only<2>{
-        \alert{\textbf{(a,b)}} 其中 \cmd{sjtusetup}（第 \ref{sjtusetup} 页）中的 \opt{info} 将会修改封面的信息设置。
+        \alert{\textbf{(a,b)}} \texttt{setup.tex} 文件中 \cmd{sjtusetup} 设置的 \opt{info} 将会修改封面信息。
       }
 
       \begin{codeblock}[firstnumber=12]{main.tex}
@@ -619,7 +637,7 @@
       \includegraphics[page=6]{support/figures/thesisdir.pdf}
     \end{column}
     \begin{column}{0.6\textwidth}
-      \SJTUThesis{} 定义了常用的数学环境（需要引入 \pkg{ntheorem} 或者 \pkg{amsthm} 宏包）。
+      \SJTUThesis{} 定义了常用的数学环境（需要在 \texttt{setup.tex} 中引入 \pkg{ntheorem} 或者 \pkg{amsthm} 宏包）。
 
       \begin{table}
         \centering
@@ -668,7 +686,7 @@
 \begin{frame}
   \frametitle{Word}
   \begin{itemize}
-    \item[{\faQuestionCircle[regular]}] 跟 Word 的参考实现略有不同 
+    \item[{\faQuestionCircle[regular]}] 跟 Word 的参考实现略有不同
     \item[{\faCheckCircle[regular]}] 毕设论文的格式只要不违背《上海交通大学关于本科生毕业设计（论文）工作的指导意见》\link{https://github.com/sjtug/SJTUThesis/files/6505296/default.pdf} \thesisissue{621}、《上海交通大学博士、硕士学位论文撰写指南》\link{https://www.gs.sjtu.edu.cn/info/1143/5801.htm} \thesisissue{652} 即可，其他细节上的修改可以先搜索解决方案，再反馈给我们。
     \item[{\faQuestionCircle[regular]}] 我需要转为 Word 文档
     \item[{\faCheckCircle[regular]}] PDF 转为 Word 文档属于逆向工程，暂时不存在完全正确的转换方法 \link{https://www.bilibili.com/video/BV1Vi4y1C71M}，从 \LaTeX{} 源代码出发的转换可以使用其他工具实现 \thesisissue{480} \thesisissue{500}。
@@ -690,7 +708,7 @@
 
           向 \textsc{SJTU\TeX{}} \link{https://github.com/sjtug/SJTUTeX} 存储库发 PR，\par
           而后把解包结果同步到 \textsc{SJTUThesis}。
-        
+
         \item[{\faQq}] 也欢迎在 QQ 群（715273806）即时讨论。
         \note{群之前满了，社长给腾讯充了钱，让它可以接着塞人。}
       \end{itemize}
