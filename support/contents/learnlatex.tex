@@ -19,7 +19,7 @@
     \CTeX\ 开发小组~译．
     \newblock learnlatex.org[EB/OL].
     \newblock 2022. \url{https://github.com/CTeX-org/learnlatex.github.io}.
-  
+
     \onlineitem \textsc{Oetiker T}, \textsc{Partl H}, \textsc{Hyna I}, \textsc{Schlegl E}.
     \CTeX\ 开发小组~译．
     \newblock 一份（不太）简短的 \LaTeXe{} 介绍：或 111 分钟了解 \LaTeXe{}[EB/OL]. \newblock\newblock 2021.
@@ -55,13 +55,14 @@
 \begin{shadedsection}
 
 \section{是什么}
+
 \begin{frame}
   \frametitle{\TeX{}}
   \begin{columns}[c]
     \begin{column}{0.7\textwidth}
       \begin{center}
         \rmfamily\Huge
-        \hologo{La}\highlight[structure!70]{\TeX{}}
+        \highlight[structure]{\TeX{}}
       \end{center}
       \begin{center}
         \parbox{0.75\textwidth}{
@@ -137,37 +138,37 @@
   \note{\hologo{pdfLaTeX} 是为了编译一个 \LaTeX{} 文档而运行的程序。}
 \end{frame}
 
-\begin{frame}
-  \frametitle{引擎}
-  \begin{columns}[c]
-    \begin{column}{0.7\textwidth}
-      \begin{center}
-        \rmfamily\Huge
-        \highlight[structure!70]{pdf}\hologo{La}\highlight[structure!70]{\TeX{}}
-      \end{center}
-      \begin{center}
-        \parbox{0.7\textwidth}{
-          pdf\TeX{} 是编译 \TeX{} 文档（以 \texttt{.tex} 结尾）的\textbf{引擎}---可以理解 \TeX{} 指令的\textbf{程序}。
-        }
-      \end{center}
-    \end{column}
-    \begin{column}{0.3\textwidth}
-      \begin{block}{}
-        \ttfamily\small
-        > pdflatex main.tex\\
-        This is \highlight[structure!70]{pdfTeX}, Version 3.141592653-
-        2.6-1.40.23 (MiKTeX 21.10)
-        entering extended mode\\
-        LaTeX2e <2021-11-15>\\
-        L3 programming layer <2021-11-22>
-      \end{block}
-    \end{column}
-  \end{columns}
-  \note{实际上底层在运行一个叫 \hologo{pdfTeX} 的引擎，并预装了对应的 \LaTeX{} 格式。}
-\end{frame}
+% \begin{frame}
+%   \frametitle{引擎}
+%   \begin{columns}[c]
+%     \begin{column}{0.7\textwidth}
+%       \begin{center}
+%         \rmfamily\Huge
+%         \highlight[structure!70]{pdf}\hologo{La}\highlight[structure!70]{\TeX{}}
+%       \end{center}
+%       \begin{center}
+%         \parbox{0.7\textwidth}{
+%           pdf\TeX{} 是编译 \TeX{} 文档（以 \texttt{.tex} 结尾）的\textbf{引擎}---可以理解 \TeX{} 指令的\textbf{程序}。
+%         }
+%       \end{center}
+%     \end{column}
+%     \begin{column}{0.3\textwidth}
+%       \begin{block}{}
+%         \ttfamily\small
+%         > pdflatex main.tex\\
+%         This is \highlight[structure!70]{pdfTeX}, Version 3.141592653-
+%         2.6-1.40.23 (MiKTeX 21.10)
+%         entering extended mode\\
+%         LaTeX2e <2021-11-15>\\
+%         L3 programming layer <2021-11-22>
+%       \end{block}
+%     \end{column}
+%   \end{columns}
+%   \note{实际上底层在运行一个叫 \hologo{pdfTeX} 的引擎，并预装了对应的 \LaTeX{} 格式。}
+% \end{frame}
 
 \begin{frame}[label={frame:engine}]
-  \frametitle{Unicode 引擎}
+  \frametitle{程序}
   \begin{table}
     \caption{主流 \hologo{(La)TeX} 程序
     \footnote{(u)p\TeX{} 是日语最常用的引擎，生成 \texttt{.dvi}，支持 Unicode。}\footnote{Ap\TeX{} \link{https://github.com/clerkma/ptex-ng} 具有底层 CJK 支持，内联 Ruby，Color Emoji。}}
@@ -183,19 +184,19 @@
 
   \begin{center}
     \parbox{.9\textwidth}{
-      \hologo{pdfLaTeX} 不支持 Unicode。为了排版中文，大部分情况下 \faApple{}\,\faLinux{} 应当使用 \hologo{XeLaTeX}，而 \hologo{LuaLaTeX} 速度相对较慢。\faWindows{} 可以在一些情况下使用 \hologo{pdfLaTeX}。
+      \hologo{pdfLaTeX} 不支持 Unicode。为了排版中文，大部分情况下应当使用 \hologo{XeLaTeX}，而 \hologo{LuaLaTeX} 速度相对较慢。\faWindows{} 可以在一些情况下使用 \hologo{pdfLaTeX}。
     }
   \end{center}
-  \note{当然为了排版中文，已经不再推荐使用 \hologo{pdfLaTeX} 了，应该使用 
+  \note{当然为了排版中文，已经不再推荐使用 \hologo{pdfLaTeX} 了，应该使用
   \hologo{XeLaTeX} 或者 \hologo{LuaLaTeX}，当然后者的速度还是相对较慢，
   它们支持 Unicode 编码，并可以使用 OpenType 字体的全部功能。
   当然 \faWindows{} 平台下在某些追求速度的情况下，
   还是可以试着使用 \hologo{pdfLaTeX} 的。
-  
+
   \hologo{LuaLaTeX} 理想情况下不慢，但是使用一些宏包后会破坏理想状态，
   也会因配置产生不同的结果，不同的操作系统在 I/O 速度上的不同也会导致不同的时间。
 
-  \hologo{pdfLaTeX} 也支持，只不过需要先生成 tfm \TeX{} 字体度量文件，后续使用 \TeX{} 
+  \hologo{pdfLaTeX} 也支持，只不过需要先生成 tfm \TeX{} 字体度量文件，后续使用 \TeX{}
   自身的配置方法，只能使用 7 比特或 8 比特字体。}
 \end{frame}
 
@@ -203,7 +204,8 @@
 %   \paragraph{\hologo{pdfLaTeX}} \TeX{} 和 \LaTeX{} 被广泛使用之前，它们只需内置支持欧洲语言即可。在 Unicode 出现之前，\LaTeX{} 提供了许多种\textbf{文件编码}来允许很多语言的文字以原生的方式输入，\hologo{pdfLaTeX} 也只需要使用 8 位文件编码和 8 位字体。
 % \end{frame}
 
-\section{跑起来}
+\section{安装和编辑}
+
 \begin{frame}
   \frametitle{发行版}
   \begin{table}
@@ -211,9 +213,9 @@
     \footnotesize
     \begin{stampbox}
       \begin{tabular}{c>{\raggedright}*{3}{p{3.2cm}}}
-        \alert{发行版}     & \hologo{MiKTeX} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/win32/miktex/setup/windows-x64/}   & \TeX{} Live \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/}   & Mac\TeX{} \link{https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/mac/mactex/}  \\[2pt]
+        \alert{发行版}     & \hologo{MiKTeX} \link{https://miktex.org/}   & \TeX{} Live \link{https://www.tug.org/texlive/}   & Mac\TeX{} \link{https://www.tug.org/mactex/}  \\[2pt]
         \alert{特点}      &  只安装必要文件，依赖用时更新  &  所有平台均可使用，每年发布一次 & Mac 系统专用，对 \TeX{} Live 的进一步打包 \\
-        \alert{推荐平台}  & \faWindows  & \faLinux &  \faApple \\
+        \alert{推荐平台}  & \faWindows  & \faWindows\,\faLinux &  \faApple \\
       \end{tabular}
     \end{stampbox}
   \end{table}
@@ -222,12 +224,12 @@
       要让 \LaTeX{} 跑起来，核心就是要有一套 \TeX{} 发行版，来获取让 \LaTeX{} 工作所需的一组程序和文件。参考《一份简短的关于 \LaTeX{} 安装的介绍》\link{https://mirrors.sjtug.sjtu.edu.cn/ctan/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf} 安装想使用的发行版。推荐使用发行版的最新版本\footnote{老版本 Linux 系统的包管理器自带 \TeX{} Live 发行版可能不是最新的 \link{https://repology.org/project/texlive/versions}，尽量使用镜像安装，并手动将相关环境变量添加到路径 \link{https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf}。}，并使用国内镜像。
     }
   \end{center}
-  \note{要让 \LaTeX{} 跑起来，核心就是要有一套 \TeX{} 发行版，来获取让 
+  \note{要让 \LaTeX{} 跑起来，核心就是要有一套 \TeX{} 发行版，来获取让
   \LaTeX{} 工作所需的一组程序和文件。参考《一份简短的关于 \LaTeX{} 安装的介绍》
   安装想使用的发行版，里面介绍了 \faWindows{}, \faApple{}, \faLinux{}, WSL 等系统上
   \TeX{} Live 的安装，非常全面，一步一步做就可以成功安装。目前最新的 \TeX{} Live 版本为
   2022，\SJTUThesis{} 用户不应当安装 \TeX{} Live 2020 以下的版本（后面会讲）。
-  
+
   事实上，我认为这几个发行版各有操作系统偏好，虽然前两者是跨平台的。
 
   \hologo{MiKTeX} 对 Windows 用户较为友好，安装简单，占用空间不大，安装时间短，
@@ -264,11 +266,12 @@
   \begin{center}
     \parbox{0.8\textwidth}{
       推荐使用 SJTUG 软件镜像服务 \link{https://mirror.sjtu.edu.cn/}，离得近，下得快。
-      
+
       \begin{description}
         \footnotesize
-        \item[\TeX{} Live]  {\ttfamily tlmgr option repository https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/texlive/tlnet}
-        \item[\hologo{MiKTeX}] 在 \hologo{MiKTeX} Console 中设置镜像源为 \url{https://mirrors.sjtug.sjtu.edu.cn}
+        \item[\hologo{MiKTeX}] \url{https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/win32/miktex/setup/windows-x64/} \\ 并在 \hologo{MiKTeX} Console 中设置镜像源为 \url{https://mirrors.sjtug.sjtu.edu.cn}
+        \item[\TeX{} Live] \url{https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/texlive/tlnet}
+        \item[Mac\TeX{}] \url{https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/mac/mactex/}
         \item[\faTelegram] 可以在 SJTUG 镜像站通知频道 \link{https://t.me/sjtug_mirrors_news} 获得更多信息，加入关联群组参与讨论。
       \end{description}
     }
@@ -286,7 +289,7 @@
     \footnotesize
     \begin{stampbox}
       \begin{tabular}{c>{\raggedright}*{3}{p{3.5cm}}}
-        \alert{编辑器}     & \begin{tabular}{c}Visual Studio Code \link{https://code.visualstudio.com}\\ \LaTeX{} Workshop\end{tabular}  & \TeX{}studio \link{https://texstudio.org} & \TeX{}works \\[5pt]
+        \alert{编辑器}     & \begin{tabular}{c}Visual Studio Code \link{https://code.visualstudio.com}\\ +\,\LaTeX{} Workshop \link{https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop}\end{tabular}  & \TeX{}studio \link{https://texstudio.org} & \TeX{}works \\[5pt]
         \alert{特点}      &  搭配 VS Code 使用非常方便，易扩展  & 可以使用大量的菜单选项输入代码块，用户友好 & 只提供基础的高亮与运行方法，发行版自带\footnote{Mac\TeX{} 打包的是 \TeX{}Shop 编辑器。} \\
       \end{tabular}
     \end{stampbox}
@@ -299,7 +302,7 @@
   \note{编辑器的种类很多，我无法一一列举，但是对编写 \TeX{} 常用的开源编辑器我推荐这三个。
   其中 \TeX{}studio 的安装包可能下得有点慢。这里我对这些编辑器都演示一下，初学者我更推荐使用
   \TeX{} studio 编辑器，如果平时就码很多代码的话，我更推荐使用 VS Code 加插件这种方式。
-  
+
   使用专为 \LaTeX{} 设计的编辑器将带来更多便利，因为它们往往会提供一键编译、内置 PDF 阅读器
   以及语法高亮等功能。几乎所有现代的 \LaTeX{} 编辑器都提供 Sync\TeX{} 这一强大的功能
   （VS Code 的方法是 Ctrl + 某处，Overleaf 的方法是直接双击），以在 PDF 和代码间对应跳转。
@@ -333,12 +336,18 @@
   学习如何使用在线平台参见 Overleaf 的官方文档 \link{https://www.overleaf.com/learn}。}
 \end{frame}
 
-\section{基本结构}
+\section{基本要素}
+
 \begin{frame}[fragile]%
-  \frametitle{文档部件}
+  \frametitle{最小示例}
   \begin{columns}[c]
     \begin{column}{0.4\textwidth}
       \only<1>{
+        \includepdflarge{support/examples/enminimal.pdf}
+      }
+
+      \only<2>{
+        \begin{center}\highlight[structure]{文档类}\end{center}
         \cmd{documentclass} 命令加载了\textbf{文档类}。\cls{article} 是由 \LaTeX{} 提供的用于排版短文档的基本文档类。
         \begin{description}
           \footnotesize
@@ -349,50 +358,56 @@
         \end{description}
       }
 
-      \only<2>{
-        \env{document} 环境用于指示文档主体的范围。\LaTeX{} 还有其他的使用 \cmd{begin} 和 \cmd{end} 的搭配，我们称这些为\textbf{环境}。它们将用来设定局部格式命令\footnotemark。
-      }
-
       \only<3>{
-        \includepdflarge{support/examples/enminimal.pdf}
+        \begin{center}\highlight[structure]{\texttt{document} 环境}\end{center}
+        \cmd{begin} 和 \cmd{end} 用于创建\textbf{环境}，可以多次、嵌套使用。环境用来指定一组文档元素的局部格式\footnotemark。\env{document} 环境是文档中必须有的环境，用于指示文档主体的范围。
       }
     \end{column}
     \begin{column}{0.6\textwidth}
-      \begin{codeblock}[]{排版英文最简示例}
-|\highlightline<1>|\documentclass{article}
-|\highlightline<2>|\begin{document}
-|\highlightline<3>|  Together for a Shared Future
-|\highlightline<2>|\end{document}
+      \begin{codeblock}[]{排版英文最小示例}
+|\highlightline<2>|\documentclass{article}
+|\highlightline<3>|\begin{document}
+  Together for a Shared Future
+|\highlightline<3>|\end{document}
       \end{codeblock}
     \end{column}
   \end{columns}
 
-  \only<2>{\footnotetext{环境实际上是一个组，只不过通过语义化的形式预装了对应的格式命令。普通的组可以直接使用一对大括号之间的内容 \{$\cdots$\} 表示。}}
+  \only<3>{\footnotetext{环境实际上是一个组，只不过通过语义化的形式预装了对应的格式命令。普通的组可以直接使用一对大括号之间的内容 \{$\cdots$\} 表示。}}
 \end{frame}
 
-\section{扩展}
 \begin{frame}[fragile]%
-  \frametitle{中文排版}
+  \frametitle{中文最小示例}
   \begin{columns}[c]
     \begin{column}{0.4\textwidth}
 
       \only<1>{
-        \cmd{usepackage} 用于使用宏包以向 \LaTeX{} 添加或修改功能，需要在\textbf{导言区}调用。
-        这里使用 \pkg{ctex} 宏集以获得中文支持。其调用底层因不同的引擎而不同。
-        \begin{center}
-          \footnotesize
-          \begin{tabular}{c*{3}{c}}
-            \alert{引擎}     & \hologo{pdfTeX}   & \hologo{XeTeX}   & \hologo{LuaTeX}   \\
-            \alert{程序}     & \hologo{pdfLaTeX} & \hologo{XeLaTeX} & \hologo{LuaLaTeX} \\
-            \alert{宏包}     & CJK\footnotemark & xeCJK & luatexja \\
-            \alert{封装}     & \multicolumn{3}{c}{ctex} \\
-          \end{tabular}
-        \end{center}
-        \vspace{-1cm}
+        \begin{center}\highlight[structure]{导言区}\end{center}
+        \cmd{usepackage} 用于引入宏包，从而使用扩展功能，需要在\textbf{导言区}调用。这里使用 \pkg{ctex} 宏集以获得中文支持。
       }
 
-      \only<2>{
-        \CTeX{} 建议对于之前提到的常规文档类，最佳实践是使用该宏集提供的四种中文文档类，以对特定类型提供额外的中文排版适配。
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{排版中文最小示例}
+\documentclass{article}
+|\highlightline<1>\textbackslash{}usepackage\{ctex\}\hfill\color{structure}\% 导言区|
+\begin{document}
+  一起向未来
+
+  Together for a Shared Future
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]%
+  \frametitle{中文最小示例（更好版本）}
+  \begin{columns}[c]
+    \begin{column}{0.4\textwidth}
+
+      \only<1>{
+        \CTeX{} 建议对于之前提到的常规文档类，使用该宏集提供的四种中文文档类，以对特定类型提供额外的中文排版适配。
         \begin{center}
           \footnotesize
           \begin{tabular}{cc}
@@ -402,31 +417,30 @@
         \end{center}
       }
 
-      \only<3>{
+      \only<2>{
         \includepdflarge{support/examples/cnminimal.pdf}
       }
 
-      \only<4>{
-        大部分情况下，你都不应当在 \LaTeX{} 中强制断行：你几乎只是想另起一段，或者是想在段落之间添加空行（使用 \pkg{parskip} 宏包就可实现）。
-        只有\alert{很少的}情况下你需要使用 \textbackslash{}\textbackslash{} 来另起一行而不另起一段（强制断行仍在同一段）。
+      \only<3>{
+        \LaTeX{} 中通过空行来开启新的段落。一般情况下，\alert{不建议}在一段中强制断行（使用 \textbackslash{}\textbackslash{}）。
       }
+
     \end{column}
     \begin{column}{0.6\textwidth}
-      \begin{codeblock}[]{排版中文\only<2->{最佳实践}}
-|\highlightline<2>|\documentclass{|\only<1>{article}\only<2->{ctexart}|}
-|\only<1>{\highlightline\textbackslash{}usepackage\{ctex\}\hfill\color{structure}\% 导言区}|
+      \begin{codeblock}[]{排版中文最小示例（更好版本）}
+|\highlightline<1>|\documentclass{ctexart}
 \begin{document}
-|\highlightline<3>|    一起向未来
-|\highlightline<4>|
-  Together for a Shared Future
+|\highlightline<3>|  一起向未来
+|\highlightline<3>|
+|\highlightline<3>|  Together for a Shared Future
 \end{document}
       \end{codeblock}
     \end{column}
   \end{columns}
-  \only<1>{\footnotetext{ctex 在 \faApple\,\faLinux{} 上已经不可以使用 \hologo{pdfLaTeX} 编译，以及在 \faWindows{} 上使用该引擎也会变更自动间距调整等功能的默认行为。}}
 \end{frame}
 
-\section{设定格式}
+\section{文字格式}
+
 \begin{frame}[fragile]%
   \frametitle{字体样式}
   \begin{columns}
@@ -437,6 +451,7 @@
 
       \only<2>{
         可以使用显式样式设定命令对小段做加粗、斜体、等宽等等的处理。
+
         \begin{center}
           \footnotesize
           \begin{tabular}{rl}
@@ -452,18 +467,38 @@
       }
 
       \only<3>{
-        与 Word 不同的是，\LaTeX{} 一般情况下并不需要使用上面的显式命令，而是采用逻辑标记的方法，
-        比如 \cmd{emph} 可以强调文字，以及下面将要提到的目次命令（第 \ref{sectioning} 页）。
-        这样可以统一管理格式。
+        也可以使用对应的更改当前组字体设置的命令，对于大段文字较为方便。
+
+        \begin{center}
+          \footnotesize
+          \begin{tabular}{ll}
+            \cmd{rmfamily} & \textrm{衬线} \\
+            \cmd{ttfamily} & \textbf{加粗} \\
+            \cmd{sffamily} & \kaishu 斜体 \\
+            \cmd{bfseries} & \texttt{等宽} \\
+            \cmd{itshape} & \textsf{无衬线} \\
+            \cmd{scshape} & \textsc{Small Caps} \\
+            \cmd{slshape} & \textsl{Slanted} \\
+          \end{tabular}
+        \end{center}
       }
+
+      \only<4>{
+        \LaTeX{} 建议采用语义化的逻辑标记来设置样式，以便对全文同类文字进行统一修改。比如使用 \cmd{emph} 强调文字，以及使用下面将要提到的目次命令（第 \ref{sectioning} 页）设置标题等。
+      }
+
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{样式}
 \documentclass{ctexart}
 \begin{document}
-|\highlightline<2>|  \textbf{|\phantom{}|一起向未来}
+|\highlightline<2>|  \textbf{一起向未来}
 
-|\highlightline<3>|  \emph{Together for a Shared Future}
+|\highlightline<3>|  {\sffamily
+|\highlightline<3>|    一段无衬线文字
+|\highlightline<3>|  }
+
+|\highlightline<4>|  \emph{Together for a Shared Future}
 \end{document}
       \end{codeblock}
     \end{column}
@@ -471,15 +506,17 @@
 \end{frame}
 
 \begin{frame}[fragile]%
-  \frametitle{\only<1-2>{字体大小}\only<3>{字体样式}}
+  \frametitle{字体大小}
   \begin{columns}
     \begin{column}{0.4\textwidth}
+
       \only<1>{
         \includepdflarge{support/examples/fontsize.pdf}
       }
 
       \only<2>{
-        同样地，你也可以显式地设定字体大小，但是这种命令会更改行文设置，所以需要使用一个组来限定作用范围\footnotemark。
+        同样地，你也可以显式地设定字体大小，和 \cmd{rmfamily} 类似，这会修改当前组的字体设置\footnotemark。
+
         \begin{center}
           \footnotesize
           \begin{tabular}{rl}
@@ -489,33 +526,21 @@
             \cmd{small} & \small 小 \\
             \cmd{normalsize} & \normalsize 正常大小 \\
             \cmd{large} & \large 大 \\
-            \cmd{huge} & \Huge 巨大 \\
+            \cmd{Large} & \Large 比大更大 \\
+            \cmd{LARGE} & ... \\
+            \cmd{huge} & \huge 巨大 \\
+            \cmd{Huge} & ... \\
           \end{tabular}
         \end{center}
       }
 
-      \only<3>{
-        也可以使用字体样式对应的更改字体设置的命令，这对于大段文段的设置而言也是很方便的。
-        \begin{center}
-          \footnotesize
-          \begin{tabular}{ll}
-            \cmd{textrm} & \cmd{rmfamily}\\
-            \cmd{texttt} & \cmd{ttfamily}\\
-            \cmd{textsf} & \cmd{sffamily}\\
-            \cmd{textbf} & \cmd{bfseries}\\
-            \cmd{textit} & \cmd{itshape}\\
-            \cmd{textsc} & \cmd{scshape}\\
-            \cmd{textsl} & \cmd{slshape}\\
-          \end{tabular}
-        \end{center}
-      }
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{大小}
 \documentclass{ctexart}
 \begin{document}
-|\highlightline<2>|  {\bfseries\Large 一起向未来\par}
-|\highlightline<3>|  {\itshape Together for a Shared Future}
+|\highlightline<2>|  {\huge 一起向未来\par}
+  Together for a Shared Future
 \end{document}
       \end{codeblock}
     \end{column}
@@ -559,7 +584,7 @@
 |\highlightline|  \begin{description}
     \item[|\phantom{}|第一] 文本
     \item[|\phantom{}|第二] 文本
-    \item[|\phantom{}|第三] 文本  
+    \item[|\phantom{}|第三] 文本
 |\highlightline|  \end{description}
 \end{document}
       \end{codeblock}
@@ -856,7 +881,7 @@
       \end{codeblock}
     \end{column}
     \begin{column}{0.4\textwidth}
-      
+
       \only<1>{
         使用 \env{tabular} 环境绘制表格。需要添加参数（称为\textbf{表格导言}）以确定每一列的对齐方式。引入 \pkg{array} 宏包来使用更多的\textbf{引导符}。
         \begin{center}
@@ -930,14 +955,14 @@
   \begin{alertblock}{}
   输入数学公式是 \LaTeX{} 的绝对强项，很多常见的公式服务依赖于一些轻量级渲染引擎比如 MathJax, K\kern-.3ex\raise.4ex\hbox{\footnotesize A}\kern-.3ex\TeX{}。但是它们实际上使用的是 \LaTeX{} 语法变种，也就是说并没有使用 \LaTeX{} 后端。所以不要期望有完全一致的输出。
   \end{alertblock}
-  
+
   为了更好的获得数学公式输入支持，请使用 \hologo{AmS}math 宏包。数学模式分为两种：
   \begin{description}
     \item[行内模式] 一般通过一对美元符号（\$$\cdots$\$）标记，可以使用编辑器内建的符号表输入数学符号，也可以使用在线工具手写识别 \link{https://detexify.kirelabs.org/classify.html}。
     \item[行间模式] 一般通过 \env{equation} 环境\footnote{这是有编号环境，其加星号的变种 \env{equation*} 用于生成无编号环境。}输入。如果需要使用多行公式，请使用 \env{align} 环境，并按照类似表格输入的方式，使用 \& 对齐符号，\textbackslash\textbackslash{} 换行。如果不想手动居中，可以考虑多行自动居中的 \env{gather} 和单个大型公式首尾两端对齐 \env{multline}。
   \end{description}
   \note{关于表格和数学公式，如果不太熟悉如何输入，或者符号表记不住，推荐从比较容易上手的编辑器起步，比如 \TeX{}studio 提供了用户友好的界面（\faWindows{} 上的向导 $\rightarrow$ 数学助手）。我相信输入半年后，就可以对这些符号的输入很熟练了。
-  
+
   你会发现我的这套教程没有讲很多的数学公式输入技巧，因为这些东西只有你自己熟练了才能体会。而且 \LaTeX{} 本来就不是完全关于数学公式的。}
 \end{frame}
 
@@ -1011,7 +1036,7 @@
   \only<2>{
     为了使得对公式编号的引用带有括号，推荐使用 \hologo{AmS}math 宏包中的 \cmd{eqref} 命令。对于多行公式环境，每一个换行符前都可以添加一个 \cmd{label} 用于引用该行公式。
   }
-  
+
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{codeblock}[]{图}
@@ -1044,7 +1069,7 @@
 \begin{frame}[fragile]
   \frametitle{文献引用}
   \LaTeX{} 可以通过专用数据库文件 \texttt{.bib} 自动生成参考文献，很多的文献管理文件比如 EndNote \link{https://lic.sjtu.edu.cn/Default/softshow/tag/MDAwMDAwMDAwMLGImKE}, Zotero \link{https://www.zotero.org/}, JabRef \link{https://www.jabref.org/} 都可以直接导出这种格式的文件用于 \LaTeX{} 论文中的引用。一般不需要手写数据库文件，你只需要注意每一个文献会在数据库中有一个主键，这个类似于上文的 \cmd{label} 标记，只是要引用数据库中的文献需要使用 \cmd{cite} 命令。
-  
+
   \begin{codeblock}[]{ref.bib}
 |\highlightline|@article{devoftech,|\hfill\alert{\% 类型为期刊论文，主键为\texttt{devoftech}}|
   title={|\phantom{}|新时期我国信息技术产业的发展},
