@@ -3,38 +3,39 @@
 \section{图}
 
 \begin{frame}[fragile]%
-  \frametitle{\temporal<5>{插图}{浮动体}{插图}}
+  \frametitle{插图}
   \begin{columns}
     \begin{column}{0.6\textwidth}
       \begin{codeblock}[]{插入单图\only<4->{最佳实践}}
 \documentclass{ctexart}
-|\highlightline<2>|\usepackage{graphicx}
-|\highlightline<2>|\graphicspath{{figs/}{pics/}}
+|\highlightline<1,2>|\usepackage{graphicx}
+|\highlightline<1,2>|\graphicspath{{figs/}{pics/}}
 \begin{document}
-|\highlightline<5>|\begin{figure}[ht]
-|\highlightline<6>|  \centering
-|\highlightline<3>|  \includegraphics[width=|\only<1-3>{4cm}\only<4->{0.4\textbackslash{}textwidth}|]{sjtug}
-|\highlightline<7>|  \caption{SJTUG 徽标}\label{fig:sjtug}
-|\highlightline<5>|\end{figure}
+|\highlightline<1,5>|\begin{figure}[ht]
+|\highlightline<1,6>|  \centering
+|\highlightline<1,3,4>|  \includegraphics[width=|\only<1-3>{4cm}\only<4->{0.4\textbackslash{}textwidth}|]{sjtug}
+|\highlightline<1,7>|  \caption{SJTUG 徽标}\label{fig:sjtug}
+|\highlightline<1,5>|\end{figure}
 \end{document}
       \end{codeblock}
     \end{column}
     \begin{column}{0.4\textwidth}
+
       \only<1>{
         \includepdflarge{support/examples/insertimage.pdf}
       }
 
       \only<2>{
-        为了插入外部图片，需要使用 \pkg{graphicx} 宏包。之后在文档主体便可以使用 \cmd{includegraphics} 插入图片。导言区也可以加入 \cmd{graphicspath} 指定图片文件夹\footnotemark。
+        要插入图片，需使用 \pkg{graphicx} 宏包。之后在文档主体便可以使用 \cmd{includegraphics} 插入图片。在导言区可通过 \cmd{graphicspath} 指定图片文件夹\footnotemark。
       }
 
       \only<3>{
-        \cmd{includegraphics} 命令便以相对路径的方式插入图片，如果无同名图片，那么后缀名可以省略。可以使用可选参数指定插入的图片尺寸，最佳实践是使用 \cmd{textwidth} 或 \cmd{linewidth} 的相对值指定尺寸大小，以在未来可能的布局更改中保留一定的灵活性。
+        \cmd{includegraphics} 命令以相对路径插入图片，后缀名可以省略。可以使用可选参数指定插入的图片尺寸。
         \note{比如我未来想变更为幻灯片的时候。}
       }
 
       \only<4>{
-        也可以通过键值对的方法设置图片的其他属性。
+        最佳实践是使用 \cmd{textwidth} 或 \cmd{linewidth} 的相对值指定尺寸大小，以在未来可能的布局更改中保留一定的灵活性。除了 \opt{width} 还有其他属性：
         \note{事实上，\LaTeX{} 很多命令都是使用方括号添加可选参数的。}
         \begin{center}
           \footnotesize
@@ -48,7 +49,7 @@
       }
 
       \only<5>{
-        \env{figure} 为一个浮动体环境（\env{table} 也是），可以将其移动到其他位置上以减少行文中的空白。可以添加可选参数以指定如何放置浮动体，最多可以使用四种位置描述符：
+        \env{figure} 为一个\textbf{浮动体}环境（\env{table} 也是），可以将其移动到其他位置上以使排版更紧凑。可以添加可选参数以指定如何放置浮动体，最多可以使用四种位置描述符：
         \begin{center}
           \footnotesize
           \begin{tabular}{cll}
@@ -62,12 +63,13 @@
       }
 
       \only<6>{
-        采用 \cmd{centering} 命令而不是 \env{center} 环境来水平居中图片。这将避免多余的纵向间距。
+        使用 \cmd{centering} 命令可将图片水平居中。
       }
 
       \only<7>{
-        使用 \cmd{caption} 命令输入题注，如果这个命令写在插入图片前面，题注将会在上方（中文中一般对 \env{table} 环境这么做）。后面将会看到如何对留有标记（\cmd{label}）的图片进行引用。
+        使用 \cmd{caption} 命令输入题注，如果这个命令写在插入图片前面，题注将会在上方（中文中一般对 \env{table} 环境这么做）。\cmd{label} 为图片添加标记名称，可在随后进行交叉引用。
       }
+
     \end{column}
   \end{columns}
   \only<2>{\footnotetext{其命令参数每个为一个以 \texttt{/} 结尾的文件夹，每个文件夹需要使用大括号包裹起来。}}
@@ -81,33 +83,33 @@
 \usepackage{graphicx}
 \graphicspath{{figs/}{pics/}}
 \begin{document}
-  \begin{figure}[ht]
-|\highlightline<1>|    \begin{minipage}{0.48\textwidth}
-      \centering
-      \includegraphics[height=2cm]{sjtug}
-|\highlightline<2>|      \caption{SJTUG 徽标}\label{fig:sjtug}
-|\highlightline<1>|    \end{minipage}\hfill
-|\highlightline<1>|    \begin{minipage}{0.48\textwidth}
-      \centering
-      \includegraphics[height=2cm]{sjtugt}
-|\highlightline<2>|      \caption{SJTUG|\phantom{}|文字}\label{fig:sjtugt}
-|\highlightline<1>|    \end{minipage}
-  \end{figure}
+|\highlightline<1>|\begin{figure}[ht]
+|\highlightline<1,2>|  \begin{minipage}{0.48\textwidth}
+|\highlightline<1>|    \centering
+|\highlightline<1>|    \includegraphics[height=2cm]{sjtug}
+|\highlightline<1,3>|    \caption{SJTUG 徽标}\label{fig:sjtug}
+|\highlightline<1,2>|  \end{minipage}\hfill
+|\highlightline<1,2>|  \begin{minipage}{0.48\textwidth}
+|\highlightline<1>|    \centering
+|\highlightline<1>|    \includegraphics[height=2cm]{sjtugt}
+|\highlightline<1,3>|    \caption{SJTUG 文字}\label{fig:sjtugt}
+|\highlightline<1,2>|  \end{minipage}
+|\highlightline<1>|\end{figure}
 \end{document}
       \end{codeblock}
     \end{column}
     \begin{column}{0.4\textwidth}
 
       \only<1>{
-        在 \env{figure} 环境里使用 \env{minipage} 小页制作列盒子，以并排两图并分别编号，需要设定强制参数以指定列宽。两个小页之间添加 \cmd{hfill} 使两个小页两端对齐。
+        \includepdflarge{support/examples/doubleimages.pdf}
       }
 
       \only<2>{
-        在每个小页内部分别使用 \cmd{caption} 添加标签。
+        在 \env{figure} 环境里使用 \env{minipage} 小页制作列盒子，以并排两图并分别编号，需要设定强制参数以指定列宽。两个小页之间添加 \cmd{hfill} 使两个小页两端对齐。
       }
 
       \only<3>{
-        \includepdflarge{support/examples/doubleimages.pdf}
+        在每个小页内部分别使用 \cmd{caption} 添加标签。
       }
     \end{column}
   \end{columns}
@@ -122,19 +124,19 @@
 |\highlightline|\usepackage{subcaption}
 \graphicspath{{figs/}{pics/}}
 \begin{document}
-  \begin{figure}[ht]
-|\highlightline|    \begin{subfigure}{0.48\textwidth}
-      \centering
-      \includegraphics[height=2cm]{sjtug}
-      \caption{|\phantom{}|徽标}
-|\highlightline|    \end{subfigure}\hfill
-|\highlightline|    \begin{subfigure}{0.48\textwidth}
-      \centering
-      \includegraphics[height=2cm]{sjtugt}
-      \caption{|\phantom{}|文字}
-|\highlightline|    \end{subfigure}
-    \caption{SJTUG}\label{fig:sjtug}
-  \end{figure}
+\begin{figure}[ht]
+|\highlightline|  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[height=2cm]{sjtug}
+    \caption{徽标}
+|\highlightline|  \end{subfigure}\hfill
+|\highlightline|  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[height=2cm]{sjtugt}
+    \caption{文字}
+|\highlightline|  \end{subfigure}
+  \caption{SJTUG}\label{fig:sjtug}
+\end{figure}
 \end{document}
       \end{codeblock}
     \end{column}
