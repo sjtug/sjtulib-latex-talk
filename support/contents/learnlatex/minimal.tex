@@ -1,0 +1,104 @@
+% !TeX root = ../../../latex-talk.tex
+
+\section{基本要素}
+
+\begin{frame}[fragile]%
+  \frametitle{最小示例}
+  \begin{columns}[c]
+    \begin{column}{0.4\textwidth}
+      \only<1>{
+        \includepdflarge{support/examples/enminimal.pdf}
+      }
+
+      \only<2>{
+        \begin{center}\highlight[structure]{文档类}\end{center}
+        \cmd{documentclass} 命令加载了\textbf{文档类}。\cls{article} 是由 \LaTeX{} 提供的用于排版短文档的基本文档类。
+        \begin{description}
+          \footnotesize
+          \item[\cls{article}] 不包含章的短文档
+          \item[\cls{report}] 含有章的单面印刷文档
+          \item[\cls{book}] 含有章的双面印刷文档
+          \item[\cls{beamer}] 幻灯片
+        \end{description}
+      }
+
+      \only<3>{
+        \begin{center}\highlight[structure]{\texttt{document} 环境}\end{center}
+        \cmd{begin} 和 \cmd{end} 用于创建\textbf{环境}，可以多次、嵌套使用。环境用来指定一组文档元素的局部格式\footnotemark。\env{document} 环境是文档中必须有的环境，用于指示文档主体的范围。
+      }
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{排版英文最小示例}
+|\highlightline<2>|\documentclass{article}
+|\highlightline<3>|\begin{document}
+  Together for a Shared Future
+|\highlightline<3>|\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+
+  \only<3>{\footnotetext{环境实际上是一个组，只不过通过语义化的形式预装了对应的格式命令。普通的组可以直接使用一对大括号之间的内容 \{$\cdots$\} 表示。}}
+\end{frame}
+
+\begin{frame}[fragile]%
+  \frametitle{中文最小示例}
+  \begin{columns}[c]
+    \begin{column}{0.4\textwidth}
+
+      \only<1>{
+        \begin{center}\highlight[structure]{导言区}\end{center}
+        \cmd{usepackage} 用于引入宏包，从而使用扩展功能，需要在\textbf{导言区}调用。这里使用 \pkg{ctex} 宏集以获得中文支持。
+      }
+
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{排版中文最小示例}
+\documentclass{article}
+|\highlightline<1>\textbackslash{}usepackage\{ctex\}\hfill\color{structure}\% 导言区|
+\begin{document}
+  一起向未来
+
+  Together for a Shared Future
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]%
+  \frametitle{中文最小示例（更好版本）}
+  \begin{columns}[c]
+    \begin{column}{0.4\textwidth}
+
+      \only<1>{
+        \CTeX{} 建议对于之前提到的常规文档类，使用该宏集提供的四种中文文档类，以对特定类型提供额外的中文排版适配。
+        \begin{center}
+          \footnotesize
+          \begin{tabular}{cc}
+            \cls{ctexart} & \cls{ctexrep} \\
+            \cls{ctexbook} & \cls{ctexbeamer} \\
+          \end{tabular}
+        \end{center}
+      }
+
+      \only<2>{
+        \includepdflarge{support/examples/cnminimal.pdf}
+      }
+
+      \only<3>{
+        \LaTeX{} 中通过空行来开启新的段落。一般情况下，\alert{不建议}在一段中强制断行（使用 \textbackslash{}\textbackslash{}）。
+      }
+
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{排版中文最小示例（更好版本）}
+|\highlightline<1>|\documentclass{ctexart}
+\begin{document}
+|\highlightline<3>|  一起向未来
+|\highlightline<3>|
+|\highlightline<3>|  Together for a Shared Future
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}

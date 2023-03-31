@@ -1,0 +1,111 @@
+% !TeX root = ../../../latex-talk.tex
+
+\section{文字格式}
+
+\begin{frame}[fragile]%
+  \frametitle{字体样式}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \only<1>{
+        \includepdflarge{support/examples/fontstyle.pdf}
+      }
+
+      \only<2>{
+        可以使用显式样式设定命令对小段做加粗、斜体、等宽等等的处理。
+
+        \begin{center}
+          \footnotesize
+          \begin{tabular}{rl}
+            \cmd{textrm} & \textrm{衬线} \\
+            \cmd{textbf} & \textbf{加粗} \\
+            \cmd{textit} & \kaishu 斜体 \\
+            \cmd{texttt} & \texttt{等宽} \\
+            \cmd{textsf} & \textsf{无衬线} \\
+            \cmd{textsc} & \textsc{Small Caps} \\
+            \cmd{textsl} & \textsl{Slanted} \\
+          \end{tabular}
+        \end{center}
+      }
+
+      \only<3>{
+        也可以使用对应的更改当前组字体设置的命令，对于大段文字较为方便。
+
+        \begin{center}
+          \footnotesize
+          \begin{tabular}{ll}
+            \cmd{rmfamily} & \textrm{衬线} \\
+            \cmd{ttfamily} & \textbf{加粗} \\
+            \cmd{sffamily} & \kaishu 斜体 \\
+            \cmd{bfseries} & \texttt{等宽} \\
+            \cmd{itshape} & \textsf{无衬线} \\
+            \cmd{scshape} & \textsc{Small Caps} \\
+            \cmd{slshape} & \textsl{Slanted} \\
+          \end{tabular}
+        \end{center}
+      }
+
+      \only<4>{
+        \LaTeX{} 建议采用语义化的逻辑标记来设置样式，以便对全文同类文字进行统一修改。比如使用 \cmd{emph} 强调文字，以及使用下面将要提到的目次命令（第 \ref{sectioning} 页）设置标题等。
+      }
+
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{样式}
+\documentclass{ctexart}
+\begin{document}
+|\highlightline<2>|  \textbf{一起向未来}
+
+|\highlightline<3>|  {\sffamily
+|\highlightline<3>|    一段无衬线文字
+|\highlightline<3>|  }
+
+|\highlightline<4>|  \emph{Together for a Shared Future}
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]%
+  \frametitle{字体大小}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+
+      \only<1>{
+        \includepdflarge{support/examples/fontsize.pdf}
+      }
+
+      \only<2>{
+        同样地，你也可以显式地设定字体大小，和 \cmd{rmfamily} 类似，这会修改当前组的字体设置\footnotemark。
+
+        \begin{center}
+          \footnotesize
+          \begin{tabular}{rl}
+            \cmd{tiny} & \tiny 极小 \\
+            \cmd{scriptsize} & \scriptsize 角标大小  \\
+            \cmd{footnotesize} & \footnotesize 脚注大小 \\
+            \cmd{small} & \small 小 \\
+            \cmd{normalsize} & \normalsize 正常大小 \\
+            \cmd{large} & \large 大 \\
+            \cmd{Large} & \Large 比大更大 \\
+            \cmd{LARGE} & ... \\
+            \cmd{huge} & \huge 巨大 \\
+            \cmd{Huge} & ... \\
+          \end{tabular}
+        \end{center}
+      }
+
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{大小}
+\documentclass{ctexart}
+\begin{document}
+|\highlightline<2>|  {\huge 一起向未来\par}
+  Together for a Shared Future
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+
+  \only<2>{\footnotetext{注意最后显式地使用 \cmd{par} 在改回大小前结束该段，否则会导致下一行的行间距异常！}}
+\end{frame}

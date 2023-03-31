@@ -1,0 +1,121 @@
+% !TeX root = ../../../latex-talk.tex
+
+\section{引用}
+
+\begin{frame}[fragile]
+  \frametitle{交叉引用}
+  \only<1>{
+    正如之前所提到的，\LaTeX{} 中使用 \cmd{label} 标记，然后可以使用 \cmd{ref} 来引用这个标记。 \cmd{label} 可以放在使用计数器的对象之后。
+  }
+
+  \only<2>{
+    为了使得对公式编号的引用带有括号，推荐使用 \hologo{AmS}math 宏包中的 \cmd{eqref} 命令。对于多行公式环境，每一个换行符前都可以添加一个 \cmd{label} 用于引用该行公式。
+  }
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{codeblock}[]{图}
+\begin{figure}
+|\highlightline<1>|  \caption{|\phantom{}|示例}\label{fig:example}
+\end{figure}
+      \end{codeblock}
+      \begin{codeblock}[]{表}
+\begin{table}
+|\highlightline<1>|  \caption{|\phantom{}|示例}\label{tab:example}
+\end{table}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{codeblock}[]{目次}
+|\highlightline<1>|\section{|\phantom{}|示例}\label{sec:example}
+\end{codeblock}
+
+\begin{codeblock}[]{公式}
+\begin{equation}
+  a = b + c
+|\highlightline<1>|\label{eq:example}
+\end{equation}
+|\highlightline<2>|如公式 \eqref{eq:example} 所示，
+\end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文献引用}
+  \LaTeX{} 可以通过专用数据库文件 \texttt{.bib} 自动生成参考文献，很多的文献管理文件比如 EndNote \link{https://lic.sjtu.edu.cn/Default/softshow/tag/MDAwMDAwMDAwMLGImKE}, Zotero \link{https://www.zotero.org/}, JabRef \link{https://www.jabref.org/} 都可以直接导出这种格式的文件用于 \LaTeX{} 论文中的引用。一般不需要手写数据库文件，你只需要注意每一个文献会在数据库中有一个主键，这个类似于上文的 \cmd{label} 标记，只是要引用数据库中的文献需要使用 \cmd{cite} 命令。
+
+  \begin{codeblock}[]{ref.bib}
+|\highlightline|@article{devoftech,|\hfill\alert{\% 类型为期刊论文，主键为\texttt{devoftech}}|
+  title={|\phantom{}|新时期我国信息技术产业的发展},
+  author={|\phantom{}|江泽民},
+  year={2008}
+}
+  \end{codeblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文献引用}
+  而让 \LaTeX{} 处理 \texttt{.bib} 数据库文件与引用有两种工作流。你可能需要查清楚如何在编辑器中设置对应的工作流，或者采用后面所提到的高级编译方式 \texttt{latexmk}。
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\hologo{BibTeX} + \pkg{natbib}}
+        一般期刊提交使用这种方法，\pkg{natbib} 宏包将提供命令 \cmd{citet}（文本引用） 和 \cmd{citep}（括号引用）。
+      \end{block}
+      \begin{alertblock}{\hologo{BibTeX} + \pkg{gbt7714}}
+        中文引用可以直接使用 \pkg{gbt7714} 宏包，但是角模式和正文模式不能混用。
+      \end{alertblock}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\hologo{biber} + \pkg{biblatex}}
+        这是更容易自定义的方法，与 \hologo{BibTeX} 的运作方式稍有不同。\pkg{biblatex} 提供了更加智能的引用命令。
+      \end{block}
+      \begin{alertblock}{\hologo{biber} + \pkg{biblatex-gb7714-2015}}
+        而中文引用可以使用 \pkg{biblatex} 宏包的样式 \pkg{gb7714-2015}。
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文献引用}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{codeblock}[]{\hologo{BibTeX} + \pkg{gbt7714}}
+\documentclass{ctexart}
+\usepackage{gbt7714}
+\bibliographystyle{gbt7714-numerial}
+% \citestyle{numbers}  % 正文模式
+\begin{document}
+  |\phantom{}|他指出了...\cite{devoftech}
+  \bibliography{ref}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{codeblock}[]{\hologo{biber} + \pkg{biblatex-gb7714-2015}}
+\documentclass{ctexart}
+\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+\addbibresource{ref.bib}
+\begin{document}
+  |\phantom{}|他在文献 \parencite{devoftech}
+  |\phantom{}|指出了...\cite{devoftech}
+  \printbibliography
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文献引用}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \includepdflarge{support/examples/bibtex.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includepdflarge{support/examples/biblatex.pdf}
+    \end{column}
+  \end{columns}
+  \note{这页有一篇上过《新闻联播》的论文。}
+\end{frame}

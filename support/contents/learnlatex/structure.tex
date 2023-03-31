@@ -1,0 +1,165 @@
+% !TeX root = ../../../latex-talk.tex
+
+\section{逻辑结构}
+
+\begin{frame}[fragile]
+  \frametitle{列表}
+  \begin{columns}
+    \begin{column}{0.35\textwidth}
+      \begin{codeblock}[]{无序列表}
+\documentclass{ctexart}
+\begin{document}
+|\highlightline|  \begin{itemize}
+    \item 第一项
+    \item 第二项
+    \item 第三项
+|\highlightline|  \end{itemize}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \begin{codeblock}[]{有序列表}
+\documentclass{ctexart}
+\begin{document}
+|\highlightline|  \begin{enumerate}
+    \item 第一项
+    \item 第二项
+    \item 第三项
+|\highlightline|  \end{enumerate}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \begin{codeblock}[]{描述列表}
+\documentclass{ctexart}
+\begin{document}
+|\highlightline|  \begin{description}
+    \item[|\phantom{}|第一] 文本
+    \item[|\phantom{}|第二] 文本
+    \item[|\phantom{}|第三] 文本
+|\highlightline|  \end{description}
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \note{接下来我们概览一下三种列表：无序列表、有序列表、描述列表。这些列表可以相互嵌套，但最多嵌套四层。}
+\end{frame}
+
+%更深的列表技巧，定理环境等
+
+\begin{frame}
+  \frametitle{列表}
+  \begin{columns}
+    \begin{column}{0.35\textwidth}
+      \includepdflarge{support/examples/unordered.pdf}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \includepdflarge{support/examples/ordered.pdf}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \includepdflarge{support/examples/description.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile,label=sectioning]%
+  \frametitle{目次结构}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \LaTeX{} 可以使用目次命令将文档划分层级\footnotemark，并自动设定对应字体样式和大小。
+      \begin{center}
+        \footnotesize
+        \begin{tabular}{rll}
+          命令 & 含义 & 层次 \\
+          \cmd{chapter} & 章\footnotemark & \sout{0} \\
+          \cmd{section} & 节 & 1 \\
+          \cmd{subsection} & 小节 & 2 \\
+          \cmd{subsubsection} & 小小节 & 3 \\
+        \end{tabular}
+      \end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{目次}
+\documentclass{ctexart}
+\begin{document}
+|\highlightline|  \section{|\phantom{}|概念}
+|\highlightline|  \subsection{\LaTeX{}}
+  \LaTeX{} 是一个用以排版高质量作品的文档准备系统。
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \footnotetext{章这一级只在 \cls{report} 和 \cls{book} 文档类（包括对应的中文文档类）有定义。还有不常用的 \cmd{part} (0@\cls{article}/-1@\cls{report}\&\cls{book}\&\cls{beamer}) 以及更低层次的 \cmd{paragraph} (4) 与 \cmd{subparagraph} (5)。 }
+  \note{而知道层次，对我们下面生成目录有帮助。}
+\end{frame}
+
+\begin{frame}[fragile]%
+  \frametitle{组织文档}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+
+      \only<1>{
+        \cmd{tableofcontents} 用来生成对于目次命令的目录。如果你想设定显示到哪个层级，在这个命令前使用 \cmd{setcounter\{tocdepth\}\{层次\}}
+
+        如果你想在目录中使用更短的标题：
+
+            \cmd{section[短标题]\{长标题\}}
+
+        如果你想让本目次的标题不显示在目录中：
+
+            \cmd{section*\{目录没这个标题\}}
+      }
+
+      \only<2>{
+        对于大型文档而言，使用多个文件管理源文件通常是更方便的。而 \cmd{include} 和 \cmd{input} 都以相对路径的方式插入其他 \TeX{} 文档。
+        区别在于，\cmd{include} 命令会从新页开始并做一些内部调整，这基本上只对 \pkg{chapter} 这一级有用。而 \cmd{input} 会原样插入源代码。
+      }
+
+      \only<3>{
+        但是 \cmd{include} 插入的文档可以使用 \cmd{includeonly} 管理当前要排印哪一部分的内容，利用所有章节辅助文件的同时，减少编译时间并专注于该部分的内容。
+      }
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{主文档}
+\documentclass{ctexrep}
+|\highlightline<3>|\includeonly{learnlatex,sjtuthesis}
+\begin{document}
+|\highlightline<1>|  \tableofcontents
+|\only<2-3>{\highlightline}|  \include{learnlatex}
+|\highlightline<3>|  \include{sjtuthesis}
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \note<3>{当然，如果需要不换页插入源代码就不用 \cmd{include} 了，
+  因为这最主要的好处在于能够在组建大型文档的时候，得到当前页码、编号的进度信息。
+  在插入小部件时，还是推荐使用 \cmd{input}，这个命令不会额外地产生 \texttt{.aux} 文件，
+  对于 I/O 反应慢的（说的就是 \faWindows{}）比较友好。}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{组织文档}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{codeblock}[]{learnlatex.tex}
+|\highlightline|\chapter{|\phantom{}|学习 \LaTeX{}}
+\section{|\phantom{}|概念}
+\subsection{\LaTeX{}}
+\LaTeX{} 是一个用以排版高质量作品的文档准备系统。
+      \end{codeblock}
+      子文件中就不需要添加 \env{document} 环境了\footnotemark。
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{主文档 main.tex}
+|\highlightline|\documentclass{ctexrep}
+\includeonly{learnlatex,sjtuthesis}
+\begin{document}
+  \tableofcontents
+  \include{learnlatex}
+  \include{sjtuthesis}
+\end{document}
+      \end{codeblock}
+    \end{column}
+  \end{columns}
+  \footnotetext{如果想强制指定子文档的主文档，可以在文件第一行输入魔术命令：\texttt{\% !TeX root = main.tex}}
+\end{frame}

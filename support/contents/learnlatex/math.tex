@@ -1,0 +1,79 @@
+% !TeX root = ../../../latex-talk.tex
+
+\section{数学公式}
+
+\begin{frame}
+  \frametitle{数学模式}
+  \begin{alertblock}{}
+  输入数学公式是 \LaTeX{} 的绝对强项，很多常见的公式服务依赖于一些轻量级渲染引擎比如 MathJax, K\kern-.3ex\raise.4ex\hbox{\footnotesize A}\kern-.3ex\TeX{}。但是它们实际上使用的是 \LaTeX{} 语法变种，也就是说并没有使用 \LaTeX{} 后端。所以不要期望有完全一致的输出。
+  \end{alertblock}
+
+  为了更好的获得数学公式输入支持，请使用 \hologo{AmS}math 宏包。数学模式分为两种：
+  \begin{description}
+    \item[行内模式] 一般通过一对美元符号（\$$\cdots$\$）标记，可以使用编辑器内建的符号表输入数学符号，也可以使用在线工具手写识别 \link{https://detexify.kirelabs.org/classify.html}。
+    \item[行间模式] 一般通过 \env{equation} 环境\footnote{这是有编号环境，其加星号的变种 \env{equation*} 用于生成无编号环境。}输入。如果需要使用多行公式，请使用 \env{align} 环境，并按照类似表格输入的方式，使用 \& 对齐符号，\textbackslash\textbackslash{} 换行。如果不想手动居中，可以考虑多行自动居中的 \env{gather} 和单个大型公式首尾两端对齐 \env{multline}。
+  \end{description}
+  \note{关于表格和数学公式，如果不太熟悉如何输入，或者符号表记不住，推荐从比较容易上手的编辑器起步，比如 \TeX{}studio 提供了用户友好的界面（\faWindows{} 上的向导 $\rightarrow$ 数学助手）。我相信输入半年后，就可以对这些符号的输入很熟练了。
+
+  你会发现我的这套教程没有讲很多的数学公式输入技巧，因为这些东西只有你自己熟练了才能体会。而且 \LaTeX{} 本来就不是完全关于数学公式的。}
+\end{frame}
+
+\begin{frame}
+  \frametitle{数学命令展示}
+  \begin{columns}
+    \begin{column}{0.33\textwidth}
+      \begin{exampleblock}{}
+        $PV=nRT$
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        $\sum_{i=1}^ki^2=\frac{n(n+1)(2n+1)}{6}$
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        $T(n) = aT\left(\left\lceil\frac{n}{b}\right\rceil\right) + \mathcal{O}(n^d)$
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        $\frac{x_{1}+x_{2}+x_{3}}{3}\geq \sqrt[3]{x_{1}x_{2}x_{3}}$
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        $n=(\underbrace{1\cdots 1}_{k\text{ of 1's}})_2=2^{k+1}-1$
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        $\nabla f (P)= \left.\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\right|_{P}$
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.67\textwidth}
+      \begin{exampleblock}{}
+        \begin{equation*}
+          \int_{a}^b f(x)\,\mathrm{d}x=\lim_{|P|\rightarrow 0}\sum_{i=1}^n f(\xi_i)\Delta x_i
+        \end{equation*}
+        \note{在 SJTUThesis 中，你或许更希望使用 \cmd{increment} 而不是 \cmd{Delta} 来表示增量。}
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        \begin{equation}
+          T(n) = \begin{cases}
+            \mathcal{O}(n^d),&\textrm{if } d>\log_b a, \\
+            \mathcal{O}(n^d\log n), &\textrm{if } d=\log_b a,\\
+            \mathcal{O}(n^{\log_b a}), &\textrm{if } d<\log_b a.
+          \end{cases}
+        \end{equation}
+      \end{exampleblock}
+      \begin{exampleblock}{}
+        \begin{align}
+          Q^{T}A&=R \\
+          \begin{pmatrix}
+            q_1^T \\ q_2^T \\ q_3^T
+          \end{pmatrix}
+          \begin{pmatrix}
+            a_1 & a_2 & a_3
+          \end{pmatrix}
+          &=R
+        \end{align}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+  \note{关于如果 \LaTeX{} 报出了错误，比如说数学模式下不能有空行，想要学习如何修复这些错误，
+  可以详见 Learn\LaTeX{}.org 的相关章节
+  \link{https://github.com/CTeX-org/learnlatex.github.io/blob/zh-Hans/zh-Hans/lesson-15.md}。}
+\end{frame}
+
+%更深入地讲解 mathtools, unicode-math, siunix

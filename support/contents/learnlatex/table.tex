@@ -1,0 +1,95 @@
+% !TeX root = ../../../latex-talk.tex
+
+\section{表}
+
+\begin{frame}[fragile]
+  \frametitle{简单表格}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{}
+\documentclass{ctexart}
+|\only<1-2>{\highlightline}|\usepackage{|\temporal<1>{array}{\highlight{array}}{array},\temporal<2>{booktabs}{\highlight{booktabs}}{booktabs}|}
+\begin{document}
+\begin{table}[ht]
+  \centering
+  \caption{|\phantom{}|北京冬奥会吉祥物}
+|\highlightline<1>|  \begin{tabular}{lp{3cm}}
+|\highlightline<2>|    \toprule
+|\highlightline<3>|吉祥物 & 描述                          \\
+|\highlightline<2>|    \midrule
+|\highlightline<3>|冰墩墩 & 2022 年北京冬季奥运会吉祥物  \\
+|\highlightline<3>|雪容融 & 2022 年北京冬季残奥会吉祥物  \\
+|\highlightline<2>|    \bottomrule
+|\highlightline<1>|  \end{tabular}
+\end{table}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+
+      \only<1>{
+        使用 \env{tabular} 环境绘制表格。需要添加参数（称为\textbf{表格导言}）以确定每一列的对齐方式。引入 \pkg{array} 宏包来使用更多的\textbf{引导符}。
+        \begin{center}
+          \footnotesize
+          \begin{tabular}{>{\ttfamily}ll}
+            \alert{l} & 向左对齐 \\
+            \alert{c} & 居中对齐 \\
+            \alert{r} & 向右对齐 \\
+            \alert{p\{3cm\}} & 固定列宽，两端对齐 \\
+            \alert{m\{3cm\}} & \texttt{p} + 垂直居中对齐 \\
+            \alert{>\{\textbackslash{}bfseries\}} & 后一列单元格前加命令 \\
+            \alert{*\{3\}\{l\}} & 三个左对齐列 \\
+          \end{tabular}
+        \end{center}
+      }
+
+      \only<2>{
+        \pkg{booktabs} 宏包提供了标准三线表格所需要的行分割线：\cmd{toprule}，\cmd{midrule}，\cmd{bottomrule}。也可以使用 \cmd{cmidrule\{1-2\}} 来部分地绘制行分割线。一般不推荐在专业表格中使用纵向分割线。
+      }
+
+      \only<3>{
+        每行内容使用 \textbackslash\textbackslash{} 分隔开，每行中的单元格使用 \& 分隔开。
+      }
+
+      \only<4>{
+        \includepdflarge{support/examples/table.pdf}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]%
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{codeblock}[]{表头居中}
+\documentclass{ctexart}
+\usepackage{array,booktabs}
+\begin{document}
+\begin{table}[ht]
+  \centering
+  \caption{|\phantom{}|北京冬奥会吉祥物}
+  \begin{tabular}{lp{3cm}}
+    \toprule
+|\highlightline|\multicolumn{1}{c}{|\phantom{}|吉祥物} &
+|\highlightline|\multicolumn{1}{c}{|\phantom{}|描述} \\
+    \midrule
+|\phantom{}|冰墩墩 & 2022 年北京冬季奥运会吉祥物  \\
+|\phantom{}|雪容融 & 2022 年北京冬季残奥会吉祥物  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{document}
+      \end{codeblock}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \cmd{multicolumn} 命令不仅可以用于合并同行的单元格，还可以用于临时地屏蔽表格导言对该列的对齐方式定义。这里用于居中表头。
+      \begin{center}
+        \parbox{0.85\linewidth}{
+          \cmd{multicolumn\{格数\}\{对齐方式\}\{内容\}}
+        }
+      \end{center}
+      跨页表格考虑使用 \pkg{longtable} 宏包。带标注的表格可以考虑使用 \pkg{threeparttable} 宏包。考虑使用在线工具生成表格代码 \link{https://www.tablesgenerator.com/latex_tables}。
+      \note{复杂的使用方法在 \SJTUThesis{} 示例文档中都有提及。}
+    \end{column}
+  \end{columns}
+\end{frame}

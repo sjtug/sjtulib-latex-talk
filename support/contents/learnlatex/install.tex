@@ -1,0 +1,133 @@
+% !TeX root = ../../../latex-talk.tex
+
+\section{安装和编辑}
+
+\begin{frame}
+  \frametitle{发行版}
+  \begin{table}
+    \caption{\hologo{TeX} 发行版}
+    \footnotesize
+    \begin{stampbox}
+      \begin{tabular}{c>{\raggedright}*{3}{p{3.2cm}}}
+        \alert{发行版}     & \hologo{MiKTeX} \link{https://miktex.org/}   & \TeX{} Live \link{https://www.tug.org/texlive/}   & Mac\TeX{} \link{https://www.tug.org/mactex/}  \\[2pt]
+        \alert{特点}      &  只安装必要文件，依赖用时更新  &  所有平台均可使用，每年发布一次 & Mac 系统专用，对 \TeX{} Live 的进一步打包 \\
+        \alert{推荐平台}  & \faWindows  & \faWindows\,\faLinux &  \faApple \\
+      \end{tabular}
+    \end{stampbox}
+  \end{table}
+  \begin{center}
+    \parbox{.9\textwidth}{
+      要让 \LaTeX{} 跑起来，核心就是要有一套 \TeX{} 发行版，来获取让 \LaTeX{} 工作所需的一组程序和文件。参考《一份简短的关于 \LaTeX{} 安装的介绍》\link{https://mirrors.sjtug.sjtu.edu.cn/ctan/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf} 安装想使用的发行版。推荐使用发行版的最新版本\footnote{老版本 Linux 系统的包管理器自带 \TeX{} Live 发行版可能不是最新的 \link{https://repology.org/project/texlive/versions}，尽量使用镜像安装，并手动将相关环境变量添加到路径 \link{https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf}。}，并使用国内镜像。
+    }
+  \end{center}
+  \note{要让 \LaTeX{} 跑起来，核心就是要有一套 \TeX{} 发行版，来获取让
+  \LaTeX{} 工作所需的一组程序和文件。参考《一份简短的关于 \LaTeX{} 安装的介绍》
+  安装想使用的发行版，里面介绍了 \faWindows{}, \faApple{}, \faLinux{}, WSL 等系统上
+  \TeX{} Live 的安装，非常全面，一步一步做就可以成功安装。目前最新的 \TeX{} Live 版本为
+  2022，\SJTUThesis{} 用户不应当安装 \TeX{} Live 2020 以下的版本（后面会讲）。
+
+  事实上，我认为这几个发行版各有操作系统偏好，虽然前两者是跨平台的。
+
+  \hologo{MiKTeX} 对 Windows 用户较为友好，安装简单，占用空间不大，安装时间短，
+  而且有完整的安装与卸载程序。可以给大家看一下 \hologo{MiKTeX} Console 的情况。
+
+  \TeX{} Live 更符合 Linux 的更新传统。老版本 Linux 系统的包管理器自带 \TeX{} Live
+  发行版可能不是最新的（到时间也会锁定依赖库的版本），尽量使用镜像安装（当然也推荐使用最新的
+  Linux 发行版，这样它的版本也就一直是最新的），并手动将相关环境变量添加到路径。
+
+  Mac\TeX{} 发行版有 pkg 安装包封装，并且附带了 \TeX{}Shop 基本编辑软件，更加适合 Mac OS。
+  我用下来的话，感觉除了 \TeX{} Live Utility 外都有点过时了。}
+\end{frame}
+
+\begin{frame}[plain]
+  \hbox to \textwidth{
+    \hfil
+    \vbox to 3cm{
+      \hbox{
+        \resizebox{3cm}{!}{\includegraphics{support/examples/pics/sjtug}}
+      }
+    }
+    \hfil
+    \vbox to 3cm{
+      \vfill
+      \hbox{\Large\bfseries\color{structure} 稳定、快速、现代的镜像服务。}
+      \vskip2pt
+      \hbox{托管于华东教育网骨干节点上海交通大学。}
+      \vfill
+    }
+    \hskip20pt
+    \hfil
+  }
+
+  \begin{center}
+    \parbox{0.8\textwidth}{
+      推荐使用 SJTUG 软件镜像服务 \link{https://mirror.sjtu.edu.cn/}，离得近，下得快。
+
+      \begin{description}
+        \footnotesize
+        \item[\hologo{MiKTeX}] \url{https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/win32/miktex/setup/windows-x64/} \\ 并在 \hologo{MiKTeX} Console 中设置镜像源为 \url{https://mirrors.sjtug.sjtu.edu.cn}
+        \item[\TeX{} Live] \url{https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/texlive/tlnet}
+        \item[Mac\TeX{}] \url{https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/mac/mactex/}
+        \item[\faTelegram] 可以在 SJTUG 镜像站通知频道 \link{https://t.me/sjtug_mirrors_news} 获得更多信息，加入关联群组参与讨论。
+      \end{description}
+    }
+  \end{center}
+  \note{说到镜像，像后两者的安装包都很大（4GB 左右），由于一些原因，不采用镜像的话不知道要下到什么时候，对下载速度的要求高；
+  而 \hologo{MiKTeX} 需要随时更新，宏包大小颗粒度大，对延迟的要求高。
+  那么采用 SJTUG 镜像源将同时解决这两个问题，位于图信大楼的机房，凭借校内的高速网络，稳定快速下载，
+  现在由 LightQuantum 维护的镜像站欢迎大家的使用，主页上还有更多的其他镜像可供使用，加入 Telegram 群组参与讨论。}
+\end{frame}
+
+\begin{frame}
+  \frametitle{编辑器}
+  \begin{table}
+    \caption{开源编辑器推荐}
+    \footnotesize
+    \begin{stampbox}
+      \begin{tabular}{c>{\raggedright}*{3}{p{3.5cm}}}
+        \alert{编辑器}     & \begin{tabular}{c}Visual Studio Code \link{https://code.visualstudio.com}\\ +\,\LaTeX{} Workshop \link{https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop}\end{tabular}  & \TeX{}studio \link{https://texstudio.org} & \TeX{}works \\[5pt]
+        \alert{特点}      &  搭配 VS Code 使用非常方便，易扩展  & 可以使用大量的菜单选项输入代码块，用户友好 & 只提供基础的高亮与运行方法，发行版自带\footnote{Mac\TeX{} 打包的是 \TeX{}Shop 编辑器。} \\
+      \end{tabular}
+    \end{stampbox}
+  \end{table}
+  \begin{center}
+    \parbox{.9\textwidth}{
+      使用专为 \LaTeX{} 设计的编辑器将带来更多便利，因为它们往往会提供一键编译、内置 PDF 阅读器以及语法高亮等功能。几乎所有现代的 \LaTeX{} 编辑器都提供 Sync\TeX{} 这一强大的功能，以在 PDF 和代码间对应跳转。
+    }
+  \end{center}
+  \note{编辑器的种类很多，我无法一一列举，但是对编写 \TeX{} 常用的开源编辑器我推荐这三个。
+  其中 \TeX{}studio 的安装包可能下得有点慢。这里我对这些编辑器都演示一下，初学者我更推荐使用
+  \TeX{} studio 编辑器，如果平时就码很多代码的话，我更推荐使用 VS Code 加插件这种方式。
+
+  使用专为 \LaTeX{} 设计的编辑器将带来更多便利，因为它们往往会提供一键编译、内置 PDF 阅读器
+  以及语法高亮等功能。几乎所有现代的 \LaTeX{} 编辑器都提供 Sync\TeX{} 这一强大的功能
+  （VS Code 的方法是 Ctrl + 某处，Overleaf 的方法是直接双击），以在 PDF 和代码间对应跳转。
+  当然如果你不喜欢使用这种 GUI 编辑器，\TeX{} 文档本身就是纯文本，对 Vim, Emacs 等终端用户
+  也很友好。}
+\end{frame}
+
+\begin{frame}
+  \frametitle{在线平台}
+  \begin{table}
+    \caption{在线协作平台推荐}
+    \footnotesize
+    \begin{stampbox}
+      \begin{tabular}{c>{\raggedright}*{2}{p{4cm}}}
+        \alert{在线平台}     & Overleaf \link{https://www.overleaf.com/}  & 交大 \LaTeX{} 助手 \link{https://latex.sjtu.edu.cn/} \\[2pt]
+        \alert{特点}      & 最流行的在线平台，提供大量的模板，但国内访问慢 & 校内平台，隐私保护有保障，共享项目限制少 \\
+      \end{tabular}
+    \end{stampbox}
+  \end{table}
+  \begin{center}
+    \parbox{.9\textwidth}{
+      在线平台允许你直接在网页中编辑文档，无需本地安装即可在后台运行 \LaTeX{}，并显示生成的 PDF。可以参照 Overleaf 官方文档学习如何使用在线平台 \link{https://www.overleaf.com/learn}。
+    }
+  \end{center}
+  \note{当然使用在线平台省去了安装发行版的麻烦，这里列出两种在线写作平台。
+
+  如果有数据合规需求的话，可以考虑使用由网络信息中心维护的交大 \LaTeX{} 助手，最近更新了 \TeX{} Live 2022，还是很不错的。
+
+  当然国内还有 \TeX{} Page \link{https://www.texpage.com/}，Slagger \link{https://www.slager.cn/} 等。
+  一般来讲，这种平台使用的都是 Linux 操作系统，所以在排版中文的时候考虑将编译引擎更改为 \hologo{XeLaTeX}，
+  学习如何使用在线平台参见 Overleaf 的官方文档 \link{https://www.overleaf.com/learn}。}
+\end{frame}
